@@ -1,20 +1,24 @@
-require "./GlobalDef"# => true
+require "./GlobalDef"
 
 class TagAttribute
-  def initialize
-    @aString = String.new
-  end
-
-  def add(lang: "en")
-    @aString += "Lang=".inDoubleQuot(lang)
-  end
-
+  # attr_accessor :aString
   
+  # def initialize
+  #   @aString = String.new
+  # end
+
+  # # def templeteAdd (index: "", val: "")
+  # #   if !val.empty?
+  # #     @aString += SPC + index + "=".inDoubleQuot(val)
+  # #   end
+  # # end
   
+  # def addLang(lang)
+  #   @aString += "lang=".inDoubleQuot(lang)
+  # end
+
 end
 
-a = TagAttribute.new
-a.add(lang: "jp")# => "Lang=\"jp\""
 
 # class TagAttribute {
    

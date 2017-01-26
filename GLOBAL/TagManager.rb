@@ -69,10 +69,3 @@ class TagManager
   end
   
 end
-
-# ~> LoadError
-# ~> cannot load such file -- ../../GLOBAL/GlobalDef
-# ~>
-# ~> /Users/shimizukazuyuki/.rbenv/versions/2.4.0/lib/ruby/2.4.0/rubygems/core_ext/kernel_require.rb:55:in `require'
-# ~> /Users/shimizukazuyuki/.rbenv/versions/2.4.0/lib/ruby/2.4.0/rubygems/core_ext/kernel_require.rb:55:in `require'
-# ~> /var/folders/w8/tp2v81_s3f3g44st06_hgy0c0000gn/T/seeing_is_believing_temp_dir20170126-77808-13irvow/program.rb:1:in `<main>'

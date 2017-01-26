@@ -1,6 +1,6 @@
 require 'test/unit'
 require '../../GLOBAL/GlobalDef' # => true
-require '../../GLOBAL/JW.rb'# => true
+require '../../GLOBAL/JW.rb'# => # => true
 
 class JSTest < Test::Unit::TestCase
   class << self

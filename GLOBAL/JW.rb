@@ -1,4 +1,4 @@
-require "./GlobalDef"
+require "./GlobalDef"# => true
 
 =begin
  HTML basic class

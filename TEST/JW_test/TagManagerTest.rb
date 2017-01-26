@@ -1,6 +1,6 @@
 require 'test/unit'
 require '../../GLOBAL/GlobalDef'# => true
-require '../../GLOBAL/TagManager'# => true
+require '../../GLOBAL/TagManager'# => 
 
 class TagManagerTest < Test::Unit::TestCase
   class << self
@@ -86,21 +86,12 @@ class TagManagerTest < Test::Unit::TestCase
   
 end
 
-# >> Loaded suite /var/folders/87/r0sr2xy176l6vnw1b8hffgtc0000gn/T/seeing_is_believing_temp_dir20170125-67391-ztt63u/program
-# >> Started
-# >> :_startup
-# >> :setup
-# >> :cleanup
-# >> :treadown
-# >> .:setup
-# >> :cleanup
-# >> :treadown
-# >> .:_shutdown
-# >> 
-# >> 
-# >> Finished in 0.00062 seconds.
-# >> ------
-# >> 2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
-# >> 100% passed
-# >> ------
-# >> 3225.81 tests/s, 3225.81 assertions/s
+# ~> LoadError
+# ~> cannot load such file -- ./GlobalDef
+# ~>
+# ~> /Users/shimizukazuyuki/.rbenv/versions/2.4.0/lib/ruby/2.4.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+# ~> /Users/shimizukazuyuki/.rbenv/versions/2.4.0/lib/ruby/2.4.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+# ~> /Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/GLOBAL/TagManager.rb:1:in `<top (required)>'
+# ~> /Users/shimizukazuyuki/.rbenv/versions/2.4.0/lib/ruby/2.4.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+# ~> /Users/shimizukazuyuki/.rbenv/versions/2.4.0/lib/ruby/2.4.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+# ~> /var/folders/w8/tp2v81_s3f3g44st06_hgy0c0000gn/T/seeing_is_believing_temp_dir20170126-86140-psaaej/program.rb:3:in `<main>'
