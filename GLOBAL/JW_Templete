@@ -1,0 +1,785 @@
+class JW{
+    
+    var tagManager      : TagString = TagString()
+    private var openString              : String!
+    private var closeString             : String!
+    
+    var aData:(label:String, data :String)!
+    var data: [(label:String, data :String)] = []
+    
+    var templeteString  : String    = "" // Labelによる書き換え前のString
+    var pressTreatment  : Press!
+    
+    var memberString: [String]      = []
+    
+
+    // 自分のClass名を得る
+    func callClassName() -> String {
+        return String(describing: self).components(separatedBy: ".").last!
+    }
+
+    
+    
+    // remove charactor
+    func removeLastRET (str: String) -> String {
+        if str.hasSuffix("\n") {
+            return str.substring(to: str.index(before: str.endIndex))
+        }
+        return str
+    }
+    func removeLastTAB (str: String) -> String {
+        if str.hasSuffix("\t") {
+            return str.substring(to: str.index(before: str.endIndex))
+        }
+        return str
+    }
+    
+    func removeHeadTAB (str:String) -> String{
+        if str.hasPrefix("\t"){
+            return str.substring(from: str.index(after: str.startIndex))
+        }
+        return str
+    }
+    
+    //export string
+    func tgStr () -> String {
+        assemble()
+        return templeteString
+    }
+
+    //js
+    func importJSParameters (child:JWObject) {
+        if child.tagManager.isJsAvailable() {
+            self.tagManager.jsFileName  = child.tagManager.jsFileName
+            self.tagManager.jsType      = child.tagManager.jsType
+            self.tagManager.jsPath      = child.tagManager.jsPath
+        }
+        
+    }
+    
+    // tag
+    func isBRTag (single: Bool) {
+        tagManager.isBRTag = single
+    }
+    func isSingleTag (single: Bool) {
+        tagManager.isSingleTag = single
+    }
+    
+    func setID(id:String) {
+        tagManager.id = id
+    }
+    
+    func setCls(cls:String) {
+        tagManager.cls = cls
+    }
+    func setName(name:String) {
+        tagManager.name = name
+    }
+    func setLang(lang:LANG) {
+        tagManager.lang = lang
+    }
+    func tagName() -> String {
+        return tagManager.name
+    }
+    func tagID() -> String {
+        if tagManager.id.isEmpty {
+            assertionFailure("set id")
+        }
+        return tagManager.id
+    }
+    func selectorID () -> String {
+        return "#" + tagID()
+    }
+    
+    func tagCls() -> String {
+        if tagManager.cls.isEmpty {
+            assertionFailure("set cls")
+        }
+        return tagManager.cls
+    }
+
+    func selectorCls () -> String {
+        return "." + tagCls()
+    }
+    
+    func makeTag() {
+        tagManager.openString(spec: "")
+        tagManager.closeString(spec: "")
+    }
+    
+    // tab揃え
+    func tabNumber (str: String) -> Int {
+        let last = removeLastTAB(str: str) //余分なTabを除く
+        let a = last.components(separatedBy: "\t")
+        return a.count - 1
+    }
+    
+    
+    
+    func addTab (str: String, tabMax : Int) -> String {
+        var ans = ""
+        let l = str.lines
+        for e:String in l {
+            let tn = tabNumber(str: e)
+            let a = tabMax - tn
+            let s = addheadTab(str: e, num: a)
+            ans += s
+            ans += "\n"
+        }
+        
+        return ans
+    }
+    
+    func addheadTab (str: String, num:Int) -> String {
+        var t = ""
+        for _ in 0..<num {
+            t += "\t"
+        }
+        t += str
+        return t
+    }
+    
+    func getTabNumber (testStr:String, targetStr: String ) -> Int {
+        let lin = testStr.lines
+        for l in lin {
+            if l.contains(targetStr) {
+                return tabNumber(str: l)
+            }
+        }
+        return 0
+    }
+    
+    func getTabMax (testStr:String) -> Int {
+        var max = 0
+        let lin = testStr.lines
+        for l in lin {
+            let n = tabNumber(str: l)
+            if n > max {
+                max = n
+            }
+        }
+        return max
+        
+    }
+
+    
+    func prepTempString()  {
+        assemble()
+        memberAssemble()
+    }
+    
+    func assemble(){
+        makeTag()
+        makeResult()
+    }
+    
+    func makeResult(){
+        templeteString += tagManager.tempOpenString + RET
+        
+        if !tagManager.tempCloseString.isEmpty {
+            templeteString += tagManager.tempCloseString
+        }
+        
+        // 最後のRETを取り除く
+        templeteString = removeLastRET(str: templeteString)
+    }
+    
+    func memberAssemble () {
+        
+        if memberString.count > 0 {
+            templeteString += RET
+            
+            var m: String = ""
+            for t: String in memberString {
+                m += t
+                m += RET
+            }
+            
+            templeteString += m
+        }
+    }
+    
+    // resultStringをファイルに書き出す
+    @discardableResult
+    func press(name: String, dist : String) -> String{
+        self.pressTreatment = Press()   // prep templeteString
+        prepTempString()                // make templeteString
+        
+        if self.tagManager.isJsAvailable() {
+            if self.tagManager.isNeedJsSrc() {
+                // prep for js
+                // <script>　と<その他>を分離
+                // <その他>を別ファイルに書き出す
+                // ＜script＞を通常通り書き出す
+                let a = enumerateLine(target: self.templeteString)
+                let ans = self.tagManager.extranctBetweenScriptTag(target: a)
+                var b : [String] = []
+                for t in ans.extract {
+                    b.append(removeHeadTAB(str: t))
+                }
+                self.templeteString = b.joined(separator: "\n")
+                
+                // export to js file
+                self.pressTreatment.templeteString = self.templeteString
+                self.pressTreatment.initResutString()               // templeteString -> resultString
+                self.pressTreatment.removeAllLabel()                // remove label string
+                let tempName = self.tagManager.jsFileName
+                let tempDir = self.tagManager.jsPath
+                self.pressTreatment.core(name: tempName, dist: tempDir)    // press resultString
+
+                // prep for html and css
+                self.templeteString = ans.scriptTag.joined(separator: "\n")
+                
+                
+            }else{
+                //通常のTagと同じ処理
+            }
+            
+        }
+        
+        self.pressTreatment.templeteString = self.templeteString
+        self.pressTreatment.initResutString()               // templeteString -> resultString
+        self.pressTreatment.removeAllLabel()                // remove label string
+        self.pressTreatment.core(name: name, dist: dist)    // press resultString
+        
+
+        return self.pressTreatment.resultString
+    }
+    
+    @discardableResult
+    func press () -> String {
+        return self.press(name: EXPORT_TEST_File, dist: EXPORT_TEST_Dir)
+    }
+    
+    @discardableResult
+    func insertPress(_data_: [(label:String, data :String)]) -> String {
+        return self.pressTreatment.withInsert(_data_: _data_)
+    }
+    
+    @discardableResult
+    func insertPress(label:String, data:String) -> String {
+        return self.pressTreatment.withInsert(label: label, data: data)
+    }
+    
+
+class JWSingle: JWObject {
+    
+    var content :  String  = ""
+
+    override init() {
+        super.init()
+        initilizer()
+
+    }
+
+    init(content: String) {
+        super.init()
+        self.initilizer()
+        self.content = content
+    }
+    
+    func initilizer () {
+        tagManager.initialize()
+    }
+
+    
+    func addContentAt(label:String, data:String) -> String{
+        return LABEL_INSERT_START + label + LABEL_INSERT_END + data
+    }
+    
+    override func assemble(){
+        makeTag()
+        makeResult()
+    }
+    
+    override func makeResult() {
+        templeteString = tagManager.tempOpenString + content
+       
+        if !tagManager.tempCloseString.isEmpty {
+            templeteString += tagManager.tempCloseString
+        }
+    }
+    
+}
+
+/*
+ 
+ <tag>
+    child
+    child
+    child
+    child
+ </tag>
+
+ <member> xxxx </member>
+ <member> xxxx </member>
+ <member> xxxx </member>
+
+ 
+ */
+
+class JWMulti: JWObject {
+    
+    var childString: [String] = []
+    
+    // add child
+    func addChild (child : JWObject){
+        
+        //js
+        importJSParameters(child: child)
+        // html
+        child.assemble()
+        self.addCihld(child: child.templeteString)
+        
+        // css
+        if child.styleArray.count > 0{
+            styleArray.append(contentsOf: child.styleArray)
+        }
+        if child.style != nil{
+            styleArray.append(child.style)
+        }
+        
+    }
+    
+    func addChildren (children : [JWObject]){
+        
+        for c: JWObject in children {
+            addChild(child: c)
+        }
+    }
+    
+    
+    func addCihld (child: String) {
+        
+        let t = child.replacingOccurrences(of: RET, with: RET + TAB)
+        childString.append(t)
+    }
+
+    
+    override func assemble() {
+        makeTag()
+        makeResult()
+    }
+    
+    override func makeResult() {
+        templeteString += tagManager.tempOpenString + RET
+        
+        childAssemble()
+        
+        if !tagManager.tempCloseString.isEmpty {
+            templeteString += tagManager.tempCloseString
+        }
+        
+        // 最後のRETを取り除く
+        templeteString = removeLastRET(str: templeteString)
+    }
+    
+    func childAssemble () {
+        for str in childString {
+            templeteString += TAB + str
+            templeteString += TAB + RET
+           }
+    }
+
+    
+    
+}
+
+ // 今後、基底クラスのインターフェイスとする
+class JWObject : JWCSS {
+    
+}
+// class JWCSSScript : JWCSS {} ...
+
+class JWCSS: JW { // add css functions
+    
+    var style :CSS!
+    var styleArray : [CSS]  = []
+    var styleString: String = ""
+    private var nameList :[String] = [] // 重複判定に利用
+    
+    
+
+    func prepStyle(name: String) {
+        style = CSS(name: name)
+    }
+    func prepStyle(property: CSS.property){
+        style = CSS(property: property)
+    }
+    
+    func styleStringInit () {
+        styleString = "" // initilize
+    }
+    
+    private func styleAssemble () {
+        nameList = []
+        var tempStyle : [CSS] = []
+        if style != nil{
+            tempStyle.append( style )
+        }
+        tempStyle.append(contentsOf: styleArray)
+        
+        for sty in tempStyle {
+            /// スタイルがない（｛｝のみ）なら標示しない
+            if sty.Str().isEmpty {
+                continue
+            }
+            
+            if isSameCSSName(name: sty.cssName) {
+                continue
+            }
+            /// 同じ名前のスタイルは書き込まない（重複書き込み禁止）
+            nameList.append(sty.cssName)
+            styleString += sty.Str()
+            styleString += RET
+            
+            
+        }
+        
+        styleString = removeLastRET(str: styleString)
+        
+    }
+    
+    
+    private func isSameCSSName (name: String) -> Bool {
+        for n in nameList {
+            if n == name {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+
+    func styleStr () -> String {
+        styleStringInit()
+        styleAssemble()
+        return styleString
+    }
+
+    
+    func applyStyle() {
+        styleAssemble()
+        
+        ///検索のためにStyle tag生成
+        let s = STYLE()
+        s.makeTag()
+        if templeteString.contains(s.tagManager.tempOpenString) && templeteString.contains(s.tagManager.tempCloseString) {
+            // insert tab
+            let tn = getTabNumber(testStr: templeteString, targetStr: STYLE_CONTENT)
+            let tabedString = addTab(str: styleString, tabMax: tn)
+            
+            // replace text
+            // 余分なTabを削除しておく
+            var target = ""
+            for _ in 0..<tn {
+                target += TAB
+            }
+            target += STYLE_CONTENT
+            templeteString = templeteString.replacingOccurrences(of: target, with: STYLE_CONTENT) // TAB + TAB + STYLE_CONTENT -> STYLE_CONTENT
+            templeteString = templeteString.replacingOccurrences(of: STYLE_CONTENT, with: tabedString)
+        }
+    }
+    
+    
+    // add member
+    func addMember(member:String)  {
+    
+        memberString.append(member)
+    }
+
+    func addMember (member: JWObject){
+        // js
+        importJSParameters(child: member)
+        
+        // html
+        member.assemble()
+        addMember(member: member.templeteString)
+        
+        // css
+        if member.styleArray.count > 0{
+            styleArray.append(contentsOf: member.styleArray)
+        }
+        if member.style != nil {
+            styleArray.append(member.style)
+        }
+        
+    }
+    func addMembers (members: [JWObject]) {
+        for m: JWObject in members {
+            m.addMember(member: m)
+        }
+    }
+    
+    // press
+    
+    override func prepTempString() {
+        assemble()
+        memberAssemble()
+        applyStyle()
+    }
+}
+
+}
+
+
+/////////////////// tagManager ///////////////////////////
+//
+//  TagString.swift
+//  JabberWock
+//
+//  Created by kazuyuki shimizu on 2017/01/04.
+//  Copyright © 2017年 momiji-mac. All rights reserved.
+//
+
+import Foundation
+
+class TagString{
+    
+    var name: String    = ""
+    var id: String      = ""
+    var cls: String     = ""
+    
+    // tag attribute
+    var attr: TagAttribute = TagAttribute()
+    
+    
+    //script tag
+    var jsPath    : String    = ""
+    var jsPathPlusName :String   = ""
+    var jsFileName: String    = ""
+    var jsType    : String    = ""
+    
+    var tempOpenString = ""
+    var tempCloseString = ""
+  
+    // br 場合＝True
+    var isBRTag     = false
+    
+    // li, doctype, meta 場合＝True
+    var isSingleTag = false
+    
+    // <a href, target ></a>
+    var href :String    = ""
+    var target :String  = ""
+    
+    func initialize() {
+        id          = ""
+        cls         = ""
+        name        = ""
+        jsFileName  = ""
+        jsPath      = ""
+        jsType      = ""
+    }
+    
+    
+    // tag judgemnet
+    private func isScriptTag() -> Bool {
+        return name == "script" ? true : false
+    }
+    
+    private func isATag() -> Bool {
+        return name == "a" ? true : false
+    }
+    
+    // add id, cls, path, etc
+    private func addID (){
+        if id.isEmpty {return}
+        id = SPC + "id=" + DOUBLE_QUO +  id + DOUBLE_QUO
+    }
+    
+    private func addCls (){
+        if cls.isEmpty {return}
+        cls = SPC + "class=" + DOUBLE_QUO + cls + DOUBLE_QUO
+    }
+    
+//    private func addLang (){
+//        if lang == LANG.NO_LANG {return}
+//        language = SPC + lang.str()
+//    }
+    
+    // js
+    private func addPath() {
+        
+        if jsFileName.isEmpty {return}
+        if jsPath.isEmpty {
+            jsPath = EXPORT_TEST_JS_Dir
+        }
+        
+        jsPathPlusName = SPC + "src=" + DOUBLE_QUO + jsPath + jsFileName + DOUBLE_QUO
+    }
+    
+    private func addType()  {
+        if jsType.isEmpty{return}
+        jsType = SPC + "type=" + DOUBLE_QUO + jsType + DOUBLE_QUO
+    }
+    
+    
+    /// js <script></script>に挟まれた文字列を取り出す
+    func extranctBetweenScriptTag (target: [String]) -> (scriptTag:[String], extract:[String]) {
+        /*
+         [0] = "<!DOCTYPE html type=\"text/javascript\" src=\"/Users/shimizukazuyuki/Desktop/index/test.js\">"
+         [1] = "<script type=\"text/javascript\" src=\"/Users/shimizukazuyuki/Desktop/index/test.js\">"
+         [2] = "\ttest\t"
+         [3] = "</script>"
+         
+         */
+        
+        var s : [String] = []
+        var e : [String] = []
+        
+        var start = false
+        for st in target {
+            if st.contains("<script") {
+                s.append(st)
+                start = true
+                continue
+            }
+            
+            if st.contains("</script>") {
+                s.append(st)
+                start = false
+                continue
+            }
+            
+            if start {
+                e.append(st)
+                
+            }else{
+                s.append(st)
+            }
+            
+            
+        }
+        return (scriptTag: s, extract: e)
+    }
+
+    
+    /*
+     => isNeedJsSrc
+     <script type="text/javascript" src="/Users/shimizukazuyuki/Desktop/index/test.js"></script>
+     
+     => InDocument
+     <script type="text/javascript"></script>
+     
+     
+     */
+    
+    func isJsAvailable () -> Bool {
+        if !jsType.isEmpty || !jsPath.isEmpty || !jsFileName.isEmpty { // <script> available
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func isNeedJsSrc () -> Bool {
+        if isJsAvailable() {
+            if !jsFileName.isEmpty {
+                return true
+            }
+        }
+        return false
+    }
+    
+    @discardableResult
+    func openString (spec:String) -> String {
+        
+        tempOpenString = ""
+        
+        if name.isEmpty {
+            return ""
+        }
+        
+        
+        if !spec.isEmpty {
+            tempOpenString = "<" + name + spec + ">"
+            return tempOpenString
+        }
+        
+        // br
+        if isBRTag {return ""}
+     
+        /// id, clsなどの指定が必要Tagはここより下に記入
+        
+        addID()
+        addCls()
+        addPath()
+        addType()
+        
+        // script
+        if isScriptTag() {
+            return scriptTag()
+        }
+        
+        //<a>
+        if isATag(){
+            return ATag()
+        }
+        
+        tempOpenString = "<" + name + id + cls + attr.aString + ">"
+        return tempOpenString
+    }
+    
+    private func ATag() -> String {
+        if !href.isEmpty {
+            href = SPC + "href=" + href
+        }
+        if !target.isEmpty {
+            target = SPC + "target=" + target
+        }
+        
+        tempOpenString = "<" + name + id + cls + href + target + ">"
+        return tempOpenString
+        
+    }
+    
+    private func scriptTag () -> String {
+        tempOpenString = "<" + name + id + cls + attr.aString + jsType + jsPathPlusName + ">"
+        return tempOpenString
+    }
+    
+    @discardableResult
+    func openStringReplace (of : String, with:String) -> String {
+        tempOpenString = tempOpenString.replacingOccurrences(of: of,  with: with)
+        return tempOpenString
+    }
+    
+    @discardableResult
+    func closeString (spec:String) -> String {
+        tempCloseString = ""
+
+        if name.isEmpty {
+            return ""
+        }
+
+        // not require
+        /// meta, img
+        if spec == NOT_REQUIRE {
+            return ""
+        }
+
+        if !spec.isEmpty {
+            tempCloseString = "</" + spec + ">"
+            return tempCloseString
+        }
+        
+        // br
+        if isBRTag {return "<" + name + ">"}
+        if isSingleTag {return ""}
+
+        
+        tempCloseString = "</" + name + ">"
+        return tempCloseString
+    }
+    
+    @discardableResult
+    func closeStringReplace (of : String, with:String) -> String {
+        tempCloseString = tempCloseString.replacingOccurrences(of: of,  with: with)
+        return tempCloseString
+    }
+
+    
+    
+}
