@@ -1,45 +1,73 @@
-require "./GlobalDef"
+require "./globalDef"# => true
 
 class TagAttribute
-  # attr_accessor :aString
+  attr_accessor :aString
   
-  # def initialize
-  #   @aString = String.new
-  # end
+  def initialize
+    @aString = String.new
+  end
 
-  # # def templeteAdd (index: "", val: "")
-  # #   if !val.empty?
-  # #     @aString += SPC + index + "=".inDoubleQuot(val)
-  # #   end
-  # # end
+  def insertSPace(target)
+    if @aString.empty?
+      @aString += target
+    else
+      @aString += $SPC + target
+    end    
+  end
   
-  # def addLang(lang)
-  #   @aString += "lang=".inDoubleQuot(lang)
-  # end
+  def templeteAdd (index: "", val: "")
+    src = index + "=".inDoubleQuot(val)
+    if !val.empty?
+      insertSPace(src)
+    end
+  end
+  
+  
+  def addLang(lang)
+    templeteAdd(index: "lang", val: lang)
+
+  end
 
 end
 
+__END__
 
-# class TagAttribute {
-   
-#     var aString = ""
-   
+ // br
+        if isBRTag {return ""}
+     
+        /// id, clsなどの指定が必要Tagはここより下に記入
+        
+        addID()
+        addCls()
+        addPath()
+        addType()
+        
+        // script
+        if isScriptTag() {
+            return scriptTag()
+        }
+        
+        
+        // TODO: attribute Stringなので統一させたい！
+        //<a>
+        if isATag(){
+            return ATag()
+        }
+        
+        tempOpenString = "<" + name + id + cls + attr.aString + ">"
+        return tempOpenString
+    }
     
-#     func add (lang: LANG){
-#         if lang == LANG.NO_LANG {return}
-#         aString += SPC + lang.str()
-#     }
-    
-#     func templeteAdd (index:String, val:String) {
-#         if !val.isEmpty {
-#             aString += SPC + index + "=".inDoubleQuo(inn: val)
-#         }
-#     }
-    
-#     func add(title : String){
-#         templeteAdd(index: "title", val: title)
-#     }
-    
-    
-    
-# }
+    private func ATag() -> String {
+        if !href.isEmpty {
+            href = SPC + "href=" + href
+        }
+        if !target.isEmpty {
+            target = SPC + "target=" + target
+        }
+        
+        tempOpenString = "<" + name + id + cls + href + target + ">"
+        return tempOpenString
+        
+    }
+}

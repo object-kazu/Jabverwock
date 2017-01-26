@@ -1,10 +1,9 @@
-require "./GlobalDef"
+require "./globalDef"# => true
+require "./TagAttribute"# => true
 
 class TagManager
-  attr_accessor :name, :id, :cls
+  attr_accessor :name, :id, :cls, :tagAttribute
     
-#   // tag attribute
-#    var attr: TagAttribute = TagAttribute()
     
     
     # //script tag
@@ -21,51 +20,49 @@ class TagManager
     @name = String.new
     @id   = String.new
     @cls  = String.new
-    
-  end
 
-  def addName
-    if !@name.empty?
-      st = "name=" + "\"" + @name + "\""
-      addSpace
-      @tempOpenString += st
-    end
+    @tagAttribute = TagAttribute.new
+    
   end
 
   def addID
     if !@id.empty?
       st = "id=" + "\"" + @id + "\""
-      addSpace      
-      @tempOpenString  += st
+      @id = addSpace(st)
     end
   end
 
   def addCls
     if !@cls.empty?
       st = "class=" + "\"" + @cls + "\""
-      addSpace
-      @tempOpenString  += st        
+      @cls = addSpace(st)
     end
   end
 
-  def addSpace
-    if !@tempOpenString.empty?
-       @tempOpenString += SPC
+  def addSpace(str)
+    if !str.empty?
+       str += $SPC 
     end
+    str
   end
-  
+    
   def openString
-    addName
     addID
     addCls
     
     
-    @tempOpenString
+    @tempOpenString = "<" + @name + ">"
   end
 
   def closeString
     
-    @tempCloseString
+    @tempCloseString = "</" + @name  + ">"
   end
   
 end
+
+__END__
+
+ // br
+        if isBRTag {return ""}
+     

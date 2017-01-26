@@ -1,8 +1,8 @@
-require 'test/unit'
-require '../../GLOBAL/GlobalDef' # => true
-require '../../GLOBAL/JW.rb'# => # => true
+require 'test/unit' 
+require '../../global/globalDef'  
+#require "../../global/jw" # ~> LoadError: cannot load such file -- ./globalDef
 
-class JSTest < Test::Unit::TestCase
+class JwTest < Test::Unit::TestCase
   class << self
     # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる
     def startup
@@ -41,7 +41,7 @@ class JSTest < Test::Unit::TestCase
   
 end
 
-# >> Loaded suite /var/folders/87/r0sr2xy176l6vnw1b8hffgtc0000gn/T/seeing_is_believing_temp_dir20170125-56516-6nbm1y/program
+# >> Loaded suite /var/folders/w8/tp2v81_s3f3g44st06_hgy0c0000gn/T/seeing_is_believing_temp_dir20170126-2745-1kfpt4n/program
 # >> Started
 # >> :_startup
 # >> :setup
@@ -50,10 +50,10 @@ end
 # >> .:_shutdown
 # >> 
 # >> 
-# >> Finished in 0.000512 seconds.
+# >> Finished in 0.000619 seconds.
 # >> ------
 # >> 1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
 # >> 100% passed
 # >> ------
-# >> 1953.12 tests/s, 1953.12 assertions/s
+# >> 1615.51 tests/s, 1615.51 assertions/s
 
