@@ -1,6 +1,6 @@
 require 'test/unit' 
 require '../../GLOBAL/GlobalDef' 
-require '../../GLOBAL/TagAttribute'# => LoadError: cannot load such file -- ./GlobalDef
+require '../../GLOBAL/TagAttribute' 
 
 
 class TagAttributeTest < Test::Unit::TestCase
