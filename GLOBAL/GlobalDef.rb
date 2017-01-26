@@ -5,6 +5,19 @@ class String
   def >>(other)
       self + other + other
   end
+
+  def inDoubleQuot(insert)
+    self + DOUBLE_QUO + insert + DOUBLE_QUO
+  end
+
+  def inSingleQuo(insert)
+    self +  SINGLE_QUO + insert + SINGLE_QUO
+  end
+
+  def inParenth(insert)
+    self + "(" + SINGLE_QUO + insert + SINGLE_QUO + ")"
+  end
+
 end
 
 
