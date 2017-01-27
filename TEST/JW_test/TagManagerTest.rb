@@ -122,6 +122,12 @@ class TagManagerTest < Test::Unit::TestCase
     assert_equal(tm.openString, "<b>")
     assert_equal(tm.closeString, "</b>")
   end
-  
+
+  test "tag attribute lang add" do
+    tm = TagManager.new
+    tm.name = "a"
+    tm.tagAttribute.addLang("jp")
+    assert_equal(tm.openString, "<a lang=\"jp\">")
+  end
   
 end

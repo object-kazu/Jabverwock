@@ -15,6 +15,7 @@ class TagAttribute
     end    
   end
   
+  
   def templeteAdd (index: "", val: "")
     src = index + "=".inDoubleQuot(val)
     if !val.empty?
@@ -25,7 +26,6 @@ class TagAttribute
   
   def addLang(lang)
     templeteAdd(index: "lang", val: lang)
-
   end
 
 end

@@ -20,8 +20,9 @@ class TagManager
     @name = String.new
     @id   = String.new
     @cls  = String.new
-
+    
     @tagAttribute = TagAttribute.new
+    @attributeString = String.new
     
   end
 
@@ -36,6 +37,12 @@ class TagManager
     if !@cls.empty?
       st = "class=" + "\"" + @cls + "\""
       @cls = addSpace(st)
+    end
+  end
+
+  def addAttribute
+    if !@tagAttribute.aString.empty?
+      @attributeString = addSpace(@tagAttribute.aString)
     end
   end
 
@@ -58,8 +65,11 @@ class TagManager
     if isBrTag()
       return ""
     end
+
+    # tag attribute treatment
+    addAttribute
     
-    @tempOpenString = "<" + @name + @id + @cls + ">"
+    @tempOpenString = "<" + @name + @id + @cls + @attributeString + ">"
   end
 
   def closeString

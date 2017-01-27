@@ -29,10 +29,10 @@ class TagAttributeTagAttribute3,0
   attr_accessor :aStringaString=4,0
   def initializeinitialize6,0
   def insertSPace(target)insertSPace10,0
-  def templeteAdd (index: "", val: "")templeteAdd18,0
-  def addLang(lang)addLang26,0
+  def templeteAdd (index: "", val: "")templeteAdd19,0
+  def addLang(lang)addLang27,0
 
-global/tagManager.rb,712
+global/tagManager.rb,749
 class TagManagerTagManager4,0
   attr_accessor :name, :id, :cls, :tagAttributename5,0
   attr_accessor :name, :id, :cls, :tagAttributename=5,0
@@ -45,10 +45,11 @@ class TagManagerTagManager4,0
   def initializeinitialize16,0
   def addIDaddID28,0
   def addClsaddCls35,0
-  def addSpace(str)addSpace42,0
-  def isBrTagisBrTag49,0
-  def openStringopenString53,0
-  def closeStringcloseString65,0
+  def addAttributeaddAttribute42,0
+  def addSpace(str)addSpace46,0
+  def isBrTagisBrTag53,0
+  def openStringopenString57,0
+  def closeStringcloseString72,0
 
 html/p.rb,19
 class P < JWP2,0
