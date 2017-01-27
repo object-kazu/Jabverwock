@@ -1,4 +1,4 @@
-require "./globalDef"# => true
+require_relative "globalDef"
 
 class TagAttribute
   attr_accessor :aString
@@ -29,6 +29,10 @@ class TagAttribute
   end
 
 end
+
+# a = TagAttribute.new
+# a.addLang("jj")
+# p a.aString + $DOUBLE_QUO
 
 __END__
 

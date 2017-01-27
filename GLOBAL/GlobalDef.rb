@@ -1,8 +1,5 @@
-# String extension ############
+## String extension ############
 class String
-  def >>(other)
-      self + other + other
-  end
 
   def inDoubleQuot(insert)
     self + $DOUBLE_QUO + insert + $DOUBLE_QUO
@@ -15,6 +12,8 @@ class String
   def inParenth(insert)
     self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"
   end
+  
+end
 
 # global constant ############
 
@@ -34,31 +33,13 @@ class String
   $LABEL_INSERT_START  = "##LABELSTART##"
   $LABEL_INSERT_END    = "##LABELEND##"
 
-# Table ####################
+# # Table ####################
   $BLA      = "<br>"
   $ROW_SPAN = "%rowSpan="
   $COL_SPAN = "%colSpan="
 
-  
-  
-end
 
-
-
-# Struct ####################
-
-  InsertData = Struct.new(:label, :data)
-
-# enum ####################
-  
-  # module AttrLang
-  #   JP = "jp"
-  #   EN = "en"
-
-  # end
-
-  # a = AttrLang::JP# => "jp"
-  
 __END__
+
 
 

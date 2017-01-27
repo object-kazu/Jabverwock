@@ -1,6 +1,6 @@
 require 'test/unit' 
-require './globalDef'  
-require './tagAttribute'  
+require_relative '../../global/globalDef'  
+require_relative '../../global/tagAttribute'  
 
 class TagAttributeTest < Test::Unit::TestCase
   class << self

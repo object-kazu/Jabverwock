@@ -1,5 +1,5 @@
-require "./globalDef"# => true
-require "./TagAttribute"# => true
+require_relative "globalDef" 
+require_relative "tagAttribute" 
 
 class TagManager
   attr_accessor :name, :id, :cls, :tagAttribute
@@ -41,28 +41,37 @@ class TagManager
 
   def addSpace(str)
     if !str.empty?
-       str += $SPC 
+       str = $SPC + str
     end
     str
   end
-    
+
+  def isBrTag
+    @name == "br" ? true : false
+  end
+  
   def openString
     addID
     addCls
     
+
+    if isBrTag()
+      return ""
+    end
     
-    @tempOpenString = "<" + @name + ">"
+    @tempOpenString = "<" + @name + @id + @cls + ">"
   end
 
   def closeString
+    if isBrTag
+      return @tempCloseString = "<" + @name  + ">"
+    end
     
     @tempCloseString = "</" + @name  + ">"
   end
   
 end
 
+
 __END__
 
- // br
-        if isBRTag {return ""}
-     

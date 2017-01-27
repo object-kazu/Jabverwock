@@ -1,15 +1,10 @@
-require "./globalDef"# => true
-
-=begin
- HTML basic class
-
-=end
-
+require_relative "globalDef" 
+require_relative "insertData"  
 
 class JW
 
   def initialize
-    @aData = InsertData.new()
+    @aData = InsertData.new
     @openString     = ""
     @closeString    = ""
     @templeteString = ""
@@ -41,5 +36,9 @@ class JW
 end
 
 
+a = InsertData.new
+a.label = "adf"
+p a
 __END__
+
 

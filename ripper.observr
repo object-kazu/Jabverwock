@@ -1,0 +1,1 @@
+watch( './.*\.rb' ) { system("ripper-tags -e -R -f TAGS") }

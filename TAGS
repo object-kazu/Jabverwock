@@ -1,0 +1,89 @@
+
+global/globalDef.rb,149
+class StringString2,0
+  def inDoubleQuot(insert)inDoubleQuot4,0
+  def inSingleQuo(insert)inSingleQuo8,0
+  def inParenth(insert)inParenth12,0
+
+global/insertData.rb,224
+class InsertDataInsertData1,0
+  attr_accessor :label, :datalabel2,0
+  attr_accessor :label, :datalabel=2,0
+  attr_accessor :label, :datadata2,0
+  attr_accessor :label, :datadata=2,0
+  def initializeinitialize4,0
+
+global/jw.rb,227
+class JWJW4,0
+  def initializeinitialize6,0
+  attr_accessor :aDataaData15,0
+  attr_accessor :aDataaData=15,0
+  def to_sto_s17,0
+  def assembleassemble22,0
+  def makeTagmakeTag27,0
+  def makeResultmakeResult31,0
+
+global/tagAttribute.rb,275
+class TagAttributeTagAttribute3,0
+  attr_accessor :aStringaString4,0
+  attr_accessor :aStringaString=4,0
+  def initializeinitialize6,0
+  def insertSPace(target)insertSPace10,0
+  def templeteAdd (index: "", val: "")templeteAdd18,0
+  def addLang(lang)addLang26,0
+
+global/tagManager.rb,712
+class TagManagerTagManager4,0
+  attr_accessor :name, :id, :cls, :tagAttributename5,0
+  attr_accessor :name, :id, :cls, :tagAttributename=5,0
+  attr_accessor :name, :id, :cls, :tagAttributeid5,0
+  attr_accessor :name, :id, :cls, :tagAttributeid=5,0
+  attr_accessor :name, :id, :cls, :tagAttributecls5,0
+  attr_accessor :name, :id, :cls, :tagAttributecls=5,0
+  attr_accessor :name, :id, :cls, :tagAttributetagAttribute5,0
+  attr_accessor :name, :id, :cls, :tagAttributetagAttribute=5,0
+  def initializeinitialize16,0
+  def addIDaddID28,0
+  def addClsaddCls35,0
+  def addSpace(str)addSpace42,0
+  def isBrTagisBrTag49,0
+  def openStringopenString53,0
+  def closeStringcloseString65,0
+
+html/p.rb,19
+class P < JWP2,0
+
+test/jw_test/jwTest.rb,185
+class JwTest < Test::Unit::TestCaseJwTest5,0
+    def startupstartup8,0
+    def shutdownshutdown13,0
+  def setupsetup19,0
+  def cleanupcleanup24,0
+  def teardownteardown29,0
+
+test/jw_test/tagAttributeTest.rb,205
+class TagAttributeTest < Test::Unit::TestCaseTagAttributeTest5,0
+    def startupstartup8,0
+    def shutdownshutdown13,0
+  def setupsetup19,0
+  def cleanupcleanup24,0
+  def teardownteardown29,0
+
+test/jw_test/tagManagerTest.rb,201
+class TagManagerTest < Test::Unit::TestCaseTagManagerTest5,0
+    def startupstartup8,0
+    def shutdownshutdown13,0
+  def setupsetup19,0
+  def cleanupcleanup24,0
+  def teardownteardown29,0
+
+test/jw_test/testSample.rb,286
+class TestSample < Test::Unit::TestCaseTestSample4,0
+    def startupstartup7,0
+    def shutdownshutdown12,0
+  def setupsetup18,0
+  def cleanupcleanup23,0
+  def teardownteardown28,0
+  def test_footest_foo32,0
+  def test_bartest_bar37,0
+  def test_dededetest_dedede42,0
