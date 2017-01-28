@@ -36,9 +36,9 @@ class JW
 end
 
 
-a = InsertData.new
-a.label = "adf"
-p a
+# a = InsertData.new
+# a.label = "adf"
+# p a
 __END__
 
 

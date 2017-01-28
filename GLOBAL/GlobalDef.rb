@@ -1,19 +1,28 @@
-## String extension ############
+## String extension ############ 
 class String
 
   def inDoubleQuot(insert)
-    self + $DOUBLE_QUO + insert + $DOUBLE_QUO
+    if insert.is_a?(String)
+      self + $DOUBLE_QUO + insert + $DOUBLE_QUO
+    end
   end
 
   def inSingleQuo(insert)
-    self +  $SINGLE_QUO + insert + $SINGLE_QUO
+    if insert.is_a?(String)
+        self +  $SINGLE_QUO + insert + $SINGLE_QUO  
+    end
   end
 
   def inParenth(insert)
-    self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"
+    if insert.is_a?(String)
+    self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
+    end
+ 
   end
   
 end
+
+
 
 # global constant ############
 
@@ -37,7 +46,7 @@ end
   $BLA      = "<br>"
   $ROW_SPAN = "%rowSpan="
   $COL_SPAN = "%colSpan="
-
+  
 
 __END__
 
