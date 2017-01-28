@@ -1,6 +1,6 @@
 require 'test/unit'
 require_relative '../../global/globalDef'  
-require_relative '../../global/press'  
+require_relative '../../global/press'
 
 class PressTest < Test::Unit::TestCase
   class << self
