@@ -1,4 +1,3 @@
-
 module Jabverwock  
   class Press
     attr_accessor :templeteString, :resultString
@@ -41,12 +40,12 @@ module Jabverwock
       end
     end
     
-    
-    
-    #  func removeAllLabel () {
-    #      let a = resultString.pregReplace(pattern: "##LABELSTART##.*?##LABELEND##", with: "")
-    #      resultString = a
-    #  }
+    def removeAllLabel
+      target = 
+      p target
+      @resultString.gsub!(/##LABELSTART##.*?##LABELEND##/,"")
+
+    end
     
     #  @discardableResult
     #  func withInsert(_data_: [(label:String, data :String)]) -> String {

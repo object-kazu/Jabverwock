@@ -77,6 +77,27 @@ module Jabverwock
       assert_equal(pr.resultString, "this is test" + ans1 + ans2 )      
     end
 
+    test "use incorrect class at insertDataArray" do
+      pr = Press.new
+      pr.resultString = "this is test" + "a".variable + "b".variable
+      i = InsertData.new(label:"a", data: ",again")
+      i2 = InsertData.new(label:"b", data: ",again")
+      assert_raise(RuntimeError){
+        pr.insertDataList(i,i2,"dd")
+      }
+      
+    end
+
+    test "remove all lable" do
+      pr = Press.new
+      pr.resultString = "this is test" + "a".variable + "b".variable
+      i = InsertData.new(label:"a", data: ",again")
+      i2 = InsertData.new(label:"b", data: ",again")
+      pr.insertDataList(i,i2)
+      pr.removeAllLabel
+      assert_equal(pr.resultString, "this is test" + ",again" + ",again")      
+      
+    end
     
     
   end
