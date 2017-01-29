@@ -1,4 +1,15 @@
-module Jabverwock  
+module Jabverwock
+#  // export html & css
+# let EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
+# let EXPORT_TEST_File = "result.html"
+
+# // export js
+# let EXPORT_TEST_JS_Dir = "/Users/shimizukazuyuki/Desktop/index/"
+# let EXPORT_TEST_JS_File = "result.js"
+
+  $EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
+  $EXPORT_TEST_File = "resultRuby.txt"
+  
   class Press
     attr_accessor :templeteString, :resultString
     
@@ -19,6 +30,9 @@ module Jabverwock
     end 
 
     def insertLabelData(label:, data:)
+      label = KS.checkString(label)
+      data = KS.checkString(data)
+      
       targetString = label.variable
       dataPlusTargetString = targetString + data
       @resultString.gsub!(targetString, dataPlusTargetString)
@@ -41,93 +55,46 @@ module Jabverwock
     end
     
     def removeAllLabel
-      target = 
-      p target
       @resultString.gsub!(/##LABELSTART##.*?##LABELEND##/,"")
-
     end
     
-    #  @discardableResult
-    #  func withInsert(_data_: [(label:String, data :String)]) -> String {
+    ## no test!
+    def withInsertList(*insertData)
+      initResutString
+      insertDataList(insertData)
+      removeAllLabel
+      core(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
+      
+    end
     
-    #      initResutString()
-    #      insertData(_data_: _data_)
-    #      removeAllLabel()
-    #      core(name: EXPORT_TEST_File, dist: EXPORT_TEST_Dir)
-    
-    #      return resultString
-    
-    #  }
-    
-    #  @discardableResult
-    #  func withInsert(label:String, data :String) -> String{
-    #      initResutString()
-    #      insertData(label: label, Data: data)
-    #      removeAllLabel()
-    #      core(name: EXPORT_TEST_File, dist: EXPORT_TEST_Dir)
-    
-    #      return resultString
-    #  }
-    
+    ## no test!
+    def withInsert(label:, data:)
+      initResutString
+      insertLabelData(label: label, data: data)
+      removeAllLabel
+      core(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
+    end
+        
     #  // templateString -> resultString -> export
-    #  @discardableResult
-    #  func core(name: String, dist : String) -> String{
-    #      exportResult(name: name, dist: dist)
-    #      return resultString
-    #  }
-    
-    #  func exportResult (name: String, dist : String) {
-    
-    #      // ドキュメントパス
-    #      let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-    #      // 保存するもの
-    #      let fileObject = resultString
-    #      // ファイル名
-    #      var fileName = name
-    #      // 保存する場所
-    #      if !fileName.contains("/") {
-    #          fileName = "/" + fileName
-    #      }
-    #      let filePath = documentsPath + fileName
-    
-    #      // 保存処理
-    #      do {
-    #          try fileObject.write(toFile: filePath, atomically: true, encoding: String.Encoding.utf8)
-    #      } catch {
-    #          print("Fail to write result at text file")
-    
-    #      }
-    
-    
-    #      //file exist
-    #      let fileManager = FileManager.default
-    #      let path = dist + name
-    
-    #      if fileManager.fileExists(atPath: path){
-    #          // remove file
-    #          print("file remove!")
-    #          removeFile(path: path)
-    #      }
-    
-    #      // file move
-    #      do{
-    #          try fileManager.moveItem(atPath: filePath, toPath:path)
-    #      } catch {
-    #          assertionFailure("move error")
-    #      }
-    #  }
-    
-    #  func removeFile(path:String){
-    #      let fileManager = FileManager.default
-    
-    #      do {
-    #          try fileManager.removeItem(atPath: path)
-    #          print("Removal successful")
-    #      } catch let error {
-    #          print("Error: \(error.localizedDescription)")
-    #      }
-    #  }
+    def core(name:, dist:)
+      name = KS.checkString(name)
+      dist = KS.checkString(dist)
 
+      exportResult(name: name, dist: dist)
+      @resultString
+      
+    end
+    
+    def exportResult(name:$EXPORT_TEST_File, dist:$EXPORT_TEST_Dir)
+      name = KS.checkString(name)
+      dist = KS.checkString(dist)
+      pathName = dist + name
+      
+      File.open(pathName, "w") do |f| 
+        f.puts @resultString
+      end
+      
+    end
   end
 end
 

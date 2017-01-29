@@ -98,7 +98,17 @@ module Jabverwock
       assert_equal(pr.resultString, "this is test" + ",again" + ",again")      
       
     end
-    
+
+
+    test "export result" do
+      pr = Press.new
+      pr.resultString = "this is test" + "a".variable + "b".variable
+      i = InsertData.new(label:"a", data: ",again")
+      i2 = InsertData.new(label:"b", data: ",again")
+      pr.insertDataList(i,i2)
+      pr.removeAllLabel
+      pr.exportResult
+    end
     
   end
 end
