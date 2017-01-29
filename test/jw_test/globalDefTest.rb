@@ -82,6 +82,13 @@ module Jabverwock
       tm = KS.checkString(tm)
       assert_equal(tm ,"a")
     end
+
+    #variable
+    test "variable insert" do
+      tm = "a".variable
+      ans = $LABEL_INSERT_START + "a" + $LABEL_INSERT_END
+      assert_equal(tm, ans)
+    end
     
   end
 end

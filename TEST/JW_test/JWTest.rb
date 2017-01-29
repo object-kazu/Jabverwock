@@ -1,5 +1,7 @@
 require 'test/unit' 
-require '../../global/globalDef'  
+require_relative '../../global/globalDef'  
+require_relative '../../global/insertData'  
+
 module Jabverwock
   class JwTest < Test::Unit::TestCase
     class << self
@@ -32,8 +34,9 @@ module Jabverwock
     ############## test ###############
     
     test "JW use InsertData as Struct " do
-      a = InsertData.new("test",1)
-      assert_equal(a.label, "test")
+      a = InsertData.new(label:"ss", data: "aa")
+      assert_equal(a.label, "ss")
+      assert_equal(a.data, "aa")
       
     end
     

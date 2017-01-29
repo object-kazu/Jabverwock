@@ -20,6 +20,10 @@
       
     end
     
+    def variable
+      $LABEL_INSERT_START + self + $LABEL_INSERT_END
+    end  
+    
   end
 
 module Jabverwock
@@ -70,9 +74,7 @@ module Jabverwock
     
   end
 end
-  # a = "a"
-  # p a = KSG.check_type(String,a )
-  
+
 __END__
 
 

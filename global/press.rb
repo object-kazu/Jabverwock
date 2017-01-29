@@ -1,6 +1,8 @@
 
 module Jabverwock  
   class Press
+    attr_accessor :templeteString, :resultString
+    
     
     def initialize
       # js
@@ -17,21 +19,29 @@ module Jabverwock
       
     end 
 
-    def insertData(data)
-      
+    def insertLabelData(label:, data:)
+      targetString = label.variable
+      dataPlusTargetString = targetString + data
+      @resultString.gsub!(targetString, dataPlusTargetString)
     end
     
-    #  func insertData (_data_: [(label:String, data :String)]) {
-    #      for d in _data_ {
-    #          insertData(label: d.label, Data: d.data)
-    #      }
-    #  }
+    def insertData(insertData)
+      if !insertData.is_a?(InsertData)
+        p "ahaaaa!, use InsertData class"
+        raise RuntimeError
+      end
+
+      insertLabelData(label: insertData.label, data: insertData.data)
+     
+    end
+
+    def insertDataList(*insertData)
+      insertData.each do |d|
+        insertData(d)
+      end
+    end
     
-    #  func insertData (label: String, Data :String) {
-    #      let targetString = label.variable
-    #      let dataPlusTargetString = targetString + Data
-    #      resultString = resultString.replacingOccurrences(of: targetString, with: dataPlusTargetString)
-    #  }
+    
     
     #  func removeAllLabel () {
     #      let a = resultString.pregReplace(pattern: "##LABELSTART##.*?##LABELEND##", with: "")

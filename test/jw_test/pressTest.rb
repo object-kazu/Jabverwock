@@ -1,6 +1,8 @@
 require 'test/unit'
 require_relative '../../global/globalDef'  
 require_relative '../../global/press'
+require_relative '../../global/insertData'
+
 
 module Jabverwock
   class PressTest < Test::Unit::TestCase
@@ -36,100 +38,46 @@ module Jabverwock
       p $SPC  
     end
     
-    # test "TagManager, path confirm " do
-    #   tm =  TagManager.new 
-    #   tm.name = "first"
+    test "insert data " do
+      pr = Press.new
+      pr.resultString = "this is test" + "a".variable
+      pr.insertLabelData(label:"a", data:",again")
+      p pr.resultString
+      assert_equal(pr.resultString, "this is test" + $LABEL_INSERT_START + "a" + $LABEL_INSERT_END + ",again" )
+    end
 
-    #   assert_equal(tm.openString, "<first>")
-    #   assert_equal(tm.closeString, "</first>")
+    test "error raise" do
+      pr = Press.new
+      pr.resultString = "this is test" + "a".variable
+      assert_raise(RuntimeError){
+        pr.insertData("a")        
+      }
+      
+    end
+
+    test "use correct class at insertData method" do
+      pr = Press.new
+      pr.resultString = "this is test" + "a".variable
+      i = InsertData.new(label:"a", data: ",again")
+      pr.insertData(i)
+      assert_equal(pr.resultString, "this is test" + $LABEL_INSERT_START + "a" + $LABEL_INSERT_END + ",again" )      
+    end
     
-    # end
+    test "use correct class at insertDataArray" do
+      pr = Press.new
+      pr.resultString = "this is test" + "a".variable + "b".variable
+      i = InsertData.new(label:"a", data: ",again")
+      i2 = InsertData.new(label:"b", data: ",again")
+      
+      pr.insertDataList(i,i2)
+      
+      ans1 = $LABEL_INSERT_START + "a" + $LABEL_INSERT_END + ",again"
+      ans2 = $LABEL_INSERT_START + "b" + $LABEL_INSERT_END + ",again"
+      
+      assert_equal(pr.resultString, "this is test" + ans1 + ans2 )      
+    end
+
     
-    # test "TagManager, name is void " do
-    #   tm =  TagManager.new
-    #   tm.name = ""
-
-    #   assert_equal(tm.openString, "<>")
-    
-    # end
-
-    # test "name and id add" do
-    #   tm =  TagManager.new()
-    #   tm.name = "p"
-    #   tm.id = "test"
-
-    #   assert_equal(tm.openString, "<p id=\"test\">")
-    
-    # end
-    
-    # test "id add" do
-    #   tm =  TagManager.new()
-    #   tm.id = "test"
-
-    #   assert_equal(tm.openString, "< id=\"test\">")
-    
-    # end
-
-    # test "id and name add" do
-    #   tm =  TagManager.new()
-    #   tm.id = "test"
-    #   tm.name = "sample"
-
-    #   assert_equal(tm.openString,"<sample id=\"test\">" )
-    
-    # end
-
-    # test "class  add" do
-    #   tm =  TagManager.new()
-    #   tm.name = "p"           
-    #   tm.cls = "test"
-    
-    #   assert_equal(tm.openString, "<p class=\"test\">")
-    
-    # end
-
-    # test "class, id , name  add" do
-    #   tm =  TagManager.new()
-    #   tm.cls = "test"
-    #   tm.id = "test"
-    #   tm.name = "sample"
-
-    #   assert_equal(tm.openString, "<sample id=\"test\" class=\"test\">" )
-
-    # end
-
-    # test "br test" do
-    #   tm = TagManager.new
-    #   tm.name = "br"    
-    #   assert_equal(tm.isBrTag, true)
-    # end
-
-    # test "br test false" do
-    #   tm = TagManager.new
-    #   tm.name = "b"    
-    #   assert_equal(tm.isBrTag, false)
-    # end
-
-    # test "br tag " do
-    #   tm = TagManager.new
-    #   tm.name = "br"    
-    #   assert_equal(tm.openString, "")
-    #   assert_equal(tm.closeString, "<br>")
-    # end
-    
-    # test "not br tag " do
-    #   tm = TagManager.new
-    #   tm.name = "b"    
-    #   assert_equal(tm.openString, "<b>")
-    #   assert_equal(tm.closeString, "</b>")
-    # end
-
-    # test "tag attribute lang add" do
-    #   tm = TagManager.new
-    #   tm.name = "a"
-    #   tm.tagAttribute.addLang("jp")
-    #   assert_equal(tm.openString, "<a lang=\"jp\">")
-    # end
     
   end
 end
