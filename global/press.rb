@@ -48,24 +48,6 @@ module Jabverwock
      
     end
 
-    def insertDataList(*insertData)
-      insertData.each do |d|
-        insertData(d)
-      end
-    end
-    
-    def removeAllLabel
-      @resultString.gsub!(/##LABELSTART##.*?##LABELEND##/,"")
-    end
-    
-    ## no test!
-    def withInsertList(*insertData)
-      initResutString
-      insertDataList(insertData)
-      removeAllLabel
-      core(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
-      
-    end
     
     ## no test!
     def withInsert(label:, data:)

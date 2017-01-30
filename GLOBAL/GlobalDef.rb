@@ -71,11 +71,27 @@ module Jabverwock
     def self.checkString (instance, nilable=false)
       check_type(String, instance)
     end
+
+    def self.callSelfCls(cls)
+        "#{cls.class}"
+    end
+
+    def self.removeLastRET(text)
+      text.chomp
+    end
+
+    def self.removeLastTAB(text)
+      text.gsub!(/\t$/, "")
+    end
+
+    def self.removeHeadTAB(text)
+      text.gsub!(/^\t/, "")
+    end
+
+
+
     
-  end
-end
-
-__END__
-
-
-
+    
+    
+  end #globaleDef    
+end #Jabverwock
