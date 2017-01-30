@@ -1,5 +1,7 @@
 require_relative "globalDef" 
 require_relative "insertData"  
+require_relative "tagManager"  
+require_relative "press"
 
 module Jabverwock
   class JW
@@ -14,6 +16,7 @@ module Jabverwock
       @templeteString = ""
       @memberString   = []
       @pressTreatment = Press.new
+      @tagManager = TagManager.new
     end
 
     def to_s
@@ -47,13 +50,14 @@ module Jabverwock
         
 #     }
     
-#     // tag
-# //    func isBRTag (single: Bool) {
-# //        tagManager.name = single
-# //    }
-#     func isSingleTag (single: Bool) {
-#         tagManager.isSingleTag = single
-#     }
+    
+    def isSingleTag(isSingle)
+      if KS.is_bool(isSingle)
+        @tagManager.isSingleTag = isSingle        
+      end
+    end
+    
+    
     
 #     func setID(id:String) {
 #         tagManager.id = id

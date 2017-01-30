@@ -1,8 +1,9 @@
 require_relative "globalDef" 
 require_relative "tagAttribute" 
+
 module Jabverwock
   class TagManager
-    attr_accessor :name, :id, :cls, :tagAttribute
+    attr_accessor :name, :id, :cls, :tagAttribute, :isSingleTag
     
     
     
@@ -23,7 +24,8 @@ module Jabverwock
       
       @tagAttribute = TagAttribute.new
       @attributeString = String.new
-      
+
+      @isSingleTag = false
     end
 
     def addID

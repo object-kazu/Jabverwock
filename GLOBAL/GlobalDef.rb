@@ -88,9 +88,11 @@ module Jabverwock
       text.gsub!(/^\t/, "")
     end
 
+    def self.is_bool(v)
+      !!v === v
+    end
 
 
-    
     
     
   end #globaleDef    

@@ -116,6 +116,11 @@ module Jabverwock
 
     end
     
+    test "is_Bool" do
+      assert_true(KS.is_bool(true))
+      assert_false(KS.is_bool(1))
+    end
+
     
   end
 

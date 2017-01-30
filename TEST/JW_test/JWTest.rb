@@ -1,6 +1,7 @@
 require 'test/unit' 
 require_relative '../../global/globalDef'  
 require_relative '../../global/insertData'  
+require_relative '../../global/jw'  
 
 module Jabverwock
   class JwTest < Test::Unit::TestCase
@@ -39,7 +40,19 @@ module Jabverwock
       assert_equal(a.data, "aa")
       
     end
-    
-    
+
+
+    test "JW,  isSingle method" do
+      tm = JW.new
+      ans = tm.isSingleTag(true)
+      assert_equal(ans, true)
+    end
+
+    test "JW,  isSingle method nil" do
+      tm = JW.new
+      ans = tm.isSingleTag(1)
+      assert_equal(ans, nil)
+    end
+
   end
 end
