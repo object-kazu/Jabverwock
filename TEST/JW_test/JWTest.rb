@@ -54,5 +54,26 @@ module Jabverwock
       assert_equal(ans, nil)
     end
 
+    test "addHeadTab" do
+      tm = JW.new
+      target = "kkkk"
+      ans = KString.addHeadTab(str: target, num:  3)
+      assert_equal(ans, $TAB + $TAB + $TAB + "kkkk" )
+    end
+
+    test "addTab" do
+      tm = JW.new
+      target = "kkkk" + $RET + "aaa" + $RET
+      ans = KString.addTab(str: target, tabMax: 2)
+      assert_equal(ans, $TAB + $TAB + "kkkk" + $RET + $TAB + $TAB + "aaa" + $RET )
+    end
+
+    test "getTabNumbre" do
+      tm = JW.new
+      target = $TAB + $TAB + "kkkk" + $RET + $TAB + $TAB + "aaa" + $RET + $TAB + $TAB + $TAB + $TAB + "aaa" + $RET
+      ans = KString.getTabMax(target)
+      assert_equal(ans,4)
+    end
+    
   end
 end

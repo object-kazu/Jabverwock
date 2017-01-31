@@ -10,7 +10,7 @@ module Jabverwock
 
     def insertSPace(target)
       if @aString.empty?
-        @aString = KS.checkString(@aString)
+        @aString = KString.checkString(@aString)
         @aString += target
       else
         @aString += $SPC + target
@@ -20,8 +20,8 @@ module Jabverwock
     
     def templeteAdd (index: "", val: "")
 
-      index = KS.checkString(index)
-      val = KS.checkString(val)
+      index = KString.checkString(index)
+      val = KString.checkString(val)
       
       src = index + "=".inDoubleQuot(val)
       if !val.empty?
@@ -31,7 +31,7 @@ module Jabverwock
     
     
     def addLang(lang)
-      lang = KS.checkString(lang)
+      lang = KString.checkString(lang)
       templeteAdd(index: "lang", val: lang)
     end
 

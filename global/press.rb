@@ -30,8 +30,8 @@ module Jabverwock
     end 
 
     def insertLabelData(label:, data:)
-      label = KS.checkString(label)
-      data = KS.checkString(data)
+      label = KString.checkString(label)
+      data = KString.checkString(data)
       
       targetString = label.variable
       dataPlusTargetString = targetString + data
@@ -48,6 +48,15 @@ module Jabverwock
      
     end
 
+    def insertDataList(*insertData)
+      insertData.each do |i| 
+        insertData(i)
+      end
+    end
+
+     def removeAllLabel
+      @resultString.gsub!(/##LABELSTART##.*?##LABELEND##/,"")
+     end
     
     ## no test!
     def withInsert(label:, data:)
@@ -59,8 +68,8 @@ module Jabverwock
         
     #  // templateString -> resultString -> export
     def core(name:, dist:)
-      name = KS.checkString(name)
-      dist = KS.checkString(dist)
+      name = KString.checkString(name)
+      dist = KString.checkString(dist)
 
       exportResult(name: name, dist: dist)
       @resultString
@@ -68,8 +77,8 @@ module Jabverwock
     end
     
     def exportResult(name:$EXPORT_TEST_File, dist:$EXPORT_TEST_Dir)
-      name = KS.checkString(name)
-      dist = KS.checkString(dist)
+      name = KString.checkString(name)
+      dist = KString.checkString(dist)
       pathName = dist + name
       
       File.open(pathName, "w") do |f| 

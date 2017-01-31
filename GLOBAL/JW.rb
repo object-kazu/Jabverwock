@@ -23,18 +23,6 @@ module Jabverwock
       "#{@aData}, #{@openString}, #{@closeString}, #{@templeteString}, #{@memberString}" 
     end
 
-    # module KS.callMyに移行
-    #  func callClassName() -> String {
-
-    # module KS.removeLastRETに移行
-    #     func removeLastRET (str: String) -> String {
-
-    # module KS.removeLastTABに移行    
-    #     func removeLastTAB (str: String) -> String {
-
-    # module KS.removeHeadTABに移行        
-    #     func removeHeadTAB (str:String) -> String{
-
     def tgStr
       assemble
       @tempOpenString
@@ -52,12 +40,15 @@ module Jabverwock
     
     
     def isSingleTag(isSingle)
-      if KS.is_bool(isSingle)
+      if KSUtil.is_bool(isSingle)
         @tagManager.isSingleTag = isSingle        
       end
     end
     
-    
+    # def setID(id)
+    #   id = KString.checkString(id)
+    #   @tagManager.id = id
+    # end
     
 #     func setID(id:String) {
 #         tagManager.id = id
@@ -79,7 +70,7 @@ module Jabverwock
 #         if tagManager.id.isEmpty {
 #             assertionFailure("set id")
 #         }
-#         return tagManager.id
+#         return tatManager.id
 #     }
 #     func selectorID () -> String {
 #         return "#" + tagID()
@@ -96,109 +87,41 @@ module Jabverwock
 #         return "." + tagCls()
 #     }
     
-#     func makeTag() {
-#         tagManager.openString(spec: "")
-#         tagManager.closeString(spec: "")
-#     }
-    
-#     // tab揃え
-#     func tabNumber (str: String) -> Int {
-#         let last = removeLastTAB(str: str) //余分なTabを除く
-#         let a = last.components(separatedBy: "\t")
-#         return a.count - 1
-#     }
+    def makeTag
+      @tagManager.openString
+      @TagManager.closeString
+    end
     
     
-    
-#     func addTab (str: String, tabMax : Int) -> String {
-#         var ans = ""
-#         let l = str.lines
-#         for e:String in l {
-#             let tn = tabNumber(str: e)
-#             let a = tabMax - tn
-#             let s = addheadTab(str: e, num: a)
-#             ans += s
-#             ans += "\n"
-#         }
-        
-#         return ans
-#     }
-    
-#     func addheadTab (str: String, num:Int) -> String {
-#         var t = ""
-#         for _ in 0..<num {
-#             t += "\t"
-#         }
-#         t += str
-#         return t
-#     }
-    
-#     func getTabNumber (testStr:String, targetStr: String ) -> Int {
-#         let lin = testStr.lines
-#         for l in lin {
-#             if l.contains(targetStr) {
-#                 return tabNumber(str: l)
-#             }
-#         }
-#         return 0
-#     }
-    
-#     func getTabMax (testStr:String) -> Int {
-#         var max = 0
-#         let lin = testStr.lines
-#         for l in lin {
-#             let n = tabNumber(str: l)
-#             if n > max {
-#                 max = n
-#             }
-#         }
-#         return max
-        
-#     }
+    def prepTempString
+      assemble
+      memberAssemble
+    end
 
+    def assemble
+      makeTag
+      makeResult
+    end
     
-#     func prepTempString()  {
-#         assemble()
-#         memberAssemble()
-#     }
+    def makeResult
+      @templeteString += @tagManager.tempOpenString + $RET
+      if !@tagManager.tempCloseString.empty?
+          @templeteString += @tagManager.tempCloseString
+      end
+      @templeteString = KString.removeLastRET(@templeteString)
+    end
     
-#     func assemble(){
-#         makeTag()
-#         makeResult()
-#     }
+    def memberAssemble
+      if memberString.count > 0
+        @templeteString += $RET
+        ans = KString.stringArrayConectRET(memberString)
+        @templeteString += ans
+      end
+    end
     
-#     func makeResult(){
-#         templeteString += tagManager.tempOpenString + RET
-        
-#         if !tagManager.tempCloseString.isEmpty {
-#             templeteString += tagManager.tempCloseString
-#         }
-        
-#         // 最後のRETを取り除く
-#         templeteString = removeLastRET(str: templeteString)
-#     }
-    
-#     func memberAssemble () {
-        
-#         if memberString.count > 0 {
-#             templeteString += RET
-            
-#             var m: String = ""
-#             for t: String in memberString {
-#                 m += t
-#                 m += RET
-#             }
-            
-#             templeteString += m
-#         }
-#     }
-    
-#     // resultStringをファイルに書き出す
-#     @discardableResult
-#     func press(name: String, dist : String) -> String{
-#         self.pressTreatment = Press()   // prep templeteString
-#         prepTempString()                // make templeteString
-        
+    def press (name:, dist:)
+      prepTempString
+      if @tagManager.isJsAvailable
 #         if self.tagManager.isJsAvailable() {
 #             if self.tagManager.isNeedJsSrc() {
 #                 // prep for js
@@ -230,20 +153,21 @@ module Jabverwock
 #             }
             
 #         }
-        
-#         self.pressTreatment.templeteString = self.templeteString
-#         self.pressTreatment.initResutString()               // templeteString -> resultString
-#         self.pressTreatment.removeAllLabel()                // remove label string
-#         self.pressTreatment.core(name: name, dist: dist)    // press resultString
-        
 
-#         return self.pressTreatment.resultString
-#     }
+        
+      end
+      @pressTreatment.templeteString = @templeteString
+      @pressTreatment.initResutString
+      @pressTreatment.removeAllLabel
+      @pressTreatment.core(name: name,  dist: dist)
+      @pressTreatment.resultString # 確認用の戻り値
+      
+    end
     
-#     @discardableResult
-#     func press () -> String {
-#         return self.press(name: EXPORT_TEST_File, dist: EXPORT_TEST_Dir)
-#     }
+    def pressDefault
+      press(name: $EXPORT_TEST_File, dis: $EXPORT_TEST_Dir)
+    end
+    
     
 #     @discardableResult
 #     func insertPress(_data_: [(label:String, data :String)]) -> String {
@@ -256,19 +180,7 @@ module Jabverwock
 #     }
     
     
-    def assemble
-      makeTag
-      makeResult
-    end
-
-    def makeTag
-      
-    end
-
-    def makeResult
-      
-    end
-
+ 
     
   end
   
