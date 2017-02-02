@@ -6,7 +6,7 @@ require_relative "press"
 module Jabverwock
   class JW
 
-    attr_accessor :aData, :templeteString, :pressVal
+    attr_accessor :aData, :templeteString, :pressVal, :tagManager
     
     def initialize
       @aData          = InsertData.new(label:"", data: "")
