@@ -3,14 +3,8 @@ require_relative "tagAttribute"
 
 module Jabverwock
   class TagManager
-    attr_accessor :name, :id, :cls, :tagAttribute, :isSingleTag, :closeStringNotRequire
-        
-    # //script tag
-    # var jsPath    : String    = ""
-    # var jsPathPlusName :String   = ""
-    # var jsFileName: String    = ""
-    # var jsType    : String    = ""
-    
+    attr_accessor :name, :id, :cls, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString
+    attr_accessor :jsPath, :jsType, :jsPathPlusName, :jsFileName    
     
     def initialize
       @tempOpenString = String.new
@@ -24,6 +18,12 @@ module Jabverwock
       @attributeString = String.new
 
       @isSingleTag = false
+
+      #js
+      @jsPath         = ""
+      @jsType         = ""
+      @jsFileName     = ""
+      @jsPathPlusName = ""
       
       #img, meta tag
       @closeStringNotRequire = false
@@ -120,13 +120,12 @@ module Jabverwock
      
 #      */
     
-#     func isJsAvailable () -> Bool {
-#         if !jsType.isEmpty || !jsPath.isEmpty || !jsFileName.isEmpty { // <script> available
-#             return true
-#         }else{
-#             return false
-#         }
-#     }
+    def isJsAvailable
+      if !jsType.empty? || !jsPath.empty? || !jsFileName.empty? # <script> available
+        return true
+      end
+      return false
+    end
     
 #     func isNeedJsSrc () -> Bool {
 #         if isJsAvailable() {
@@ -165,6 +164,10 @@ module Jabverwock
     end
     
     def openString
+      if @name == ""
+        return ""
+      end
+      
       if isBrTag()
         return ""
       end
@@ -191,6 +194,9 @@ module Jabverwock
       end
     
     def closeString
+      if name == ""
+        return ""
+      end
       if isBrTag
         return @tempCloseString = "<" + @name  + ">"
       end

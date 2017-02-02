@@ -49,7 +49,7 @@ module Jabverwock
       tm =  TagManager.new
       tm.name = ""
 
-      assert_equal(tm.openString, "<>")
+      assert_equal(tm.openString, "")
       
     end
 
@@ -64,9 +64,10 @@ module Jabverwock
 
     test "id add" do
       tm =  TagManager.new()
+      tm.name = "p"
       tm.id = "test"
 
-      assert_equal(tm.openString, "< id=\"test\">")
+      assert_equal(tm.openString, "<p id=\"test\">")
       
     end
 

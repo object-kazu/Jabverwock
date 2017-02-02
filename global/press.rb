@@ -11,8 +11,9 @@ module Jabverwock
   $EXPORT_TEST_File = "resultRuby.txt"
   
   class Press
-    attr_accessor :templeteString, :resultString
     
+    attr_accessor :templeteString
+    attr_reader   :resultString
     
     def initialize
       # js
@@ -24,10 +25,10 @@ module Jabverwock
     end
 
     def initResutString
-      @templeteString = ""
+      @resultString = ""
       @resultString = @templeteString
       
-    end 
+    end
 
     def insertLabelData(label:, data:)
       label = KString.checkString(label)
@@ -54,9 +55,13 @@ module Jabverwock
       end
     end
 
-     def removeAllLabel
-      @resultString.gsub!(/##LABELSTART##.*?##LABELEND##/,"")
-     end
+    def removeAllLabel
+      ans = @resultString.gsub!(/##LABELSTART##.*?##LABELEND##/,"")
+      if ans == nil
+        return @resultString
+      end
+      @resultString = ans
+    end
     
     ## no test!
     def withInsert(label:, data:)
@@ -72,8 +77,6 @@ module Jabverwock
       dist = KString.checkString(dist)
 
       exportResult(name: name, dist: dist)
-      @resultString
-      
     end
     
     def exportResult(name:$EXPORT_TEST_File, dist:$EXPORT_TEST_Dir)
@@ -84,8 +87,13 @@ module Jabverwock
       File.open(pathName, "w") do |f| 
         f.puts @resultString
       end
-      
+
+      @resultString
+
     end
+    
   end
+
+  
 end
 

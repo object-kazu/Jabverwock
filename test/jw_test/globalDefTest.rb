@@ -73,13 +73,13 @@ module Jabverwock
     #check_type
     test"check type case pass"do
       tm = "a"
-      tm = KS.check_type(String,tm)
+      tm = KString.check_type(String,tm)
       assert_equal(tm,"a")
     end
        
     test "check type straing" do
       tm = "a"
-      tm = KS.checkString(tm)
+      tm = KString.checkString(tm)
       assert_equal(tm ,"a")
     end
 
@@ -92,26 +92,26 @@ module Jabverwock
 
     test "callSelfCls" do
       tm = "d"
-       assert_equal("String", KS.callSelfCls(tm))
+       assert_equal("String", KSUtil.callSelfCls(tm))
     end
 
     test "removeLastRET" do
       tm = "dadfafadfa\nfdfafadfa\n"
-      tm = KS.removeLastRET(tm)
+      tm = KString.removeLastRET(tm)
       assert_equal(tm, "dadfafadfa\nfdfafadfa")
 
     end
 
     test "removeLastTAB" do
       tm = "dadfafadfa\tfdfafadfa\t"
-      tm = KS.removeLastTAB(tm)
+      tm = KString.removeLastTAB(tm)
       assert_equal(tm, "dadfafadfa\tfdfafadfa")
 
     end
 
     test "removeLastTAB" do
       tm = "dadfafadfa\tfdfafadfa"
-      tm = KS.removeLastTAB(tm)
+      tm = KString.removeLastTAB(tm)
       assert_equal(tm, "dadfafadfa\tfdfafadfa")
 
     end
@@ -119,78 +119,78 @@ module Jabverwock
     
     test "removeHeadTAB" do
       tm = "\tdadfafadfa\tfdfafadfa\t"
-      tm = KS.removeHeadTAB(tm)
+      tm = KString.removeHeadTAB(tm)
       assert_equal(tm, "dadfafadfa\tfdfafadfa\t")
 
     end
     
     test "removeHeadTAB without head tab" do
       tm = "dadfafadfa\tfdfafadfa\t"
-      tm = KS.removeHeadTAB(tm)
+      tm = KString.removeHeadTAB(tm)
       assert_equal(tm, "dadfafadfa\tfdfafadfa\t")
 
     end
 
     
     test "is_Bool" do
-      assert_true(KS.is_bool(true))
-      assert_false(KS.is_bool(1))
+      assert_true(KSUtil.is_bool(true))
+      assert_false(KSUtil.is_bool(1))
     end
 
     test "addSpace" do
       tm = "a"
-      tm = KS.addSpace(tm)
+      tm = KString.addSpace(tm)
       assert_equal(tm," a")
     end
 
     test "addSpace, erro raise" do
       tm = 1
       assert_raise(){
-        tm = KS.addSpace(tm)        
+        tm = KString.addSpace(tm)        
       }
 
     end
     
     test "stringArrayConectRET" do
       arr = ["aaa", "bbb", "ccc"]
-      res = KS.stringArrayConectRET(arr)
+      res = KString.stringArrayConectRET(arr)
       assert_equal(res, "aaa\nbbb\nccc\n")
     end
 
     test "stringArrayConectRET, raise error" do
       arr = ["aaa", 1, "ccc"]
       assert_raise(){
-        res = KS.stringArrayConectRET(arr)        
+        res = KString.stringArrayConectRET(arr)        
       }
     end
 
     test "reprace str of with" do
       target = "this is test"
-      target = KS.reprace(str: target, of:"this", with: "that")
+      target = KString.reprace(str: target, of:"this", with: "that")
       assert_equal(target, "that is test")
     end
         test "reprace str of with" do
       target = "this is test"
-      assert_equal( KS.reprace(str: target, of:"this", with: "that"), "that is test")
+      assert_equal( KString.reprace(str: target, of:"this", with: "that"), "that is test")
     end
 
     
     test "reprace str of with , incorrct argu" do
       target = "this is test"
       assert_raise(){
-        target = KS.reprace(str: target, of:"this", with: 1)
+        target = KString.reprace(str: target, of:"this", with: 1)
       }
     end
 
     test "count tab number" do
       target = "abc" + $TAB + "decg" + $TAB + "dfdfdfa"
-      ans = KS.tabCount(target)
+      ans = KString.tabCount(target)
       assert_equal(ans,2)
     end
 
     test "count tab number and end tab" do
       target = "abc" + $TAB + "decg" + $TAB
-      ans = KS.tabCount(target)
+      ans = KString.tabCount(target)
       assert_equal(ans,1) # because end Tab remove at tabCount method
     end
 

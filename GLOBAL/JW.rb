@@ -6,26 +6,26 @@ require_relative "press"
 module Jabverwock
   class JW
 
-    attr_accessor :aData
+    attr_accessor :aData, :templeteString, :pressVal
     
     def initialize
-      @aData = InsertData.new(label:"", data: "")
-      @Data = [] # insertData array
+      @aData          = InsertData.new(label:"", data: "")
+      @Data           = [] # insertData array
       @openString     = ""
       @closeString    = ""
       @templeteString = ""
       @memberString   = []
-      @pressTreatment = Press.new
-      @tagManager = TagManager.new
+      @pressVal       = Press.new
+      @tagManager     = TagManager.new
     end
 
-    def to_s
-      "#{@aData}, #{@openString}, #{@closeString}, #{@templeteString}, #{@memberString}" 
+    def prepPress
+      @pressVal.templeteString = @templeteString
     end
-
+    
     def tgStr
       assemble
-      @tempOpenString
+      @templeteString
     end
     
 #     //js
@@ -87,21 +87,9 @@ module Jabverwock
 #         return "." + tagCls()
 #     }
     
-    def makeTag
-      @tagManager.openString
-      @TagManager.closeString
-    end
     
-    
-    def prepTempString
-      assemble
-      memberAssemble
-    end
 
-    def assemble
-      makeTag
-      makeResult
-    end
+    
     
     def makeResult
       @templeteString += @tagManager.tempOpenString + $RET
@@ -112,15 +100,31 @@ module Jabverwock
     end
     
     def memberAssemble
-      if memberString.count > 0
+      if @memberString.count > 0
         @templeteString += $RET
-        ans = KString.stringArrayConectRET(memberString)
+        ans = KString.stringArrayConectRET(@memberString)
         @templeteString += ans
       end
     end
     
+    def makeTag
+      @tagManager.openString
+      @tagManager.closeString
+    end
+   
+    def assemble
+      makeTag
+      makeResult
+    end
+    
+    def prepTempString
+      assemble
+      memberAssemble
+    end
+    
     def press (name:, dist:)
       prepTempString
+      
       if @tagManager.isJsAvailable
 #         if self.tagManager.isJsAvailable() {
 #             if self.tagManager.isNeedJsSrc() {
@@ -137,12 +141,12 @@ module Jabverwock
 #                 self.templeteString = b.joined(separator: "\n")
                 
 #                 // export to js file
-#                 self.pressTreatment.templeteString = self.templeteString
-#                 self.pressTreatment.initResutString()               // templeteString -> resultString
-#                 self.pressTreatment.removeAllLabel()                // remove label string
+#                 self.pressVal.templeteString = self.templeteString
+#                 self.pressVal.initResutString()               // templeteString -> resultString
+#                 self.pressVal.removeAllLabel()                // remove label string
 #                 let tempName = self.tagManager.jsFileName
 #                 let tempDir = self.tagManager.jsPath
-#                 self.pressTreatment.core(name: tempName, dist: tempDir)    // press resultString
+#                 self.pressVal.core(name: tempName, dist: tempDir)    // press resultString
 
 #                 // prep for html and css
 #                 self.templeteString = ans.scriptTag.joined(separator: "\n")
@@ -156,27 +160,29 @@ module Jabverwock
 
         
       end
-      @pressTreatment.templeteString = @templeteString
-      @pressTreatment.initResutString
-      @pressTreatment.removeAllLabel
-      @pressTreatment.core(name: name,  dist: dist)
-      @pressTreatment.resultString # 確認用の戻り値
+      
+      
+      prepPress
+      @pressVal.initResutString
+      @pressVal.removeAllLabel
+      @pressVal.core(name: name,  dist: dist)   
+      @pressVal.resultString # 確認用の戻り値
       
     end
     
     def pressDefault
-      press(name: $EXPORT_TEST_File, dis: $EXPORT_TEST_Dir)
+      press(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
     end
     
     
 #     @discardableResult
 #     func insertPress(_data_: [(label:String, data :String)]) -> String {
-#         return self.pressTreatment.withInsert(_data_: _data_)
+#         return self.pressVal.withInsert(_data_: _data_)
 #     }
     
 #     @discardableResult
 #     func insertPress(label:String, data:String) -> String {
-#         return self.pressTreatment.withInsert(label: label, data: data)
+#         return self.pressVal.withInsert(label: label, data: data)
 #     }
     
     

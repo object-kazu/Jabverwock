@@ -52,6 +52,7 @@ module Jabverwock
   $ROW_SPAN = "%rowSpan="
   $COL_SPAN = "%colSpan="
   module KSUtil
+    
     def self.callSelfCls(cls)
         "#{cls.class}"
     end
@@ -59,8 +60,6 @@ module Jabverwock
     def self.is_bool(v)
       !!v === v
     end
-
-    
   end
   
   module KString

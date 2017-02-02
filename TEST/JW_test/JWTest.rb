@@ -3,6 +3,8 @@ require_relative '../../global/globalDef'
 require_relative '../../global/insertData'  
 require_relative '../../global/jw'  
 
+require "pry"
+
 module Jabverwock
   class JwTest < Test::Unit::TestCase
     class << self
@@ -41,7 +43,6 @@ module Jabverwock
       
     end
 
-
     test "JW,  isSingle method" do
       tm = JW.new
       ans = tm.isSingleTag(true)
@@ -54,26 +55,36 @@ module Jabverwock
       assert_equal(ans, nil)
     end
 
-    test "addHeadTab" do
-      tm = JW.new
-      target = "kkkk"
-      ans = KString.addHeadTab(str: target, num:  3)
-      assert_equal(ans, $TAB + $TAB + $TAB + "kkkk" )
+    test "pretest: pressDefault, nothing" do 
+      tm =JW.new
+      tm.pressVal.initResutString
+      assert_equal(tm.pressVal.resultString, "")
     end
 
-    test "addTab" do
-      tm = JW.new
-      target = "kkkk" + $RET + "aaa" + $RET
-      ans = KString.addTab(str: target, tabMax: 2)
-      assert_equal(ans, $TAB + $TAB + "kkkk" + $RET + $TAB + $TAB + "aaa" + $RET )
+    test "pretest: pressDefault, add text" do 
+      tm =JW.new
+      tm.templeteString = "test"
+      tm.prepPress
+      tm.pressVal.initResutString    
+      ans = tm.pressVal.resultString
+      assert_equal(ans, "test")
     end
 
-    test "getTabNumbre" do
-      tm = JW.new
-      target = $TAB + $TAB + "kkkk" + $RET + $TAB + $TAB + "aaa" + $RET + $TAB + $TAB + $TAB + $TAB + "aaa" + $RET
-      ans = KString.getTabMax(target)
-      assert_equal(ans,4)
+    test "pressDefault, add text" do 
+      tm =JW.new
+      tm.templeteString = "test"     
+      ans = tm.pressDefault
+      assert_equal(ans, "test")
     end
+
+    test "assemble" do
+      tm = JW.new
+      tm.tagManager.name = "test"
+      ans = tm.pressDefault
+      assert_equal(ans, "<test>\n</test>")
+    end
+    
+
     
   end
 end

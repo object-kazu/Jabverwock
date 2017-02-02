@@ -37,10 +37,26 @@ module Jabverwock
     test "test?" do
       p $SPC  
     end
+
+    test "templeteString is nothing" do
+      pr = Press.new
+      pr.initResutString
+      assert_equal(pr.resultString, "")
+      
+    end
+    
+    test "templeteString check" do
+      pr = Press.new
+      pr.templeteString = "this is test"
+      pr.initResutString
+      assert_equal(pr.resultString, "this is test")
+      
+    end
     
     test "insert data " do
       pr = Press.new
-      pr.resultString = "this is test" + "a".variable
+      pr.templeteString = "this is test" + "a".variable
+      pr.initResutString
       pr.insertLabelData(label:"a", data:",again")
       p pr.resultString
       assert_equal(pr.resultString, "this is test" + $LABEL_INSERT_START + "a" + $LABEL_INSERT_END + ",again" )
@@ -48,16 +64,17 @@ module Jabverwock
 
     test "error raise" do
       pr = Press.new
-      pr.resultString = "this is test" + "a".variable
+      pr.templeteString = "this is test" + "a".variable
+      pr.initResutString
       assert_raise(RuntimeError){
         pr.insertData("a")        
-      }
-      
+      }      
     end
 
     test "use correct class at insertData method" do
       pr = Press.new
-      pr.resultString = "this is test" + "a".variable
+      pr.templeteString = "this is test" + "a".variable
+      pr.initResutString
       i = InsertData.new(label:"a", data: ",again")
       pr.insertData(i)
       assert_equal(pr.resultString, "this is test" + $LABEL_INSERT_START + "a" + $LABEL_INSERT_END + ",again" )      
@@ -65,7 +82,8 @@ module Jabverwock
     
     test "use correct class at insertDataArray" do
       pr = Press.new
-      pr.resultString = "this is test" + "a".variable + "b".variable
+      pr.templeteString = "this is test" + "a".variable + "b".variable
+      pr.initResutString
       i = InsertData.new(label:"a", data: ",again")
       i2 = InsertData.new(label:"b", data: ",again")
       
@@ -79,7 +97,8 @@ module Jabverwock
 
     test "use incorrect class at insertDataArray" do
       pr = Press.new
-      pr.resultString = "this is test" + "a".variable + "b".variable
+      pr.templeteString = "this is test" + "a".variable + "b".variable
+      pr.initResutString
       i = InsertData.new(label:"a", data: ",again")
       i2 = InsertData.new(label:"b", data: ",again")
       assert_raise(RuntimeError){
@@ -90,7 +109,8 @@ module Jabverwock
 
     test "remove all lable" do
       pr = Press.new
-      pr.resultString = "this is test" + "a".variable + "b".variable
+      pr.templeteString = "this is test" + "a".variable + "b".variable
+      pr.initResutString
       i = InsertData.new(label:"a", data: ",again")
       i2 = InsertData.new(label:"b", data: ",again")
       pr.insertDataList(i,i2)
@@ -99,10 +119,32 @@ module Jabverwock
       
     end
 
+    test "remove all lable" do
+      pr = Press.new
+      pr.templeteString = "this is test" + "a".variable + "b".variable
+      pr.initResutString
+      i = InsertData.new(label:"a", data: ",again")
+      i2 = InsertData.new(label:"b", data: ",again")
+      pr.insertDataList(i,i2)
+      pr.removeAllLabel
+      assert_equal(pr.resultString, "this is test" + ",again" + ",again")      
+      
+    end
 
+    test "remove all lable when no label string" do
+      pr = Press.new
+      pr.templeteString = "this is test"
+      pr.initResutString
+      pr.removeAllLabel # no lable string treat with method removeAllLabel
+      assert_equal(pr.resultString, "this is test")      
+      
+    end
+
+    
     test "export result" do
       pr = Press.new
-      pr.resultString = "this is test" + "a".variable + "b".variable
+      pr.templeteString = "this is test" + "a".variable + "b".variable
+      pr.initResutString
       i = InsertData.new(label:"a", data: ",again")
       i2 = InsertData.new(label:"b", data: ",again")
       pr.insertDataList(i,i2)
