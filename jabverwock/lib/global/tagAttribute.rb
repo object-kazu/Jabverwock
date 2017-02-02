@@ -30,7 +30,7 @@ module Jabverwock
     end
     
     
-    def addLang(lang)
+    def addLang=(lang)
       lang = KString.checkString(lang)
       templeteAdd(index: "lang", val: lang)
     end

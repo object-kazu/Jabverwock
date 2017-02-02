@@ -79,11 +79,60 @@ module Jabverwock
 
     test "assemble" do
       tm = JW.new
-      tm.tagManager.name = "test"
+      tm.setName="test"
       ans = tm.pressDefault
       assert_equal(ans, "<test>\n</test>")
     end
+
+    test "assemble, bad Arg" do
+      tm = JW.new
+      assert_raise(){
+        tm.setName=1
+      }
+    end
+
+
+    test "set cls" do
+      tm =JW.new
+      tm.setCls="test"
+      tm.setName="p"
+      
+      ans = tm.pressDefault
+      assert_equal(ans, "<p class=\"test\">\n</p>")
+    end
+
+    test "set cls, bad Arg" do
+      tm =JW.new
+      assert_raise(){
+        tm.setCls= 1
+      }
+    end
     
+    test "add lang"do
+      tm = JW.new
+      tm.setName = "p"
+      tm.setLang = "en"
+      ans = tm.pressDefault
+      assert_equal(ans, "<p lang=\"en\">\n</p>")
+    end
+    
+
+    test "add id"do
+      tm = JW.new
+      tm.setName = "p"
+      tm.setID = "sample"
+      ans = tm.pressDefault
+      assert_equal(ans, "<p id=\"sample\">\n</p>")
+    end
+
+    test "content add" do
+      tm = JW.new
+      tm.setName = "p"
+    
+      ans = tm.pressDefault
+      assert_equal(ans, "<p></p>")
+    
+    end
 
     
   end

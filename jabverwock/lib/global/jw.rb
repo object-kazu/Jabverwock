@@ -6,7 +6,7 @@ require_relative "press"
 module Jabverwock
   class JW
 
-    attr_accessor :aData, :templeteString, :pressVal, :tagManager
+    attr_accessor :aData, :templeteString, :pressVal
     
     def initialize
       @aData          = InsertData.new(label:"", data: "")
@@ -45,50 +45,45 @@ module Jabverwock
       end
     end
     
-    # def setID(id)
-    #   id = KString.checkString(id)
-    #   @tagManager.id = id
-    # end
+    def setID= (id)
+      id = KString.checkString(id)
+      @tagManager.id = id
+    end
     
-#     func setID(id:String) {
-#         tagManager.id = id
-#     }
+    def setCls= (cls)
+      cls = KString.checkString(cls)
+      @tagManager.cls = cls
+    end
     
-#     func setCls(cls:String) {
-#         tagManager.cls = cls
-#     }
-#     func setName(name:String) {
-#         tagManager.name = name
-#     }
-#     func setLang(lang:LANG) {
-#         tagManager.attr.add(lang: lang)
-#     }
-#     func tagName() -> String {
-#         return tagManager.name
-#     }
-#     func tagID() -> String {
-#         if tagManager.id.isEmpty {
-#             assertionFailure("set id")
-#         }
-#         return tatManager.id
-#     }
-#     func selectorID () -> String {
-#         return "#" + tagID()
-#     }
+    def setName= (name)
+      name = KString.checkString(name)
+      @tagManager.name = name
+    end
     
-#     func tagCls() -> String {
-#         if tagManager.cls.isEmpty {
-#             assertionFailure("set cls")
-#         }
-#         return tagManager.cls
-#     }
+    def setLang= (lang)
+      lang = KString.checkString(lang)
+      @tagManager.tagAttribute.addLang = lang
+    end
+    
+    def tagName
+      @tagManager.name
+    end
+    
+    def tagID
+      @tagManager.id
+    end
+    
+    def selectorID
+      "#" + tagID
+    end
 
-#     func selectorCls () -> String {
-#         return "." + tagCls()
-#     }
-    
-    
+    def tagCls
+      @tagManager.cls
+    end
 
+    def selectorCls
+      "." + tagCls
+    end
     
     
     def makeResult
