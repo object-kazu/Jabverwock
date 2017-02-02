@@ -2,10 +2,12 @@ require "jabverwock/version"
 require "global/globalDef"
 
 module Jabverwock
-
-
-  def self.callMe
-    p "Hello, my name is Jabverwock! (#{VERSION})"
-  end
-  
+  class << self
+ 
+    def callMe
+      p "Hello, my name is Jabverwock! #{$RET}"
+      p "version is #{VERSION}"
+    end
+    
+  end   
 end
