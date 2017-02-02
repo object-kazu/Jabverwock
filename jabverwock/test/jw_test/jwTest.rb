@@ -1,7 +1,7 @@
 require 'test/unit' 
-require_relative '../../global/globalDef'  
-require_relative '../../global/insertData'  
-require_relative '../../global/jw'  
+require '../../lib/global/globalDef'  
+require '../../lib/global/insertData'  
+require '../../lib/global/jw'  
 
 require "pry"
 

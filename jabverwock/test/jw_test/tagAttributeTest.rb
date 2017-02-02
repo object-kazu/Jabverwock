@@ -1,6 +1,7 @@
-require 'test/unit' 
-require_relative '../../global/globalDef'  
-require_relative '../../global/tagAttribute'  
+require 'test/unit'
+require '../../lib/global/globalDef'  
+require '../../lib/global/tagAttribute'  
+ 
 module Jabverwock
   class TagAttributeTest < Test::Unit::TestCase
     class << self

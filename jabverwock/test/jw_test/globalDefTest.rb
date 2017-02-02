@@ -1,5 +1,5 @@
 require 'test/unit'
-require_relative '../../global/globalDef'  
+require '../../lib/global/globalDef'  
 
 module Jabverwock
   class GlobaDefTest < Test::Unit::TestCase

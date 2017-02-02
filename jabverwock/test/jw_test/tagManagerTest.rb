@@ -1,6 +1,6 @@
 require 'test/unit'
-require_relative '../../global/globalDef'  
-require_relative '../../global/tagManager' 
+require '../../lib/global/globalDef'  
+require '../../lib/global/tagManager'  
 
 module Jabverwock
   class TagManagerTest < Test::Unit::TestCase
