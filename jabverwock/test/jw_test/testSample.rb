@@ -2,6 +2,7 @@
 require 'test/unit'
 
 class TestSample < Test::Unit::TestCase
+  using StringExtension
   class << self
     # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる
     def startup

@@ -1,4 +1,5 @@
 module Jabverwock
+  using StringExtension
   class InsertData
     attr_accessor :label, :data
     

@@ -2,6 +2,7 @@ require_relative "globalDef"
 require_relative "tagAttribute" 
 
 module Jabverwock
+  using StringExtension
   class TagManager
     attr_accessor :name, :id, :cls, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString
     attr_accessor :jsPath, :jsType, :jsPathPlusName, :jsFileName    

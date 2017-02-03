@@ -1,7 +1,10 @@
 require 'test/unit'
 require '../../lib/global/globalDef'  
+require '../../lib/global/insertData'  
 
 module Jabverwock
+  using StringExtension
+  
   class GlobaDefTest < Test::Unit::TestCase
     class << self
       # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる
@@ -192,8 +195,25 @@ module Jabverwock
       target = "abc" + $TAB + "decg" + $TAB
       ans = KString.tabCount(target)
       assert_equal(ans,1) # because end Tab remove at tabCount method
+      
     end
 
+    test "is_InsertData => nil " do
+      a = InsertData.new(label:"", data:"")
+      ans = KSUtil.is_InsertData(a)
+      assert_equal(ans, nil)
+    end
+
+
+    test "is_InsertData => error" do
+      a = "a"
+      assert_raise(){
+        ans = KSUtil.is_InsertData(a)
+      }
+      
+    end
+
+    
   end
 
 end

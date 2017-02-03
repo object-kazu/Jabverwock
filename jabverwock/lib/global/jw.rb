@@ -4,6 +4,7 @@ require_relative "tagManager"
 require_relative "press"
 
 module Jabverwock
+  using StringExtension
   class JW
 
     attr_accessor :aData, :templeteString, :pressVal
@@ -170,16 +171,17 @@ module Jabverwock
     end
     
     
-#     @discardableResult
-#     func insertPress(_data_: [(label:String, data :String)]) -> String {
-#         return self.pressVal.withInsert(_data_: _data_)
-#     }
+    def pressInsert_A(insertData)
+      KSUtil.is_InsertData(insertData)
+      @pressVal.withInsert(insertData)
+    end
     
-#     @discardableResult
-#     func insertPress(label:String, data:String) -> String {
-#         return self.pressVal.withInsert(label: label, data: data)
-#     }
-    
+    def pressInsertEach(*insertDATA)
+      insertData.each do |i| 
+        insert_A_Press(i)
+      end
+
+    end
     
  
     

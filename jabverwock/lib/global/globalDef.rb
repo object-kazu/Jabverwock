@@ -1,34 +1,87 @@
-## String extension ############ 
-class String
+# ## String extension ############
+module StringExtension
+  refine String do
+      def inDoubleQuot(insert)
+        if insert.is_a?(String)
+          self + $DOUBLE_QUO + insert + $DOUBLE_QUO
+        end
+      end
 
-  def inDoubleQuot(insert)
-    if insert.is_a?(String)
-      self + $DOUBLE_QUO + insert + $DOUBLE_QUO
-    end
-  end
+      def inSingleQuo(insert)
+        if insert.is_a?(String)
+          self +  $SINGLE_QUO + insert + $SINGLE_QUO  
+        end
+      end
 
-  def inSingleQuo(insert)
-    if insert.is_a?(String)
-      self +  $SINGLE_QUO + insert + $SINGLE_QUO  
-    end
-  end
-
-  def inParenth(insert)
-    if insert.is_a?(String)
-      self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
-    end
+      def inParenth(insert)
+        if insert.is_a?(String)
+          self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
+        end
+        
+      end
       
+      def variable
+        $LABEL_INSERT_START + self + $LABEL_INSERT_END
+      end  
+    
+    
   end
-    
-  def variable
-    $LABEL_INSERT_START + self + $LABEL_INSERT_END
-  end  
-
-    
 end
 
-module Jabverwock
+# class String
 
+#   def inDoubleQuot(insert)
+#     if insert.is_a?(String)
+#       self + $DOUBLE_QUO + insert + $DOUBLE_QUO
+#     end
+#   end
+
+#   def inSingleQuo(insert)
+#     if insert.is_a?(String)
+#       self +  $SINGLE_QUO + insert + $SINGLE_QUO  
+#     end
+#   end
+
+#   def inParenth(insert)
+#     if insert.is_a?(String)
+#       self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
+#     end
+      
+#   end
+    
+#   def variable
+#     $LABEL_INSERT_START + self + $LABEL_INSERT_END
+#   end  
+    
+# end
+
+# class String
+#   Struct.new("Dd", :name, :addres)
+  
+#   def add
+#    Struct::Dd.new(self, self + "ddd")
+
+#   end
+
+# end
+
+# p "a".add[:name]
+# p "a".add[:addres]
+
+
+module Jabverwock
+  #using StringExtension
+  
+  # struct *******************
+  # Create a structure with a name under Struct
+  #Struct.new("Customer", :name, :address)
+  #=> Struct::Customer
+  #p Struct::Customer.new("Dave", "123 Main")
+  #=> #<struct Struct::Customer name="Dave", address="123 Main">
+  # insertData class -> insertData struct
+  #Struct.new("insertData", :lable, :data)
+
+  
   # global constant ############
 
   $RET             = "\n"
@@ -59,7 +112,19 @@ module Jabverwock
     
       def is_bool(v)
         !!v === v
-      end      
+      end
+
+      def is_InsertData(i)
+        if !i.is_a?(InsertData)
+        p "ahaaaa!, use InsertData class"
+        raise RuntimeError
+        end
+      end
+
+
+      
+      
+      
     end
   end
   

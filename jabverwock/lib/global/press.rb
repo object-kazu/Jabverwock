@@ -1,4 +1,6 @@
 module Jabverwock
+  using StringExtension
+  
 #  // export html & css
 # let EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
 # let EXPORT_TEST_File = "result.html"
@@ -40,13 +42,8 @@ module Jabverwock
     end
     
     def insertData(insertData)
-      if !insertData.is_a?(InsertData)
-        p "ahaaaa!, use InsertData class"
-        raise RuntimeError
-      end
-
+      KSUtil.is_InsertData(insertData)
       insertLabelData(label: insertData.label, data: insertData.data)
-     
     end
 
     def insertDataList(*insertData)
@@ -64,7 +61,8 @@ module Jabverwock
     end
     
     ## no test!
-    def withInsert(label:, data:)
+    def withInsert(insertData)
+      KSUtil.is_InsertData(insertData)
       initResutString
       insertLabelData(label: label, data: data)
       removeAllLabel

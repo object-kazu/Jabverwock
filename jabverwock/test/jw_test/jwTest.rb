@@ -6,6 +6,7 @@ require '../../lib/global/jw'
 require "pry"
 
 module Jabverwock
+  using StringExtension
   class JwTest < Test::Unit::TestCase
     class << self
       # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる
@@ -124,16 +125,6 @@ module Jabverwock
       ans = tm.pressDefault
       assert_equal(ans, "<p id=\"sample\">\n</p>")
     end
-
-    test "content add" do
-      tm = JW.new
-      tm.setName = "p"
-    
-      ans = tm.pressDefault
-      assert_equal(ans, "<p></p>")
-    
-    end
-
     
   end
 end

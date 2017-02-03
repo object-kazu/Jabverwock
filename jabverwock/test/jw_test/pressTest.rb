@@ -5,6 +5,7 @@ require '../../lib/global/press'
 
 
 module Jabverwock
+  using StringExtension
   class PressTest < Test::Unit::TestCase
     class << self
       # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる

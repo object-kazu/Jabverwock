@@ -3,6 +3,7 @@ require '../../lib/global/globalDef'
 require '../../lib/global/tagManager'  
 
 module Jabverwock
+  using StringExtension
   class TagManagerTest < Test::Unit::TestCase
     class << self
       # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる
@@ -128,7 +129,7 @@ module Jabverwock
     test "tag attribute lang add" do
       tm = TagManager.new
       tm.name = "a"
-      tm.tagAttribute.addLang("jp")
+      tm.tagAttribute.addLang = "jp"
       assert_equal(tm.openString, "<a lang=\"jp\">")
     end
     

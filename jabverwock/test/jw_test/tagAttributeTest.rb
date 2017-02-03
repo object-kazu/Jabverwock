@@ -3,6 +3,7 @@ require '../../lib/global/globalDef'
 require '../../lib/global/tagAttribute'  
  
 module Jabverwock
+  using StringExtension
   class TagAttributeTest < Test::Unit::TestCase
     class << self
       # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる
