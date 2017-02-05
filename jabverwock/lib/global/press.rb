@@ -14,22 +14,27 @@ module Jabverwock
   
   class Press
     
-    attr_accessor :templeteString
-    attr_reader   :resultString
+    attr_writer  :templeteString
+    attr_reader  :resultString
+    
     
     def initialize
       # js
 
       # html & css
-      @templeteString = "" #// Labelによる書き換え前のString
-      @resultString = "" # // Labelによる書き換え後の最終String  
+      @templeteString = "" #// Labelによる書き換え前のStringを保持
+      @resultString = "" # // Labelによる書き換え後の最終String
       
     end
 
+    # for confirmation and test method
+    def showTempleteString
+      @templeteString
+    end
+    
     def initResutString
       @resultString = ""
-      @resultString = @templeteString
-      
+      @resultString = @templeteString.dup
     end
 
     def insertLabelData(label:, data:)
@@ -42,8 +47,8 @@ module Jabverwock
     end
     
     def insertData(insertData)
-      KSUtil.is_InsertData(insertData)
-      insertLabelData(label: insertData.label, data: insertData.data)
+      KSUtil.labelDataPair?(insertData)
+      insertLabelData(label: insertData[:label], data: insertData[:data])
     end
 
     def insertDataList(*insertData)
@@ -60,15 +65,27 @@ module Jabverwock
       @resultString = ans
     end
     
-    ## no test!
     def withInsert(insertData)
-      KSUtil.is_InsertData(insertData)
+      KSUtil.labelDataPair?(insertData)
       initResutString
-      insertLabelData(label: label, data: data)
+      insertData(insertData)
       removeAllLabel
       core(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
     end
-        
+
+    def withInsertEach(insertData)
+      initResutString
+      
+      insertData.each do |i|
+        KSUtil.labelDataPair?(i)
+        insertData(i)
+      end
+      
+      removeAllLabel
+      core(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
+    end
+
+    
     #  // templateString -> resultString -> export
     def core(name:, dist:)
       name = KString.checkString(name)

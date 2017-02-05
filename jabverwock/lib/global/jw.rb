@@ -10,13 +10,13 @@ module Jabverwock
     attr_accessor :aData, :templeteString, :pressVal
     
     def initialize
-      @aData          = InsertData.new(label:"", data: "")
+      @aData          = "".varIs("")
       @Data           = [] # insertData array
       @openString     = ""
       @closeString    = ""
       @templeteString = ""
       @memberString   = []
-      @pressVal       = Press.new
+      @pressVal       = Press.new ## input -> templeteString, output -> resultString
       @tagManager     = TagManager.new
     end
 
@@ -38,6 +38,22 @@ module Jabverwock
 #         }
         
 #     }
+
+    
+    # ex) @tagManager.Id = id
+    [:id, :cls, :name].each do |attr|
+      define_method "#{attr}=" do |val|
+        val = KString.checkString val
+        eval "@tagManager.#{attr} = val"
+      end
+    end
+    
+    # ex) return @tagManager.Id
+    [:id, :cls, :name].each do |attr|      
+      define_method "tag#{attr.capitalize}" do
+        eval "@tagManager.#{attr}"
+      end
+    end
     
     
     def isSingleTag(isSingle)
@@ -46,44 +62,21 @@ module Jabverwock
       end
     end
     
-    def setID= (id)
-      id = KString.checkString(id)
-      @tagManager.id = id
-    end
-    
-    def setCls= (cls)
-      cls = KString.checkString(cls)
-      @tagManager.cls = cls
-    end
-    
-    def setName= (name)
-      name = KString.checkString(name)
-      @tagManager.name = name
-    end
     
     def setLang= (lang)
       lang = KString.checkString(lang)
       @tagManager.tagAttribute.addLang = lang
     end
+
     
-    def tagName
-      @tagManager.name
-    end
-    
-    def tagID
-      @tagManager.id
-    end
     
     def selectorID
-      "#" + tagID
+      "#" + self.tagId
     end
 
-    def tagCls
-      @tagManager.cls
-    end
 
     def selectorCls
-      "." + tagCls
+      "." + self.tagCls
     end
     
     
@@ -159,7 +152,7 @@ module Jabverwock
       
       
       prepPress
-      @pressVal.initResutString
+      @pressVal.initResutString      
       @pressVal.removeAllLabel
       @pressVal.core(name: name,  dist: dist)   
       @pressVal.resultString # 確認用の戻り値
@@ -171,26 +164,24 @@ module Jabverwock
     end
     
     
-    def pressInsert_A(insertData)
-      KSUtil.is_InsertData(insertData)
+    def pressAInsert(insertData)
+      KSUtil.labelDataPair?(insertData)
       @pressVal.withInsert(insertData)
+      @pressVal.resultString # 確認用の戻り値
     end
     
-    def pressInsertEach(*insertDATA)
-      insertData.each do |i| 
-        insert_A_Press(i)
-      end
-
+    def pressInsertEach(*insertData)
+      @pressVal.withInsertEach(insertData)
+      @pressVal.resultString # 確認用の戻り値      
+      # insertData.each do |i| 
+      #   pressAInsert(i)
+      # end
     end
     
  
     
   end
   
-# i = InsertData.new(label:"a", data: ",again")
-# i.label = "b"
-# p i  
-
 end
 
 

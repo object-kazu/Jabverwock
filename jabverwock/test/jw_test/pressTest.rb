@@ -58,7 +58,7 @@ module Jabverwock
       pr = Press.new
       pr.templeteString = "this is test" + "a".variable
       pr.initResutString
-      pr.insertLabelData(label:"a", data:",again")
+      pr.insertLabelData("a".varIs(",again"))
       p pr.resultString
       assert_equal(pr.resultString, "this is test" + $LABEL_INSERT_START + "a" + $LABEL_INSERT_END + ",again" )
     end
@@ -76,7 +76,7 @@ module Jabverwock
       pr = Press.new
       pr.templeteString = "this is test" + "a".variable
       pr.initResutString
-      i = InsertData.new(label:"a", data: ",again")
+      i = "a".varIs ",again"
       pr.insertData(i)
       assert_equal(pr.resultString, "this is test" + $LABEL_INSERT_START + "a" + $LABEL_INSERT_END + ",again" )      
     end
@@ -85,8 +85,8 @@ module Jabverwock
       pr = Press.new
       pr.templeteString = "this is test" + "a".variable + "b".variable
       pr.initResutString
-      i = InsertData.new(label:"a", data: ",again")
-      i2 = InsertData.new(label:"b", data: ",again")
+      i = "a".varIs ",again"
+      i2 ="b".varIs ",again"
       
       pr.insertDataList(i,i2)
       
@@ -100,8 +100,8 @@ module Jabverwock
       pr = Press.new
       pr.templeteString = "this is test" + "a".variable + "b".variable
       pr.initResutString
-      i = InsertData.new(label:"a", data: ",again")
-      i2 = InsertData.new(label:"b", data: ",again")
+      i = "a".varIs ",again"
+      i2 ="b".varIs ",again"
       assert_raise(RuntimeError){
         pr.insertDataList(i,i2,"dd")
       }
@@ -112,25 +112,14 @@ module Jabverwock
       pr = Press.new
       pr.templeteString = "this is test" + "a".variable + "b".variable
       pr.initResutString
-      i = InsertData.new(label:"a", data: ",again")
-      i2 = InsertData.new(label:"b", data: ",again")
+      i = "a".varIs ",again"
+      i2 ="b".varIs ",again"
       pr.insertDataList(i,i2)
       pr.removeAllLabel
       assert_equal(pr.resultString, "this is test" + ",again" + ",again")      
       
     end
 
-    test "remove all lable" do
-      pr = Press.new
-      pr.templeteString = "this is test" + "a".variable + "b".variable
-      pr.initResutString
-      i = InsertData.new(label:"a", data: ",again")
-      i2 = InsertData.new(label:"b", data: ",again")
-      pr.insertDataList(i,i2)
-      pr.removeAllLabel
-      assert_equal(pr.resultString, "this is test" + ",again" + ",again")      
-      
-    end
 
     test "remove all lable when no label string" do
       pr = Press.new
@@ -146,8 +135,8 @@ module Jabverwock
       pr = Press.new
       pr.templeteString = "this is test" + "a".variable + "b".variable
       pr.initResutString
-      i = InsertData.new(label:"a", data: ",again")
-      i2 = InsertData.new(label:"b", data: ",again")
+      i = "a".varIs ",again"
+      i2 ="b".varIs ",again"
       pr.insertDataList(i,i2)
       pr.removeAllLabel
       pr.exportResult

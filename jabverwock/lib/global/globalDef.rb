@@ -23,63 +23,28 @@ module StringExtension
       def variable
         $LABEL_INSERT_START + self + $LABEL_INSERT_END
       end  
-    
-    
+
+      
+      # a = "a".dataIs "dddd"# => {:label=>"a", :data=>"dddd"}
+      # p a
+      # p a[:label]
+      # p a[:data]
+      #
+      # # >> {:label=>"a", :data=>"dddd"}
+      # # >> "a"
+      # # >> "dddd"
+      def varIs(val)
+        {:label => self, :data => val}
+      end
+
+      
   end
 end
 
-# class String
-
-#   def inDoubleQuot(insert)
-#     if insert.is_a?(String)
-#       self + $DOUBLE_QUO + insert + $DOUBLE_QUO
-#     end
-#   end
-
-#   def inSingleQuo(insert)
-#     if insert.is_a?(String)
-#       self +  $SINGLE_QUO + insert + $SINGLE_QUO  
-#     end
-#   end
-
-#   def inParenth(insert)
-#     if insert.is_a?(String)
-#       self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
-#     end
-      
-#   end
-    
-#   def variable
-#     $LABEL_INSERT_START + self + $LABEL_INSERT_END
-#   end  
-    
-# end
-
-# class String
-#   Struct.new("Dd", :name, :addres)
-  
-#   def add
-#    Struct::Dd.new(self, self + "ddd")
-
-#   end
-
-# end
-
-# p "a".add[:name]
-# p "a".add[:addres]
-
 
 module Jabverwock
-  #using StringExtension
+  using StringExtension
   
-  # struct *******************
-  # Create a structure with a name under Struct
-  #Struct.new("Customer", :name, :address)
-  #=> Struct::Customer
-  #p Struct::Customer.new("Dave", "123 Main")
-  #=> #<struct Struct::Customer name="Dave", address="123 Main">
-  # insertData class -> insertData struct
-  #Struct.new("insertData", :lable, :data)
 
   
   # global constant ############
@@ -114,16 +79,13 @@ module Jabverwock
         !!v === v
       end
 
-      def is_InsertData(i)
-        if !i.is_a?(InsertData)
-        p "ahaaaa!, use InsertData class"
-        raise RuntimeError
-        end
+      
+      def labelDataPair?(p)
+        if !p.is_a?(Hash)
+          p "pair is hash, like {label:, data:}"
+          raise RuntimeError
+        end        
       end
-
-
-      
-      
       
     end
   end
@@ -274,3 +236,4 @@ module Jabverwock
       
   end #globaleDef    
 end #Jabverwock
+

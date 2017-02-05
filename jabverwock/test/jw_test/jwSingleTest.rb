@@ -21,6 +21,7 @@ module Jabverwock
     # 毎回テスト実行前に呼ばれる
     def setup
       p :setup
+      @t = JWSingle.new
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
@@ -36,94 +37,81 @@ module Jabverwock
     ############## test ###############
 
     test "JWSingle first test" do
-      tm = JWSingle.new
-      tm.setName = "p"
-      ans = tm.pressDefault
+      @t.name = "p"
+      ans = @t.pressDefault
       assert_equal(ans, "<p></p>")
 
     end
-    
-    test "addcontentAt"do
-      t = JWSingle.new
-      i = InsertData.new(label: "news", data: "at")
-      ans =t.addContentAt(i)
-      assert_equal(ans, $LABEL_INSERT_START + "news" + $LABEL_INSERT_END + "at")
-    end
-
+        
     test "content add" do
-      t = JWSingle.new
-      t.setName="j"
-      t.content = "test"
-      ans = t.pressDefault
+      @t.name="j"
+      @t.content = "test"
+      ans = @t.pressDefault
+      ans2 = @t.pressVal.showTempleteString
+      
       assert_equal(ans, "<j>test</j>")
+      assert_equal(ans, ans2)
     end
-
+    
     test "add label case 1" do
-      t = JWSingle.new
-      t.setName="j"
-      t.content = "test" + "a".variable
-      ans = t.pressDefault
+
+      @t.name="j"
+      @t.content = "test" + "a".variable
+      ans = @t.pressDefault
+      ans2 = @t.pressVal.showTempleteString
+      
       assert_equal(ans, "<j>test</j>")
+      assert_not_equal(ans, ans2)
       
     #     // not equal <j>testLABEL_INSERT_START + "a" + LABEL_INSERT_END</j>
     #     // because at press method , remove LABEL_INSERT_START + "a" + LABEL_INSERT_END
       
     end
+
     
-    ### koko now
+    test "add label case 2" do
+      @t.name="j"
+      @t.content = "test" + "a".variable
+      @t.pressDefault
+      ans = @t.pressAInsert("a".varIs" is done")
+      assert_equal(ans, "<j>test is done</j>")
+
+    end
     
-    # test "add label case 2" do
-    #   t = JWSingle.new
-    #   t.setName="j"
-    #   t.content = "test" + "a".variable
-    #   t.pressDefault
-    #   ans = t.pressInsert_A()
-    #   assert_equal(ans, "<j>test</j>")
-
-    # end
+    test "add label case 3" do
+      @t.name="j"
+      @t.content = "test" + "a".variable + "-> yes!"
+      @t.pressDefault
+      ans = @t.pressAInsert("a".varIs" is done")
+      assert_equal(ans, "<j>test is done-> yes!</j>")
+      
+    end
     
-    # func test_label_case2 (){
-    #     let j = JWSingle()
-    #     j.setName(name: "j")
-    #     j.content = "test" + "a".variable
-    #     let fAns = j.press()
-       
-    #     XCTAssertEqual(fAns, "<j>test</j>")
+    test "add label case 4, retry insert data" do
+      @t.name="j"
+      @t.content = "test" + "a".variable + "-> yes!"
+      @t.pressDefault
+      ans = @t.pressAInsert("a".varIs" is done")
+      assert_equal(ans, "<j>test is done-> yes!</j>")
 
-    #     let sAns = j.insertPress(_data_: ["a".ins(data: " is done")])
-    #     XCTAssertEqual(sAns, "<j>test is done</j>")
-        
-    # }
+      #retry
+      ans2 = @t.pressAInsert("a".varIs" was success!")
+      assert_equal(ans2, "<j>test was success!-> yes!</j>")
+      
+    end
 
-    # func test_label_case2_Dash (){
-    #     let j = JWSingle()
-    #     j.setName(name: "j")
-    #     j.content = "test" + "a".variable
-    #     let fAns = j.press()
-    #     XCTAssertEqual(fAns, "<j>test</j>")
-    
-    #     let sAns = j.insertPress(_data_: [("a", " is done")])
-    #     XCTAssertEqual(sAns, "<j>test is done</j>")
-        
-    # }
+    test "add labels" do
 
-    # func test_label_case3 (){
-    #     let j = JWSingle()
-    #     j.setName(name: "j")
-    #     j.content = "test" + "a".variable
-    #     j.press()
-        
-    #     let sAns = j.insertPress(_data_: ["a".ins(data: " is done")])
-    #     XCTAssertEqual(sAns, "<j>test is done</j>")
+      @t.name="j"
+      @t.content = "test" + "a".variable + "b".variable
+      @t.pressDefault
+      i1 = "a".varIs" first"
+      i2 = "b".varIs",but..."
+      ans = @t.pressInsertEach(i1,i2)
+      assert_equal(ans, "<j>test first,but...</j>")
 
-    #     let tAns = j.insertPress(_data_: ["a".ins(data: " is done new")])
-    #     XCTAssertEqual(tAns, "<j>test is done new</j>")
-        
-    #     let x = "a".ins(data: " was changed")
-    #     let uAns = j.insertPress(_data_: [x])
-    #     XCTAssertEqual(uAns, "<j>test was changed</j>")
-        
-    # }
+      
+    end
 
     
     

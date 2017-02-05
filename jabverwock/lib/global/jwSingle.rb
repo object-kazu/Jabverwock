@@ -9,12 +9,7 @@ module Jabverwock
       super
       @content = ""
     end
-    
-    def addContentAt(insertData)
-      KSUtil.is_InsertData(insertData)
-      $LABEL_INSERT_START + insertData.label + $LABEL_INSERT_END + insertData.data
-    end
-    
+        
     def makeResult
       @templeteString = @tagManager.tempOpenString + @content
       if !@tagManager.tempCloseString.empty?

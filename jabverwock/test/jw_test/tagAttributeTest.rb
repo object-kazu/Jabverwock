@@ -36,7 +36,7 @@ module Jabverwock
     
     test "TagAttribute, path confirm " do
       tm = TagAttribute.new 
-      tm.addLang("jp")
+      tm.addLang="jp"
 
       assert_equal(tm.aString, "lang=\"jp\"")
       

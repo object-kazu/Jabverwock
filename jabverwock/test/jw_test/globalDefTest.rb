@@ -197,21 +197,27 @@ module Jabverwock
       assert_equal(ans,1) # because end Tab remove at tabCount method
       
     end
-
-    test "is_InsertData => nil " do
-      a = InsertData.new(label:"", data:"")
-      ans = KSUtil.is_InsertData(a)
-      assert_equal(ans, nil)
+    
+    
+    test "a variable and data pair is true " do
+      a = "a".varIs("aa")
+      assert_true(a.is_a?(Hash))
     end
 
 
-    test "is_InsertData => error" do
+    test "a variable and data pair is false" do
       a = "a"
-      assert_raise(){
-        ans = KSUtil.is_InsertData(a)
-      }
+      assert_false(a.is_a?(Hash))
       
     end
+
+    test "confirm variable pair " do
+      a = "a".varIs("aa")
+      assert_equal(a[:label], "a")
+      assert_equal(a[:data], "aa")
+    end
+
+    
 
     
   end
