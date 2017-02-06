@@ -28,15 +28,52 @@ module Jabverwock
       end
     end
 
-    def str
+    def str # vars + vals
+      result = []
+      varArray = vars
+      valArray = vals
+      varArray.each_with_index{ |v , index|
+        x = vals[index]
+        next if x == EmptyStr
+        result << "%s: %s;" % [v,x]
+      }
+      
+      if result.count == 0
+        return ""
+      end
+       result.join("\n")
+    end
+    
+    # format of property is difference
+    # ex)
+    # font: "Helvetica" => "" 
+    # font-size: 12px   => no ""
+    
+    private
+    def vars
+      result = []
+      instance_variables.each { |var|
+        k = var.to_s.tr('@','')
+        p ">>>"
+        p k
+
+        # "font_size"(ruby code) convert to "font-size" (css)
+        p "<<< convert"
+        
+        p k.gsub!(/_/, "-")
+        
+        result << "%s" % [k]
+      }
+      result
+    end
+
+    def vals
        result = []
        instance_variables.each { |var|
-         k = var.to_s.tr('@','')
          v = instance_variable_get(var)
-         next if v == EmptyStr
-         result << "%s=\"%s\"" % [k,v]
+         result << "%s" % [v]
        }
-       result.join(', ')
+       result
     end
     
   end

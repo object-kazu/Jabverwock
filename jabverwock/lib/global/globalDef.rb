@@ -3,7 +3,7 @@ module StringExtension
   refine String do
       def inDoubleQuot(insert)
         if insert.is_a?(String)
-          self + $DOUBLE_QUO + insert + $DOUBLE_QUO
+          self + insert.modifyDoubleQuo
         end
       end
 
@@ -18,6 +18,10 @@ module StringExtension
           self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
         end
         
+      end
+
+      def modifyDoubleQuo
+        $DOUBLE_QUO + self + $DOUBLE_QUO
       end
       
       def variable
