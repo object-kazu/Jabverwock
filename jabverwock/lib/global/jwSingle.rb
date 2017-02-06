@@ -1,8 +1,9 @@
-require_relative "jw"
+#require_relative "jw"
+require '../../lib/global/jwCSS'  
 
 module Jabverwock
   using StringExtension
-  class JWSingle < JW
+  class JWSingle < JWCSS
     attr_accessor :content
     
     def initialize

@@ -41,7 +41,8 @@ module Jabverwock
 
     
     # ex) @tagManager.Id = id
-    [:id, :cls, :name].each do |attr|
+    mainAttr =  [:id, :cls, :name]
+    mainAttr.each do |attr| 
       define_method "#{attr}=" do |val|
         val = KString.checkString val
         eval "@tagManager.#{attr} = val"
@@ -49,7 +50,7 @@ module Jabverwock
     end
     
     # ex) return @tagManager.Id
-    [:id, :cls, :name].each do |attr|      
+    mainAttr.each do |attr|      
       define_method "tag#{attr.capitalize}" do
         eval "@tagManager.#{attr}"
       end

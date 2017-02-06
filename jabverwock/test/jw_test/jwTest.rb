@@ -1,9 +1,6 @@
 require 'test/unit' 
 require '../../lib/global/globalDef'  
-require '../../lib/global/insertData'  
 require '../../lib/global/jw'  
-
-require "pry"
 
 module Jabverwock
   using StringExtension
