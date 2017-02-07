@@ -34,6 +34,7 @@ module Jabverwock
       valArray = vals
       varArray.each_with_index{ |v , index|
         x = vals[index]
+        
         next if x == EmptyStr
         result << "%s: %s;" % [v,x]
       }
@@ -54,13 +55,13 @@ module Jabverwock
       result = []
       instance_variables.each { |var|
         k = var.to_s.tr('@','')
-        p ">>>"
-        p k
+        # p ">>>"
+        # p k
 
-        # "font_size"(ruby code) convert to "font-size" (css)
-        p "<<< convert"
+        # # "font_size"(ruby code) convert to "font-size" (css)
+        # p "<<< convert"
         
-        p k.gsub!(/_/, "-")
+        k.gsub!(/_/, "-")
         
         result << "%s" % [k]
       }

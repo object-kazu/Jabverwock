@@ -1,108 +1,52 @@
-require "../global/globalDef"
+require '../../lib/global/globalDef'  
+require_relative "propertyTemplete"
+require_relative "font"
 
 module Jabverwock
-  class CssProperty
+  using StringExtension
 
-    #path confirm
-    #p $SPC
-    
-    # ex) @tagManager.Id = id
-    # mainAttr =  [:id, :cls, :name]
-    # mainAttr.each do |attr| 
-    #   define_method "#{attr}=" do |val|
-    #     val = KString.checkString val
-    #     eval "@tagManager.#{attr} = val"
-    #   end
+  class Property < CssAttrTemplate
+    # path confirm
+    # p "a".variable
+        
+    # do not override initialize
+    # because CssAttrTemplate use
+    ######## do not use #########
+    # def initialize
     # end
-
+    ######## do not use #########
     
     
-#     // property
-#     public struct property {
-#         var Font        : FONT!
-#         var Padding     : PADDING!
-        
-#         var Color       : String
-#         var Opacity     : String
-        
-#         // FONT
-#         public struct FONT {
-#             var size : String
-            
-#             public init(fSize:String = EMPTY){
-#                 self.size = fSize
-#             }
-            
-#             func para() -> [(String,String)]{
-#                 return [("font-size", size)]
-#             }
-#         }
-        
-#         // PADDING
-#         public struct PADDING {
-#             var padding         : String
-#             var padding_top     : String
-#             var padding_bottom  : String
-#             var padding_left    : String
-#             var padding_right   : String
+    self.define_attributes [:font, :font_style, :font_variant,:font_weight, :font_size, :font_family,
+                            :font_size_adjust, :font_stretch]
 
-#             public init (pd:String          = EMPTY,
-#                          pd_top:String      = EMPTY,
-#                          pd_bottom:String   = EMPTY,
-#                          pd_left:String     = EMPTY,
-#                          pd_right:String    = EMPTY){
-                
-#                 self.padding        = pd
-#                 self.padding_top    = pd_top
-#                 self.padding_bottom = pd_bottom
-#                 self.padding_left   = pd_left
-#                 self.padding_right  = pd_right
-                
-#             }
-#             func para() -> [(String,String)]{
-#                 return [("padding", padding),
-#                         ("padding-top", padding_top),
-#                         ("padding-bottom", padding_bottom),
-#                         ("padding-left", padding_left),
-#                         ("padding-right", padding_right)]
-#             }
-#         }
-        
-#         // property variable
-#         var paras : [(String, String)] = []
-        
-#         // property init
-#         public init(kFontSize:String = EMPTY, kColor:String = EMPTY,kOpacity:String = EMPTY,
-#                     kPadding:String = EMPTY){
-#             self.Font       = FONT(fSize: kFontSize)
-#             self.Color      = kColor
-#             self.Opacity    = kOpacity
-#             self.Padding    = PADDING()
+    # font …… フォントに関する指定をまとめて行う
+    # font-style …… フォントをイタリック体・斜体にする
+    # font-variant …… フォントをスモールキャップにする
+    # font-weight …… フォントの太さを指定する
+    # font-size …… フォントのサイズを指定する
+    # font-family …… フォントの種類を指定する
+    # font-size-adjust …… フォントのサイズを調整する
+    # font-stretch …… フォントを縦長・横長にする
+
+
+    self.define_attributes [:color, :background, :background_attachment, :background_color,
+                            :background_image, :background_position, :background_position_x,
+                            :background_position_y,:background_repeat]
     
-#         }
-        
-#         mutating func prepParams (){
-#             let c: [(String,String)] = [("color", Color), ("opacity", Opacity)]
-#             let f: [(String,String)] = Font.para()
-#             let p: [(String,String)] = Padding.para()
+    #     color …… 文字色（前景色）を指定する
+    # background …… 背景に関する指定をまとめて行う
+    # background-attachment･･･背景画像の固定・移動を指定する
+    # background-color …… 背景色を指定する
+    # background-image …… 背景画像を指定する
+    # background-position …… 背景画像の表示開始位置を指定する
+    # background-position-x …… 背景画像の横位置を指定する（IE独自の仕様）
+    # background-position-y …… 背景画像の縦位置を指定する（IE独自の仕様）
+    # background-repeat …… 背景画像のリピートの仕方を指定する
+    
             
-#             paras.append(contentsOf: c)
-#             paras.append(contentsOf: f)
-#             paras.append(contentsOf: p)
             
-#         }
-        
-#         mutating func resetParams () {
-#             paras = []
-#         }
-#     }
-
   end
 
-
-
-  
-  
   
 end
-
