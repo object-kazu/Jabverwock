@@ -2,6 +2,7 @@ require 'test/unit'
 require '../../lib/global/globalDef'  
 require '../../lib/css/property'
 
+
 module Jabverwock
   using StringExtension
   
@@ -38,11 +39,39 @@ module Jabverwock
 
     ############## test ###############
 
-    test "property first test, font" do
+    test "property first test, for print debug " do
       @f.font_size = 10
       @f.background_color = "red"
       p @f.str
       
+    end
+
+    test "set property font" do
+      @f.font = "Helvetica".modifyDoubleQuo
+      assert_equal(@f.str, "font: \"Helvetica\";")
+    end
+    
+    test "set property font-size" do
+      @f.font_size = "12px"
+      assert_equal(@f.str, "font-size: 12px;")
+    end
+
+    test "set property font-size, font-style" do
+      @f.font_style = "bold"
+      @f.font_size = "12px"
+      assert_equal(@f.str, "font-size: 12px;\nfont-style: bold;")
+    end
+
+    test "set property confirm property order" do
+      # following code is same result
+      # property order depend on Property class
+      # @f.font_style = "bold"
+      # @f.font_size = "12px"
+      
+      @f.font_size = "12px"
+      @f.font_style = "bold"
+      assert_equal(@f.str, "font-size: 12px;\nfont-style: bold;")
+
     end
 
     

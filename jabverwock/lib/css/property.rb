@@ -1,6 +1,5 @@
 require '../../lib/global/globalDef'  
 require_relative "propertyTemplete"
-require_relative "font"
 
 module Jabverwock
   using StringExtension
@@ -43,6 +42,7 @@ module Jabverwock
     # background-position-x …… 背景画像の横位置を指定する（IE独自の仕様）
     # background-position-y …… 背景画像の縦位置を指定する（IE独自の仕様）
     # background-repeat …… 背景画像のリピートの仕方を指定する
+
     
             
             

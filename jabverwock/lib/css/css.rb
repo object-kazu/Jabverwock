@@ -1,12 +1,17 @@
+require '../../lib/global/globalDef'  
+require_relative "property"
+
 module Jabverwock
+  using StringExtension
   class CSS
-    attr_accessor :property, :cssName
+    attr_reader :cssResultString
+    attr_writer :property, :name
     
     def initialize
-      @cssName = ""  # css name
-      @property = "" # css property
+      @name = ""  # css name
+      @property = Property.new
       @cssResultString = ""
-      @property = CssProperty.new
+
     end
 
     def self.newWithJWObject(jwObject)
@@ -16,60 +21,30 @@ module Jabverwock
       end
       
       objc = self.new
-      objc.cssName = jwObject.tagName
-      #実装していないのでコメントアウト
+      objc.name = jwObject.tagName
+      # 今のところ実装していないのでコメントアウトしておく
       #      objc.property = jwObject.style.property
 
       objc
     end
         
-    def Str
+    def str
       @cssResultString = ""
-      if cssName.empty?
+      if @name.empty?
         p "css name is empry. set cssName"
         raise RuntimeError
       end
 
       #接頭句
-      @cssResultString += @cssName + $SPC + "{" + $RET
+      @cssResultString += @name + $SPC + "{" + $RET +
+                          @property.str
       
+      #  接尾句
+      @cssResultString += $RET + "}"
+      return @cssResultString
       
     end
-#     func Str() -> String  {
-#         var cssResultString = "" // init
-
-#         /// nameがないものは出力しない
-#         if cssName.isEmpty {
-#             assertionFailure("no name")
-#             return ""
-#         }
-
-#         // 接頭句
-#         cssResultString += cssName + SPC + "{" + RET
-        
-#         self.property.resetParams()
-#         self.property.prepParams()
-#         for i in self.property.paras{
-#             cssResultString += itemStr(name: i.0, value: i.1)
-#         }
-
-#         // 接尾句
-#         cssResultString += "}"
-#         return cssResultString
-#     }
-
-
-#     private func itemStr (name:String, value:String) -> String {
-#         if value.isEmpty {
-#             return ""
-#         }
-        
-#         //exp)  background: #ffffff;
-#         return name + COLON + SPC + value + SEMI_COLON + RET
-#     }
-
-    
-# }
 
   end
+
 end
