@@ -15,9 +15,19 @@ module Jabverwock
         attributes.each_with_index do |attr, index|
           attr_accessor attr # attrへのアクセッサ
           @index_to_attr[index] = attr # indexと項目名の対応
+
+          # method chain
+          # ex) method_a(1).method_b(2)
+          define_method "#{attr}"do |v|
+            eval "@#{attr} = v"
+            self
+          end
+          
         end
 
       end
+      
+           
     end
     
     EmptyStr = ""
@@ -25,9 +35,11 @@ module Jabverwock
       self.class.index_to_attr.each_with_index do |value, index|
         attr = self.class.index_to_attr[index] # クラスメソッドの `index_to_attr` で読込
         self.send("#{attr}=", EmptyStr) # 動的ディスパッチ!!
-        
-      end
+      end  
     end
+    
+
+    
 
     def str # vars + vals
       result = []
@@ -56,12 +68,6 @@ module Jabverwock
       result = []
       instance_variables.each { |var|
         k = var.to_s.tr('@','')
-        # p ">>>"
-        # p k
-
-        # # "font_size"(ruby code) convert to "font-size" (css)
-        # p "<<< convert"
-        
         k.gsub!(/_/, "-")
         
         result << "%s" % [k]
@@ -83,9 +89,10 @@ module Jabverwock
 # class Sam < CssAttrTemplate
 #   self.define_attributes [:pp, :dd]
 # end
-
 # p a = Sam.new
 # a.pp = 10
 # p a.str
+# p a.pp(1).dd(2)
+# p a.dd(1).pp(:red)
 
 end

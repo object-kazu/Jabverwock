@@ -74,6 +74,19 @@ module Jabverwock
 
     end
 
+    test "set property confirm property order" do  
+      @f.color = "red"
+      assert_equal(@f.str, "color: red;")
+
+    end
+
+    test "set property confirm property order" do  
+      @f.color "red"
+      p @f
+      #assert_equal(@f.str, "color: red;")
+
+    end
+
     
   end
 

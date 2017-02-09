@@ -3,7 +3,7 @@ require_relative "propertyTemplete"
 
 module Jabverwock
   using StringExtension
-
+  
   class Property < CssAttrTemplate
     # path confirm
     # p "a".variable
@@ -50,3 +50,4 @@ module Jabverwock
 
   
 end
+

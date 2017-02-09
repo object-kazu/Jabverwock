@@ -41,17 +41,58 @@ module Jabverwock
     ############## test ###############
 
     test "css first test, for print debug " do
-       @css.property = Property.new
+      p @css.property = Property.new
+
       
     end
-
     test "set property" do
+      @css.name = "head"
+      assert_raise{
+        @css.property.font_size = 10
+      }
+
+    end
+
+    
+    test "insert property class" do
       p = Property.new
       p.font_size = 10
       @css.name = "head"
       @css.property = p
       p @css.str
       assert_equal(@css.str, "head {\nfont-size: 10;\n}")
+    end
+
+    test "property default method, not chain" do
+      p = Property.new
+      p.font_size = 10
+      p.color = "red"
+
+      @css.name = "head"
+      @css.property = p
+      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
+    end
+
+    test "property method chain" do
+      p = Property.new
+      # p.font_size = 10
+      # p.color = "red"
+
+      p.font_size("10").color("red")
+      
+      @css.name = "head"
+      @css.property = p
+      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
+    end
+
+        test "property method chain" do
+      p = Property.new
+
+      p.font_size("10").color("red").font_style("bold")
+      
+      @css.name = "head"
+      @css.property = p
+      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
     end
 
     
