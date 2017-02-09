@@ -25,7 +25,7 @@ module Jabverwock
     def setup
       p :setup
      # p "test".variable
-       @css= CSS.new
+       @css= CSS.new "t"
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
@@ -45,6 +45,7 @@ module Jabverwock
 
       
     end
+    
     test "set property" do
       @css.name = "head"
       assert_raise{
@@ -85,7 +86,7 @@ module Jabverwock
       assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
     end
 
-        test "property method chain" do
+    test "property method chain" do
       p = Property.new
 
       p.font_size("10").color("red").font_style("bold")
@@ -93,6 +94,25 @@ module Jabverwock
       @css.name = "head"
       @css.property = p
       assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
+    end
+
+
+    test "css name define" do
+      p = Property.new
+      p.font_size("10").color("red").font_style("bold")
+      
+      c = CSS.new("head")
+      c.property = p
+      assert_equal(c.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
+    end
+    
+    
+    test "css name define, with chain method" do
+      p = Property.new
+      p.font_size("10").color("red").font_style("bold")
+      
+      c = CSS.new("head").addProperty(p)
+      assert_equal(c.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
     end
 
     

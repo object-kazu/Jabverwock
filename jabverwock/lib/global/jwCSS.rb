@@ -1,7 +1,10 @@
 require '../../lib/global/globalDef'  
 require '../../lib/global/jw'  
+require "../../lib/css/css"
 
 module Jabverwock
+  using StringExtension
+
   class JWCSS < JW # add css functions
     
     # var style :CSS!
@@ -10,9 +13,17 @@ module Jabverwock
     # private var nameList :[String] = [] // 重複判定に利用
     
     def initilize
-      @style
+      @style = CSS.new
+      @nameList = [] # 重複判定に利用
     end
 
+    def prepStyle (name)
+      name = KString::checkString(name)
+      s = CSS.new
+      s.name = name
+      @style = s
+    end
+    
     # func prepStyle(name: String) {
     #     style = CSS(name: name)
     # }
@@ -134,4 +145,9 @@ module Jabverwock
     # }
 
   end
+
+
+  a = JWCSS.new
+  a.prepStyle("j")
+  
 end

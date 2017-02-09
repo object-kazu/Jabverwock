@@ -7,8 +7,8 @@ module Jabverwock
     attr_reader :cssResultString
     attr_writer :property, :name
     
-    def initialize
-      @name = ""  # css name
+    def initialize(name)
+      @name = name  # css name
       @property = Property.new
       @cssResultString = ""
 
@@ -27,7 +27,14 @@ module Jabverwock
 
       objc
     end
-        
+
+    def addProperty (p)
+      if p.is_a?(Property)
+        @property = p
+      end
+      self
+    end
+    
     def str
       @cssResultString = ""
       if @name.empty?
