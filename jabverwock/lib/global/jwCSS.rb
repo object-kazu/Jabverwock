@@ -7,16 +7,16 @@ module Jabverwock
 
   class JWCSS < JW # add css functions
 
-    attr_accessor :style
-    
-    # var styleArray : [CSS]  = []
+    attr_accessor :style, :styleArray
         
     def initialize
       super
       @name = self.name
       
       @style = CSS.new("#{name}")
+      @styleArray = []
       @styleString  = ""
+      
       @nameList = [] # 重複判定に利用
     end
     
@@ -41,28 +41,29 @@ module Jabverwock
     end
     
     # add member
-    def addMember (member)
-      member = NString::checkString(member)
-      @memberString += member
-    end
+    
+    # def addMember (member)
+    #   member = KString::checkString(member)
+    #   @memberString += member
+    # end
 
-    def addMemberObject (member)
-      if member.is_a?(JWObject)
+    def addJWCSSAsMember (member)
+      if member.is_a?(JWCSS)
         # js
 #     importJSParameters(child: member)
         
         # html
-        addMember(member.templeteString)
+
+        #addMember(member.templeteString)
         
         # css
-    #     if member.styleArray.count > 0{
-    #         styleArray.append(contentsOf: member.styleArray)
-    #     }
-    #     if member.style != nil {
-    #         styleArray.append(member.style)
-    #     }
-        
-        
+        if member.styleArray.count > 0
+          @styleArray << member.styleArray
+        end
+
+        if member.style != nil
+          @styleArray << member.style
+        end
         
       end
     end
@@ -72,6 +73,7 @@ module Jabverwock
         addMember obj
       end
     end
+    
     
     # // press
     def prepTempString #override

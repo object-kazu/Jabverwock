@@ -81,24 +81,22 @@ module Jabverwock
 
 
     
-    # test "add member" do
+    test "add member" do
       
-    #   j1 = JWCSS.new
-    #   #j1.styleWithName "j1"
-    #   p1 = Property.new.color("red").font_size(10)
-    #   j1.styleWithProperty p1
+      j1 = JWCSS.new
+      p1 = Property.new.color("red").font_size(10)
+      j1.styleWithProperty p1
       
-    #   j2 = JWCSS.new
-    #   j2.styleWithName "j2"
-    #   p2 = Property.new.color("blue").font_size(20)
-    #   j2.styleWithProperty p2
+      j2 = JWCSS.new
+      p2 = Property.new.font_style("bold")
+      j2.styleWithProperty p2
 
-    #   j1.addMember j2
+      j1.addJWCSSAsMember j2
 
-    #   assert_equal(j1.style.str, "j1 {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(j1.style.str, "jwcss {\ncolor: red;\nfont-size: 10;\n}")
     
       
-    # end
+    end
     
 # //    func test_JW_css_addMember() {
 # //        let jw = JWObject()
