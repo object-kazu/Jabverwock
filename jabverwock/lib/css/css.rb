@@ -5,9 +5,10 @@ module Jabverwock
   using StringExtension
   class CSS
     attr_reader :cssResultString
-    attr_writer :property, :name
+    attr_accessor :property, :name
     
     def initialize(name)
+
       @name = name  # css name
       @property = Property.new
       @cssResultString = ""

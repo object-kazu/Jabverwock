@@ -1,5 +1,4 @@
 require_relative "globalDef" 
-require_relative "insertData"  
 require_relative "tagManager"  
 require_relative "press"
 

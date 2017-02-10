@@ -6,34 +6,126 @@ module Jabverwock
   using StringExtension
 
   class JWCSS < JW # add css functions
+
+    attr_accessor :style
     
-    # var style :CSS!
     # var styleArray : [CSS]  = []
-    # var styleString: String = ""
-    # private var nameList :[String] = [] // 重複判定に利用
-    
-    def initilize
-      @style = CSS.new
+        
+    def initialize
+      super
+      @name = self.name
+      
+      @style = CSS.new("#{name}")
+      @styleString  = ""
       @nameList = [] # 重複判定に利用
     end
+    
+    def name
+      self.class.to_s.split("::").last.downcase
+    end
 
-    def prepStyle (name)
+    
+    def styleWithName (name)
       name = KString::checkString(name)
-      s = CSS.new
-      s.name = name
-      @style = s
+      @style.name = name
+    end
+
+    def styleWithProperty(property)
+      if property.is_a?(Property)
+        @style.property = property
+      end
     end
     
-    # func prepStyle(name: String) {
-    #     style = CSS(name: name)
-    # }
-    # func prepStyle(property: CSS.property){
-    #     style = CSS(property: property)
-    # }
+    def styleStringInit
+      @styleString = ""
+    end
     
-    # func styleStringInit () {
-    #     styleString = "" // initilize
+    # add member
+    def addMember (member)
+      member = NString::checkString(member)
+      @memberString += member
+    end
+
+    def addMemberObject (member)
+      if member.is_a?(JWObject)
+        # js
+#     importJSParameters(child: member)
+        
+        # html
+        addMember(member.templeteString)
+        
+        # css
+    #     if member.styleArray.count > 0{
+    #         styleArray.append(contentsOf: member.styleArray)
+    #     }
+    #     if member.style != nil {
+    #         styleArray.append(member.style)
+    #     }
+        
+        
+        
+      end
+    end
+        
+    def addMemberObjects (members)
+      members.each do |obj| 
+        addMember obj
+      end
+    end
+    
+    # // press
+    def prepTempString #override
+      assemble
+      memberAssemble
+      applyStyle
+    end
+    
+    def styleStr
+      styleStringInit
+      styleAssemble
+      return styleString
+    end
+    
+    def applyStyle
+      styleAssemble
+    #     ///検索のためにStyle tag生成
+      s = Style.new
+      s.makeTag
+      if @templeteString.include?(s.tagManager.tempOpenString) 
+      end
+      
+    end
+
+    def isIncludeAtTempleteString(targetOpenString, targetCloseString)
+      
+    end
+    
+    # func applyStyle() {
+    #     styleAssemble()
+        
+    #     ///検索のためにStyle tag生成
+    #     let s = STYLE()
+    #     s.makeTag()
+    #     if templeteString.contains(s.tagManager.tempOpenString) && templeteString.contains(s.tagManager.tempCloseString) {
+    #         // insert tab
+    #         let tn = getTabNumber(testStr: templeteString, targetStr: STYLE_CONTENT)
+    #         let tabedString = addTab(str: styleString, tabMax: tn)
+            
+    #         // replace text
+    #         // 余分なTabを削除しておく
+    #         var target = ""
+    #         for _ in 0..<tn {
+    #             target += TAB
+    #         }
+    #         target += STYLE_CONTENT
+    #         templeteString = templeteString.replacingOccurrences(of: target, with: STYLE_CONTENT) // TAB + TAB + STYLE_CONTENT -> STYLE_CONTENT
+    #         templeteString = templeteString.replacingOccurrences(of: STYLE_CONTENT, with: tabedString)
+    #     }
     # }
+
+    
+    
+    private
     
     # private func styleAssemble () {
     #     nameList = []
@@ -76,78 +168,24 @@ module Jabverwock
     # }
     
 
-    # func styleStr () -> String {
-    #     styleStringInit()
-    #     styleAssemble()
-    #     return styleString
-    # }
-
-    
-    # func applyStyle() {
-    #     styleAssemble()
-        
-    #     ///検索のためにStyle tag生成
-    #     let s = STYLE()
-    #     s.makeTag()
-    #     if templeteString.contains(s.tagManager.tempOpenString) && templeteString.contains(s.tagManager.tempCloseString) {
-    #         // insert tab
-    #         let tn = getTabNumber(testStr: templeteString, targetStr: STYLE_CONTENT)
-    #         let tabedString = addTab(str: styleString, tabMax: tn)
-            
-    #         // replace text
-    #         // 余分なTabを削除しておく
-    #         var target = ""
-    #         for _ in 0..<tn {
-    #             target += TAB
-    #         }
-    #         target += STYLE_CONTENT
-    #         templeteString = templeteString.replacingOccurrences(of: target, with: STYLE_CONTENT) // TAB + TAB + STYLE_CONTENT -> STYLE_CONTENT
-    #         templeteString = templeteString.replacingOccurrences(of: STYLE_CONTENT, with: tabedString)
-    #     }
-    # }
     
     
-    # // add member
-    # func addMember(member:String)  {
-    
-    #     memberString.append(member)
-    # }
-
-    # func addMember (member: JWObject){
-    #     // js
-    #     importJSParameters(child: member)
-        
-    #     // html
-    #     member.assemble()
-    #     addMember(member: member.templeteString)
-        
-    #     // css
-    #     if member.styleArray.count > 0{
-    #         styleArray.append(contentsOf: member.styleArray)
-    #     }
-    #     if member.style != nil {
-    #         styleArray.append(member.style)
-    #     }
-        
-    # }
-    # func addMembers (members: [JWObject]) {
-    #     for m: JWObject in members {
-    #         m.addMember(member: m)
-    #     }
-    # }
-    
-    # // press
-    
-    # override func prepTempString() {
-    #     assemble()
-    #     memberAssemble()
-    #     applyStyle()
-    # }
 
   end
 
+  class Style < JW
+    
+    def initialize
+      super
+      setName = "style"
+      addCihld("style test")
+    end
+  end
+  
+  # a = JWCSS.new
+  # a.style.name = "pp"
+  # a.style.property.color = "red"
+  # p a
 
-  a = JWCSS.new
-  a.prepStyle("j")
   
 end

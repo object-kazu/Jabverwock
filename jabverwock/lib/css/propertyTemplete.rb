@@ -31,7 +31,8 @@ module Jabverwock
     end
     
     EmptyStr = ""
-    def initialize()
+    def initialize
+
       self.class.index_to_attr.each_with_index do |value, index|
         attr = self.class.index_to_attr[index] # クラスメソッドの `index_to_attr` で読込
         self.send("#{attr}=", EmptyStr) # 動的ディスパッチ!!
