@@ -1,47 +1,49 @@
 # ## String extension ############
 module StringExtension
   refine String do
-      def inDoubleQuot(insert)
-        if insert.is_a?(String)
-          self + insert.modifyDoubleQuo
-        end
+    def removeLastRET
+      self.chomp
+    end
+    
+    def inDoubleQuot(insert)
+      if insert.is_a?(String)
+        self + insert.modifyDoubleQuo
       end
+    end
 
-      def inSingleQuo(insert)
-        if insert.is_a?(String)
-          self +  $SINGLE_QUO + insert + $SINGLE_QUO  
-        end
+    def inSingleQuo(insert)
+      if insert.is_a?(String)
+        self +  $SINGLE_QUO + insert + $SINGLE_QUO  
       end
+    end
 
-      def inParenth(insert)
-        if insert.is_a?(String)
-          self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
-        end
-        
-      end
-
-      def modifyDoubleQuo
-        $DOUBLE_QUO + self + $DOUBLE_QUO
+    def inParenth(insert)
+      if insert.is_a?(String)
+        self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
       end
       
-      def variable
-        $LABEL_INSERT_START + self + $LABEL_INSERT_END
-      end  
+    end
 
-      
-      # a = "a".dataIs "dddd"# => {:label=>"a", :data=>"dddd"}
-      # p a
-      # p a[:label]
-      # p a[:data]
-      #
-      # # >> {:label=>"a", :data=>"dddd"}
-      # # >> "a"
-      # # >> "dddd"
-      def varIs(val)
-        {:label => self, :data => val}
-      end
+    def modifyDoubleQuo
+      $DOUBLE_QUO + self + $DOUBLE_QUO
+    end
+    
+    def variable
+      $LABEL_INSERT_START + self + $LABEL_INSERT_END
+    end  
 
-      
+    
+    # a = "a".dataIs "dddd"# => {:label=>"a", :data=>"dddd"}
+    # p a
+    # p a[:label]
+    # p a[:data]
+    #
+    # # >> {:label=>"a", :data=>"dddd"}
+    # # >> "a"
+    # # >> "dddd"
+    def varIs(val)
+      {:label => self, :data => val}
+    end      
   end
 end
 
@@ -238,6 +240,6 @@ module Jabverwock
 
     
       
-  end #globaleDef    
-end #Jabverwock
+  end
+end 
 

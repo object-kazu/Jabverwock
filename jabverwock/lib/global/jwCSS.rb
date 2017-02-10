@@ -47,10 +47,12 @@ module Jabverwock
     #   @memberString += member
     # end
 
-    def addJWCSSAsMember (member)
+    def addJWCSSAsMember (member) 
       if member.is_a?(JWCSS)
+
+        
         # js
-#     importJSParameters(child: member)
+        # importJSParameters(child: member)
         
         # html
 
@@ -62,15 +64,17 @@ module Jabverwock
         end
 
         if member.style != nil
+          
           @styleArray << member.style
+          
         end
         
       end
     end
         
-    def addMemberObjects (members)
+    def addJWCSSAsMembers (*members)
       members.each do |obj| 
-        addMember obj
+        self.addJWCSSAsMember obj
       end
     end
     
@@ -128,49 +132,40 @@ module Jabverwock
     
     
     private
-    
-    # private func styleAssemble () {
-    #     nameList = []
-    #     var tempStyle : [CSS] = []
-    #     if style != nil{
-    #         tempStyle.append( style )
-    #     }
-    #     tempStyle.append(contentsOf: styleArray)
-        
-    #     for sty in tempStyle {
-    #         /// スタイルがない（｛｝のみ）なら標示しない
-    #         if sty.Str().isEmpty {
-    #             continue
-    #         }
-            
-    #         if isSameCSSName(name: sty.cssName) {
-    #             continue
-    #         }
-    #         /// 同じ名前のスタイルは書き込まない（重複書き込み禁止）
-    #         nameList.append(sty.cssName)
-    #         styleString += sty.Str()
-    #         styleString += RET
-            
-            
-    #     }
-        
-    #     styleString = removeLastRET(str: styleString)
-        
-    # }
-    
-    
-    # private func isSameCSSName (name: String) -> Bool {
-    #     for n in nameList {
-    #         if n == name {
-    #             return true
-    #         }
-    #     }
-        
-    #     return false
-    # }
-    
+    def styleAssemble
+      @nameList = []
+      tempStyleList = []
 
+      if @style != nil
+        tempStyleList << style
+      end
+
+      tempStyleList << styleArray
+
+      tempStyleList.each do |sty|
+        if sty.str.empty?
+          next
+        end
+
+        # 同じ名前のスタイルは書き込まない（重複書き込み禁止）
+        next if self.isSameCSSName(sty.name)
+
+        @nameList << sty.name
+        @styleString << sty.str << $RET  
+      end
+      
+      @styleString.removeLastRET
+    end
     
+    
+    def isSameCSSName(name)
+      @nameList.each do |n |
+        if n == name
+          return true
+        end
+      end
+      return false
+    end
     
 
   end

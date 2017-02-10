@@ -38,10 +38,8 @@ module Jabverwock
         self.send("#{attr}=", EmptyStr) # 動的ディスパッチ!!
       end  
     end
-    
-
-    
-
+     
+    # エクスポート
     def str # vars + vals
       result = []
       varArray = vars

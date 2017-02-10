@@ -104,6 +104,26 @@ module Jabverwock
 
     end
 
+    test "removeLastRET not RET" do
+      tm = "dadfafadfa\nfdfafadfa_"
+      tm = KString.removeLastRET(tm)
+      assert_equal(tm, "dadfafadfa\nfdfafadfa_")
+
+    end
+    
+    test "removeLastRET String extension" do
+      tm = "dadfafadfa\nfdfafadfa\n"
+      tm = tm.removeLastRET
+      assert_equal(tm, "dadfafadfa\nfdfafadfa")
+    end
+
+    test "removeLastRET String extension with out LastRET" do
+      tm = "dadfafadfa\nfdfafadfaA"
+      tm = tm.removeLastRET
+      assert_equal(tm, "dadfafadfa\nfdfafadfaA")
+    end
+
+    
     test "removeLastTAB" do
       tm = "dadfafadfa\tfdfafadfa\t"
       tm = KString.removeLastTAB(tm)
@@ -111,6 +131,7 @@ module Jabverwock
 
     end
 
+    
     test "removeLastTAB" do
       tm = "dadfafadfa\tfdfafadfa"
       tm = KString.removeLastTAB(tm)

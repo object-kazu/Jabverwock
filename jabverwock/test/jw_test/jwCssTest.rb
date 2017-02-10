@@ -79,6 +79,12 @@ module Jabverwock
       
     end
 
+    test "isSameCSSName" do
+      p = Property.new.color("red").font_size(10)
+      @jwcss.styleWithProperty p
+      
+      assert_equal
+    end
 
     
     test "add member" do
@@ -93,10 +99,33 @@ module Jabverwock
 
       j1.addJWCSSAsMember j2
 
-      assert_equal(j1.style.str, "jwcss {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(j1.styleStr, "jwcss {\ncolor: red;\nfont-size: 10;\n}\njwcss {\nfont_style: bold;\n}")
     
       
     end
+
+    # test "add members" do
+      
+    #   j1 = JWCSS.new
+    #   p1 = Property.new.color("red")
+    #   j1.styleWithProperty p1
+
+    #   j2 = JWCSS.new
+    #   p2 = Property.new.font_style("bold")
+    #   j2.styleWithProperty p2
+      
+    #   j3 = JWCSS.new
+    #   p3 = Property.new.font_size(10)
+    #   j3.styleWithProperty p3
+        
+    #   j1.addJWCSSAsMembers(j2, j3)
+      
+    #   assert_equal(j1.style.str, "jwcss {\ncolor: red;\nfont-size: 10;\nfont_style: bold;\n}")
+    
+      
+    # end
+
+    
     
 # //    func test_JW_css_addMember() {
 # //        let jw = JWObject()
