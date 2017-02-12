@@ -10,6 +10,7 @@ module Jabverwock
         
     # do not override initialize
     # because CssAttrTemplate use
+    
     ######## do not use #########
     # def initialize
     # end

@@ -6,9 +6,10 @@ module Jabverwock
   using StringExtension
   class JW
 
-    attr_accessor :aData, :templeteString, :pressVal
+    attr_accessor :name, :aData, :templeteString, :pressVal, :tagManager
     
     def initialize
+      @name           = self.name
       @aData          = "".varIs("")
       @Data           = [] # insertData array
       @openString     = ""
@@ -19,6 +20,10 @@ module Jabverwock
       @tagManager     = TagManager.new
     end
 
+    def name
+      self.class.to_s.split("::").last.downcase
+    end
+    
     def prepPress
       @pressVal.templeteString = @templeteString
     end
@@ -173,18 +178,11 @@ module Jabverwock
     def pressInsertEach(*insertData)
       @pressVal.withInsertEach(insertData)
       @pressVal.resultString # 確認用の戻り値      
-      # insertData.each do |i| 
-      #   pressAInsert(i)
-      # end
     end
     
- 
-    
+
   end
   
 end
-
-
-__END__
 
 

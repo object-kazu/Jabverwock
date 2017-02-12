@@ -1,6 +1,6 @@
 require 'test/unit' 
 require '../../lib/global/jwSingle'
-require '../../lib/global/insertData'
+
 
 
 module Jabverwock
@@ -35,6 +35,10 @@ module Jabverwock
     end
     
     ############## test ###############
+    test "single List" do
+      s = P.new
+      assert_equal(s.name , "p")
+    end
 
     test "JWSingle first test" do
       @t.name = "p"

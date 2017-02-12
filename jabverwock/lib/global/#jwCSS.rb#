@@ -67,14 +67,19 @@ module Jabverwock
 
       
       tCssArray.each do |cs|
+        p ">>>0"
+        p cs.noNameStr
         
         #  スタイルがない（｛｝のみ）なら標示しない
         next unless isExistCssString cs.str
+        p">>>1"
         
         # 同じ名前のスタイルは書き込まない（重複書き込み禁止）
         next if isSameCSSName(cs.name)
+        p">>>2"
 
-        @nameList << cs.name        
+        @nameList << cs.name
+        
         @cssString << cs.str << $RET
       end
       
@@ -83,9 +88,14 @@ module Jabverwock
     
     def isExistCssString(str)
       
+      p">>>01"
+
       if str == nil
+        p">>>02"
         return false
       end
+
+      p">>>03"
 
       if !str.include?("{") || !str.include?("}")
         return false
@@ -95,6 +105,8 @@ module Jabverwock
       removeBack = removeFront.gsub(/}/, "")
       removeRET = removeBack.gsub(/\n/, "")
       
+
+
       if removeRET.nil? || removeRET == ""
         return false
       end

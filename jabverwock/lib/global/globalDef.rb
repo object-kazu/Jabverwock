@@ -1,5 +1,6 @@
 # ## String extension ############
 module StringExtension
+  
   refine String do
     def removeLastRET
       self.chomp
@@ -187,9 +188,9 @@ module Jabverwock
         str.count("#{$TAB}")
       end
 
-      def addTab(str:, tabMax:)
+      def addTab(str:, num:)
         str = checkString(str)
-        tabMax = chechInt(tabMax)
+        tabMax = chechInt(num)
 
         ans = ""
         str.each_line { |l|
@@ -212,10 +213,8 @@ module Jabverwock
         
       end
 
-      def getTabNumber (testStr, targetStr=$STYLE_CONTENT)
+      def getTabNumber (testStr)
         testStr = checkString(testStr)
-        targetStr = checkString(targetStr)
-        
         testStr.each_line{ |l|
           if l.count("#{$TAB}") > 0
             return tabCount(l) 
@@ -236,10 +235,7 @@ module Jabverwock
         return max
       end
       
-    end
-
-    
-      
+    end 
   end
 end 
 

@@ -36,6 +36,10 @@ module Jabverwock
     end
 
     ############## test ###############
+
+    test "name" do
+      assert_equal(@tm.name, "jw")
+    end
     
     test "JW insert variable and data, preTest" do
       a = "a".varIs("aa")

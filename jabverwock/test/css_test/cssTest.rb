@@ -41,80 +41,55 @@ module Jabverwock
     ############## test ###############
 
     test "css first test, for print debug " do
-      p @css.property = Property.new
+      #p @css
 
       
     end
     
     test "set property" do
       @css.name = "head"
+      @css.font_size = 10
       assert_raise{
-        @css.property.font_size = 10
+        @css.gogo(1) # no property
       }
-
     end
 
     
     test "insert property class" do
-      p = Property.new
-      p.font_size = 10
       @css.name = "head"
-      @css.property = p
-      p @css.str
-      assert_equal(@css.str, "head {\nfont-size: 10;\n}")
+      @css.font_size = 10
+      assert_equal(@css.str,
+                   "head {\nfont-size: 10;\n}")
     end
 
     test "property default method, not chain" do
-      p = Property.new
-      p.font_size = 10
-      p.color = "red"
-
       @css.name = "head"
-      @css.property = p
+      @css.font_size = 10
+      @css.color = "red"
+      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
+    end
+
+    test "property method chain" do      
+      @css.name = "head"
+      @css.font_size("10").color("red")
+
       assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
     end
 
     test "property method chain" do
-      p = Property.new
-      # p.font_size = 10
-      # p.color = "red"
-
-      p.font_size("10").color("red")
       
       @css.name = "head"
-      @css.property = p
-      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
-    end
-
-    test "property method chain" do
-      p = Property.new
-
-      p.font_size("10").color("red").font_style("bold")
-      
-      @css.name = "head"
-      @css.property = p
+      @css.font_size("10").color("red").font_style("bold")
       assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
     end
 
 
     test "css name define" do
-      p = Property.new
-      p.font_size("10").color("red").font_style("bold")
-      
       c = CSS.new("head")
-      c.property = p
+      c.font_size("10").color("red").font_style("bold")
       assert_equal(c.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
     end
-    
-    
-    test "css name define, with chain method" do
-      p = Property.new
-      p.font_size("10").color("red").font_style("bold")
-      
-      c = CSS.new("head").addProperty(p)
-      assert_equal(c.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
-    end
-
+   
     
   end
 

@@ -218,6 +218,17 @@ module Jabverwock
       
     end
     
+    test "getTabNumber" do
+      target = $TAB + "abc" + $TAB + "decg" + $TAB
+      ans = KString.getTabNumber(target)
+      assert_equal(ans,2)
+    end
+
+    test "addTab" do
+      target = "a"
+      ans  = KString.addTab(str: target, num: 2)
+      assert_equal(ans, $TAB + $TAB + target)
+    end
     
     test "a variable and data pair is true " do
       a = "a".varIs("aa")
