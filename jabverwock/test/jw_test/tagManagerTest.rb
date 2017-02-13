@@ -33,9 +33,6 @@ module Jabverwock
     end
 
     ############## test ###############
-    test "global?" do
-      p $SPC  
-    end
     
     test "TagManager, path confirm " do
       tm =  TagManager.new 
@@ -57,16 +54,31 @@ module Jabverwock
     test "name and id add" do
       tm =  TagManager.new()
       tm.name = "p"
-      tm.id = "test"
+      tm.tagAttribute.add_id ("test")
+      assert_equal(tm.openString, "<p id=\"test\">")
+      
+    end
+    test "tagAttr, id add, chain method" do
+      tm =  TagManager.new()
+      tm.name = "p"
+      tm.tagAttr("id","test").tagAttr("cls","test")
+      assert_equal(tm.openString, "<p id=\"test\" class=\"test\">")
+      
+    end
 
+    test "tagAttr, id add" do
+      tm =  TagManager.new()
+      tm.name = "p"
+      tm.tagAttr("id","test")
       assert_equal(tm.openString, "<p id=\"test\">")
       
     end
 
-    test "id add" do
+    
+    test "id add, symbol use" do
       tm =  TagManager.new()
       tm.name = "p"
-      tm.id = "test"
+      tm.tagAttr(:id,"test")
 
       assert_equal(tm.openString, "<p id=\"test\">")
       
@@ -74,7 +86,7 @@ module Jabverwock
 
     test "id and name add" do
       tm =  TagManager.new()
-      tm.id = "test"
+      tm.tagAttr(:id,"test")
       tm.name = "sample"
 
       assert_equal(tm.openString,"<sample id=\"test\">" )
@@ -84,7 +96,7 @@ module Jabverwock
     test "class  add" do
       tm =  TagManager.new()
       tm.name = "p"           
-      tm.cls = "test"
+      tm.tagAttr(:cls,"test")
       
       assert_equal(tm.openString, "<p class=\"test\">")
       
@@ -92,11 +104,10 @@ module Jabverwock
 
     test "class, id , name  add" do
       tm =  TagManager.new()
-      tm.cls = "test"
-      tm.id = "test"
+      tm.tagAttr(:cls,"test").tagAttr(:id, "test")
       tm.name = "sample"
 
-      assert_equal(tm.openString, "<sample id=\"test\" class=\"test\">" )
+      assert_equal(tm.openString, "<sample class=\"test\" id=\"test\">" )
 
     end
 
@@ -129,7 +140,7 @@ module Jabverwock
     test "tag attribute lang add" do
       tm = TagManager.new
       tm.name = "a"
-      tm.tagAttribute.addLang = "jp"
+      tm.tagAttr(:lang, "jp")
       assert_equal(tm.openString, "<a lang=\"jp\">")
     end
     

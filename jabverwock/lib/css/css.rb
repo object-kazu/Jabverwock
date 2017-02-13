@@ -3,7 +3,7 @@ require_relative "propertyTemplete"
 
 module Jabverwock
   using StringExtension
-  class CSS < CssAttrTemplateImproved
+  class CSS < CssAttrTemplate
         
     self.define_attributes [:cssResultString]
     

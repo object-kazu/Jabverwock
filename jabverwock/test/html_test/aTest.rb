@@ -39,12 +39,13 @@ module Jabverwock
       assert_equal(a.name , "a")
     end
 
-    test "A first test" do
+    test "A tag" do
       ans = @a.pressDefault
       assert_equal(ans, "<a></a>")
     end
-
-    test "add member, do not use same name" do
+    
+    
+    test "a css" do
       
       j1 = A.new
       j1.css.color("red").font_size(10)
@@ -52,75 +53,77 @@ module Jabverwock
     end
 
     
-    # test "content add" do
-    #   @a.name="j"
-    #   @a.content = "test"
-    #   ans = @a.pressDefault
-    #   ans2 = @a.pressVal.showTempleteString
+    test "content add" do
       
-    #   assert_equal(ans, "<j>test</j>")
-    #   assert_equal(ans, ans2)
-    # end
+      @a.content = "test"
+      ans = @a.pressDefault
+      ans2 = @a.pressVal.showTempleteString
+      
+      assert_equal(ans, "<a>test</a>")
+      assert_equal(ans, ans2)
+    end
     
-    # test "add label case 1" do
+    
+    test "add label case 1" do
 
-    #   @a.name="j"
-    #   @a.content = "test" + "a".variable
-    #   ans = @a.pressDefault
-    #   ans2 = @a.pressVal.showTempleteString
+      @a.content = "test" + "a".variable
+      ans = @a.pressDefault
+      ans2 = @a.pressVal.showTempleteString
       
-    #   assert_equal(ans, "<j>test</j>")
-    #   assert_not_equal(ans, ans2)
+      assert_equal(ans, "<a>test</a>")
+      assert_not_equal(ans, ans2)
       
-    # #     // not equal <j>testLABEL_INSERT_START + "a" + LABEL_INSERT_END</j>
-    # #     // because at press method , remove LABEL_INSERT_START + "a" + LABEL_INSERT_END
+    #     // not equal <j>testLABEL_INSERT_START + "a" + LABEL_INSERT_END</j>
+    #     // because at press method , remove LABEL_INSERT_START + "a" + LABEL_INSERT_END
       
-    # end
+    end
 
     
-    # test "add label case 2" do
-    #   @a.name="j"
-    #   @a.content = "test" + "a".variable
-    #   @a.pressDefault
-    #   ans = @a.pressAInsert("a".varIs" is done")
-    #   assert_equal(ans, "<j>test is done</j>")
+    test "add label case 2" do
 
-    # end
+      @a.content = "test" + "a".variable
+      @a.pressDefault
+      ans = @a.pressAInsert("a".varIs" is done")
+      assert_equal(ans, "<a>test is done</a>")
+
+    end
     
-    # test "add label case 3" do
-    #   @a.name="j"
-    #   @a.content = "test" + "a".variable + "-> yes!"
-    #   @a.pressDefault
-    #   ans = @a.pressAInsert("a".varIs" is done")
-    #   assert_equal(ans, "<j>test is done-> yes!</j>")
+    test "add label case 3" do
+
+      @a.content = "test" + "a".variable + "-> yes!"
+      @a.pressDefault
+      ans = @a.pressAInsert("a".varIs" is done")
+      assert_equal(ans, "<a>test is done-> yes!</a>")
       
-    # end
+    end
     
-    # test "add label case 4, retry insert data" do
-    #   @a.name="j"
-    #   @a.content = "test" + "a".variable + "-> yes!"
-    #   @a.pressDefault
-    #   ans = @a.pressAInsert("a".varIs" is done")
-    #   assert_equal(ans, "<j>test is done-> yes!</j>")
+    test "add label case 4, retry insert data" do
+ 
+      @a.content = "test" + "a".variable + "-> yes!"
+      @a.pressDefault
+      ans = @a.pressAInsert("a".varIs" is done")
+      assert_equal(ans, "<a>test is done-> yes!</a>")
 
-    #   #retry
-    #   ans2 = @a.pressAInsert("a".varIs" was success!")
-    #   assert_equal(ans2, "<j>test was success!-> yes!</j>")
+      #retry
+      ans2 = @a.pressAInsert("a".varIs" was success!")
+      assert_equal(ans2, "<a>test was success!-> yes!</a>")
       
-    # end
+    end
 
-    # test "add labels" do
+    test "add labels" do
 
-    #   @a.name="j"
-    #   @a.content = "test" + "a".variable + "b".variable
-    #   @a.pressDefault
-    #   i1 = "a".varIs" first"
-    #   i2 = "b".varIs",but..."
-    #   ans = @a.pressInsertEach(i1,i2)
-    #   assert_equal(ans, "<j>test first,but...</j>")
+      @a.content = "test" + "a".variable + "b".variable
+      @a.pressDefault
+      i1 = "a".varIs" first"
+      i2 = "b".varIs",but..."
+      ans = @a.pressInsertEach(i1,i2)
+      assert_equal(ans, "<a>test first,but...</a>")
   
-    # end
+    end
     
+    test "href add" do
+      
+    end
     
  # func test_A_href()  {
  #        let a = A()

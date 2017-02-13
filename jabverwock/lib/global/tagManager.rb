@@ -4,7 +4,7 @@ require_relative "tagAttribute"
 module Jabverwock
   using StringExtension
   class TagManager
-    attr_accessor :name, :id, :cls, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString
+    attr_accessor :name, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString #:id, :cls,
     attr_accessor :jsPath, :jsType, :jsPathPlusName, :jsFileName    
     
     def initialize
@@ -12,8 +12,8 @@ module Jabverwock
       @tempCloseString = String.new
       
       @name = String.new
-      @id   = String.new
-      @cls  = String.new
+      # @id   = String.new
+      # @cls  = String.new
       
       @tagAttribute = TagAttribute.new
       @attributeString = String.new
@@ -31,22 +31,11 @@ module Jabverwock
     end
 
     ####### add attribute #############################
-    def addID
-      if !@id.empty?
-        @id = KString.checkString(@id)
-        st = "id=" + "\"" + @id + "\""
-        @id = KString.addSpace(st)
-      end
+    def tagAttr (tag, val)
+      eval"@tagAttribute.add_#{tag}(val)"
+      self
     end
-
-    def addCls
-      if !@cls.empty?
-        @cls = KString.checkString(@cls)
-        st = "class=" + "\"" + @cls + "\""
-        @cls = KString.addSpace(st)
-      end
-    end
-
+    
     def addAttribute
       if !@tagAttribute.aString.empty?
         @attributeString = KString.checkString(@attributeString)
@@ -185,13 +174,15 @@ module Jabverwock
 #             return scriptTag()
 #         }
       
-      addID
-      addCls
+      # addID
+      # addCls
 
       # tag attribute treatment
       addAttribute
       
-      @tempOpenString = "<" + @name + @id + @cls + @attributeString + ">"
+      @tempOpenString = "<" + @name + @attributeString + ">"
+      
+      # @tempOpenString = "<" + @name + @id + @cls + @attributeString + ">"
       end
     
     def closeString
