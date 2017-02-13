@@ -1,7 +1,6 @@
 require 'test/unit'
 require '../../lib/global/globalDef'  
 require '../../lib/css/css'
-require '../../lib/css/property'
 require "../../lib/global/jwCSS"
 
 module Jabverwock
@@ -151,12 +150,12 @@ module Jabverwock
       assert_equal(@jwcss.cssString, "p {\nfont-size: 10;\n}\n")
     end
 
-    # test "applyCss" do
-    #   p ">>> "
-    #   c = CSS.new("p").addProperty(p)
-    #   p @jwcss.applyCss(c,[])
+    test "applyCss" do
+
+      c = CSS.new("p").color("red")
+      p @jwcss.applyCss(c,[])
       
-    # end
+    end
     
     test "add member, do not use same name" do
       
@@ -204,111 +203,8 @@ module Jabverwock
       j1.addMembers(j2, j3)
       
       assert_equal(j1.showCssString, "jwcss {\ncolor: red;\n}\np {\nfont-style: bold;\n}\nb {\nfont-size: 10;\n}")
-    
-      
+          
     end
-
-    
-    
-# //    func test_JW_css_addMember() {
-# //        let jw = JWObject()
-# //        let css = CSS(name: "jw")
-# //        css.color.value = "red"
-# //        css.opacity.value = "0.5"
-# //        jw.style = css
-# //        
-# //        let jw2 = JWObject()
-# //        let css2 = CSS(name: "jw2")
-# //        css2.color.value = "blue"
-# //        css2.opacity.value = "0.1"
-# //        jw2.style = css2
-# //        
-# //        jw.addMember(member: jw2)
-# //        
-# //        XCTAssertEqual(jw.styleStr(), "jw {" + RET +
-# //            "color: red;" + RET +
-# //            "opacity: 0.5;" + RET +
-# //            "}" + RET +
-# //            "jw2 {" + RET +
-# //            "color: blue;" + RET +
-# //            "opacity: 0.1;" + RET +
-# //            "}"
-# //        )
-# //    }
-
-# //    func test_JW_css_addChild() {
-# //        let jw = JWMulti()
-# //        let css = CSS(name: "jw")
-# //        css.color.value = "red"
-# //        css.opacity.value = "0.5"
-# //        jw.style = css
-# //        
-# //        let jw2 = JWObject()
-# //        let css2 = CSS(name: "jw2")
-# //        css2.color.value = "blue"
-# //        css2.opacity.value = "0.1"
-# //        jw2.style = css2
-# //    
-# //        jw.addChild(child: jw2)
-# //        
-# //        XCTAssertEqual(jw.styleStr(), "jw {" + RET +
-# //            "color: red;" + RET +
-# //            "opacity: 0.5;" + RET +
-# //            "}" + RET +
-# //            "jw2 {" + RET +
-# //            "color: blue;" + RET +
-# //            "opacity: 0.1;" + RET +
-# //            "}"
-# //        )
-# //    }
-
-# //    func test_JW_css_repeat() {
-# //        let jw = JWObject()
-# //        let css = CSS(name: "jw")
-# //        css.color.value = "red"
-# //        jw.style = css
-# //        
-# //
-# //        let jw2 = JWObject()
-# //        jw2.style = css
-# //        
-# //        jw.addMember(member: jw2)
-# //        
-# //        XCTAssertEqual(jw.styleStr(), "jw {" + RET + "color: red;" + RET + "}")
-# //        
-# //    }
-
-# //    func test_myCSS (){
-# //        let t = P(content: "test")
-# //        let css = CSS(tag: t)
-# //        css.color.value = "red"
-# //        t.style = css
-# //        XCTAssertEqual(t.styleStr(), "p {" + RET + "color: red;" + RET + "}")
-# //
-# //    }
-
-# //    func test_css_no_id () {
-# //        let t = P(content: "test")
-# //        t.prepStyleByID()
-# //        t.style.color.value = "red"
-# //        
-# //        // no id
-# //        XCTAssertEqual(t.styleStr(), "")
-# //
-# //    }
-# //    
-# //    func test_css_id () {
-# //        let t = P(content: "test")
-# //        t.setID(id: "popo")
-# //        t.prepStyleByID()
-# //        t.style.color.value = "red"
-# //        
-# //        // no id
-# //        XCTAssertEqual(t.styleStr(), "#popo {" + RET + "color: red;" + RET + "}")
-# //        
-# //    }
-
-
     
   end
 

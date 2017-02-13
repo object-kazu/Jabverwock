@@ -117,6 +117,10 @@ module Jabverwock
     end
     
     def press (name:, dist:)
+      if @tagManager.name == ""
+        @tagManager.name = @name        
+      end
+
       prepTempString
       
       if @tagManager.isJsAvailable

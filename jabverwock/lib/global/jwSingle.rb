@@ -30,17 +30,22 @@ module Jabverwock
       def initialize
         super
         @name = self.class.name.downcase
+        @css = CSS.new("#{name}")
       end
     }
   end
 
   
-  # p a = Car.new # => #<Car:0x007f878b8742d0 @name="car">
-  # p b = Train.new
-  # p b = Train.new# => #<Train:0x007f878b86f9b0 @name="train">
-  # p b.name# => "train"
-  # p b.size# => nil
-  # => nil
-
+  # p a = P.new 
+  # p b = B.new
+  # p b.name
+  # p b.css
+  # p b.cssArray
+  
+  # c = JWCSS.new
+  # p c.css
+  # p c.cssArray
+  # p c.pressDefault
+  
 end
 

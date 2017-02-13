@@ -10,8 +10,7 @@ module Jabverwock
     attr_accessor :css, :cssArray, :cssString
         
     def initialize
-      super
-      
+      super      
       @css = CSS.new("#{name}")
       @cssArray = []
       @cssString  = ""      
@@ -178,16 +177,20 @@ module Jabverwock
       assemble
       memberAssemble
       applyCss(@css, @cssArray)
-    end
-   
+    end   
 
+    
+    
   end
 
   
   # a = JWCSS.new
-  # a.css.name = "pp"
-  # a.css.color = "red"
-  # p a
+  # # p a
+  # # a.css.name = "pp"
+  # # a.css.color = "red"
+  # #a.name = "test"
+  # p a.pressDefault
+  
 
   
 end
