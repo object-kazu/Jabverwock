@@ -1,5 +1,5 @@
 require '../../lib/global/globalDef'  
-require_relative "property"
+require_relative "propertyTemplete"
 
 module Jabverwock
   using StringExtension

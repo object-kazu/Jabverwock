@@ -51,7 +51,7 @@ module Jabverwock
         end
         target += $STYLE_CONTENT
 
-        #  TAB + TAB + STYLE_CONTENT -> STYLE_CONTENT
+        # TAB + TAB + STYLE_CONTENT -> STYLE_CONTENT
         @templeteString.gsub!(/#{target}/, $STYLE_CONTENT)
         @templeteString.gsub!(/#{$STYLE_CONTENT}/, tabedString)
         
@@ -60,7 +60,7 @@ module Jabverwock
     end
     
     # change to function as cssAssemble need arguments
-    #ex) cssAssemble(@css, @cssArray)
+    # ex) cssAssemble(@css, @cssArray)
     def cssAssemble(css, cssArray)
       @nameList = []
       tCssArray = makeCssArray(css, cssArray)
@@ -177,7 +177,7 @@ module Jabverwock
     def prepTempString #override
       assemble
       memberAssemble
-      applyCss
+      applyCss(@css, @cssArray)
     end
    
 
@@ -185,8 +185,8 @@ module Jabverwock
 
   
   # a = JWCSS.new
-  # a.style.name = "pp"
-  # a.style.property.color = "red"
+  # a.css.name = "pp"
+  # a.css.color = "red"
   # p a
 
   

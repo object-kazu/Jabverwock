@@ -60,8 +60,7 @@ module Jabverwock
     # format of property is difference
     # ex)
     # font: "Helvetica" => "" 
-    # font-size: 12px   => no ""
-    
+    # font-size: 12px   => no ""    
     private
     def vars
       result = []
