@@ -6,7 +6,7 @@ module Jabverwock
   
   class TagAttribute < TagAttributeTemplete
 
-    list = [:id,:cls,:href,:lang]
+    list = [:id,:cls,:href,:lang, :target]
     
     self.define_attributes list
        

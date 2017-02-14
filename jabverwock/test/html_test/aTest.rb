@@ -142,23 +142,14 @@ module Jabverwock
       
     end
 
-    
-    
- #    func test_A_targe(){
- #        let a = A()
- #        a.target(_target: "http://www")
- #        XCTAssertEqual(a.press(), "<a target=\"http://www\"></a>")
-        
- #    }
-    
- #    func test_A_href_targe(){
- #        let a = A()
- #        a.href(_href: "http://www")
- #        a.target(_target: "http://www")
- #        XCTAssertEqual(a.press(), "<a href=\"http://www\" target=\"http://www\"></a>")
-        
- #    }
+    test "attr target" do
+      @a.attr(:target,"http://www")
+      ans = @a.pressDefault
+     
+      assert_equal(ans,"<a target=\"http://www\"></a>" )
 
+    end
+    
     
     
   end
