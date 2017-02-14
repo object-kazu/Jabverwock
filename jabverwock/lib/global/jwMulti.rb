@@ -1,37 +1,43 @@
+require_relative "globalDef" 
 require '../../lib/global/jwCSS'  
 
 module Jabverwock
   using StringExtension
   
   class JWMulti < JWCSS
-    attr_accessor :childString
+    attr_accessor :childStringArray
+    
     
     def initialize
       super
-      @childString = []
+      @childStringArray = []
       
     end
 
-    def addCihld(child)
-#     // add child
-#     func addChild (child : JWObject){
-        
-#         //js
-#         importJSParameters(child: child)
-#         // html
-#         child.assemble()
-#         self.addCihld(child: child.templeteString)
-        
-#         // css
-#         if child.styleArray.count > 0{
-#             styleArray.append(contentsOf: child.styleArray)
-#         }
-#         if child.style != nil{
-#             styleArray.append(child.style)
-#         }
-        
-#     }
+    def addChild(child)
+      unless JWCSS === child
+        assert_raise{
+          p "child should be JW or JWCSS class "
+        }
+      end
       
+      # js
+      # importJSParameters(child: child)
+
+      # css
+      if child.cssArray.count > 0
+        @cssArray += child.cssArray
+      end
+
+      if child.css != nil
+        @cssArray << child.css
+      end
+            
+      
+      # html      
+      child.assemble
+      addChildString(child.templeteString)
+            
     end
 
     def addChildren(children)
@@ -45,47 +51,35 @@ module Jabverwock
     end
     
     def addChildString(childString)
-          
-#     func addCihld (child: String) {
-        
-#         let t = child.replacingOccurrences(of: RET, with: RET + TAB)
-#         childString.append(t)
-#     }
-
-    end
-
-    def assemble
-    #     override func assemble() {
-#         makeTag()
-#         makeResult()
-#     }
+      childString = KString.checkString childString
+      if childString.start_with?("\n")
+        c = childString.gsub!(/\n/, "\n\t")
+      else
+        c = childString
+      end
       
+      @childStringArray << c
     end
+      
     
     def makeResult
-#     override func makeResult() {
-#         templeteString += tagManager.tempOpenString + RET
-        
-#         childAssemble()
-        
-#         if !tagManager.tempCloseString.isEmpty {
-#             templeteString += tagManager.tempCloseString
-#         }
-        
-#         // 最後のRETを取り除く
-#         templeteString = removeLastRET(str: templeteString)
-#     }
+
+      @templeteString += @tagManager.tempOpenString + $RET
       
+      childAssemble
+      
+      if !@tagManager.tempCloseString.empty?
+        @templeteString += @tagManager.tempCloseString
+      end
+      @templeteString = KString.removeLastRET(@templeteString)
+
     end
     
     def childAssemble
-#     func childAssemble () {
-#         for str in childString {
-#             templeteString += TAB + str
-#             templeteString += TAB + RET
-#            }
-#     }
-      
+      @childStringArray.each do |str| 
+        @templeteString += $TAB + str
+        @templeteString += $TAB + $RET
+      end
     end
     
   end
@@ -97,14 +91,19 @@ module Jabverwock
     Object.const_set list, Class.new(JWMulti){
     
       attr_accessor :name
+      
       def initialize
         super
         @name = self.class.name.downcase
+        @css = CSS.new("#{name}")
+  
       end
     }
   end
 
   
-#  p a = HEAD.new # => #<Car:0x007f878b8742d0 @name="car">
+  # p a = HEAD.new # => #<Car:0x007f878b8742d0 @name="car">
+  # p a.cssArray
 
+  
 end
