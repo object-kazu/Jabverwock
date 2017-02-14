@@ -122,15 +122,27 @@ module Jabverwock
     end
     
     test "href add" do
+      @a.tagManager .tagAttr(:href, "http://www")
+      ans = @a.pressDefault
+      assert_equal(ans,"<a href=\"http://www\"></a>")
       
     end
+
+    test "href add improved" do
+      @a.attr(:href, "http://www")
+      ans = @a.pressDefault
+      assert_equal(ans,"<a href=\"http://www\"></a>")
+      
+    end
+
+    test "attr chain" do
+      @a.attr(:href, "http://www").attr(:id,"test")
+      ans = @a.pressDefault
+      assert_equal(ans,"<a href=\"http://www\" id=\"test\"></a>")
+      
+    end
+
     
- # func test_A_href()  {
- #        let a = A()
- #        a.href(_href: "http://www")
- #        XCTAssertEqual(a.press(), "<a href=\"http://www\"></a>")
-        
- #    }
     
  #    func test_A_targe(){
  #        let a = A()

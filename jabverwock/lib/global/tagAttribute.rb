@@ -17,7 +17,8 @@ module Jabverwock
    
   end
 
- # p a = TagAttribute.new
-  
+  # p a = TagAttribute.new
+  # a.id = "test"
+
 end
 

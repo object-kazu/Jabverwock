@@ -35,7 +35,7 @@ module Jabverwock
       eval"@tagAttribute.add_#{tag}(val)"
       self
     end
-    
+
     def addAttribute
       if !@tagAttribute.aString.empty?
         @attributeString = KString.checkString(@attributeString)

@@ -71,12 +71,6 @@ module Jabverwock
       assert_equal(ans, "test")
     end
 
-    test "pressDefault, add text" do 
-      @tm.templeteString = "test"     
-      ans = @tm.pressDefault
-      assert_equal(ans, "test")
-    end
-
     test "assemble" do      
       @tm.name = "test"
       ans = @tm.pressDefault
@@ -92,8 +86,8 @@ module Jabverwock
 
 
     test "set cls" do
-      @tm.cls ="test"
       @tm.name ="p"
+      @tm.attr(:cls,"test")
       
       ans = @tm.pressDefault
       assert_equal(ans, "<p class=\"test\">\n</p>")
@@ -105,46 +99,24 @@ module Jabverwock
       }
     end
 
-    test "get name" do
-      @tm.name = "test"
-      assert_equal(@tm.tagName, "test")
-    end
-
     test"get cls " do
       @tm.name = "test"
-      @tm.cls = "sample"
-      assert_equal(@tm.tagCls, "sample")
+      @tm.attr(:cls,"sample")
+      assert_equal(@tm.selectorCls, ".sample")
     end
 
     test"get id " do
       @tm.name = "test"
-      @tm.cls = "sample"
-      @tm.id = "dada"
-      assert_equal(@tm.tagId, "dada")
-    end
-
-    test"selector id" do
-      @tm.name = "test"
-      @tm.cls = "sample"
-      @tm.id = "dada"
-
+      @tm.attr(:cls,"sample").attr(:id,"dada")
       assert_equal(@tm.selectorID, "#dada")
-    end 
-
-    test "selector cls"do
-      @tm.name = "test"
-      @tm.cls = "sample"
-      @tm.id = "dada"
-
-      assert_equal(@tm.selectorCls, ".sample")
-      
     end
+
     
     
     test "add lang"do
       
       @tm.name = "p"
-      @tm.setLang = "en"
+      @tm.attr(:lang,"en")
       ans = @tm.pressDefault
       assert_equal(ans, "<p lang=\"en\">\n</p>")
     end
@@ -153,7 +125,7 @@ module Jabverwock
     test "add id"do
       
       @tm.name = "p"
-      @tm.id = "sample"
+      @tm.attr(:id, "sample")
       ans = @tm.pressDefault
       assert_equal(ans, "<p id=\"sample\">\n</p>")
     end

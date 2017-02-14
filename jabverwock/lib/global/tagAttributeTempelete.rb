@@ -20,13 +20,14 @@ module Jabverwock
 
           # method chain
           # ex) method_a(1).method_b(2)
-          define_method "#{attr}"do |v|
-            eval "@#{attr} = v"
-            self
-          end
+          # define_method "#{attr}"do |v|
+          #   eval "@#{attr} = v"
+          #   self
+          # end
           
           #add_attr
           define_method "add_#{attr}" do |val| 
+            eval "@#{attr} = val"
             self.send(:templeteAdd, "#{attr}", val)
           end
           
@@ -86,9 +87,8 @@ module Jabverwock
   # p a = Test.new
   # a.add_id("fs").add_cls("ww")
 
-  # p a.aString
+  # p a.cls
   
- 
   
 end
 

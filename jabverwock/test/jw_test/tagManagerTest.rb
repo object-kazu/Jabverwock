@@ -108,7 +108,7 @@ module Jabverwock
       tm.name = "sample"
 
       assert_equal(tm.openString, "<sample class=\"test\" id=\"test\">" )
-
+      assert_equal(tm.tagAttribute.cls, "test")
     end
 
     test "br test" do
@@ -143,6 +143,14 @@ module Jabverwock
       tm.tagAttr(:lang, "jp")
       assert_equal(tm.openString, "<a lang=\"jp\">")
     end
+
+    test "tag attribute lang call" do
+      tm = TagManager.new
+      tm.name = "a"
+      tm.tagAttr(:lang, "jp")
+      assert_equal(tm.tagAttribute.lang, "jp")
+    end
+
     
   end
 end

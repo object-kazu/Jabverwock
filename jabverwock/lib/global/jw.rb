@@ -20,6 +20,28 @@ module Jabverwock
       @tagManager     = TagManager.new
     end
 
+    def attr(tag, val)
+      @tagManager.tagAttr(tag,val)
+      self
+    end
+
+    # ex) @tagManager.Id = id
+    # mainAttr.each do |attr| 
+    #   define_method "#{attr}=" do |val|
+    #     val = KString.checkString val
+    #     eval "@tagManager.#{attr} = val"
+    #   end
+    # end
+    
+    mainAttr =  [:id, :cls, :name]
+    # ex) return @tagManager.Id
+    mainAttr.each do |attr|      
+      define_method "tag#{attr.capitalize}" do
+        eval "@tagManager.#{attr}"
+      end
+    end
+    
+    
     def name
       self.class.to_s.split("::").last.downcase
     end
@@ -44,21 +66,7 @@ module Jabverwock
 #     }
 
     
-    # ex) @tagManager.Id = id
-    mainAttr =  [:id, :cls, :name]
-    mainAttr.each do |attr| 
-      define_method "#{attr}=" do |val|
-        val = KString.checkString val
-        eval "@tagManager.#{attr} = val"
-      end
-    end
-    
-    # ex) return @tagManager.Id
-    mainAttr.each do |attr|      
-      define_method "tag#{attr.capitalize}" do
-        eval "@tagManager.#{attr}"
-      end
-    end
+
     
     
     def isSingleTag(isSingle)
@@ -76,12 +84,12 @@ module Jabverwock
     
     
     def selectorID
-      "#" + self.tagId
+      "#" + @tagManager.tagAttribute.id
     end
 
 
     def selectorCls
-      "." + self.tagCls
+      "." + @tagManager.tagAttribute.cls
     end
     
     
