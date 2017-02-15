@@ -173,14 +173,17 @@ module Jabverwock
     
     
     #########  press ###########
-    def prepTempString #override
-      assemble
+    ### override ###
+    def assemble
+        if @tagManager.name == ""
+        @tagManager.name = @name        
+      end
+      makeTag
+      makeResult
       memberAssemble
       applyCss(@css, @cssArray)
-    end   
-
-    
-    
+   
+    end
   end
 
   

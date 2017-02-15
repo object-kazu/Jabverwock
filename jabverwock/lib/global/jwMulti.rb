@@ -34,31 +34,22 @@ module Jabverwock
       end
             
       
-      # html      
+      # html
       child.assemble
       addChildString(child.templeteString)
             
     end
 
     def addChildren(children)
-      #     func addChildren (children : [JWObject]){
-        
-#         for c: JWObject in children {
-#             addChild(child: c)
-#         }
-#     }
 
+      children.each do |c| 
+        addChild c
+      end
     end
     
     def addChildString(childString)
-      childString = KString.checkString childString
-      if childString.start_with?("\n")
-        c = childString.gsub!(/\n/, "\n\t")
-      else
-        c = childString
-      end
-      
-      @childStringArray << c
+      childString = KString.checkString childString      
+      @childStringArray << childString
     end
       
     
@@ -74,11 +65,22 @@ module Jabverwock
       @templeteString = KString.removeLastRET(@templeteString)
 
     end
+
+    def addTab(element)
+      ans = ""
+      element.lines{ |l|
+        ans += "\t" + l
+      }
+      ans
+    end
     
     def childAssemble
-      @childStringArray.each do |str| 
-        @templeteString += $TAB + str
-        @templeteString += $TAB + $RET
+      tem = []
+      @childStringArray.each do |t|
+        tem << addTab(t)
+      end
+      tem.each do |a|
+        @templeteString += a + $RET
       end
     end
     

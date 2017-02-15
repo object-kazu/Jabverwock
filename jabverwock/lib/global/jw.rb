@@ -65,10 +65,7 @@ module Jabverwock
         
 #     }
 
-    
-
-    
-    
+        
     def isSingleTag(isSingle)
       if KSUtil.is_bool(isSingle)
         @tagManager.isSingleTag = isSingle        
@@ -103,9 +100,9 @@ module Jabverwock
     
     def memberAssemble
       if @memberString.count > 0
-        @templeteString += $RET
-        ans = KString.stringArrayConectRET(@memberString)
-        @templeteString += ans
+         @templeteString += $RET
+         ans = KString.stringArrayConectRET(@memberString)
+         @templeteString += ans
       end
     end
     
@@ -115,21 +112,15 @@ module Jabverwock
     end
    
     def assemble
-      makeTag
-      makeResult
-    end
-    
-    def prepTempString
-      assemble
-      memberAssemble
-    end
-    
-    def press (name:, dist:)
       if @tagManager.name == ""
         @tagManager.name = @name        
-      end
-
-      prepTempString
+      end      
+      makeTag
+      memberAssemble
+    end
+        
+    def press (name:, dist:)
+      assemble
       
       if @tagManager.isJsAvailable
 #         if self.tagManager.isJsAvailable() {

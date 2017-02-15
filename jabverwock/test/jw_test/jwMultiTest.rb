@@ -50,7 +50,7 @@ module Jabverwock
     test "addChildString with RET" do
       @t.childStringArray = ["a","b"]
       @t.addChildString "\nc"
-      assert_equal(@t.childStringArray, ["a","b","\n\tc"])
+      assert_equal(@t.childStringArray, ["a","b","\nc"])
     end
 
     test "addchild, class check, asert raise" do
@@ -74,58 +74,42 @@ module Jabverwock
 
     test "addchild, multi class check, pass" do
       a = HEAD.new
-      @t.addChild a      
+      @t.addChild a
     end
 
-    test "add child" do
+    test "body check before add child" do
       b = BODY.new
       assert_equal(b.pressDefault, "<body>\n</body>")
     end
 
+    test "body addchildString string" do
+      b = BODY.new
+      bc = "dd"
+      b.addChildString bc
+      assert_equal(b.pressDefault, "<body>\n\tdd\n</body>")      
+    end
+    
+
+    test "body addChildStrings" do
+      b = BODY.new
+      bc = "dd"
+      b.addChildString bc
+      b.addChildString bc
+      b.addChildString bc
+      
+      assert_equal(b.pressDefault, "<body>\n\tdd\n\tdd\n\tdd\n</body>")      
+      
+    end
+
+    test "addchildren" do
+      b = BODY.new
+      c = HEAD.new
+      bc = [b,c]
+      @t.addChildren bc
+      assert_equal(@t.pressDefault,"<jwmulti>\n\t<body>\n\t</body>\n\t<head>\n\t</head>\n</jwmulti>")
+      
+    end
     
     
   end
 end
-
-
-
-# func test_body (){
- #        let bo = BODY()
- #        bo.press()
-        
- #        /* answer
- #         <body>
- #         </body>
-         
- #         */
- #    }
-    
- #    func test_body_addchild (){
- #        let bo = BODY()
- #        bo.addCihld(child: "test")
- #        bo.press()
-        
- #        /* answer
- #         <body>
- #            test
- #         </body>
-         
- #         */
- #    }
- #    func test_body_addchild2 (){
- #        let bo = BODY()
- #        bo.addCihld(child: "test 1")
- #        bo.addCihld(child: "test 2")
- #        bo.addCihld(child: "test 3")
-
- #        bo.press()
-        
- #        /* answer
- #         <body>
- #            test 1
- #            test 2
- #            test 3
- #         </body>
-         
- #         */
- #    }

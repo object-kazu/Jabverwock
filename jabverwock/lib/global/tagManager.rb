@@ -162,20 +162,13 @@ module Jabverwock
         return ""
       end
       
-      #  id, clsなどの指定が必要Tagはここより下に記入
         
-#         addID()
-#         addCls()
-#         addPath()
-#         addType()
         
 #         // script
 #         if isScriptTag() {
 #             return scriptTag()
 #         }
       
-      # addID
-      # addCls
 
       # tag attribute treatment
       addAttribute
