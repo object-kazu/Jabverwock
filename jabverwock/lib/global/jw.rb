@@ -15,7 +15,7 @@ module Jabverwock
       @openString     = ""
       @closeString    = ""
       @templeteString = ""
-      @memberString   = []
+      @memberStringArray   = []
       @pressVal       = Press.new ## input -> templeteString, output -> resultString
       @tagManager     = TagManager.new
     end
@@ -99,9 +99,9 @@ module Jabverwock
     end
     
     def memberAssemble
-      if @memberString.count > 0
+      if @memberStringArray.count > 0
          @templeteString += $RET
-         ans = KString.stringArrayConectRET(@memberString)
+         ans = KString.stringArrayConectRET(@memberStringArray)
          @templeteString += ans
       end
     end
@@ -111,11 +111,12 @@ module Jabverwock
       @tagManager.closeString
     end
    
-    def assemble
+    def assemble    
       if @tagManager.name == ""
         @tagManager.name = @name        
       end      
       makeTag
+      makeResult
       memberAssemble
     end
         

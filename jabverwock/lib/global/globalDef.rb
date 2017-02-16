@@ -223,17 +223,17 @@ module Jabverwock
         return 0
       end
 
-      def getTabMax(str)
-        str = checkString(str)
-        max = 0
-        str.each_line{ |l|
-          a = tabCount(l)
-          if a > max
-            max = a
-          end
-        }
-        return max
-      end
+      # def getTabMax(str)
+      #   str = checkString(str)
+      #   max = 0
+      #   str.each_line{ |l|
+      #     a = tabCount(l)
+      #     if a > max
+      #       max = a
+      #     end
+      #   }
+      #   return max
+      # end
       
     end 
   end

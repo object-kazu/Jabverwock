@@ -12,8 +12,7 @@ module Jabverwock
       @tempCloseString = String.new
       
       @name = String.new
-      # @id   = String.new
-      # @cls  = String.new
+      @doctype = "" #DOCTYPE only use
       
       @tagAttribute = TagAttribute.new
       @attributeString = String.new
@@ -43,6 +42,9 @@ module Jabverwock
       end
     end
 
+    def setDocType(str)
+      @doctype = str
+    end
 
     #####  js           ###########################
         
@@ -138,7 +140,10 @@ module Jabverwock
       @name == "br" ? true : false
     end
 
-       
+    def isDocType
+      @name == "doctype"? true: false
+    end
+    
     def isScriptTag
       @name == "script" ? true : false
     end
@@ -155,33 +160,43 @@ module Jabverwock
     
     def openString
       if @name == ""
-        return ""
+        assert_raise{
+          p ">>> call no name"          
+        }
+      end
+      
+      if isDocType
+        if @doctype == ""
+          @doctype = "html" #default html5 
+        end
+        addAttribute
+        @tempOpenString = "<" + "!DOCTYPE" + $SPC + @doctype + @attributeString + ">"
+        return @tempOpenString
       end
       
       if isBrTag()
         return ""
       end
-      
-        
-        
+                      
 #         // script
 #         if isScriptTag() {
 #             return scriptTag()
 #         }
       
-
-      # tag attribute treatment
+      
       addAttribute
-      
       @tempOpenString = "<" + @name + @attributeString + ">"
-      
-      # @tempOpenString = "<" + @name + @id + @cls + @attributeString + ">"
-      end
+    end
     
     def closeString
-      if name == ""
+      if @name == ""
         return ""
       end
+      if isDocType
+        return ""
+      end
+      
+      
       if isBrTag
         return @tempCloseString = "<" + @name  + ">"
       end

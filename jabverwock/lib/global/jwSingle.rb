@@ -11,6 +11,7 @@ module Jabverwock
       @content = ""
     end
         
+    ### override ###
     def makeResult
       @templeteString = @tagManager.tempOpenString + @content
       if !@tagManager.tempCloseString.empty?
@@ -20,8 +21,8 @@ module Jabverwock
     
   end
 
-  singleList = ["P", "A","B","I","STRONG","BR","BLOCKQUOTE","DT", "DD","DOCTYPE","HEADING","IMAGE",
-               "LIST_ITEM","META","TITLE",]
+  singleList = ["P","A","B","I","STRONG","BR","BLOCKQUOTE","DT", "DD","HEADING","IMAGE",
+               "LIST_ITEM","TITLE",]
   
   singleList.each do |list|
     Object.const_set list, Class.new(JWSingle){
@@ -35,8 +36,13 @@ module Jabverwock
     }
   end
 
+
+  # a = A.new
+  # a.assemble
+  # p a.templeteString
+
   
-  # p a = P.new 
+  #p a = P.new 
   # p b = B.new
   # p b.name
   # p b.css

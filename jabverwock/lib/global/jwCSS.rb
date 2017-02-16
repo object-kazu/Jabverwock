@@ -32,9 +32,12 @@ module Jabverwock
     # applyCss(@css, @cssArray)
     def applyCss(css, cssArray)
       cssAssemble(css, cssArray)
+      
       # 検索のためにStyle tag生成
       j = JWCSS.new
+      j.tagManager.name = "jwcss"
       j.makeTag
+            
       if @templeteString.include?(j.tagManager.tempOpenString) &&
          @templeteString.include?(j.tagManager.tempCloseString)
         
@@ -133,14 +136,14 @@ module Jabverwock
     ####### add child ############
     def addMemberString (memberString)
       memberString = KString::checkString(memberString)
-      @memberString += memberString
+      @memberStringArray << memberString
     end
 
-    def addMember (member) 
+    def addMember (member)
       if member.is_a?(JWCSS)
-        addJS member
-        addHTML member
-        addCSS member
+        addJS(member)
+        addHTML(member)
+        addCSS(member)
       end
     end
 
@@ -150,14 +153,13 @@ module Jabverwock
       end
 
       if member.css != nil
-        
         @cssArray << member.css
-        
       end
     end
     
     def addHTML(member)
-      #addMember(member.templeteString)
+      member.assemble
+      addMemberString(member.templeteString)
     end
     
     def addJS(member)
@@ -187,13 +189,12 @@ module Jabverwock
   end
 
   
-  # a = JWCSS.new
-  # # p a
+   # a = JWCSS.new
+   # p a
   # # a.css.name = "pp"
   # # a.css.color = "red"
   # #a.name = "test"
   # p a.pressDefault
-  
-
+    
   
 end
