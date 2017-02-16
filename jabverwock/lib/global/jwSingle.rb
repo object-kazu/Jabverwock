@@ -21,7 +21,7 @@ module Jabverwock
     
   end
 
-  singleList = ["P","A","B","I","STRONG","BR","BLOCKQUOTE","DT", "DD","HEADING","IMAGE",
+  singleList = ["P","A","B","BR","I","STRONG","BLOCKQUOTE","DT", "DD","HEADING","IMAGE",
                "LIST_ITEM","TITLE",]
   
   singleList.each do |list|
