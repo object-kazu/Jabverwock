@@ -7,6 +7,8 @@ module Jabverwock
   class TagAttribute < TagAttributeTemplete
 
     list = [:id,:cls,:href,:lang, :target]
+    list += [:name, :http_equiv,:content,:charset,:scheme]
+    list += [:accesskey,:contenteditable,:dir, :hidden, :spellcheck, :style, :tabindex,:title,:translate]
     
     self.define_attributes list
        

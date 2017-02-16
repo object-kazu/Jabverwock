@@ -22,7 +22,7 @@ module Jabverwock
     # 毎回テスト実行前に呼ばれる
     def setup
       p :setup
-      @d = DOCTYPE.new
+      @meta = META.new
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
@@ -37,32 +37,19 @@ module Jabverwock
     
     ############## test ###############
     test "confirm name" do
-      assert_equal(@d.name , "doctype")
+      assert_equal(@meta.name , "meta")
     end
 
     test "press" do
-      assert_equal(@d.pressDefault, "<!DOCTYPE html>")
+      assert_equal(@meta.pressDefault, "<meta>")
     end
 
-    test "add member string" do
-      @d.addMemberString "my first task"
-      ans = @d.pressDefault
-      assert_equal(ans, "<!DOCTYPE html>\nmy first task\n")
+    test "add charset" do
+      @meta.attr(:charset, "en")
+      assert_equal(@meta.pressDefault, "<meta charset=\"en\">")
     end
 
-    test "add member" do
-      a = A.new
-      @d.addMember a
-      ans = @d.pressDefault
-      assert_equal(ans, "<!DOCTYPE html>\n<a></a>\n")
-    end
     
-    test "set doctype" do
-      @d.doctype = "HTML PUBLIC"
-      ans = @d.pressDefault
-      assert_equal(ans, "<!DOCTYPE HTML PUBLIC>")
-      
-    end
     
   end
 end
