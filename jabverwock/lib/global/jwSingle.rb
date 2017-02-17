@@ -22,7 +22,7 @@ module Jabverwock
   end
 
   singleList = ["P","A","B","BR","I","STRONG","BLOCKQUOTE","DT", "DD","HEADING","IMAGE",
-               "LIST_ITEM","TITLE",]
+                "LIST_ITEM","TITLE",]
   
   singleList.each do |list|
     Object.const_set list, Class.new(JWSingle){

@@ -46,8 +46,9 @@ module Jabverwock
     test "TagManager, name is void " do
       tm =  TagManager.new
       tm.name = ""
-
-      assert_equal(tm.openString, "")
+      assert_raise{
+        tm.openString
+      }
       
     end
 
@@ -149,6 +150,20 @@ module Jabverwock
       tm.name = "a"
       tm.tagAttr(:lang, "jp")
       assert_equal(tm.tagAttribute.lang, "jp")
+    end
+
+    test "openString replace" do
+      tm = TagManager.new
+      tm.tempOpenString = "aaa"
+      tm.openStringReplace("a","b")
+      assert_equal(tm.tempOpenString,"bbb")
+    end
+
+    test "closeString replace" do
+      tm = TagManager.new
+      tm.tempCloseString = "aaa"
+      tm.closeStringReplace("a","b")
+      assert_equal(tm.tempCloseString,"bbb")
     end
 
     

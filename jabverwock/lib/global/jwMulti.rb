@@ -86,7 +86,7 @@ module Jabverwock
     
   end
 
-  multiList = ["HEAD", "BODY","FOOTER","DIV","HTML","SCRIPT","TABLE",
+  multiList = ["HEAD", "BODY","FOOTER","DIV","HTML","SCRIPT",
                "PRE","STYLE"]
   
   multiList.each do |list|

@@ -150,12 +150,12 @@ module Jabverwock
 
     ##### open and close string ###################
    
-    def closeStringReplace(of:, with:)
-      @tempCloseString = KString.reprace(str: @tempCloseString, of: of, with: with)
+    def openStringReplace(of,with)
+      @tempOpenString = KString.reprace(str: @tempOpenString, of: of, with: with)
     end
     
-    def  openStringReplace(of:, with:)
-      @tempOpenString = KString.reprace(str: @tempOpenString, of: of, with: with)
+    def closeStringReplace(of, with)
+      @tempCloseString = KString.reprace(str: @tempCloseString, of: of, with: with)
     end
     
     def openString
