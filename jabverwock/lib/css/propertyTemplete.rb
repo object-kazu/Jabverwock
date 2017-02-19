@@ -1,6 +1,7 @@
 module Jabverwock
   
   #http://masayuki14.hatenablog.com/entry/2016/04/28/122359
+  
   class CssAttrTemplate
     class << self
 
@@ -83,7 +84,7 @@ module Jabverwock
     
   end
 
-# class Sam < CssAttrTemplateImproved
+# class Sam < CssAttrTemplate
 #   self.define_attributes [:pp, :dd]
 # end
 # p a = Sam.new("s")

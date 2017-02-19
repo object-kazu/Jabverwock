@@ -1,5 +1,8 @@
-require_relative "globalDef" 
-require_relative "tagAttribute" 
+#require_relative "globalDef" 
+#require_relative "tagAttribute" 
+
+require "global/globalDef"
+require "global/tagAttribute"
 
 module Jabverwock
   using StringExtension
@@ -220,4 +223,5 @@ module Jabverwock
     
   end
 end
+
 __END__

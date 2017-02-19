@@ -1,5 +1,9 @@
-require_relative "globalDef" 
-require '../../lib/global/jwCSS'  
+# require_relative "globalDef"
+# require '../../lib/global/jwCSS'  
+
+require "global/globalDef"
+require "global/jwCSS"
+
 
 module Jabverwock
   using StringExtension

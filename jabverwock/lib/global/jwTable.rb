@@ -1,6 +1,12 @@
-require_relative "globalDef" 
-require '../../lib/global/jwCSS'  
-require '../../lib/global/jwMulti'  
+# require_relative "globalDef" 
+# require '../../lib/global/jwCSS'  
+# require '../../lib/global/jwMulti'  
+
+ require "global/globalDef"
+ require "global/jwCSS"
+ require "global/jwMulti"
+ require "global/jwSingle"
+
 
 module Jabverwock
   using StringExtension  
@@ -176,4 +182,6 @@ module Jabverwock
     makeResult
   end
 
+  
+  
 end

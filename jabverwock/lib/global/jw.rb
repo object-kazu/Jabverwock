@@ -1,6 +1,11 @@
-require_relative "globalDef" 
-require_relative "tagManager"  
-require_relative "press"
+require "global/globalDef"
+require "global/tagManager"
+require "global/press"
+
+#test
+# require_relative "globalDef" 
+# require_relative "tagManager"  
+# require_relative "press"
 
 module Jabverwock
   using StringExtension

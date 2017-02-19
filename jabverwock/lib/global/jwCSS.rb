@@ -1,6 +1,12 @@
-require '../../lib/global/globalDef'  
-require '../../lib/global/jw'  
-require "../../lib/css/css"
+require "global/globalDef"
+require "global/jw"
+require "css/Css"
+
+# test
+# require '../../lib/global/globalDef'  
+# require '../../lib/global/jw'  
+# require "../../lib/css/Css"
+
 
 module Jabverwock
   using StringExtension
@@ -189,8 +195,8 @@ module Jabverwock
   end
 
   
-   # a = JWCSS.new
-   # p a
+  #  a = JWCSS.new
+  #  p a
   # # a.css.name = "pp"
   # # a.css.color = "red"
   # #a.name = "test"

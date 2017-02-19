@@ -1,4 +1,5 @@
-require '../../lib/global/jwCSS'  
+#require '../../lib/global/jwCSS'  
+require "global/jwCSS"
 
 module Jabverwock
   using StringExtension
@@ -42,7 +43,7 @@ module Jabverwock
   # p a.templeteString
 
   
-  #p a = P.new 
+  # p a = P.new 
   # p b = B.new
   # p b.name
   # p b.css

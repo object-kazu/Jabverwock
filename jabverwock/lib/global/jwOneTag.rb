@@ -1,4 +1,5 @@
-require '../../lib/global/jwCSS'  
+#require '../../lib/global/jwCSS'  
+require "global/jwCSS"
 
 module Jabverwock
   using StringExtension
