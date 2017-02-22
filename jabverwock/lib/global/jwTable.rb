@@ -72,7 +72,6 @@ module Jabverwock
     end
     
     # data -> [[1,1,1],[1,1,1]]
-    # 2重Array
     def addTableDataList(arr)      
       arr.each do |array|
         addTableData(array)
@@ -80,21 +79,25 @@ module Jabverwock
     end
         
     # data -> [1,1,1]
-    # Array
     def addTableData(arr)
+      dataString = ""
+
       if @headerList.count > 0
-        dataString = ""
         tr = TableRow.new
-        arr.each do |hl|  
-          h = TableData.new
-          h.content = hl
-          dataString += h.tgStr
+        arr.each do |hl|
+          dataString += tdTreatment(hl)
         end
         tr.content = dataString
         @childStringArray << tr.tgStr
       end
     end
 
+    def tdTreatment (str)
+      eachDataString = ""
+      h = TableData.new
+      h.content = str
+      eachDataString += h.tgStr          
+    end
     
     def addRow(*arr)
       unless arr[0].is_a?(Array)
@@ -166,16 +169,35 @@ module Jabverwock
 
     def initialize
       super
-      @rowSpan = 0
-      @colSpan = 0
-      @INS_ROW_SPAN = "insert_row_span"
-      @INS_COL_SPAN = "insert_col_span"
-      
       @name = "td"
       @tagManager.name = @name
-      
+    end
+    
+    ## override ##
+    def tgStr
+      treatContentToTag @content
+      assemble
+      @templeteString
     end
 
+    
+    # content = "test".rowSpan(2) --> <td rowspan="2">test</td>
+    # content = "test".colSpan(2) --> <td colspan="2">test</td>
+    def treatContentToTag (str)
+      if str.include?($ROW_SPAN)
+        t = str.split($ROW_SPAN)
+        setRowSpan(t[1].to_i)
+        @content = t[0]
+      end
+
+      if str.include?($COL_SPAN)
+        t = str.split($COL_SPAN)
+        setColSpan(t[1].to_i)
+        @content = t[0]
+      end
+      
+    end
+    
     def setRowSpan (number)
       if number.is_a?(Integer)
         @tagManager.tagAttr(:rowspan, number.to_s)      

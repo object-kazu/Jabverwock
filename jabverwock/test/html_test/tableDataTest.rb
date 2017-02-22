@@ -63,6 +63,7 @@ module Jabverwock
       td.content = "test"
       assert_equal(td.tgStr, "<td>test</td>")
     end
+    
     test "table Data add content, rowSpan" do
       td = TableData.new
       td.content = "test"
@@ -70,7 +71,32 @@ module Jabverwock
       assert_equal(td.tgStr, "<td rowspan=\"2\">test</td>")
     end
 
-    
+     test "table Data add content, colSpan" do
+      td = TableData.new
+      td.content = "test"
+      td.setColSpan(2)
+      assert_equal(td.tgStr, "<td colspan=\"2\">test</td>")
+    end
+
+
+     test "table Data add content, rowSpan case 2" do
+       td = TableData.new
+       td.content = "test".rowSpan(2)
+       assert_equal(td.tgStr, "<td rowspan=\"2\">test</td>")
+     end
+
+     test "table Data add content, colSpan case 2" do
+       td = TableData.new
+       td.content = "test".colSpan(2)
+       assert_equal(td.tgStr, "<td colspan=\"2\">test</td>")
+     end
+     
+     test "table Data add content, colSpan and rowspan" do
+       td = TableData.new
+       td.content = "test".colSpan(2).rowSpan(1)
+       assert_equal(td.tgStr, "<td rowspan=\"1\" colspan=\"2\">test</td>")
+     end
+
     
   end
 end

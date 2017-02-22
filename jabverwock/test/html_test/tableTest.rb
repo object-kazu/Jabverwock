@@ -332,7 +332,7 @@ module Jabverwock
       t.headerList = ["name","address","tel"]
       t.dataList = ["line1", "shi", "tokyo", "03000000"]
       t.addRow ["line2", "shi2", "tokyo2", "030000002"]
-
+      
       ans = t.pressDefault
       
       l1= "<table>\n"
@@ -345,92 +345,49 @@ module Jabverwock
       assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)      
     end
 
+    test "add data case brank" do
+      t = JWTable.new
+      t.caption = "test"
+      t.headerList = ["name","address","tel"]
+      t.dataList = ["line1", "shi", "tokyo", "03000000"]
+      t.addRow [$BLA, "shi2", "tokyo2", "030000002"]
+      
+      ans = t.pressDefault
+      
+      l1= "<table>\n"
+      l2="\t<caption>test</caption>\n"
+      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
+      l4="\t<tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
+      l5="\t<tr><td><br></td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
+
+      lend="</table>"
+      assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)      
+    end
+
+    test "add rowSpan" do
+      t = JWTable.new
+      t.caption = "test"
+      hl = %w(name address tel)
+            
+      t.headerList = hl
+      t.dataList = ["line1".rowSpan(2), "shi", "tokyo", "03000000"]
+      t.addRow ["line2", "shi2", "tokyo2", "030000002"]
+      
+      ans = t.pressDefault
+      
+      l1= "<table>\n"
+      l2="\t<caption>test</caption>\n"
+      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
+      l4="\t<tr><td rowspan=\"2\">line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
+      l5="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
+
+      lend="</table>"
+      assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)      
+      
+      
+    end
     
     
   end
 end
-
-
-#     func test_add_data2 () {
-#         let t = TABLE()
-#         t.setCaption(cap: "test")
-#         let hl = ["name", "address", "tel"]
-#         t.setHeadList(header: hl)
-        
-#         //add data
-        
-#         let data = ["line1", "shi", "tokyo", "03000000"]
-#         let data2 = ["line2", "shi2", "tokyo2", "030000002"]
-#         t.setData(d: [data, data2])
-        
-#         t.press()
-        
-#         /* answer
-#          <table>
-#          <captiom>test</caption>
-#          <tr><th></th><th>name</th><th>address</th><th>tel</th></tr>
-#          <tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>
-#          <tr><td >line2</td><td >shi2</td><td >tokyo2</td><td >030000002</td></tr>
-#          </table>
-#          */
-        
-#     }
-    
-#     func test_add_blank () {
-#         let t = TABLE()
-#         t.setCaption(cap: "test")
-#         let hl = ["name", "address", "tel"]
-#         t.setHeadList(header: hl)
-        
-#         //add data
-        
-#         let data = ["line1", "shi", "tokyo", "03000000"]
-#         let data2 = [BLA, "shi2", "tokyo2", "030000002"]
-#         t.setData(d: [data, data2])
-        
-#         t.press()
-        
-#         /* answer
-#          <table>
-#          <captiom>test</caption>
-#          <tr><th></th><th>name</th><th>address</th><th>tel</th></tr>
-#          <tr><td >line1</td><td >shi</td><td >tokyo</td><td >03000000</td></tr>
-#          <tr><td ><br></td><td >shi2</td><td >tokyo2</td><td >030000002</td></tr>
-#          </table>
-#          */
-        
-#     }
-
-#     func test_add_rowSpan () {
-#         let t = TABLE()
-#         t.setCaption(cap: "test")
-#         let hl = ["name", "address", "tel"]
-#         t.setHeadList(header: hl)
-        
-#         //add data
-        
-#         /*
-#          insert span
-         
-#          "line2, ROW_SPAN11, COL_SPAN22"
-#          */
-        
-#         let data = ["line1", "shi", "tokyo", "03000000"]
-#         let data2 = ["line2," + ROW_SPAN + "10", "shi2", "tokyo2", "030000002"]
-#         t.setData(d: [data, data2])
-        
-#         t.press()
-        
-#         /* answer
-#          <table>
-#             <captiom>test</caption>
-#             <tr><th></th><th>name</th><th>address</th><th>tel</th></tr>
-#             <tr><td >line1</td><td >shi</td><td >tokyo</td><td >03000000</td></tr>
-#             <tr><td rowspan=10 >line2</td><td >shi2</td><td >tokyo2</td><td >030000002</td></tr>
-#          </table>
-#          */
-        
-#     }
-
-# }
 

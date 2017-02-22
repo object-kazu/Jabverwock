@@ -44,7 +44,16 @@ module StringExtension
     # # >> "dddd"
     def varIs(val)
       {:label => self, :data => val}
-    end      
+    end
+
+    def rowSpan(val)
+      self + $ROW_SPAN + "#{val}"
+    end
+
+    def colSpan(val)
+      self + $COL_SPAN + "#{val}"
+    end
+    
   end
 end
 
