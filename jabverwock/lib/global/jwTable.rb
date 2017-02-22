@@ -1,15 +1,21 @@
-# require_relative "globalDef" 
-# require '../../lib/global/jwCSS'  
-# require '../../lib/global/jwMulti'  
+# require "global/globalDef"
+ 
+# require "global/jwCSS"
+# require "global/jwMulti"
+# require "global/jwSingle"
+# require "css/css"
 
- require "global/globalDef"
- require "global/jwCSS"
- require "global/jwMulti"
- require "global/jwSingle"
+#gem uninstall version
+require "../../lib/global/globalDef"
+require "../../lib/global/jwTable"
+require "../../lib/global/jwSingle"
+require "../../lib/global/jwMulti"
+require "../../lib/global/jwCSS"
 
 
 module Jabverwock
   using StringExtension  
+  
   class JWTable < JWMulti
 
     attr_accessor :caption, :headerList, :dataList
@@ -23,7 +29,6 @@ module Jabverwock
       @name = "table"
       @tagManager.name = @name
     end
-
 
     def addCaption
       unless @caption.empty?
@@ -51,32 +56,88 @@ module Jabverwock
         @childStringArray << tr.tgStr
       end
     end
+
+    def dataTreatment
+      if isDoubleArray(@dataList)
+        addTableDataList(@dataList)
+        return true # confirm code,for test
+      else
+        addTableData(@dataList)
+        return false # confirm code, for test
+      end
+    end
     
-    def addTableData(index)
+    def isDoubleArray (data)
+      data[0].is_a?(Array)
+    end
+    
+    # data -> [[1,1,1],[1,1,1]]
+    # 2重Array
+    def addTableDataList(arr)      
+      arr.each do |array|
+        addTableData(array)
+      end
+    end
+        
+    # data -> [1,1,1]
+    # Array
+    def addTableData(arr)
       if @headerList.count > 0
         dataString = ""
         tr = TableRow.new
-        dataList[index].each do |hl|
+        arr.each do |hl|  
           h = TableData.new
           h.content = hl
           dataString += h.tgStr
         end
-
         tr.content = dataString
         @childStringArray << tr.tgStr
       end
     end
+
+    
+    def addRow(*arr)
+      unless arr[0].is_a?(Array)
+        return addRowEach(arr)
+      end
+      
+      arr.each do |a| 
+        addRowEach a
+      end  
+    end
+    
+    def addRowEach (arr)
+      if @dataList.count == 0
+        @dataList = arr
+        return @dataList
+      end
+      
+      unless arr.is_a?(Array)
+        @dataList += arr
+        return @dataList
+      end
+
+      if arr[0].is_a?(Array)
+        @dataList << arr
+        return @dataList
+      end
+      
+      @dataList = [@dataList, arr]
+    end
     
     ### override ###
     def assemble
+      if @tagManager.name == ""
+        @tagManager.name = @name        
+      end
+      
       makeTag
       addCaption
       addTableHeader
-      dataList.each_index do |ind|
-        addTableData(ind)
-      end
+      dataTreatment     
       makeResult
     end
+    
   end    
     
   class TableCaption < JWSingle
@@ -111,77 +172,61 @@ module Jabverwock
       @INS_COL_SPAN = "insert_col_span"
       
       @name = "td"
-      @tagManager.tagAttr(:row_span, @INS_ROW_SPAN)
-      @tagManager.tagAttr(:col_span, @INS_COL_SPAN)
+      @tagManager.name = @name
       
     end
-    
-    
-    def isRowSpan(str)
-      str.include?($ROW_SPAN)
+
+    def setRowSpan (number)
+      if number.is_a?(Integer)
+        @tagManager.tagAttr(:rowspan, number.to_s)      
+      end
+      self
     end
 
-    def isColSpan(str)
-      str.include?($COL_SPAN)
+    def setColSpan (number)
+      if number.is_a?(Integer)
+        @tagManager.tagAttr(:colspan,number.to_s)        
+      end
+      self
     end
-
-    def separateRowSpanNumber(str)
-      str.split($ROW_SPAN)
-    end
-
-    def separateColSpanNumber(str)
-      str.split($COL_SPAN)
-    end
-
-
-    def insertSpan
-      if isContainRowOrColSpan
-        a = @content.split($COMMA)
-        fixRow_Col_Content(a)
-
-        if @rowSpan > 0
-          @tagManager.openStringReplace(@INS_ROW_SPAN, $SPC + "rowspan=#{rowSpan}")
-        else
-          @tagManager.openStringReplace(@INS_ROW_SPAN, "")          
-        end
         
-        if @colSpan > 0
-          @tagManager.openStringReplace(@INS_COL_SPAN, $SPC + "colspan=#{colSpan}")
-        else
-          @tagManager.openStringReplace(@INS_COL_SPAN, "")          
-        end
-      end
-    end
-    
-    def fixRow_Col_Content (str)
-       a.each do |val| 
-          if isRowSpan(val)
-            s = separateRowSpanNumber(val)
-            @rowSpan = s[1].to_i
-          elsif isColSpan(val)
-            t = separateColSpanNumber(val)
-            @colSpan = t[1].to_i
-          else
-            @content = val
-          end
-       end
-    end
-    
-    def isContainRowOrColSpan
-      if @content.include?($ROW_SPAN)|| @content.include?($COL_SPAN)
-        return true
-      end
-      return false
-    end
-    
   end
 
-  ## override ##
-  def assemble
-    insertSpan
-    makeResult
+  tableTagList = ["TABLE","TROW","THEAD","TDATA"]  
+  tableTagList.each do |list|    
+    obj = ""
+    case list
+    when "TABLE"
+      obj = JWTable
+    when "TROW"
+      obj = TableRow
+    when "THEAD"
+      obj = TableHeader
+    when "TDATA"
+      obj = TableData
+    end
+    
+    
+    Object.const_set list, Class.new(obj){
+    
+      attr_accessor :name
+      def initialize
+        super
+        @name = self.class.name.downcase
+        @css = CSS.new("#{name}")
+      end
+    }
   end
 
   
+  # a = TableData.new
+  # a.content ="test"
+  # p a.tgStr
+     
   
+ # p a = TABLE.new
+ # p b = JWTable.new
+ # b.dataList = ["a","b"]
+ # p b.pressDefault
+ 
 end

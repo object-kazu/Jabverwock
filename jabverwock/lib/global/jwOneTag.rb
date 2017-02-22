@@ -1,5 +1,7 @@
-#require '../../lib/global/jwCSS'  
-require "global/jwCSS"
+# require "global/jwCSS"
+
+#gem uninstall version
+require '../../lib/global/jwCSS'  
 
 module Jabverwock
   using StringExtension

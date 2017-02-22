@@ -1,6 +1,6 @@
-require "global/globalDef"
+#require "global/globalDef"
 
-#require_relative "globalDef"
+require_relative "globalDef"
 
 module Jabverwock
   using StringExtension

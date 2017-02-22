@@ -1,4 +1,6 @@
-require 'test/unit' 
+require 'test/unit'
+#require "global/jwSingle"
+
 require '../../lib/global/jwSingle'
 
 module Jabverwock

@@ -1,7 +1,6 @@
-require 'test/unit' 
-require '../../lib/global/jwOneTag'
-require '../../lib/global/jwSingle'
-
+require 'test/unit'
+require "global/jwOneTag"
+require "global/jwSingle"
 
 module Jabverwock
   using StringExtension

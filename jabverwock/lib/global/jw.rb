@@ -1,11 +1,11 @@
-require "global/globalDef"
-require "global/tagManager"
-require "global/press"
+# require "global/globalDef"
+# require "global/tagManager"
+# require "global/press"
 
 #test
-# require_relative "globalDef" 
-# require_relative "tagManager"  
-# require_relative "press"
+require_relative "globalDef" 
+require_relative "tagManager"  
+require_relative "press"
 
 module Jabverwock
   using StringExtension
@@ -116,7 +116,7 @@ module Jabverwock
       @tagManager.closeString
     end
    
-    def assemble    
+    def assemble
       if @tagManager.name == ""
         @tagManager.name = @name        
       end      

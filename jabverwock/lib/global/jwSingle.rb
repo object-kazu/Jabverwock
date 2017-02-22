@@ -1,5 +1,13 @@
-#require '../../lib/global/jwCSS'  
-require "global/jwCSS"
+# require "global/globalDef"
+# require "global/jwCSS"
+# require "css/css"
+
+#gem uninstall version
+require "../../lib/global/globalDef"
+require "../../lib/global/jwTable"
+require "../../lib/global/jwSingle"
+require "../../lib/global/jwMulti"
+
 
 module Jabverwock
   using StringExtension
@@ -13,7 +21,7 @@ module Jabverwock
     end
         
     ### override ###
-    def makeResult
+    def makeResult  
       @templeteString = @tagManager.tempOpenString + @content
       if !@tagManager.tempCloseString.empty?
         @templeteString += @tagManager.tempCloseString

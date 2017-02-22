@@ -8,6 +8,13 @@ require "global/jwOneTag"
 require "global/jwTable"
 
 
+
+# > gem uninstall jabverwock
+# > rake build
+# > gem install -l pkg/jabverwock-xxxx
+
+
+
 module Jabverwock
 
     class Koko

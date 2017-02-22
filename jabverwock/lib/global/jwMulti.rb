@@ -1,8 +1,10 @@
-# require_relative "globalDef"
-# require '../../lib/global/jwCSS'  
+# require "global/globalDef"
+# require "global/jwCSS"
+# require "css/css"
 
-require "global/globalDef"
-require "global/jwCSS"
+#gem uninstall version
+require "../../lib/global/globalDef"
+require "../../lib/global/jwCSS"
 
 
 module Jabverwock

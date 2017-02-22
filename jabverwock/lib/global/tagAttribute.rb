@@ -1,8 +1,8 @@
-require "global/globalDef"
-require "global/tagAttributeTempelete"
+# require "global/globalDef"
+# require "global/tagAttributeTempelete"
 
-#require_relative "globalDef"
-#require_relative "tagAttributeTempelete"
+require_relative "globalDef"
+require_relative "tagAttributeTempelete"
 
 module Jabverwock
   using StringExtension
@@ -12,7 +12,7 @@ module Jabverwock
     list = [:id,:cls,:href,:lang, :target]
     list += [:name, :http_equiv,:content,:charset,:scheme]
     list += [:accesskey,:contenteditable,:dir, :hidden, :spellcheck, :style, :tabindex,:title,:translate]
-    list += [:row_span, :col_span]
+    list += [:rowspan, :colspan]
     self.define_attributes list
        
     def initialize

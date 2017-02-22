@@ -1,5 +1,6 @@
- require 'test/unit' 
-require '../../lib/global/jwSingle'
+require 'test/unit'
+require "global/jwSingle"
+#require '../../lib/global/jwSingle'
 
 
 

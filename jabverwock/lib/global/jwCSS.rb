@@ -1,11 +1,12 @@
-require "global/globalDef"
-require "global/jw"
-require "css/Css"
+# require "global/globalDef"
+# require "global/jw"
+# require "css/Css"
 
 # test
-# require '../../lib/global/globalDef'  
-# require '../../lib/global/jw'  
-# require "../../lib/css/Css"
+require '../../lib/global/globalDef'  
+require '../../lib/global/jw'  
+require '../../lib/css/css'  
+
 
 
 module Jabverwock
@@ -183,7 +184,8 @@ module Jabverwock
     #########  press ###########
     ### override ###
     def assemble
-        if @tagManager.name == ""
+   
+      if @tagManager.name == ""
         @tagManager.name = @name        
       end
       makeTag
