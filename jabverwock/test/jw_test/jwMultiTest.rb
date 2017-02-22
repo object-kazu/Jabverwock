@@ -1,5 +1,7 @@
 require 'test/unit' 
 require '../../lib/global/jwMulti'
+require '../../lib/global/jw_CSS_JS'
+
 
 
 
@@ -67,10 +69,10 @@ module Jabverwock
 
     end
 
-    test "addchild, child class check, pass" do
-      a = JWCSS.new
-      @t.addChild a
-    end
+    # test "addchild, child class check, pass" do
+    #   a = JW_CSS.new
+    #   @t.addChild a
+    # end
 
     test "addchild, multi class check, pass" do
       a = HEAD.new

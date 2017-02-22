@@ -1,9 +1,9 @@
 require 'test/unit'
-require "global/jwOneTag"
-require "global/jwSingle"
+# require "global/jwOneTag"
+# require "global/jwSingle"
 
-# require '../../lib/global/jwOneTag'
-# require '../../lib/global/jwSingle'
+require '../../lib/global/jwOneTag'
+require '../../lib/global/jwSingle'
 
 
 module Jabverwock

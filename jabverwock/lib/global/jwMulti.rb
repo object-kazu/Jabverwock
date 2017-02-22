@@ -1,16 +1,16 @@
 # require "global/globalDef"
-# require "global/jwCSS"
+# require "global/jw_CSS_JS"
 # require "css/css"
 
 #gem uninstall version
 require "../../lib/global/globalDef"
-require "../../lib/global/jwCSS"
+require "../../lib/global/jw_CSS_JS"
 
 
 module Jabverwock
   using StringExtension
   
-  class JWMulti < JWCSS
+  class JWMulti < JW_CSS_JS
     attr_accessor :childStringArray
     
     
@@ -21,7 +21,7 @@ module Jabverwock
     end
 
     def addChild(child)
-      unless JWCSS === child
+      unless JW_CSS_JS === child
         assert_raise{
           p "child should be JW or JWCSS class "
         }
@@ -109,9 +109,8 @@ module Jabverwock
     }
   end
 
-  
-  # p a = HEAD.new # => #<Car:0x007f878b8742d0 @name="car">
-  # p a.cssArray
 
+  # a = JW_CSS_JS.new
+  # p a
   
 end

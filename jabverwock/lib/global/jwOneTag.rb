@@ -1,12 +1,12 @@
-# require "global/jwCSS"
+# require "global/jw_CSS_JS"
 
 #gem uninstall version
-require '../../lib/global/jwCSS'  
+require '../../lib/global/jw_CSS_JS'  
 
 module Jabverwock
   using StringExtension
   
-  class JWOneTag < JWCSS
+  class JWOneTag < JW_CSS_JS
     attr_accessor :doctype
     
     def initialize
@@ -46,7 +46,7 @@ module Jabverwock
   # p a = DOCTYPE.new 
   # p a.pressDefault
   
-  # c = JWCSS.new
+  # c = JW_CSS_JS.new
   # p c.css
   # p c.cssArray
   # p c.pressDefault

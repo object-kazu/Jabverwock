@@ -1,6 +1,6 @@
 # require "global/globalDef"
  
-# require "global/jwCSS"
+# require "global/jw_CSS_JS"
 # require "global/jwMulti"
 # require "global/jwSingle"
 # require "css/css"
@@ -10,7 +10,7 @@ require "../../lib/global/globalDef"
 require "../../lib/global/jwTable"
 require "../../lib/global/jwSingle"
 require "../../lib/global/jwMulti"
-require "../../lib/global/jwCSS"
+require "../../lib/global/jw_CSS_JS"
 
 
 module Jabverwock

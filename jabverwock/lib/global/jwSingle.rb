@@ -1,18 +1,16 @@
 # require "global/globalDef"
-# require "global/jwCSS"
+# require "global/jw_CSS_JS"
 # require "css/css"
 
 #gem uninstall version
 require "../../lib/global/globalDef"
-require "../../lib/global/jwTable"
-require "../../lib/global/jwSingle"
-require "../../lib/global/jwMulti"
+require "../../lib/global/jw_CSS_JS"
 
 
 module Jabverwock
   using StringExtension
   
-  class JWSingle < JWCSS
+  class JWSingle < JW_CSS_JS
     attr_accessor :content
     
     def initialize
@@ -97,7 +95,7 @@ module Jabverwock
   # p b.css
   # p b.cssArray
   
-  # c = JWCSS.new
+  # c = JW_CSS_JS.new
   # p c.css
   # p c.cssArray
   # p c.pressDefault

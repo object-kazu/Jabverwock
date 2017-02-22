@@ -1,6 +1,5 @@
 require 'test/unit'
 require '../../lib/global/globalDef'  
-require '../../lib/global/insertData'  
 require '../../lib/global/press'  
 
 

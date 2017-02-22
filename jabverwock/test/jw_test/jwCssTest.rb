@@ -1,7 +1,7 @@
 require 'test/unit'
 require '../../lib/global/globalDef'  
 require '../../lib/css/css'
-require "../../lib/global/jwCSS"
+require "../../lib/global/jw_CSS"
 
 module Jabverwock
   using StringExtension
@@ -24,7 +24,7 @@ module Jabverwock
     def setup
       p :setup
      # p "test".variable
-       @jwcss= JWCSS.new
+       @jwcss= JW_CSS.new
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
@@ -44,7 +44,7 @@ module Jabverwock
     # end
 
     test "confirm name" do
-      assert_equal(@jwcss.name, "jwcss")
+      assert_equal(@jwcss.name, "jw_css")
 
     end
     
@@ -66,7 +66,7 @@ module Jabverwock
     
     test "jwCss style defualt name is class name "do
       @jwcss.css.color("red").font_size(10)
-      assert_equal(@jwcss.css.str, "jwcss {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(@jwcss.css.str, "jw_css {\ncolor: red;\nfont-size: 10;\n}")
       
     end
     
@@ -103,7 +103,7 @@ module Jabverwock
        ans = @jwcss.isExistCssString a
        assert_false ans
       
-       a = "jwcss {\n" + "\n" + "}"
+       a = "jw_css {\n" + "\n" + "}"
        ans = @jwcss.isExistCssString a
        assert_false ans
               
@@ -159,49 +159,49 @@ module Jabverwock
     
     test "add member, do not use same name" do
       
-      j1 = JWCSS.new
+      j1 = JW_CSS.new
       j1.css.color("red").font_size(10)
       
-      j2 = JWCSS.new
+      j2 = JW_CSS.new
       j2.cssWithName("p")
       j2.css.font_style("bold")
 
       j1.addMember j2
 
-      assert_equal(j1.showCssString, "jwcss {\ncolor: red;\nfont-size: 10;\n}\np {\nfont-style: bold;\n}")
+      assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}\np {\nfont-style: bold;\n}")
       
     end
     
     test "add member,same name" do
       
-      j1 = JWCSS.new
+      j1 = JW_CSS.new
       j1.css.color("red").font_size(10)
       
-      j2 = JWCSS.new
+      j2 = JW_CSS.new
       j2.css.font_style("bold")
 
       j1.addMember j2
 
-      assert_equal(j1.showCssString, "jwcss {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}")
       
     end
 
     test "add members" do
       
-      j1 = JWCSS.new
+      j1 = JW_CSS.new
       j1.css.color("red")
 
-      j2 = JWCSS.new
+      j2 = JW_CSS.new
       j2.cssWithName("p")
       j2.css.font_style("bold")
       
-      j3 = JWCSS.new
+      j3 = JW_CSS.new
       j3.cssWithName("b")
       j3.css.font_size(10)
         
       j1.addMembers(j2, j3)
       
-      assert_equal(j1.showCssString, "jwcss {\ncolor: red;\n}\np {\nfont-style: bold;\n}\nb {\nfont-size: 10;\n}")
+      assert_equal(j1.showCssString, "jw_css {\ncolor: red;\n}\np {\nfont-style: bold;\n}\nb {\nfont-size: 10;\n}")
           
     end
     

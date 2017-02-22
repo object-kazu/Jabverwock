@@ -8,8 +8,8 @@ require 'test/unit'
 #gem uninstall version
 require "../../lib/global/globalDef"
 require "../../lib/global/jwTable"
-require "../../lib/global/jwSingle"
-require "../../lib/global/jwMulti"
+#require "../../lib/global/jwSingle"
+#require "../../lib/global/jwMulti"
 
 
 module Jabverwock
@@ -65,64 +65,6 @@ module Jabverwock
       assert_equal(c.tgStr, "<th></th>")
     end
     
-    ## table data ##
-    # test "isRowSpan, true" do
-    #   str = "test" + $ROW_SPAN
-    #   td = TableData.new
-    #   assert_true(td.isRowSpan(str))
-    # end
-    # test "isRowSpan,false" do
-    #   str = "test"
-    #   td = TableData.new
-    #   assert_false(td.isRowSpan(str))
-    # end
-    
-    # test "isColSpan, true" do
-    #   str = "test" + $COL_SPAN
-    #   td = TableData.new
-    #   assert_true(td.isColSpan(str))
-    # end
-    # test "isColSpan,false" do
-    #   str = "test" + $ROW_SPAN
-    #   td = TableData.new
-    #   assert_false(td.isColSpan(str))
-    # end
-
-    # test "separate by row span" do
-    #   str = "test" + $ROW_SPAN +"test2"
-    #   td = TableData.new
-    #   assert_equal(td.separateRowSpanNumber(str).count,2)
-    #   assert_equal(td.separateRowSpanNumber(str), ["test","test2"])
-    # end
-    
-    # test "separate by row span, no span" do
-    #   str = "test" + "test2"
-    #   td = TableData.new
-    #   assert_equal(td.separateRowSpanNumber(str).count,1)
-    #   assert_equal(td.separateRowSpanNumber(str), ["test" + "test2"])
-      
-    # end
-
-    # test "isContainRowOrColSpan, true" do
-    #  td = TableData.new
-    #  str = "test" + $ROW_SPAN +"test2"
-    #  td.content =  str
-    #  assert_true(td.isContainRowOrColSpan)
-    # end
-    # test "isContainRowOrColSpan, true case 2" do
-    #  td = TableData.new
-    #  str = "test" + $COL_SPAN +"test2"
-    #  td.content =  str
-    #  assert_true(td.isContainRowOrColSpan)
-    # end
-
-    # test "isContainRowOrColSpan, false case" do
-    #  td = TableData.new
-    #  str = "test" +"test2"
-    #  td.content =  str
-    #  assert_false(td.isContainRowOrColSpan)
-    # end
-
     ## table Data tag ##
     test "table Data" do
       td = TableData.new

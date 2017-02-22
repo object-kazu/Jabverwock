@@ -1,6 +1,9 @@
 require 'test/unit'
-require "global/jwSingle"
-#require '../../lib/global/jwSingle'
+#require "global/jwSingle"
+
+require '../../lib/global/globalDef'
+require '../../lib/global/jwSingle'
+require '../../lib/global/jw_CSS_JS'
 
 
 

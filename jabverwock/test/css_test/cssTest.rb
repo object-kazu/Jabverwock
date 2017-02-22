@@ -76,7 +76,7 @@ module Jabverwock
       assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
     end
 
-    test "property method chain" do
+    test "property method chain case 2" do
       
       @css.name = "head"
       @css.font_size("10").color("red").font_style("bold")

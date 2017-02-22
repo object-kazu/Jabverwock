@@ -1,7 +1,7 @@
 require 'test/unit'
-require "global/jwSingle"
+#require "global/jwSingle"
 
-#require '../../lib/global/jwSingle'
+require '../../lib/global/jwSingle'
 
 module Jabverwock
   using StringExtension

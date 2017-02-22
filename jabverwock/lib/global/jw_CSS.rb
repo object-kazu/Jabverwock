@@ -12,7 +12,7 @@ require '../../lib/css/css'
 module Jabverwock
   using StringExtension
 
-  class JWCSS < JW # add css functions
+  class JW_CSS < JW # add css functions
 
     attr_accessor :css, :cssArray, :cssString
         
@@ -41,7 +41,7 @@ module Jabverwock
       cssAssemble(css, cssArray)
       
       # 検索のためにStyle tag生成
-      j = JWCSS.new
+      j = JW_CSS.new
       j.tagManager.name = "jwcss"
       j.makeTag
             
@@ -147,7 +147,7 @@ module Jabverwock
     end
 
     def addMember (member)
-      if member.is_a?(JWCSS)
+      if member.is_a?(JW_CSS)
         addJS(member)
         addHTML(member)
         addCSS(member)
@@ -170,7 +170,7 @@ module Jabverwock
     end
     
     def addJS(member)
-      # importJSParameters(child: member)
+      # implement at class JW_CSS_JS
     end
     
     
@@ -197,8 +197,8 @@ module Jabverwock
   end
 
   
-  #  a = JWCSS.new
-  #  p a
+   # a = JW_CSS.new
+   # p a
   # # a.css.name = "pp"
   # # a.css.color = "red"
   # #a.name = "test"
