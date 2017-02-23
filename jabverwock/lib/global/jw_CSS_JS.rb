@@ -24,33 +24,20 @@ module Jabverwock
     ####### add child ############
 
 
-    def addCSS(member)
-      if member.cssArray.count > 0
-        @cssArray += member.cssArray
-      end
-
-      if member.css != nil
-        @cssArray << member.css
-      end
-    end
-    
-    def addHTML(member)
-      member.assemble
-      addMemberString(member.templeteString)
-    end
-    
+    ## override
     def addJS(member)
-      # importJSParameters(child: member)
-    end
-    
-    
-    def addMembers (*members)
-      members.each do |obj| 
-        self.addMember obj
+      unless member.is_a?(JW_CSS)
+        assert_raise{
+          p "error, member should be JW_CSS"
+        }
       end
+      
+      if member.tagManager.isJsAvailable
+        self.tagManager.jsFileName = member.tagManager.jsFileName
+        self.tagManager.jsType     = member.tagManager.jsType
+        self.tagManager.jsPath     = member.tagManager.jsPath
+      end      
     end
-    
-    
   end
 
   
