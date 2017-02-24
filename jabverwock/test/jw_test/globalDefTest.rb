@@ -3,6 +3,7 @@ require '../../lib/global/globalDef'
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
   
   class GlobaDefTest < Test::Unit::TestCase
     class << self
@@ -192,7 +193,7 @@ module Jabverwock
       target = KString.reprace(str: target, of:"this", with: "that")
       assert_equal(target, "that is test")
     end
-        test "reprace str of with" do
+    test "reprace str of with case 2" do
       target = "this is test"
       assert_equal( KString.reprace(str: target, of:"this", with: "that"), "that is test")
     end
@@ -249,7 +250,31 @@ module Jabverwock
     end
 
     
+    # ## Array extension ############
+    test "append val" do
+      a = [2,3,4]
+      a.append 5
+      assert_equal(a, [2,3,4,5])
+    end
 
+    test "appends vals" do
+      a = [2,3,4]
+      a.appends(5, 6)
+      assert_equal(a, [2,3,4,5,6])
+    end
+    
+    test "appendArray vals" do
+      a = [2,3,4]
+      a.appendArray [5,6]
+      assert_equal(a, [2,3,4,5,6])
+    end
+    
+    test "appendArray vals case 2" do
+      a = [2,3,4].appendArray [5,6]
+      assert_equal(a, [2,3,4,5,6])
+    end
+    
+    
     
   end
 

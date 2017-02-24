@@ -9,10 +9,11 @@ module Jabverwock
   
   class TagAttribute < TagAttributeTemplete
 
-    list = [:id,:cls,:href,:lang, :target]
+    list  = [:id,:cls,:href,:lang, :target]
     list += [:name, :http_equiv,:content,:charset,:scheme]
     list += [:accesskey,:contenteditable,:dir, :hidden, :spellcheck, :style, :tabindex,:title,:translate]
     list += [:rowspan, :colspan]
+    list += [:src]
     self.define_attributes list
        
     def initialize
@@ -24,6 +25,8 @@ module Jabverwock
 
   # p a = TagAttribute.new
   # a.id = "test"
-
+  # a.src = "/usr/local/"
+  # p a
+  
 end
 

@@ -186,14 +186,20 @@ module Jabverwock
     def treatContentToTag (str)
       if str.include?($ROW_SPAN)
         t = str.split($ROW_SPAN)
-        setRowSpan(t[1].to_i)
-        @content = t[0]
+        setRowSpan(t.last.to_i)
+        @content = t.first
+        
+        # setRowSpan(t[1].to_i)
+        # @content = t[0]
       end
 
       if str.include?($COL_SPAN)
         t = str.split($COL_SPAN)
-        setColSpan(t[1].to_i)
-        @content = t[0]
+        setColSpan(t.last.to_i)
+        @content = t.first
+        
+        # setColSpan(t[1].to_i)
+        # @content = t[0]
       end
       
     end

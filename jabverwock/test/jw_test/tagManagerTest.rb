@@ -165,41 +165,9 @@ module Jabverwock
       tm.closeStringReplace("a","b")
       assert_equal(tm.tempCloseString,"bbb")
     end
-
-    #### js ###
-    test "isJsAvailable, true" do
-      tm = TagManager.new
-      tm.jsPath = "www/http"
-      tm.jsFileName = ""
-      tm.jsType = ""
-      assert_true(tm.isJsAvailable)
-      
-    end
-    test "isJsAvailable, true case 2" do
-      tm = TagManager.new
-      tm.jsPath = ""
-      tm.jsFileName = "xxx"
-      tm.jsType = ""
-      assert_true(tm.isJsAvailable)
-      
-    end
-    test "isJsAvailable, true case 3" do
-      tm = TagManager.new
-      tm.jsPath = ""
-      tm.jsFileName = ""
-      tm.jsType = "xxx"
-      assert_true(tm.isJsAvailable)
-      
-    end
-    test "isJsAvailable,false" do
-      tm = TagManager.new
-      tm.jsPath = ""
-      tm.jsFileName = ""
-      tm.jsType = ""
-      assert_false(tm.isJsAvailable)
-      
-    end
     
+    
+       
     
   end
 end

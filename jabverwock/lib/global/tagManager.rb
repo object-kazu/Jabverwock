@@ -8,7 +8,6 @@ module Jabverwock
   using StringExtension
   class TagManager
     attr_accessor :name, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString #:id, :cls,
-    attr_accessor :jsPath, :jsType, :jsPathPlusName, :jsFileName    
     
     def initialize
       @tempOpenString = String.new
@@ -21,12 +20,6 @@ module Jabverwock
       @attributeString = String.new
 
       @isSingleTag = false
-
-      #js
-      @jsPath         = ""
-      @jsType         = ""
-      @jsFileName     = ""
-      @jsPathPlusName = ""
       
       #img, meta tag
       @closeStringNotRequire = false
@@ -48,95 +41,6 @@ module Jabverwock
     def setDocType(str)
       @doctype = str
     end
-
-    #####  js           ###########################
-        
-#     private func addPath() {
-        
-#         if jsFileName.isEmpty {return}
-#         if jsPath.isEmpty {
-#             jsPath = EXPORT_TEST_JS_Dir
-#         }
-        
-#         jsPathPlusName = SPC + "src=" + DOUBLE_QUO + jsPath + jsFileName + DOUBLE_QUO
-#     }
-    
-#     private func addType()  {
-#         if jsType.isEmpty{return}
-#         jsType = SPC + "type=" + DOUBLE_QUO + jsType + DOUBLE_QUO
-#     }
-#     /// js <script></script>に挟まれた文字列を取り出す
-#     func extranctBetweenScriptTag (target: [String]) -> (scriptTag:[String], extract:[String]) {
-#         /*
-#          [0] = "<!DOCTYPE html type=\"text/javascript\" src=\"/Users/shimizukazuyuki/Desktop/index/test.js\">"
-#          [1] = "<script type=\"text/javascript\" src=\"/Users/shimizukazuyuki/Desktop/index/test.js\">"
-#          [2] = "\ttest\t"
-#          [3] = "</script>"
-         
-#          */
-        
-#         var s : [String] = []
-#         var e : [String] = []
-        
-#         var start = false
-#         for st in target {
-#             if st.contains("<script") {
-#                 s.append(st)
-#                 start = true
-#                 continue
-#             }
-            
-#             if st.contains("</script>") {
-#                 s.append(st)
-#                 start = false
-#                 continue
-#             }
-            
-#             if start {
-#                 e.append(st)
-                
-#             }else{
-#                 s.append(st)
-#             }
-            
-            
-#         }
-#         return (scriptTag: s, extract: e)
-#     }
-
-    
-#     /*
-#      => isNeedJsSrc
-#      <script type="text/javascript" src="/Users/shimizukazuyuki/Desktop/index/test.js"></script>
-     
-#      => InDocument
-#      <script type="text/javascript"></script>
-     
-     
-#      */
-    
-    def isJsAvailable
-      if !jsType.empty? || !jsPath.empty? || !jsFileName.empty? # <script> available
-        return true
-      end
-      return false
-    end
-    
-#     func isNeedJsSrc () -> Bool {
-#         if isJsAvailable() {
-#             if !jsFileName.isEmpty {
-#                 return true
-#             }
-#         }
-#         return false
-#     }
-    
-    
-#     private func scriptTag () -> String {
-#         tempOpenString = "<" + name + id + cls + attr.aString + jsType + jsPathPlusName + ">"
-#         return tempOpenString
-#     }
-
     
     #####  tag judgemnet ###########################
     def isBrTag

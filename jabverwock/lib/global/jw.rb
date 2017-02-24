@@ -36,8 +36,7 @@ module Jabverwock
     #     val = KString.checkString val
     #     eval "@tagManager.#{attr} = val"
     #   end
-    # end
-    
+    # end    
     mainAttr =  [:id, :cls, :name]
     # ex) return @tagManager.Id
     mainAttr.each do |attr|      
@@ -59,17 +58,6 @@ module Jabverwock
       assemble
       @templeteString
     end
-    
-#     //js
-#     func importJSParameters (child:JWObject) {
-#         if child.tagManager.isJsAvailable() {
-#             self.tagManager.jsFileName  = child.tagManager.jsFileName
-#             self.tagManager.jsType      = child.tagManager.jsType
-#             self.tagManager.jsPath      = child.tagManager.jsPath
-#         }
-        
-#     }
-
         
     def isSingleTag(isSingle)
       if KSUtil.is_bool(isSingle)
@@ -128,7 +116,7 @@ module Jabverwock
     def press (name:, dist:)
       assemble
       
-      if @tagManager.isJsAvailable
+#      if @tagManager.isJsAvailable
 #         if self.tagManager.isJsAvailable() {
 #             if self.tagManager.isNeedJsSrc() {
 #                 // prep for js
@@ -160,9 +148,8 @@ module Jabverwock
 #             }
             
 #         }
-
         
-      end
+###      end
       
       
       prepPress

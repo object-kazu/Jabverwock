@@ -217,7 +217,7 @@ module Jabverwock
       
     end
 
-    test "dataTreatment, false" do
+    test "dataTreatment, false case 2" do
       t = JWTable.new
       list1 = ["line1", "shi", "tokyo", "03000000"]
       list2 = ["line2", "shi2", "tokyo2", "030000002"]

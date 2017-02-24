@@ -27,8 +27,6 @@ module Jabverwock
         }
       end
       
-      # js
-      # importJSParameters(child: child)
 
       # css
       if child.cssArray.count > 0

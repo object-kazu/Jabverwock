@@ -57,6 +57,30 @@ module StringExtension
   end
 end
 
+# ## Array extension ############
+module ArrayExtension
+  
+  refine Array do
+    def append(arr)
+      self << arr
+    end
+
+    def appends (*arr)
+      arr.each do |a| 
+        self.append a
+      end
+    end
+
+    def appendArray(arr)
+      self.concat arr
+    end
+
+    
+    
+  end
+end
+
+
 
 module Jabverwock
   using StringExtension
