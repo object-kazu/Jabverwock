@@ -7,18 +7,25 @@ require '../../lib/global/globalDef'
 require '../../lib/global/jw'  
 require '../../lib/css/css'  
 require '../../lib/global/jw_CSS'  
+require '../../lib/js/jsObject'  
 
 
 
 module Jabverwock
   using StringExtension
-
+  using ArrayExtension
+  
   class JW_CSS_JS < JW_CSS # add css functions
     attr_accessor :js
     
     def initialize
-      super      
-      @js = [] ## [String]
+      super
+      @js = JsObject.new("","","")
+
+      # koko now
+      # jsObjectsから jsに変換するメソッドが必要
+      #
+      @jsStatement = [] ## [String]
     end
      
     ####### add child ############
@@ -26,6 +33,8 @@ module Jabverwock
       @js.empty? ? false : true
     end
 
+    
+    
     ## override
     def addJS(member)
       unless member.is_a?(JW_CSS_JS)
@@ -36,7 +45,7 @@ module Jabverwock
      
       ## koko now
       if member.isJsAvailable
-        self.js = member.js
+        self.js = member.jsm.jsArray
       end
     end
 

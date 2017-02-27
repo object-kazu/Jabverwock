@@ -2,9 +2,13 @@ require 'test/unit'
 require '../../lib/global/globalDef'  
 require '../../lib/css/css'
 require "../../lib/global/jw_CSS_JS"
+require "../../lib/js/jsObject"
+require "../../lib/js/jsDocument"
+
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
   
   class JWCssJsTest < Test::Unit::TestCase
     class << self
@@ -43,15 +47,39 @@ module Jabverwock
     # end
 
     test "isJsAvailable, true" do
-      @jwjs.js = ["a"]
+      @jwjs.jsObjects = ["a"]
       assert_true(@jwjs.isJsAvailable)
     end
     
     test "isJsAvailable, false" do      
       assert_false(@jwjs.isJsAvailable)
     end
-
     
+    test "jwcssjs test writing" do
+      a = JsObject.new
+      @jwjs.jsObjects =[a]
+      assert_true(@jwjs.isJsAvailable)
+    end
+
+    test "dot" do
+      assert_equal("a.a", "a".dot("a"))
+    end
+
+    test "js cmd end" do
+      assert_equal("a" << $JS_CMD_END, "a;")
+     
+    end
+
+    test "document write" do
+      d = JsDocument.new
+      assert_equal(d.write("a"), "document.write('a');")
+    end
+
+    test "document write case 2" do
+      d = JsDocument.new.write("a")
+      assert_equal(d, "document.write('a');")
+    end
+
 
   end
 end

@@ -2,6 +2,10 @@
 module StringExtension
   
   refine String do
+    def dot(str)
+      self + "." + str
+    end
+
     def removeLastRET
       self.chomp
     end
@@ -84,6 +88,7 @@ end
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
   
 
   
@@ -175,7 +180,17 @@ module Jabverwock
         end
         text
       end
+      
+      def remove_Js_Cmd_End(text)
+        text = checkString(text)
+        ans  = text.gsub!(/;$/, "")
+        if ans != nil
+          return ans
+        end
+        text
+      end
 
+      
       def removeHeadTAB(text)
         text = checkString(text)
         ans = text.gsub!(/^\t/, "")
