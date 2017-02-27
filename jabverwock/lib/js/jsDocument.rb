@@ -35,6 +35,11 @@ module Jabverwock
     # document.appendChild(element)	Add an HTML element
     # document.replaceChild(element)	Replace an HTML element
     
+    def createElement(ele)
+      modifyElement("createElement",ele)
+      @result + $JS_CMD_END      
+    end
+    
     def write(str)
       modifyElement("write", str)
       @result + $JS_CMD_END
@@ -114,27 +119,42 @@ module Jabverwock
     def element
       @content
     end
+
+    def index(i)
+      s = KString.remove_Js_Cmd_End @content
+      @content = s + "[#{i}];"
+      self
+    end
     
     ### change element ###
-    # element.innerHTML =  new html content	Change the inner HTML of an element
-    # element.attribute = new value	Change the attribute value of an HTML element
-    # element.setAttribute(attribute, value)	Change the attribute value of an HTML element
-    # element.style.property = new style	Change the style of an HTML element
+    def elementChanging_Equal (act,str)
+      s = KString.remove_Js_Cmd_End @content
+      s.dot(act) + $EQUAL.inDoubleQuot(str) + $JS_CMD_END      
+    end
+    
     def elementChanging (act,str)
       s = KString.remove_Js_Cmd_End @content
-      s.dot(act) + $EQUAL.inDoubleQuot(str)
-      
+      s.dot(act) + "(" + str + ")" + $JS_CMD_END
     end
     
     def innerHTML(str)
-      elementChanging("innerHTML",str)
+      elementChanging_Equal("innerHTML",str)
     end
 
     def attribute(str)
-      elementChanging("attribute",str)
+      elementChanging_Equal("attribute",str)
+    end
+
+    def setAttribute(attr,str)
+      s = "".inDoubleQuot(attr) + $COMMA.inDoubleQuot(str)      
+      elementChanging("setAttribute",s)
     end
     
-
+    def style (property, val)
+      s = KString.remove_Js_Cmd_End @content
+      s.dot("style").dot(property) + $EQUAL.inDoubleQuot(val) + $JS_CMD_END
+    end
+    
   end
 
   # a = Element.new

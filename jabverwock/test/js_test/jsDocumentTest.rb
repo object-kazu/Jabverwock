@@ -43,6 +43,9 @@ module Jabverwock
     #   p @jsd
     # end
 
+    
+    ### find element ###
+
     test "select by id" do
       @jsd.attrBaseInit("koko","","")
       assert_equal(@jsd.byID.element, "document.getElementById('koko');")
@@ -61,25 +64,67 @@ module Jabverwock
       assert_equal(@jsd.byTagName.element, "document.getElementByTagName('popo');")
     end
     
+    
+    
+    ### add and delete element ###
+    test "createElement" do
+      @jsd.attrBaseInit("koko","p","popo")
+      a = @jsd.createElement "koko"
+      assert_equal(a, "document.createElement('koko');")
 
+    end
+    
+    
     test "document write" do
       @jsd.attrBaseInit("koko","p","popo")
       a = @jsd.write "koko"
       assert_equal(a, "document.write('koko');")
     end
 
+    
+    
+    ### change element ###
     test "innerHTML" do
       @jsd.attrBaseInit("koko","p","popo")
       a = @jsd.byID.innerHTML "aaa"
-      assert_equal(a, "document.getElementById('koko').innerHTML=\"aaa\"")
+      assert_equal(a, "document.getElementById('koko').innerHTML=\"aaa\";")
     end
 
     test "attribute" do
       @jsd.attrBaseInit("koko","p","popo")
       a = @jsd.byID.attribute "aaa"
-      assert_equal(a, "document.getElementById('koko').attribute=\"aaa\"")
+      assert_equal(a, "document.getElementById('koko').attribute=\"aaa\";")
     end
-    
+
+    test "setAttribute" do
+      @jsd.attrBaseInit("koko","p","popo")
+      a = @jsd.byID.setAttribute("btn","red")
+      assert_equal(a, "document.getElementById('koko').setAttribute(\"btn\",\"red\");")
+    end
+
+    test "style" do
+      @jsd.attrBaseInit("koko","p","popo")
+      a = @jsd.byID.style("backgroundColor", "red")
+      assert_equal(a, "document.getElementById('koko').style.backgroundColor=\"red\";")
+    end
+
+
+    test "index" do
+      @jsd.attrBaseInit("koko","p","popo")
+      a = @jsd.byID.index(0).innerHTML ("aaa")
+      assert_equal(a,"document.getElementById('koko')[0].innerHTML=\"aaa\";")
+
+      b = @jsd.byID.innerHTML ("bbb")
+      assert_equal(b,"document.getElementById('koko').innerHTML=\"bbb\";")
+      
+    end
+
+    test "index element" do
+      @jsd.attrBaseInit("koko","p","popo")
+      a = @jsd.byID.index(0).element
+      assert_equal(a,"document.getElementById('koko')[0];")
+
+    end
 
 
   end
