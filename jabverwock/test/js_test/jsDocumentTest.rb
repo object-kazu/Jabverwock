@@ -73,6 +73,22 @@ module Jabverwock
       assert_equal(a, "document.createElement('koko');")
 
     end
+
+    test "removeChild" do
+      @jsd.attrBaseInit("koko","p","popo")
+      a = @jsd.removeChild "aaa"
+      assert_equal(a, "document.removeChild(aaa);")
+
+    end
+
+    test "removeChild case 2" do
+      @jsd.attrBaseInit("koko","p","popo")
+      aaa = Element.new
+      a = @jsd.removeChild "#{aaa.element}"
+      assert_equal(a, "document.removeChild();")
+
+    end
+
     
     
     test "document write" do
@@ -108,7 +124,8 @@ module Jabverwock
       assert_equal(a, "document.getElementById('koko').style.backgroundColor=\"red\";")
     end
 
-
+    
+    ### index ###
     test "index" do
       @jsd.attrBaseInit("koko","p","popo")
       a = @jsd.byID.index(0).innerHTML ("aaa")

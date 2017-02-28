@@ -1,13 +1,21 @@
-# require "global/globalDef"
-# require "global/jw"
-# require "css/Css"
+if $FOR_GEM
+  require "global/globalDef"
+  require "global/jw"
+  require "css/css"
+  require "global/jw_CSS"
+  require "js/jsObject"
+  
+else
+  # test
+  require '../../lib/global/globalDef'  
+  require '../../lib/global/jw'  
+  require '../../lib/css/css'  
+  require '../../lib/global/jw_CSS'  
+  require '../../lib/js/jsObject'  
+  
+end
 
-# test
-require '../../lib/global/globalDef'  
-require '../../lib/global/jw'  
-require '../../lib/css/css'  
-require '../../lib/global/jw_CSS'  
-require '../../lib/js/jsObject'  
+
 
 
 

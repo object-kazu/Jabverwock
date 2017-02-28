@@ -1,7 +1,17 @@
-require_relative "../global/globalDef" 
-require_relative "./jsBase"
 
-# require "global/globalDef"
+if $FOR_GEM
+  
+  require "global/globalDef"
+  require "js/jsBase"
+  
+else
+  require_relative "../global/globalDef" 
+  require_relative "./jsBase"
+  
+end
+
+
+
 
 module Jabverwock
   using StringExtension
@@ -27,22 +37,34 @@ module Jabverwock
     def modifyElement(order, elem)
       attrBaseInit(@id,@cls,@name)
       @result = @obj.dot(order).inParenth(elem)
+      @result + $JS_CMD_END      
+    end
+
+    def treatElement (order,elem)
+      attrBaseInit(@id,@cls,@name)
+      @result = @obj.dot(order) + "(" + "#{elem}" + ")"
+      @result + $JS_CMD_END            
     end
 
     ### add and delete element ###
-    # document.createElement(element)	Create an HTML element
-    # document.removeChild(element)	Remove an HTML element
-    # document.appendChild(element)	Add an HTML element
-    # document.replaceChild(element)	Replace an HTML element
-    
     def createElement(ele)
       modifyElement("createElement",ele)
-      @result + $JS_CMD_END      
     end
-    
+
+    def removeChild(child)
+      treatElement("removeChild",child)
+    end
+
+    def appendChild(child)
+      treatElement("appendChild",child)
+    end
+
+    def replaceChild(child)
+      treatElement("replaceChild",child)
+    end
+
     def write(str)
       modifyElement("write", str)
-      @result + $JS_CMD_END
     end    
     
 
@@ -72,6 +94,9 @@ module Jabverwock
 
     ### evant handler ###
     #    document.getElementById(id).onclick = function(){code}
+    def onclick (code)
+      
+    end
 
     ### Finding HTML Objects ###
     # document.anchors	Returns all <a> elements that have a name attribute	1
@@ -103,11 +128,6 @@ module Jabverwock
     
   end
 
-  # p a = JsDocument.new("","","")
-  # p a.byID
-  # a.id = "gege"
-  # p a.byID
-  # p a.write("adas")
 
   class Element
     attr_accessor :content
@@ -157,6 +177,12 @@ module Jabverwock
     
   end
 
+
+  # p a = JsDocument.new("","","")
+  # p a.byID
+  # p a.write("adas")
+
+  
   # a = Element.new
   # a.content = "aaaa;"
   # a.innerHTML "bbbb"

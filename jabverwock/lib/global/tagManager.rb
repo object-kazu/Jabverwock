@@ -1,8 +1,18 @@
-require_relative "globalDef" 
-require_relative "tagAttribute" 
+if $FOR_GEM
+  
+  require "global/globalDef"
+  require "global/tagAttribute"
 
-# require "global/globalDef"
-# require "global/tagAttribute"
+   
+else
+
+  require_relative "globalDef" 
+  require_relative "tagAttribute" 
+  
+end
+
+
+
 
 module Jabverwock
   using StringExtension

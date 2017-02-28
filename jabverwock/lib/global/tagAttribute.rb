@@ -1,8 +1,17 @@
-# require "global/globalDef"
-# require "global/tagAttributeTempelete"
+if $FOR_GEM
+  
+  require "global/globalDef"
+  require "global/tagAttributeTempelete"
+  
+else
+  
+  require_relative "globalDef"
+  require_relative "tagAttributeTempelete"
 
-require_relative "globalDef"
-require_relative "tagAttributeTempelete"
+end
+
+
+
 
 module Jabverwock
   using StringExtension

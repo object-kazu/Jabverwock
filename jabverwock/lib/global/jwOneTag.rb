@@ -1,7 +1,13 @@
-# require "global/jw_CSS_JS"
+if $FOR_GEM
+  require "global/jw_CSS_JS"
+    
+else
+  #gem uninstall version
+  require '../../lib/global/jw_CSS_JS'  
 
-#gem uninstall version
-require '../../lib/global/jw_CSS_JS'  
+end
+
+
 
 module Jabverwock
   using StringExtension

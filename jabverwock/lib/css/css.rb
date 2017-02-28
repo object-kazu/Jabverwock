@@ -1,8 +1,16 @@
-require "../../lib/global/globalDef"
-require_relative "propertyTemplete"
+if $FOR_GEM
+  require "global/globalDef"
+  require "css/propertyTemplete"
+    
+else
 
-# require "global/globalDef"
-# require "css/propertyTemplete"
+  require "../../lib/global/globalDef"
+  require_relative "propertyTemplete"
+  
+end
+
+
+
 
 module Jabverwock
   using StringExtension

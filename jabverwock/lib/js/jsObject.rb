@@ -1,9 +1,18 @@
-require_relative "../global/globalDef" 
-require_relative "./JsDocument"
-require_relative "./JsBase"
+if $FOR_GEM
+  require "global/globalDef"
+  require "js/jsDocument"
+  require "js/jsBase"
+  
+  
+else
+  require_relative "../global/globalDef" 
+  require_relative "./jsDocument"
+  require_relative "./jsBase"
+
+end
 
 
-# require "global/globalDef"
+
 
 
 module Jabverwock

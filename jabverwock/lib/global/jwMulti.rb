@@ -1,10 +1,18 @@
-# require "global/globalDef"
-# require "global/jw_CSS_JS"
-# require "css/css"
+if $FOR_GEM
+  
+  require "global/globalDef"
+  require "global/jw_CSS_JS"
+  require "css/css"
+    
+else
+  #gem uninstall version
+  require "../../lib/global/globalDef"
+  require "../../lib/global/jw_CSS_JS"
+  
+end
 
-#gem uninstall version
-require "../../lib/global/globalDef"
-require "../../lib/global/jw_CSS_JS"
+
+
 
 
 module Jabverwock

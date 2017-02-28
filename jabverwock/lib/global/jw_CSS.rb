@@ -1,11 +1,17 @@
-# require "global/globalDef"
-# require "global/jw"
-# require "css/Css"
+if $FOR_GEM
+  require "global/globalDef"
+  require "global/jw"
+  require "css/css"
+  
+else
+  # test
+  require '../../lib/global/globalDef'  
+  require '../../lib/global/jw'  
+  require '../../lib/css/css'  
+  
+end
 
-# test
-require '../../lib/global/globalDef'  
-require '../../lib/global/jw'  
-require '../../lib/css/css'  
+
 
 
 
@@ -197,8 +203,8 @@ module Jabverwock
   end
 
   
-   # a = JW_CSS.new
-   # p a
+  #  a = JW_CSS.new
+  #  p a
   # # a.css.name = "pp"
   # # a.css.color = "red"
   # #a.name = "test"

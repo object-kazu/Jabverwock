@@ -1,6 +1,10 @@
-#require "global/globalDef"
+if $FOR_GEM
+  require "global/globalDef"
+else
+  require_relative "globalDef"
+end
 
-require_relative "globalDef"
+
 
 module Jabverwock
   using StringExtension
