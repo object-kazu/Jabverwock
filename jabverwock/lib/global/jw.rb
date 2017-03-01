@@ -162,9 +162,19 @@ module Jabverwock
       prepPress
       @pressVal.initResutString      
       @pressVal.removeAllLabel
-      @pressVal.core(name: name,  dist: dist)   
+      @pressVal.core(name: name,  dist: dist)
+      
+      p "Press Done!"
+
       @pressVal.resultString # 確認用の戻り値
       
+    end
+    
+    # press for testing
+    $EXPORT_TESTPRESS_Dir = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
+    def testPress(name)
+      n = name + "Pressed" + ".html" 
+      press(name: n, dist:$EXPORT_TESTPRESS_Dir)
     end
     
     def pressDefault

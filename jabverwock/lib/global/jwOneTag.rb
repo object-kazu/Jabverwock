@@ -1,9 +1,11 @@
 if $FOR_GEM
   require "global/jw_CSS_JS"
+  require "global/jwSingle"
     
 else
   #gem uninstall version
   require '../../lib/global/jw_CSS_JS'  
+  require '../../lib/global/jwSingle'  
 
 end
 
@@ -12,7 +14,7 @@ end
 module Jabverwock
   using StringExtension
   
-  class JWOneTag < JW_CSS_JS
+  class JWOneTag < JWSingle
     attr_accessor :doctype
     
     def initialize

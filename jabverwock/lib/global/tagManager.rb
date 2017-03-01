@@ -53,8 +53,8 @@ module Jabverwock
     end
     
     #####  tag judgemnet ###########################
-    def isBrTag
-      @name == "br" ? true : false
+    def isHrTag
+      @name == "hr" ? true : false
     end
 
     def isDocType
@@ -91,7 +91,7 @@ module Jabverwock
         return @tempOpenString
       end
       
-      if isBrTag()
+      if isHrTag()
         return ""
       end
                       
@@ -114,7 +114,7 @@ module Jabverwock
       end
       
       
-      if isBrTag
+      if isHrTag
         return @tempCloseString = "<" + @name  + ">"
       end
 

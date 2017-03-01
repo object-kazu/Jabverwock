@@ -24,21 +24,22 @@ module Jabverwock
   using ArrayExtension
   
   class JW_CSS_JS < JW_CSS # add css functions
-    attr_accessor :js
+    attr_accessor :js , :jsArray
     
     def initialize
       super
       @js = JsObject.new("","","")
-
+      
       # koko now
       # jsObjectsから jsに変換するメソッドが必要
-      #
+      #      
+      @jsArray = [] ## [js]
       @jsStatement = [] ## [String]
     end
      
     ####### add child ############
     def isJsAvailable
-      @js.empty? ? false : true
+      @js.nil? ? false : true
     end
 
     
@@ -47,13 +48,18 @@ module Jabverwock
     def addJS(member)
       unless member.is_a?(JW_CSS_JS)
         assert_raise{
-          p "error, member should be JW_CSS"
+          p "error, member should be JW_CSS_JS"
         }
       end
      
       ## koko now
       if member.isJsAvailable
-        self.js = member.jsm.jsArray
+        self.jsArray.append member.js
+
+        if member.jsArray.count > 0
+          self.jsArray.appendArray member.jsArray
+        end
+        
       end
     end
 

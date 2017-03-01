@@ -2,12 +2,16 @@ if $FOR_GEM
   
   require "global/globalDef"
   require "global/jw_CSS_JS"
+  require "global/jw"
+
   require "css/css"
     
 else
   #gem uninstall version
   require "../../lib/global/globalDef"
   require "../../lib/global/jw_CSS_JS"
+  require "../../lib/global/jw"
+  require "../../lib/css/css"
   
 end
 
@@ -29,9 +33,9 @@ module Jabverwock
     end
 
     def addChild(child)
-      unless JW_CSS_JS === child
+      unless child.is_a? JW
         assert_raise{
-          p "child should be JW or JWCSS class "
+          p "child should be JW, JW_CSS_JS or JW_CSS class "
         }
       end
       
@@ -59,11 +63,21 @@ module Jabverwock
       end
     end
     
+    def contentIs (str)
+      addChildString str
+      self
+    end
+    
     def addChildString(childString)
       childString = KString.checkString childString      
       @childStringArray << childString
     end
       
+    def addChildStrings(children)
+      children.each do |c|
+        addChildString c
+      end
+    end
     
     def makeResult
 
@@ -98,8 +112,10 @@ module Jabverwock
     
   end
 
-  multiList = ["HEAD", "BODY","FOOTER","DIV","HTML","SCRIPT",
+  multiList = ["HEAD", "BODY","FOOTER","DIV","HTML","SCRIPT","BLOCKQUOTE",
                "PRE","STYLE"]
+
+  multiList += ["OL", "UL"]
   
   multiList.each do |list|
     Object.const_set list, Class.new(JWMulti){
@@ -109,7 +125,7 @@ module Jabverwock
       def initialize
         super
         @name = self.class.name.downcase
-        @css = CSS.new("#{name}")
+        @css = CSS.new("#{@name}")
   
       end
     }
