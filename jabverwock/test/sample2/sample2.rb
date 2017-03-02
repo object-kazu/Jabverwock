@@ -4,7 +4,7 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
 
-  $SA = "sample11"
+  $SA = "sample2"
 
   html= HTML.new
 
@@ -18,16 +18,23 @@ module Jabverwock
     head
   end
 
-  def self.dtdd
-
-    ul = DT.new
-
-    ul
+  def self.dtdd(title, desc)
+    
+    dt = DT.new.contentIs title
+    dd = DD.new.contentIs desc
+    dt.addMember dd
+    
+    dt
   end
   
   def self.bodier
     body = BODY.new
-    body.addChild oderList
+
+    d1 = self.dtdd("car", "car is car")
+    d2 = self.dtdd("train", "train is train")
+    d3 = self.dtdd("ship", "ship is ship")
+    
+    body.addChildren [d1,d2,d3]
 
     body
   end
