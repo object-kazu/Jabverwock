@@ -60,6 +60,12 @@ module Jabverwock
       assert_equal(ans, "<j>test</j>")
       assert_equal(ans, ans2)
     end
+
+    test "add contentIs" do
+      a = P.new.contentIs "this is test"
+      assert_equal(a.pressDefault, "<p>this is test</p>")
+    end
+    
     
     test "add label case 1" do
 
@@ -76,7 +82,6 @@ module Jabverwock
       
     end
 
-    
     test "add label case 2" do
       @t.name="j"
       @t.content = "test" + "a".variable

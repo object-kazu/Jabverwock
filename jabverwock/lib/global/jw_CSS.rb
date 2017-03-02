@@ -12,9 +12,6 @@ else
 end
 
 
-
-
-
 module Jabverwock
   using StringExtension
 
@@ -153,7 +150,7 @@ module Jabverwock
     end
 
     def addMember (member)
-      if member.is_a?(JW_CSS)
+      if member.is_a?(JW_CSS_JS)
         addJS(member)
         addHTML(member)
         addCSS(member)

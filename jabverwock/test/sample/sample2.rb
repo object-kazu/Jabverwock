@@ -3,9 +3,10 @@ require "./path"
 module Jabverwock
   using StringExtension
   using ArrayExtension
-
-  $SA = "sample"
-
+  
+  
+  $SA = "sample2"
+  
   html= HTML.new
   head = HEAD.new
   
@@ -14,7 +15,7 @@ module Jabverwock
   head.addChild title
   
   body = BODY.new
-  c = P.new.contentIs "Hello world!" 
+  c = HEADING.new.contentIs "Hello world! again" 
   body.addChild c
 
   html.addChild head

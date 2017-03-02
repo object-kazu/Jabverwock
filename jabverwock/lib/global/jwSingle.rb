@@ -7,6 +7,7 @@ else
   #gem uninstall version
   require "../../lib/global/globalDef"
   require "../../lib/global/jw_CSS_JS"  
+  require "../../lib/css/css"
 end
 
 
@@ -29,6 +30,11 @@ module Jabverwock
       treatContentToSpan @content
       assemble
       @templeteString
+    end
+
+    def contentIs (str)
+      @content = str
+      self
     end
 
     
@@ -74,8 +80,30 @@ module Jabverwock
     
   end
 
-  singleList = ["P","A","B","BR","I","STRONG","BLOCKQUOTE","DT", "DD","HEADING","IMAGE",
+  class HEADING < JWSingle
+    
+    def initialize (level = 1)
+      super()
+      @content = ""
+      @level = level
+      insertLevel
+      @css = CSS.new("#{@name}")
+    end
+
+    def insertLevel
+      @level = 1 if @level > 6
+      @level = 1 if @level < 0
+      
+      @name = "h#{@level}" 
+    end
+
+    
+  end
+  
+  singleList = ["P","A","B","HR","I","EM","STRONG","DT","DD","IMAGE",
                 "LIST_ITEM","TITLE",]
+  
+  singleList += ["LI"]
   
   singleList.each do |list|
     Object.const_set list, Class.new(JWSingle){
@@ -84,12 +112,13 @@ module Jabverwock
       def initialize
         super
         @name = self.class.name.downcase
-        @css = CSS.new("#{name}")
+        @css = CSS.new("#{@name}")
       end
     }
   end
 
-
+  
+  
   # a = A.new
   # a.assemble
   # p a.templeteString

@@ -65,12 +65,13 @@ end
 module ArrayExtension
   
   refine Array do
-    def append(arr)
-      self << arr
+    
+    def append(element)
+      self << element
     end
 
-    def appends (*arr)
-      arr.each do |a| 
+    def appends (*element)
+      element.each do |a| 
         self.append a
       end
     end
@@ -79,7 +80,13 @@ module ArrayExtension
       self.concat arr
     end
 
-    
+    # a = [1,2,3]
+    # a.append 4 # => [1, 2, 3, 4]
+
+    # b = [4,5,6]
+    # #a.append b # => [1, 2, 3, 4, [4, 5, 6]]
+
+    # a.appendArray b # => [1, 2, 3, 4, 4, 5, 6]
     
   end
 end
@@ -111,7 +118,7 @@ module Jabverwock
   $LABEL_INSERT_END    = "##LABELEND##"
 
   # # Table ####################
-  $BLA      = "<br>"
+  $BR      = "<br>"
   $ROW_SPAN = "%rowSpan="
   $COL_SPAN = "%colSpan="
   module KSUtil
