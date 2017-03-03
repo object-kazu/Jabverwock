@@ -34,9 +34,8 @@ module Jabverwock
 
     def addChild(child)
       unless child.is_a? JW
-        assert_raise{
           p "child should be JW, JW_CSS_JS or JW_CSS class "
-        }
+        assert_raise{}
       end
       
 
@@ -115,7 +114,7 @@ module Jabverwock
   multiList = ["HEAD", "BODY","FOOTER","DIV","HTML","SCRIPT","BLOCKQUOTE",
                "PRE","STYLE"]
 
-  multiList += ["OL", "UL"]
+  multiList += ["OL", "UL", "LI_multi"]
   
   multiList.each do |list|
     Object.const_set list, Class.new(JWMulti){
@@ -125,6 +124,11 @@ module Jabverwock
       def initialize
         super
         @name = self.class.name.downcase
+
+        if @name == "li_multi"
+          @name = "li"
+        end
+        
         @css = CSS.new("#{@name}")
   
       end
