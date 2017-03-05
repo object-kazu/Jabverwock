@@ -133,7 +133,7 @@ module Jabverwock
     end
 
     
-    test "removeLastTAB" do
+    test "removeLastTAB case 2" do
       tm = "dadfafadfa\tfdfafadfa"
       tm = KString.removeLastTAB(tm)
       assert_equal(tm, "dadfafadfa\tfdfafadfa")

@@ -292,7 +292,7 @@ module Jabverwock
       t.caption = "test"
       t.headerList = ["name","address","tel"]
       t.dataList = ["line1", "shi", "tokyo", "03000000"]
-      t.addRow [$BLA, "shi2", "tokyo2", "030000002"]
+      t.addRow [$BR, "shi2", "tokyo2", "030000002"]
       
       ans = t.pressDefault
       

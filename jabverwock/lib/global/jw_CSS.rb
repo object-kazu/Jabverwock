@@ -143,14 +143,15 @@ module Jabverwock
     end
     
     
-    ####### add child ############
+    ####### add member ############
+    
     def addMemberString (memberString)
       memberString = KString::checkString(memberString)
       @memberStringArray << memberString
     end
 
     def addMember (member)
-      if member.is_a?(JW_CSS_JS)
+      if member.is_a? JW 
         addJS(member)
         addHTML(member)
         addCSS(member)
@@ -182,6 +183,7 @@ module Jabverwock
         self.addMember obj
       end
     end
+
     
     
     #########  press ###########

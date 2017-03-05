@@ -57,9 +57,6 @@ module Jabverwock
       self.class.to_s.split("::").last.downcase
     end
     
-    def prepPress
-      @pressVal.templeteString = @templeteString
-    end
     
     def tgStr
       assemble
@@ -104,6 +101,7 @@ module Jabverwock
          ans = KString.stringArrayConectRET(@memberStringArray)
          @templeteString += ans
       end
+      @memberStringArray = []
     end
     
     def makeTag
@@ -114,13 +112,22 @@ module Jabverwock
     def assemble
       if @tagManager.name == ""
         @tagManager.name = @name        
-      end      
+      end
       makeTag
       makeResult
       memberAssemble
     end
-        
-    def press (name:, dist:)
+
+    def pressConfig(name:, dist:)
+      @pressVal.exportFile = name
+      @pressVal.exportPath = dist
+    end
+
+    def pressFingerPrint
+      @pressVal.resultString # 確認用の戻り値
+    end
+    
+    def prepPress
       assemble
       
 #      if @tagManager.isJsAvailable
@@ -158,42 +165,56 @@ module Jabverwock
         
 ###      end
       
-      
-      prepPress
+      @pressVal.templeteString = @templeteString
       @pressVal.initResutString      
       @pressVal.removeAllLabel
-      @pressVal.core(name: name,  dist: dist)
-      
+    end
+    
+    def press
+      @pressVal.core      
       p "Press Done!"
+      pressFingerPrint
+    end
 
-      @pressVal.resultString # 確認用の戻り値
+    
+    def pressDefault
+      prepPress
+      press
+    end
+        
+    
+    def pressInsert(insertData)
+      if @pressVal.isResultStringEmpty
+        prepPress
+      end
       
+      @pressVal.withInsert(insertData)
+      press
+      pressFingerPrint
+    end
+        
+    def pressInsertEach(*insertData)
+      if @pressVal.isResultStringEmpty
+        prepPress
+      end
+      
+      @pressVal.withInsertEach(insertData)
+      press
+      pressFingerPrint
     end
     
     # press for testing
     $EXPORT_TESTPRESS_Dir = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
+#    $EXPORT_TESTPRESS_Dir = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
+    
     def testPress(name)
-      n = name + "Pressed" + ".html" 
-      press(name: n, dist:$EXPORT_TESTPRESS_Dir)
+      n = name + "Pressed" + ".html"
+      pressConfig(name: n, dist: $EXPORT_TESTPRESS_Dir)
+      prepPress
+      press
     end
-    
-    def pressDefault
-      press(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
-    end
-    
-    
-    def pressAInsert(insertData)
-      KSUtil.labelDataPair?(insertData)
-      @pressVal.withInsert(insertData)
-      @pressVal.resultString # 確認用の戻り値
-    end
-    
-    def pressInsertEach(*insertData)
-      @pressVal.withInsertEach(insertData)
-      @pressVal.resultString # 確認用の戻り値      
-    end
-    
 
+    
   end
 
   #p a = JW.new

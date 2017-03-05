@@ -4,7 +4,7 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
 
-  $SA = "sample4"
+  $SA = "sample6"
 
   html= HTML.new
 
@@ -18,11 +18,23 @@ module Jabverwock
     head
   end
 
+  def self.aList
+    l = %w(www:home www:about www:contact)
+    arr = []
+    l.each do |a|
+      tdash = a.split(":")
+      t = A.new.contentIs(tdash.last).attr(:href, a)
+      arr << t
+    end
+    arr
+  end
   
   def self.bodier
-    body = BODY.new
-    a = A.new.contentIs("test").attr(:href,"www://")
-    body.addChild a
+    body = BODY.new    
+    al = aList
+
+    body.addChildren al
+    
     body
   end
   
@@ -36,5 +48,6 @@ module Jabverwock
   html.pressConfig(name: n, dist: EXPORT_TESTPRESS_Dir2)
   html.pressDefault
 
+  
   
 end

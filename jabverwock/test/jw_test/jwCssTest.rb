@@ -77,7 +77,7 @@ module Jabverwock
       
     end
 
-    test "cssArray add css" do
+    test "cssArray add css case 2" do
       c = CSS.new("p")
       b = CSS.new("b")
       ca = [c,b]
@@ -133,7 +133,7 @@ module Jabverwock
       
     end
 
-    test "cssArray add css" do      
+    test "cssArray add css case 3" do      
       c = CSS.new("p").font_size("10")
       b = CSS.new("b").color("red")
       ca = [c,b]
@@ -167,7 +167,7 @@ module Jabverwock
       j2.css.font_style("bold")
 
       j1.addMember j2
-
+     
       assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}\np {\nfont-style: bold;\n}")
       
     end
@@ -204,6 +204,7 @@ module Jabverwock
       assert_equal(j1.showCssString, "jw_css {\ncolor: red;\n}\np {\nfont-style: bold;\n}\nb {\nfont-size: 10;\n}")
           
     end
+ 
     
   end
 

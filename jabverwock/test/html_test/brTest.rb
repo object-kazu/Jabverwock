@@ -3,6 +3,7 @@ require 'test/unit'
 
 
 require '../../lib/global/jwSingle'
+require '../../lib/global/jwOneTag'
 require "../../lib/global/globalDef"
 
 module Jabverwock
@@ -24,7 +25,7 @@ module Jabverwock
     # 毎回テスト実行前に呼ばれる
     def setup
       p :setup
-
+      @br = BR.new
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
@@ -39,30 +40,47 @@ module Jabverwock
     
     ############## test ###############
 
-    ## BR change : Class BR -> $BR 
+    ## BR change : Class BR and Global constat $BR are exist! 
+
     
-    # test "single List" do
-    #   assert_equal(@br.name , "br")
-    # end
+    ## class BR test
+    test "single List" do
+      assert_equal(@br.name , "br")
+    end
+    
+    test "tag Str" do
+      assert_equal(@br.tgStr , "<br>")
+    end
+    
+    test "br basically" do
+      @br.content = "this is test"
+      assert_equal(@br.pressDefault, "this is test<br>")
+    end
 
-    # test "br basically" do
-    #   @br.content = "this is test"
-    #   assert_equal(@br.pressDefault, "this is test<br>")
-    # end
-
-    # test "br with p tag" do
-    #   @br.content = "this is test"
-    #   pp = P.new
-    #   pp.content = @br.tgStr
-    #   assert_equal(pp.pressDefault,"<p>this is test<br></p>")
+    test "class br with p tag" do
+      @br.content = "this is test"
+      pp = P.new
+      pp.content = @br.tgStr
+      assert_equal(pp.pressDefault,"<p>this is test<br></p>")
       
-    # end
+    end
 
+    
+    test "add br tag after other tag" do
+      pp = P.new.contentIs "test"
+      pp.addMember(@br)
+      assert_equal(pp.pressDefault, "<p>test</p>\n<br>\n")
+      
+    end
+    
+
+    
+    ## Constant BR test
     test "new test BR" do
       assert_equal($BR, "<br>")
     end
 
-    test "br with p tag" do
+    test "constant br with p tag" do
       pp = P.new.contentIs "this is test,#{$BR} for you "
       assert_equal(pp.tgStr, "<p>this is test,<br> for you </p>")
     end

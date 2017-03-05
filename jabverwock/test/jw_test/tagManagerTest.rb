@@ -112,24 +112,6 @@ module Jabverwock
       assert_equal(tm.tagAttribute.cls, "test")
     end
 
-    test "br test" do
-      tm = TagManager.new
-      tm.name = "br"    
-      assert_equal(tm.isBrTag, true)
-    end
-
-    test "br test false" do
-      tm = TagManager.new
-      tm.name = "b"    
-      assert_equal(tm.isBrTag, false)
-    end
-
-    test "br tag " do
-      tm = TagManager.new
-      tm.name = "br"    
-      assert_equal(tm.openString, "")
-      assert_equal(tm.closeString, "<br>")
-    end
     
     test "not br tag " do
       tm = TagManager.new

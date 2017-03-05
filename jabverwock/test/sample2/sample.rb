@@ -39,10 +39,13 @@ module Jabverwock
   html.addChild bodier
 
 
-  $EXPORT_TESTPRESS_Dir2 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample2/"
+  EXPORT_TESTPRESS_Dir2 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample2/"
 
-  n = $SA + "Pressed" + ".html" 
-  html.press(name: n, dist:$EXPORT_TESTPRESS_Dir2)
+  n = $SA + "Pressed" + ".html"
+  html.pressConfig(name: n, dist: EXPORT_TESTPRESS_Dir2)
+  html.pressDefault
+  # html.prepPress
+  # html.press
 
   
   

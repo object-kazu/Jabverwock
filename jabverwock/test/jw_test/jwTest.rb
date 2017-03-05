@@ -63,13 +63,13 @@ module Jabverwock
       assert_equal(@tm.pressVal.resultString, "")
     end
 
-    test "pretest: pressDefault, add text" do 
-      @tm.templeteString = "test"
-      @tm.prepPress
-      @tm.pressVal.initResutString    
-      ans = @tm.pressVal.resultString
-      assert_equal(ans, "test")
-    end
+    # test "pretest: pressDefault, add text" do 
+    #   @tm.templeteString = "test"
+    #   @tm.pressVal.initResutString    
+    #   @tm.prepPress
+    #   ans = @tm.pressVal.resultString
+    #   assert_equal(ans, "test")
+    # end
 
     test "assemble" do      
       @tm.name = "test"

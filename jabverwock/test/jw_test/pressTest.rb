@@ -138,7 +138,7 @@ module Jabverwock
       i2 ="b".varIs ",again"
       pr.insertDataList(i,i2)
       pr.removeAllLabel
-      pr.exportResult
+      pr.core
     end
     
   end

@@ -20,6 +20,11 @@ module Jabverwock
     attr_accessor :name, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString #:id, :cls,
     
     def initialize
+      resetTags
+    end
+
+    ### reset tags #######
+    def resetTags
       @tempOpenString = String.new
       @tempCloseString = String.new
       
@@ -33,8 +38,9 @@ module Jabverwock
       
       #img, meta tag
       @closeStringNotRequire = false
+      
     end
-
+    
     ####### add attribute #############################
     def tagAttr (tag, val)
       eval"@tagAttribute.add_#{tag}(val)"
@@ -57,6 +63,10 @@ module Jabverwock
       @name == "hr" ? true : false
     end
 
+    def isBrTag
+      @name == "br" ? true : false
+    end
+    
     def isDocType
       @name == "doctype"? true: false
     end
@@ -91,7 +101,11 @@ module Jabverwock
         return @tempOpenString
       end
       
-      if isHrTag()
+      if isHrTag
+        return ""
+      end
+
+      if isBrTag
         return ""
       end
                       
@@ -116,6 +130,10 @@ module Jabverwock
       
       if isHrTag
         return @tempCloseString = "<" + @name  + ">"
+      end
+
+      if isBrTag
+        return @tempCloseString = "<#{name}>"
       end
 
       # closeStringNotRequire => bool値に変更する      

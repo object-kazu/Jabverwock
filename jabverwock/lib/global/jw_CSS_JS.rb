@@ -71,6 +71,7 @@ module Jabverwock
     
     ### override ###
     def assemble
+      @templeteString = ""
       
       if @tagManager.name == ""
         @tagManager.name = @name        

@@ -85,7 +85,7 @@ module Jabverwock
 
       @a.content = "test" + "a".variable
       @a.pressDefault
-      ans = @a.pressAInsert("a".varIs" is done")
+      ans = @a.pressInsert("a".varIs" is done")
       assert_equal(ans, "<a>test is done</a>")
 
     end
@@ -94,7 +94,7 @@ module Jabverwock
 
       @a.content = "test" + "a".variable + "-> yes!"
       @a.pressDefault
-      ans = @a.pressAInsert("a".varIs" is done")
+      ans = @a.pressInsert("a".varIs" is done")
       assert_equal(ans, "<a>test is done-> yes!</a>")
       
     end
@@ -103,15 +103,28 @@ module Jabverwock
  
       @a.content = "test" + "a".variable + "-> yes!"
       @a.pressDefault
-      ans = @a.pressAInsert("a".varIs" is done")
+      ans = @a.pressInsert("a".varIs" is done")
       assert_equal(ans, "<a>test is done-> yes!</a>")
 
       #retry
-      ans2 = @a.pressAInsert("a".varIs" was success!")
+      ans2 = @a.pressInsert("a".varIs" was success!")
       assert_equal(ans2, "<a>test was success!-> yes!</a>")
       
     end
 
+    test "add label case 5, no pressDefault" do
+ 
+      @a.content = "test" + "a".variable + "-> yes!"
+      ans = @a.pressInsert("a".varIs" is done")
+      assert_equal(ans, "<a>test is done-> yes!</a>")
+
+      #retry
+      ans2 = @a.pressInsert("a".varIs" was success!")
+      assert_equal(ans2, "<a>test was success!-> yes!</a>")
+      
+    end
+
+    
     test "add labels" do
 
       @a.content = "test" + "a".variable + "b".variable

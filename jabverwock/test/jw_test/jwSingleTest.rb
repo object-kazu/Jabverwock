@@ -86,7 +86,7 @@ module Jabverwock
       @t.name="j"
       @t.content = "test" + "a".variable
       @t.pressDefault
-      ans = @t.pressAInsert("a".varIs" is done")
+      ans = @t.pressInsert("a".varIs" is done")
       assert_equal(ans, "<j>test is done</j>")
 
     end
@@ -95,7 +95,7 @@ module Jabverwock
       @t.name="j"
       @t.content = "test" + "a".variable + "-> yes!"
       @t.pressDefault
-      ans = @t.pressAInsert("a".varIs" is done")
+      ans = @t.pressInsert("a".varIs" is done")
       assert_equal(ans, "<j>test is done-> yes!</j>")
       
     end
@@ -104,11 +104,11 @@ module Jabverwock
       @t.name="j"
       @t.content = "test" + "a".variable + "-> yes!"
       @t.pressDefault
-      ans = @t.pressAInsert("a".varIs" is done")
+      ans = @t.pressInsert("a".varIs" is done")
       assert_equal(ans, "<j>test is done-> yes!</j>")
 
       #retry
-      ans2 = @t.pressAInsert("a".varIs" was success!")
+      ans2 = @t.pressInsert("a".varIs" was success!")
       assert_equal(ans2, "<j>test was success!-> yes!</j>")
       
     end

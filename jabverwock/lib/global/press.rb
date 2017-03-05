@@ -16,7 +16,7 @@ module Jabverwock
     
     attr_writer  :templeteString
     attr_reader  :resultString
-    
+    attr_accessor :exportPath, :exportFile
     
     def initialize
       # js
@@ -24,12 +24,19 @@ module Jabverwock
       # html & css
       @templeteString = "" #// Labelによる書き換え前のStringを保持
       @resultString = "" # // Labelによる書き換え後の最終String
+
+      @exportPath = $EXPORT_TEST_Dir
+      @exportFile = $EXPORT_TEST_File
       
     end
 
     # for confirmation and test method
     def showTempleteString
       @templeteString
+    end
+
+    def isResultStringEmpty
+      @resultString == "" ? true : false 
     end
     
     def initResutString
@@ -70,7 +77,7 @@ module Jabverwock
       initResutString
       insertData(insertData)
       removeAllLabel
-      core(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
+      core
     end
 
     def withInsertEach(insertData)
@@ -82,33 +89,21 @@ module Jabverwock
       end
       
       removeAllLabel
-      core(name: $EXPORT_TEST_File, dist: $EXPORT_TEST_Dir)
+      core
     end
 
     
-    #  // templateString -> resultString -> export
-    def core(name:, dist:)
-      name = KString.checkString(name)
-      dist = KString.checkString(dist)
+    #  // templeteString -> resultString -> export
+    def core
+      pathName = @exportPath + @exportFile
 
-      exportResult(name: name, dist: dist)
-    end
-    
-    def exportResult(name:$EXPORT_TEST_File, dist:$EXPORT_TEST_Dir)
-      name = KString.checkString(name)
-      dist = KString.checkString(dist)
-      pathName = dist + name
-      
       File.open(pathName, "w") do |f| 
         f.puts @resultString
       end
-
-      @resultString
-
+      
     end
     
+    
   end
-
-  
 end
 
