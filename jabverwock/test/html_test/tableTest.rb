@@ -86,7 +86,7 @@ module Jabverwock
     
     test "add caption" do
       t = JWTable.new
-      t.caption = "test"
+      t.caption "test"
       assert_equal(t.pressDefault, "<table>\n\t<caption>test</caption>\n</table>")
       
 #         /* answer
@@ -100,23 +100,22 @@ module Jabverwock
 
     test "add header"do
       t = JWTable.new
-      t.caption = "test"
+      t.caption "test"
       t.headerList = ["name","address","tel"]
       ans = t.pressDefault
-      l1= "<table>"
-      l2="<caption>test</caption>"
-      l3="<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>"
-      l4= "<tr></tr>"
+      l1= "<table>\n"
+      l2="\t<caption>test</caption>\n"
+      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
       lend="</table>"
 
-      assert_equal(ans,l1 + "\n\t"+ l2 + "\n\t"+ l3 + "\n\t" + l4 + "\n" + lend)      
+      assert_equal(ans,l1 + l2 + l3 + lend)      
     end
 
     test "add data" do
       t = JWTable.new
-      t.caption = "test"
+      t.caption "test"
       t.headerList = ["name","address","tel"]
-      t.dataList = ["line1", "shi", "tokyo", "03000000"]
+      t.addRows ["line1", "shi", "tokyo", "03000000"]
       ans = t.pressDefault
       
       l1= "<table>\n"
@@ -127,12 +126,11 @@ module Jabverwock
       assert_equal(ans,l1 + l2 + l3 + l4 + lend)      
     end
 
-    test "add data , case addRow use" do
-      t = JWTable.new
-      t.caption = "test"
+    test "add data , case addRows use" do
+      t = JWTable.new.caption "test"
       t.headerList = ["name","address","tel"]
       
-      t.addRow (["line1", "shi", "tokyo", "03000000"])
+      t.addRows (["line1", "shi", "tokyo", "03000000"])
       ans = t.pressDefault
       
       l1= "<table>\n"
@@ -145,54 +143,50 @@ module Jabverwock
 
 
     
-    test "addRow case 1" do
-      t = JWTable.new
-      t.caption = "test"
+    test "addRows case 1" do
+      t = JWTable.new.caption "test"
       t.headerList = ["name","address","tel"]
       
       list1 = ["line1", "shi", "tokyo", "03000000"]
       
-      t.addRow list1
-      assert_equal(t.dataList, list1)
+      t.addRows list1
+      assert_equal(t.rows, [list1])
     end
 
-    test "addRow case 2" do
+    test "addRows case 2" do
       t = JWTable.new
-      t.caption = "test"
+      t.caption "test"
       t.headerList = ["name","address","tel"]
       
       list1 = ["line1", "shi", "tokyo", "03000000"]
       
-      t.dataList = list1
-      assert_equal(t.dataList, list1)
+      t.addRows list1
+      assert_equal(t.rows, [list1])
     end
     
-
-    
-    test "addRow case 3" do
+    test "addRows case 3" do
       t = JWTable.new
-      t.caption = "test"
+      t.caption "test"
       t.headerList = ["name","address","tel"]
       
       list1 = ["line1", "shi", "tokyo", "03000000"]
       list2 = ["line2", "shi2", "tokyo2", "030000002"]
     
       
-      t.dataList = ["line1", "shi", "tokyo", "03000000"]
-      t.addRow ["line2", "shi2", "tokyo2", "030000002"]
-      assert_equal(t.dataList, [ list1, list2 ])
+      t.addRows ["line1", "shi", "tokyo", "03000000"]
+      t.addRows ["line2", "shi2", "tokyo2", "030000002"]
+      assert_equal(t.rows, [ list1, list2 ])
     end
 
-    test "addRow case 4" do
-      t = JWTable.new
-      t.caption = "test"
+    test "addRows case 4" do
+      t = JWTable.new.caption "test"
       t.headerList = ["name","address","tel"]
       
       list1 = ["line1", "shi", "tokyo", "03000000"]
       list2 = ["line2", "shi2", "tokyo2", "030000002"]
     
-      t.addRow([list1, list2])
-      assert_equal(t.dataList, [ list1, list2 ])
+      t.addRows list1,list2
+      assert_equal(t.rows, [ list1, list2 ])
     end
 
     test "isDoubleArray, false" do
@@ -213,7 +207,7 @@ module Jabverwock
 
     test "dataTreatment, false" do
       t = JWTable.new
-      assert_false t.dataTreatment
+      assert_false(t.dataTreatment)
       
     end
 
@@ -222,8 +216,8 @@ module Jabverwock
       list1 = ["line1", "shi", "tokyo", "03000000"]
       list2 = ["line2", "shi2", "tokyo2", "030000002"]
     
-      t.addRow list1
-      assert_false t.dataTreatment
+      t.addRows list1
+      assert_true(t.dataTreatment)
     end
     
     test "dataTreatment, true" do
@@ -231,8 +225,8 @@ module Jabverwock
       list1 = ["line1", "shi", "tokyo", "03000000"]
       list2 = ["line2", "shi2", "tokyo2", "030000002"]
     
-      t.addRow([list1,list2])
-      assert_true t.dataTreatment
+      t.addRows list1,list2
+      assert_true(t.dataTreatment)
     end
 
     test "addTableDataList case 1" do
@@ -244,36 +238,54 @@ module Jabverwock
       
     end
     
-
     test "addTableDataList case 2" do
       t = JWTable.new
       list1 = ["line1", "shi", "tokyo", "03000000"]
       list2 = ["line2", "shi2", "tokyo2", "030000002"]
       
       t.addTableDataList [list1, list2]
-            
+
+    end
+    
+    test "addTableDataList case 4" do
+      t = JWTable.new
+      list1 = ["line1", "shi", "tokyo", "03000000"]
+      list2 = ["line2", "shi2", "tokyo2", "030000002"]
+      list3 = ["line1", "shi", "tokyo", "03000000"]
+      
+      t.addTableDataList [list1, list2, list3]
+      p t.tgStr
+    end
+    
+    test "add rows case" do
+      t = JWTable.new
+      t.addRows ["line1", "shi", "tokyo", "03000000"]
+      t.addRows ["line2", "shi2", "tokyo2", "030000002"]
+      t.addRows ["line1", "shi", "tokyo", "03000000"]
+      
+      p "rows is"
+      p t.dataTreatment
     end
 
+    
     test "addTableDataList case 3" do
       t = JWTable.new
       t.headerList = ["name","address","tel"]
       
       list1 = ["line1", "shi", "tokyo", "03000000"]
       list2 = ["line2", "shi2", "tokyo2", "030000002"]
-      t.addRow [list1,list2]
+      t.addRows list1,list2
       
       
-      t.addTableDataList t.dataList
+      t.addTableDataList t.rows
       p t.childStringArray
     end
 
-    
     test "add data case 2" do
-      t = JWTable.new
-      t.caption = "test"
+      t = JWTable.new.caption "test"
       t.headerList = ["name","address","tel"]
-      t.dataList = ["line1", "shi", "tokyo", "03000000"]
-      t.addRow ["line2", "shi2", "tokyo2", "030000002"]
+      t.addRows ["line1", "shi", "tokyo", "03000000"]
+      t.addRows ["line2", "shi2", "tokyo2", "030000002"]
       
       ans = t.pressDefault
       
@@ -289,31 +301,30 @@ module Jabverwock
 
     test "add data case brank" do
       t = JWTable.new
-      t.caption = "test"
+      t.caption "test"
       t.headerList = ["name","address","tel"]
-      t.dataList = ["line1", "shi", "tokyo", "03000000"]
-      t.addRow [$BR, "shi2", "tokyo2", "030000002"]
+      t.addRows ["line1", "shi", "tokyo", "03000000"]
+      t.addRows [$BR, "shi2", "tokyo2", "030000002"]
       
       ans = t.pressDefault
       
-      l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
-      l4="\t<tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
-      l5="\t<tr><td><br></td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
-
-      lend="</table>"
-      assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)      
+      l1 = "<table>\n"
+      l2 = "\t<caption>test</caption>\n"
+      l3 = "\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
+      l4 = "\t<tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
+      l5 = "\t<tr><td><br></td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
+      lend = "</table>"
+      assert_equal(ans, l1 + l2 + l3 + l4 + l5 + lend)      
     end
 
     test "add rowSpan" do
       t = JWTable.new
-      t.caption = "test"
+      t.caption "test"
       hl = %w(name address tel)
             
       t.headerList = hl
-      t.dataList = ["line1".rowSpan(2), "shi", "tokyo", "03000000"]
-      t.addRow ["line2", "shi2", "tokyo2", "030000002"]
+      t.addRows ["line1".rowSpan(2), "shi", "tokyo", "03000000"]
+      t.addRows ["line2", "shi2", "tokyo2", "030000002"]
       
       ans = t.pressDefault
       
@@ -322,13 +333,75 @@ module Jabverwock
       l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
       l4="\t<tr><td rowspan=\"2\">line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
       l5="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
-
       lend="</table>"
       assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)      
-      
-      
+            
     end
-    
+
+    test "check adding row order" do
+      t = JWTable.new
+      t.caption "test"
+      hl = %w(name address tel)
+            
+      t.headerList = hl
+      t.addRows ["line2", "shi2", "tokyo2", "030000002"]
+      t.addRows %w{line3 shi3 tokyo3 111}
+      ans = t.pressDefault
+      
+      l1= "<table>\n"
+      l2="\t<caption>test</caption>\n"
+      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
+      l4="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
+      l5 = "\t<tr><td>line3</td><td>shi3</td><td>tokyo3</td><td>111</td></tr>\n"
+      
+      lend="</table>"
+      assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)
+
+                        
+    end
+
+
+    test "no headerList" do
+      t = JWTable.new
+      t.caption "test"
+
+      t.addRows ["line2", "shi2", "tokyo2", "030000002"]
+      t.addRows ["line22", "shi22", "tokyo22", "0300000022"]
+
+      ans = t.pressDefault
+      
+      l1= "<table>\n"
+      l2="\t<caption>test</caption>\n"
+      l3="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"      
+      l4="\t<tr><td>line22</td><td>shi22</td><td>tokyo22</td><td>0300000022</td></tr>\n"      
+      lend="</table>"
+
+      assert_equal(ans,l1 + l2 + l3 + l4 + lend) 
+            
+            
+    end
+
+    test "add row x3" do
+      t = JWTable.new
+      t.caption "test"
+
+      t.addRows ["line2", "shi2", "tokyo2", "030000002"]
+      t.addRows ["line22", "shi22", "tokyo22", "0300000022"]
+      t.addRows ["line22", "shi22", "tokyo22", "0300000022"]
+      
+      ans = t.pressDefault
+
+      l1= "<table>\n"
+      l2="\t<caption>test</caption>\n"
+      l3="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"      
+      l4="\t<tr><td>line22</td><td>shi22</td><td>tokyo22</td><td>0300000022</td></tr>\n"      
+      lend="</table>"
+
+      assert_equal(ans,l1 + l2 + l3 + l4 + l4 + lend) 
+            
+            
+    end
+
     
   end
 end

@@ -18,6 +18,7 @@ module Jabverwock
   using StringExtension
   class TagManager
     attr_accessor :name, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString #:id, :cls,
+    attr_accessor :withBreak
     
     def initialize
       resetTags
@@ -38,7 +39,8 @@ module Jabverwock
       
       #img, meta tag
       @closeStringNotRequire = false
-      
+
+      @withBreak = false
     end
     
     ####### add attribute #############################
@@ -113,11 +115,11 @@ module Jabverwock
 #         if isScriptTag() {
 #             return scriptTag()
 #         }
-      
-      
+            
       addAttribute
       @tempOpenString = "<" + @name + @attributeString + ">"
     end
+    
     
     def closeString
       if @name == ""
@@ -127,13 +129,16 @@ module Jabverwock
         return ""
       end
       
-      
       if isHrTag
-        return @tempCloseString = "<" + @name  + ">"
+        @tempCloseString = "<#{@name}>"
+        if @withBreak
+          @tempCloseString << $BR
+        end
+        return @tempCloseString
       end
-
+      
       if isBrTag
-        return @tempCloseString = "<#{name}>"
+        return @tempCloseString = "<#{@name}>"
       end
 
       # closeStringNotRequire => bool値に変更する      
@@ -150,7 +155,10 @@ module Jabverwock
         return @tempCloseString = ""
       end
         
-      @tempCloseString = "</" + @name  + ">"
+      @tempCloseString = "</#{@name}>"
+      if @withBreak
+        @tempCloseString << $BR
+      end
     end
     
   end

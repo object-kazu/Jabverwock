@@ -75,7 +75,7 @@ module Jabverwock
     
 
     
-    ## Constant BR test
+    ### Constant BR test
     test "new test BR" do
       assert_equal($BR, "<br>")
     end
@@ -84,7 +84,18 @@ module Jabverwock
       pp = P.new.contentIs "this is test,#{$BR} for you "
       assert_equal(pp.tgStr, "<p>this is test,<br> for you </p>")
     end
-    
+
+    test "withBreak" do
+      pp = P.new.contentIs "test"
+      pp.withBreak
+      assert_equal(pp.tgStr, "<p>test</p><br>")
+    end
+
+    test "not withBreak" do
+      pp = P.new.contentIs "test"
+      assert_equal(pp.tgStr, "<p>test</p>")
+      
+    end
   end
 end
  

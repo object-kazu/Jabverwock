@@ -26,18 +26,24 @@ module Jabverwock
   
   class JWTable < JWMulti
 
-    attr_accessor :caption, :headerList, :dataList
+    attr_accessor  :headerList
+    attr_reader :rows
     
     def initialize
       super
       @caption    = ""
       @headerList = []
-      @dataList   = []
+      @rows   = []
 
       @name = "table"
       @tagManager.name = @name
     end
 
+    def caption(str)
+      @caption = str
+      self
+    end
+    
     def addCaption
       unless @caption.empty?
         c = TableCaption.new
@@ -66,11 +72,11 @@ module Jabverwock
     end
 
     def dataTreatment
-      if isDoubleArray(@dataList)
-        addTableDataList(@dataList)
+      if isDoubleArray(@rows)
+        addTableDataList(@rows)
         return true # confirm code,for test
       else
-        addTableData(@dataList)
+        addTableData(@rows)
         return false # confirm code, for test
       end
     end
@@ -80,17 +86,22 @@ module Jabverwock
     end
     
     # data -> [[1,1,1],[1,1,1]]
-    def addTableDataList(arr)      
-      arr.each do |array|
-        addTableData(array)
+    def addTableDataList(arr)
+      
+      unless arr[0].is_a? Array
+        return addTableData arr
       end
+      
+      arr.each do |a|
+        addTableData(a)
+      end
+      
     end
         
     # data -> [1,1,1]
     def addTableData(arr)
       dataString = ""
-
-      if @headerList.count > 0
+      if arr.count > 0
         tr = TableRow.new
         arr.each do |hl|
           dataString += tdTreatment(hl)
@@ -98,6 +109,15 @@ module Jabverwock
         tr.content = dataString
         @childStringArray << tr.tgStr
       end
+      
+      # if @headerList.count > 0
+      #   tr = TableRow.new
+      #   arr.each do |hl|
+      #     dataString += tdTreatment(hl)
+      #   end
+      #   tr.content = dataString
+      #   @childStringArray << tr.tgStr
+      # end
     end
 
     def tdTreatment (str)
@@ -107,7 +127,7 @@ module Jabverwock
       eachDataString += h.tgStr          
     end
     
-    def addRow(*arr)
+    def addRows (*arr)
       unless arr[0].is_a?(Array)
         return addRowEach(arr)
       end
@@ -118,22 +138,7 @@ module Jabverwock
     end
     
     def addRowEach (arr)
-      if @dataList.count == 0
-        @dataList = arr
-        return @dataList
-      end
-      
-      unless arr.is_a?(Array)
-        @dataList += arr
-        return @dataList
-      end
-
-      if arr[0].is_a?(Array)
-        @dataList << arr
-        return @dataList
-      end
-      
-      @dataList = [@dataList, arr]
+      @rows << arr
     end
     
     ### override ###
@@ -262,7 +267,7 @@ module Jabverwock
   
  # p a = TABLE.new
  # p b = JWTable.new
- # b.dataList = ["a","b"]
+ # b.rows = ["a","b"]
  # p b.pressDefault
  
 end

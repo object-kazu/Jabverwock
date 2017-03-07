@@ -21,8 +21,8 @@ module Jabverwock
     list  = [:id,:cls,:href,:lang, :target]
     list += [:name, :http_equiv,:content,:charset,:scheme]
     list += [:accesskey,:contenteditable,:dir, :hidden, :spellcheck, :style, :tabindex,:title,:translate]
-    list += [:rowspan, :colspan]
-    list += [:src]
+    list += [:rowspan, :colspan, :border]
+    list += [:src, :alt, :width, :height]
     self.define_attributes list
        
     def initialize

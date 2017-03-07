@@ -4,7 +4,7 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
 
-  $SA = "sample"
+  $SA = "sample4"
   $PAGES =  %w(home about contact)
 
   

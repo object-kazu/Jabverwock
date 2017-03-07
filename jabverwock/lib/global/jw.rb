@@ -30,6 +30,7 @@ module Jabverwock
       @memberStringArray   = []
       @pressVal       = Press.new ## input -> templeteString, output -> resultString
       @tagManager     = TagManager.new
+      @isWithBreak      = false
     end
 
     def attr(tag, val)
@@ -37,6 +38,11 @@ module Jabverwock
       self
     end
 
+    def withBreak(with = true)
+      @isWithBreak = with
+      self
+    end
+    
     # ex) @tagManager.Id = id
     # mainAttr.each do |attr| 
     #   define_method "#{attr}=" do |val|
@@ -105,6 +111,7 @@ module Jabverwock
     end
     
     def makeTag
+      @tagManager.withBreak = @isWithBreak
       @tagManager.openString
       @tagManager.closeString
     end
