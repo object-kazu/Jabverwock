@@ -140,6 +140,43 @@ module Jabverwock
       pr.removeAllLabel
       pr.core
     end
+
+    test "isExistHeadTag case false" do
+      
+      pr = Press.new
+      pr.templeteString = "<p>this is test</p>"
+      pr.initResutString
+      assert_false(pr.isExistHeadTag)
+      
+    end
+
+    test "isExistHeadTag case false 2" do
+      
+      pr = Press.new
+      pr.templeteString = "<head>this is test</p>"
+      pr.initResutString
+      assert_false(pr.isExistHeadTag)
+      
+    end
+
+    test "isExistHeadTag case false 3" do
+      
+      pr = Press.new
+      pr.templeteString = "<p>this is test</head>"
+      pr.initResutString
+      assert_false(pr.isExistHeadTag)
+      
+    end
+
+    test "isExistHeadTag case true" do
+      
+      pr = Press.new
+      pr.templeteString = "<head>this is test</head>"
+      pr.initResutString
+      assert_true(pr.isExistHeadTag)
+      
+    end
+
     
   end
 end

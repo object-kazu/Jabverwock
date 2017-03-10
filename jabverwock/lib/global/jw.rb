@@ -123,6 +123,8 @@ module Jabverwock
       makeTag
       makeResult
       memberAssemble
+      @pressVal.templeteString = @templeteString
+
     end
 
     def pressConfig(name:, dist:)
@@ -172,7 +174,6 @@ module Jabverwock
         
 ###      end
       
-      @pressVal.templeteString = @templeteString
       @pressVal.initResutString      
       @pressVal.removeAllLabel
     end

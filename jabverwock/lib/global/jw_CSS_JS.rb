@@ -64,6 +64,7 @@ module Jabverwock
     end
 
     def applyJS
+      # koko now
       # js collect from child and member
       # js code import into <script> tag
       
@@ -72,14 +73,8 @@ module Jabverwock
     ### override ###
     def assemble
       @templeteString = ""
-      
-      if @tagManager.name == ""
-        @tagManager.name = @name        
-      end
-      makeTag
-      makeResult
-      memberAssemble
-      applyCss(@css, @cssArray)
+      assembleHTML
+      assembleCSS      
       applyJS
       
     end

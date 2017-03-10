@@ -54,13 +54,14 @@ module Jabverwock
       if result.count == 0
         return ""
       end
-       result.join("\n")
+       result.join("\n\t")
     end
     
     # format of property is difference
     # ex)
     # font: "Helvetica" => "" 
     # font-size: 12px   => no ""    
+    
     private
     def vars
       result = []

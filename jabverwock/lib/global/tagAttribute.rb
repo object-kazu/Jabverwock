@@ -21,7 +21,7 @@ module Jabverwock
     list  = [:id,:cls,:href,:lang, :target]
     list += [:name, :http_equiv,:content,:charset,:scheme]
     list += [:accesskey,:contenteditable,:dir, :hidden, :spellcheck, :style, :tabindex,:title,:translate]
-    list += [:rowspan, :colspan, :border, :cellpadding]
+    list += [:rowspan, :colspan, :border, :cellpadding, :cellspacing]
     list += [:src, :alt, :width, :height]
     self.define_attributes list
        

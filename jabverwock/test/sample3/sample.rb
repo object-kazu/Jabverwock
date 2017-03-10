@@ -47,8 +47,8 @@ module Jabverwock
   html.addChild header
   html.addChild bodier
 
-  EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
-  #EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
+   EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
+  # EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
   
   $PAGES.each do |pp|
     if pp == "home"

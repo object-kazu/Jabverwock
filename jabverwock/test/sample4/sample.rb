@@ -5,7 +5,7 @@ module Jabverwock
   using ArrayExtension
 
   $SA = "sample4"
-  $PAGES =  %w(home about contact)
+  $PAGES =  %w(home)
 
   
   html= HTML.new
@@ -19,26 +19,13 @@ module Jabverwock
 
     head
   end
-
-  def self.aList
-    
-    arr = []
-    $PAGES.each do |a|
-      tdash = a + ".html"
-      t = A.new.contentIs(a).attr(:href, tdash).withBreak
-      arr << t
-    end
-    arr
-  end
   
   def self.bodier
     body = BODY.new    
-    heading = HEADING.new(1).contentIs "a".variable
+    heading = HEADING.new(1).contentIs "Home page"
+    heading.css.color("green")
     
     body.addChild heading
-    
-    al = aList
-    body.addChildren al
     
     body
   end
@@ -47,8 +34,8 @@ module Jabverwock
   html.addChild header
   html.addChild bodier
 
-  EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
-  #EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
+  # EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample4/"
+    EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample4/"
   
   $PAGES.each do |pp|
     if pp == "home"

@@ -38,37 +38,44 @@ module Jabverwock
     def cssStringInit
       @cssString = ""
     end
-    
-    # applyCss(@css, @cssArray)
-    def applyCss(css, cssArray)
-      cssAssemble(css, cssArray)
-      
-      # 検索のためにStyle tag生成
-      j = JW_CSS.new
-      j.tagManager.name = "jwcss"
-      j.makeTag
-            
-      if @templeteString.include?(j.tagManager.tempOpenString) &&
-         @templeteString.include?(j.tagManager.tempCloseString)
-        
-        # insert tab
-        tn = KString.getTabNumber @templeteString
-        tabedString = KString.addTab(str: @templeteString, num: tn)
-                
-        #replace text
-        #余分なTabをDelete
-        target = ""
-        tn.times do
-          target += $TAB
-        end
-        target += $STYLE_CONTENT
 
-        # TAB + TAB + STYLE_CONTENT -> STYLE_CONTENT
-        @templeteString.gsub!(/#{target}/, $STYLE_CONTENT)
-        @templeteString.gsub!(/#{$STYLE_CONTENT}/, tabedString)
-        
+    def addCss (*css) #change arg, that is array
+      css.each do |c|
+        if c.name == ""
+          c.name = @css.name
+        end        
+      end
+      @cssArray += css      
+    end
+    
+    def applyCss
+      cssStringInit
+      tcs = tabedCss
+
+      unless tcs == ""
+        convertStyleTag tcs
       end
       
+    end
+
+    def tabedCss
+      ans = cssAssemble(@css, @cssArray)
+      KString.addTabEachLine ans      
+    end
+    
+    def convertStyleTag(str)
+      tabbedEachLine = KString.addTabEachLine str
+      styStart   = "<style>\n"
+      styContent = "#{tabbedEachLine}\n"
+      styEnd     = "\t</style>\n"
+        
+      styTag = styStart << styContent << styEnd
+      tabbedStyTag = KString.addTabEachLine styTag
+
+      # koko now
+      # head tagがないとなにもない仕様にしてある
+      # 外部ファイルに書き出す機能を追加するか？
+      @pressVal.applyStyle tabbedStyTag  
     end
     
     # change to function as cssAssemble need arguments
@@ -77,7 +84,6 @@ module Jabverwock
       @nameList = []
       tCssArray = makeCssArray(css, cssArray)
 
-      
       tCssArray.each do |cs|
         
         #  スタイルがない（｛｝のみ）なら標示しない
@@ -93,6 +99,7 @@ module Jabverwock
        @cssString.removeLastRET
     end
     
+
     def isExistCssString(str)
       
       if str == nil
@@ -114,7 +121,7 @@ module Jabverwock
       return true
     end
     
-    
+
     def makeCssArray (css, cssArray)
       temCssArray = []
       
@@ -128,6 +135,7 @@ module Jabverwock
       return temCssArray
     end
     
+
     def isSameCSSName(name)
       @nameList.each do |n |
         if n == name
@@ -154,22 +162,24 @@ module Jabverwock
       if member.is_a? JW 
         addJS(member)
         addHTML(member)
-        addCSS(member)
+        addCSSmember(member)
       end
     end
 
-    def addCSS(member)
+    def addCSSmember(member)      
       if member.cssArray.count > 0
         @cssArray += member.cssArray
       end
+      
+      @cssArray << member.css
+      # if member.css != nil
+      #   @cssArray << member.css
+      # end
 
-      if member.css != nil
-        @cssArray << member.css
-      end
     end
     
     def addHTML(member)
-      member.assemble
+      member.assembleHTML
       addMemberString(member.templeteString)
     end
     
@@ -188,15 +198,23 @@ module Jabverwock
     
     #########  press ###########
     ### override ###
-    def assemble
-   
+    def assembleHTML
       if @tagManager.name == ""
         @tagManager.name = @name        
       end
       makeTag
       makeResult
       memberAssemble
-      applyCss(@css, @cssArray)
+    end
+    
+    def assembleCSS
+      @pressVal.templeteString = @templeteString
+      applyCss
+    end
+    
+    def assemble
+      assembleHTML
+      assembleCSS
    
     end
   end

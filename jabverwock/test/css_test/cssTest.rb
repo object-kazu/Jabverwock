@@ -1,7 +1,16 @@
 require 'test/unit'
 require '../../lib/global/globalDef'  
 require '../../lib/css/css'
-require '../../lib/css/property'
+
+require '../../lib/global/globalDef'  
+require '../../lib/global/jw'  
+require "../../lib/global/jwMulti"
+require "../../lib/global/jwOneTag"
+require "../../lib/global/jwSingle"
+require "../../lib/global/jwTable"
+require "../../lib/global/jw_CSS"
+require "../../lib/global/jw_CSS_JS"
+require "../../lib/global/press"
 
 
 module Jabverwock
@@ -59,35 +68,35 @@ module Jabverwock
       @css.name = "head"
       @css.font_size = 10
       assert_equal(@css.str,
-                   "head {\nfont-size: 10;\n}")
+                   "head {\n\tfont-size: 10;\n}")
     end
 
     test "property default method, not chain" do
       @css.name = "head"
       @css.font_size = 10
       @css.color = "red"
-      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(@css.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n}")
     end
 
     test "property method chain" do      
       @css.name = "head"
       @css.font_size("10").color("red")
 
-      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(@css.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n}")
     end
 
     test "property method chain case 2" do
       
       @css.name = "head"
       @css.font_size("10").color("red").font_style("bold")
-      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
+      assert_equal(@css.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n\tfont-style: bold;\n}")
     end
 
 
     test "css name define" do
       c = CSS.new("head")
       c.font_size("10").color("red").font_style("bold")
-      assert_equal(c.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
+      assert_equal(c.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n\tfont-style: bold;\n}")
     end
    
     

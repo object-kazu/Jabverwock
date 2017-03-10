@@ -28,28 +28,7 @@ module Jabverwock
     def initialize(name)
       super
     end
-    
-    # def self.newWithJWObject(jwObject)
-    #   if !jwObject.is_a?(JWObject)
-    #     p "arg should be JWObject"
-    #     raise RuntimeError
-    #   end
-      
-    #   objc = self.new
-    #   objc.name = jwObject.tagName
-    #   # 今のところ実装していないのでコメントアウトしておく
-    #   #      objc.property = jwObject.style.property
-
-    #   objc
-    # end
-
-    # def addProperty (p)
-    #   if p.is_a?(Property)
-    #     @property = p
-    #   end
-    #   self
-    # end
-    
+        
     def str
       @cssResultString = ""
       if @name.empty?

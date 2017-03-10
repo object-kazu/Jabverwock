@@ -1,3 +1,8 @@
+##
+## koko now
+# id, cls, nameがあるときは、自動的にセレクターを挿入するように！
+
+
 # ## String extension ############
 module StringExtension
   
@@ -96,8 +101,7 @@ end
 module Jabverwock
   using StringExtension
   using ArrayExtension
-  
-
+ 
   
   # global constant ############
 
@@ -121,6 +125,7 @@ module Jabverwock
   $BR      = "<br>"
   $ROW_SPAN = "%rowSpan="
   $COL_SPAN = "%colSpan="
+  
   module KSUtil
     class << self
       def callSelfCls(cls)
@@ -252,6 +257,14 @@ module Jabverwock
           tn = tabCount(l)
           df = tabMax - tn
           ans += addHeadTab(str: l, num: df)
+        }
+        ans
+      end
+
+      def addTabEachLine (str)
+        ans = ""
+        str.each_line { |l|
+          ans += addHeadTab(str: l, num: 1)
         }
         ans
       end
