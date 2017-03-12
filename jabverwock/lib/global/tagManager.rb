@@ -142,11 +142,8 @@ module Jabverwock
       end
 
       # closeStringNotRequire => bool値に変更する      
-        # // not require
-        # /// meta, img
-        # if spec == NOT_REQUIRE {
-        #     return ""
-        # }
+      # // not require
+      # /// meta, img
       if closeStringNotRequire
         return "" # no close string
       end

@@ -28,7 +28,23 @@ module Jabverwock
     def initialize(name)
       super
     end
-        
+
+    def andSelectorIs(*sel)
+      name = ""
+      sel.each do |s|
+        next name << s if name == ""
+        name << "," << s
+      end
+
+      if @name == ""
+        @name << name
+      else
+        @name << "," << name
+      end
+      
+      self
+    end
+    
     def str
       @cssResultString = ""
       if @name.empty?

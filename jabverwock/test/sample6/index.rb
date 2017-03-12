@@ -37,7 +37,7 @@ module Jabverwock
     body.addChild heading
     body.addChild head2
 
-    c = CSS.new("").addSelectors heading.tag, head2.tag
+    c = CSS.new("").andSelectorIs heading.tag, head2.tag
     # c = CSS.new("h1,h2")
     c.color "blue"
     body.addCss c

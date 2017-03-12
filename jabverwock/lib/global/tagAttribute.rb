@@ -18,7 +18,7 @@ module Jabverwock
   
   class TagAttribute < TagAttributeTemplete
 
-    list  = [:id,:cls,:href,:lang, :target]
+    list  = [:id,:cls,:href,:lang, :target, :type, :rel]
     list += [:name, :http_equiv,:content,:charset,:scheme]
     list += [:accesskey,:contenteditable,:dir, :hidden, :spellcheck, :style, :tabindex,:title,:translate]
     list += [:rowspan, :colspan, :border, :cellpadding, :cellspacing]
