@@ -29,6 +29,25 @@ module Jabverwock
     end
     
     ########## CSS #############
+    def usageCSS
+    <<-MEMO_css
+        - id, clsが設定されている場合
+          name + {id,cls} + {css}
+          p #id {color:red;}
+          p .cls {color:red;}
+
+        - id, clsが設定されていない場合
+          p {color:red;}
+
+        - id, clsのみを設定したい場合
+          a = CSS.new(".sample") // cls
+          a = CSS.new("#sample") // id
+          addCss a 
+        
+    MEMO_css
+      
+    end
+    
     
     def cssWithName (name)
       name = KString::checkString(name)
@@ -50,38 +69,49 @@ module Jabverwock
     
     def applyCss
       cssStringInit
-      tcs = tabedCss
+      atcs = assembleTabedCss
 
-      unless tcs == ""
-        convertStyleTag tcs
+      unless atcs == ""
+        tgCss = intoStyleTag atcs
+        addAssembeTabbedStyle tgCss
       end
       
     end
 
-    def tabedCss
+    def assembleTabedCss
       ans = cssAssemble(@css, @cssArray)
       KString.addTabEachLine ans      
     end
     
-    def convertStyleTag(str)
+    def intoStyleTag(str)
       tabbedEachLine = KString.addTabEachLine str
       styStart   = "<style>\n"
       styContent = "#{tabbedEachLine}\n"
       styEnd     = "\t</style>\n"
         
       styTag = styStart << styContent << styEnd
-      tabbedStyTag = KString.addTabEachLine styTag
-
+      KString.addTabEachLine styTag
+    end
+    
+    def addAssembeTabbedStyle(str)
       # koko now
       # head tagがないとなにもない仕様にしてある
       # 外部ファイルに書き出す機能を追加するか？
-      @pressVal.applyStyle tabbedStyTag  
+      @pressVal.applyStyle str
+      
     end
     
     # change to function as cssAssemble need arguments
     # ex) cssAssemble(@css, @cssArray)
     def cssAssemble(css, cssArray)
       @nameList = []
+
+      <<-CSSpropertyTreatment
+        - cssのみはid,clsの処理を追加
+        - cssArrayの中身は処理しない
+        -＞ cssArrayに追加するときに処理するため
+      CSSpropertyTreatment
+      css.name = add_ID_CLS_NAME css.name
       tCssArray = makeCssArray(css, cssArray)
 
       tCssArray.each do |cs|
@@ -98,7 +128,17 @@ module Jabverwock
       
        @cssString.removeLastRET
     end
-    
+
+    def add_ID_CLS_NAME(name)
+      tmpName = name
+      if isExistID
+        tmpName << " #{selectorID}"        
+      end
+      if isExistCls
+        tmpName << " #{selectorCls}"
+      end
+      tmpName
+    end
 
     def isExistCssString(str)
       
@@ -166,16 +206,16 @@ module Jabverwock
       end
     end
 
-    def addCSSmember(member)      
+    def addCSSmember(member)
+      
       if member.cssArray.count > 0
         @cssArray += member.cssArray
       end
       
+      # id, cls add to css name
+      cssRename = member.add_ID_CLS_NAME member.css.name      
+      member.css.name = cssRename
       @cssArray << member.css
-      # if member.css != nil
-      #   @cssArray << member.css
-      # end
-
     end
     
     def addHTML(member)

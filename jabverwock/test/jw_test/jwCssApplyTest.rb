@@ -78,15 +78,18 @@ module Jabverwock
       c.font_size(10)
       
       j1.addCss c
+      s = j1.assembleTabedCss
+      ss = j1.intoStyleTag s
       
-      ans = "jw_css {\n\tfont-size: 10;\n}"
+      
+      ans = "jw_css {\nfont-size: 10;\n}"
 
       
       styStart   = "<style>\n"
-      styContent = "\t#{ans}\n"
+      styContent = "#{ans}\n"
       styEnd     = "</style>\n"
       styAns = styStart << styContent << styEnd
-      assert_equal(j1.applyCss, styAns)
+      assert_equal(ss.removeAllTab, styAns.removeAllTab)
       
     end
 
@@ -100,11 +103,12 @@ module Jabverwock
       cc.color("blue")
       
       j1.addCss c, cc
+      s = j1.assembleTabedCss
       
       ans = "jw_css {\n\tcolor: red;\n\tfont-size: 10;\n}"
       ans2 = "\np {\n\tcolor: blue;\n}"
-      
-      assert_equal(j1.showCssString, ans + ans2)
+      ans3 = ans + ans2
+      assert_equal(s.removeAllTab, ans3.removeAllTab)
             
     end
     
@@ -118,6 +122,8 @@ module Jabverwock
       cc.color("blue")
       
       j1.addCss c, cc
+      s = j1.assembleTabedCss
+      ss = j1.intoStyleTag s
       
       ans = "jw_css {\n\tcolor: red;\n\tfont-size: 10;\n}"
       ans2 = "p {\n\tcolor: blue;\n}"
@@ -127,7 +133,33 @@ module Jabverwock
       styEnd     = "</style>\n"
       styAns = styStart << styContent << styEnd
       
-      assert_equal(j1.applyCss, styAns)
+      assert_equal(ss.removeAllTab, styAns.removeAllTab)
+      
+    end
+
+    test "add id" do
+      j1 = JW_CSS.new
+      j1.attr(:id, "sample")
+      j1.css.font_size(10).color("red")
+      
+      cc = CSS.new "p"
+      cc.color("blue")
+      
+      j1.addCss cc
+      s = j1.assembleTabedCss
+      ss = j1.intoStyleTag s
+      
+      ans = "jw_css #sample {\n\tcolor: red;\n\tfont-size: 10;\n}"
+      ans2 = "p {\n\tcolor: blue;\n}"
+      
+      styStart   = "<style>\n"
+      styContent = "\t#{ans}\n" + "\t#{ans2}\n"
+      styEnd     = "</style>\n"
+      styAns = styStart << styContent << styEnd
+
+      
+      
+      assert_equal(ss.removeAllTab, styAns.removeAllTab)
       
     end
 

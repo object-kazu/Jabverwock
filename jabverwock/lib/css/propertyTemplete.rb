@@ -31,14 +31,42 @@ module Jabverwock
     EmptyStr = ""
     
     def initialize(name)
+      nameWithSelectors name
       
-      @name = name
       self.class.index_to_attr.each_with_index do |value, index|
         attr = self.class.index_to_attr[index] # クラスメソッドの `index_to_attr` で読込
         self.send("#{attr}=", EmptyStr) # 動的ディスパッチ!!
       end  
     end
-     
+
+    <<-MEMO_NAME
+       - nameWithSelectorsの役割
+
+        a = Test.new(:id_test)
+        p a.name# => "#test"
+
+        b = Test.new(:cls_test)
+        p b.name# => ".test"
+
+        c = Test.new("ss")
+        p c.name# => "ss"
+    
+    MEMO_NAME
+    def nameWithSelectors(name)
+      n = name.to_s
+      
+      if n.include?("id_")
+        n = "##{n.split("id_").last}"
+      end
+
+      if n.include?("cls_")
+        n = ".#{n.split("cls_").last}"
+      end
+      
+      @name = n
+      
+    end
+    
     # エクスポート
     def pStr # vars + vals
       result = []

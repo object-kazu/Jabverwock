@@ -81,15 +81,27 @@ module Jabverwock
       @tagManager.tagAttribute.addLang = lang
     end
 
-    
-    
+        
     def selectorID
       "#" + @tagManager.tagAttribute.id
     end
 
+    def isExistID
+      if @tagManager.tagAttribute.id == ""
+        return false
+      end
+      true
+    end
 
     def selectorCls
       "." + @tagManager.tagAttribute.cls
+    end
+
+    def isExistCls
+      if @tagManager.tagAttribute.cls == ""
+        return false
+      end
+      true
     end
     
     

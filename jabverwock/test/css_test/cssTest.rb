@@ -99,6 +99,9 @@ module Jabverwock
       assert_equal(c.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n\tfont-style: bold;\n}")
     end
    
+    test "id selector" do
+      
+    end
     
   end
 

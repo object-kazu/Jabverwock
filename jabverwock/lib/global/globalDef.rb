@@ -1,7 +1,7 @@
 ##
 ## koko now
 # id, cls, nameがあるときは、自動的にセレクターを挿入するように！
-
+# press時にまとめてTabを挿入。前処理としてすべてのインデントを削除
 
 # ## String extension ############
 module StringExtension
@@ -13,6 +13,11 @@ module StringExtension
 
     def removeLastRET
       self.chomp
+    end
+
+    def removeAllTab
+      return self unless self.include?("\t")
+      self.gsub!(/\t/, "")
     end
     
     def inDoubleQuot(insert)

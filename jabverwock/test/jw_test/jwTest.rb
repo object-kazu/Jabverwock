@@ -129,6 +129,35 @@ module Jabverwock
       ans = @tm.pressDefault
       assert_equal(ans, "<p id=\"sample\">\n</p>")
     end
+
+    test "id check, true" do
+      @tm.name = "p"
+      @tm.attr(:id, "sample")
+      assert_true(@tm.isExistID)
+    end
+    
+    test "id check, false" do
+      @tm.name = "p"
+      assert_false(@tm.isExistID)
+    end
+
+    test "cls check, true" do
+      @tm.name = "p"
+      @tm.attr(:cls, "sample")
+      assert_true(@tm.isExistCls)
+    end
+    
+    test "cls check, false" do
+      @tm.name = "p"
+      assert_false(@tm.isExistCls)
+    end
+
+    test "id, cls" do
+      j = JW.new.attr(:id, "sample").attr(:cls, "ppp")
+      assert_true j.isExistID
+      assert_true j.isExistCls
+    end
+    
     
   end
 end

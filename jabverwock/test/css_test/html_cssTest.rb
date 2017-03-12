@@ -72,11 +72,25 @@ module Jabverwock
       c = CSS.new "head"
       c.font_size = 10
       h.addCss c
+      a = h.assembleTabedCss
       
-      assert_equal(h.css.str, "head {\n\n}")
+      assert_equal(a.removeAllTab, "head {\nfont-size: 10;\n}")
+    end
+    
+    test "add css property , different name" do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "p"
+      c.font_size = 10
+      p c.str
+      
+      h.addCss c
+      a = h.assembleTabedCss
+      
+      assert_equal(a.removeAllTab, "p {\nfont-size: 10;\n}")
     end
 
-    test "add css property case 1" do
+    
+    test "add css property" do
       h = HEAD.new().contentIs "this is test"
       c = CSS.new "head"
       c.font_size = 10
@@ -85,7 +99,7 @@ module Jabverwock
       pressed = h.pressDefault
       
       assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("\thead {\n\t\t\tfont-size: 10;\n\t\t}\n"))
+      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
       assert_true(pressed.include?("</style>"))
 
     end
@@ -95,8 +109,107 @@ module Jabverwock
       ans = KString.addTabEachLine(a)
       assert_equal(ans, "\ta\n\tb\n")
     end
+    
+    test "add member " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
+
+      body = BODY.new
+      body.css.color "red"
+
+      h.addMember body
+      
+      pressed = h.pressDefault
+      
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
+      assert_true(pressed.include?("\tbody {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("</style>"))
+
+    end
+
+    test "set id, selector id " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
+
+      body = BODY.new.attr(:id, "sample")
+      body.css.color "red"
+
+      h.addMember body
+            
+      pressed = h.pressDefault
+      
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
+      assert_true(pressed.include?("\tbody #sample {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("</style>"))
+
+    end
+
+    test "set cls, selector cls " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
+
+      body = BODY.new.attr(:cls, "sample")
+      body.css.color "red"
+
+      h.addMember body
+            
+      pressed = h.pressDefault
+      
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
+      assert_true(pressed.include?("\tbody .sample {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("</style>"))
+
+    end
+
+    test "set cls. id, selector cls,id " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
+
+      body = BODY.new.attr(:cls, "sample").attr(:id, "test")
+      body.css.color "red"
+
+      h.addMember body
+            
+      pressed = h.pressDefault
+      
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
+      assert_true(pressed.include?("\tbody #test .sample {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("</style>"))
+
+    end
 
 
+    test "check child, set cls. id, selector cls,id " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
+
+      body = BODY.new.attr(:cls, "sample").attr(:id, "test")
+      body.css.color "red"
+
+      h.addChild body
+            
+      pressed = h.pressDefault
+      
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
+      assert_true(pressed.include?("\tbody #test .sample {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("</style>"))
+
+    end
 
     
   end
