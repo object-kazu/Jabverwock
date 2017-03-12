@@ -132,10 +132,10 @@ module Jabverwock
     def add_ID_CLS_NAME(name)
       tmpName = name
       if isExistID
-        tmpName << " #{selectorID}"        
+        tmpName << "#{selectorID}"        
       end
       if isExistCls
-        tmpName << " #{selectorCls}"
+        tmpName << "#{selectorCls}"
       end
       tmpName
     end

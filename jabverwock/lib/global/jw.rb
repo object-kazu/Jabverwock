@@ -127,11 +127,16 @@ module Jabverwock
       @tagManager.openString
       @tagManager.closeString
     end
-   
-    def assemble
+
+    def tag
       if @tagManager.name == ""
         @tagManager.name = @name        
       end
+      @tagManager.name
+    end
+    
+    def assemble
+      tag
       makeTag
       makeResult
       memberAssemble
