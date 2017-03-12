@@ -99,8 +99,14 @@ module Jabverwock
       assert_equal(c.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n\tfont-style: bold;\n}")
     end
    
-    test "id selector" do
-      
+    test "combineSelectors" do
+      c = CSS.new("ss").addSelectors "s","h"
+      assert_equal(c.name, "ss,s,h")
+    end
+    
+    test "combineSelectors, no name" do
+      c = CSS.new("").addSelectors "s","h"
+      assert_equal(c.name, "s,h")
     end
     
   end
