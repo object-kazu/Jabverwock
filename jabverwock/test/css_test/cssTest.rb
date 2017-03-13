@@ -100,14 +100,46 @@ module Jabverwock
     end
    
     test "combineSelectors" do
-      c = CSS.new("ss").addSelectors "s","h"
+      c = CSS.new("ss").addMembers "s","h"
       assert_equal(c.name, "ss,s,h")
     end
     
     test "combineSelectors, no name" do
-      c = CSS.new("").addSelectors "s","h"
+      c = CSS.new("").addMembers "s","h"
       assert_equal(c.name, "s,h")
     end
+
+    test "add child selector" do
+      c = CSS.new("").addChildren "s", "h"
+      assert_equal(c.name, "s h")
+    end
+
+    test "dup" do
+      c = CSS.new(:id_reds)
+      cc = c.dup
+      ccc = cc.addChildren("p")
+
+      assert_equal(c.name, "#reds")
+      assert_equal(ccc.name, "#reds p")
+    end
+
+    test "dpName" do
+      c = CSS.new(:id_reds)
+      cc = c.dpName.addChildren "p"
+
+      assert_equal(c.name, "#reds")
+      assert_equal(cc.name, "#reds p")
+    end
+
+    test "dup css property" do
+      c = CSS.new(:id_reds).color "red"
+      cc = c.dpName.addChildren("p").color("yellow")
+
+      assert_equal(c.str, "#reds {\n\tcolor: red;\n}")
+      assert_equal(cc.str, "#reds p {\n\tcolor: yellow;\n}")
+    end
+
+
     
   end
 

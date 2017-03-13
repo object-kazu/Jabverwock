@@ -29,17 +29,41 @@ module Jabverwock
       super
     end
 
-    def andSelectorIs(*sel)
+    def initialize_copy(obj)
+      @name = obj.name.dup
+    end
+
+    def dpName
+      # cation, dup is deep copy of name only
+      self.dup
+    end
+    
+    def addMembers(*sel)
+    #def andSelectorIs(*sel)
+      addBaseic false, *sel
+      self
+    end
+
+    def addChildren(*sel)
+      addBaseic true, *sel
+      self
+    end
+
+    def addBaseic(isChild, *sel)
+      divi = ","
+      if isChild
+        divi = " "
+      end
       name = ""
       sel.each do |s|
         next name << s if name == ""
-        name << "," << s
+        name << divi << s
       end
 
       if @name == ""
         @name << name
       else
-        @name << "," << name
+        @name << divi << name
       end
       
       self
