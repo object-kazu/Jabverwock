@@ -5,6 +5,8 @@ require '../../lib/global/jwSingle'
 
 module Jabverwock
   using StringExtension
+  using SymbolExtension
+  
   
   class ATest < Test::Unit::TestCase
         class << self
@@ -51,7 +53,7 @@ module Jabverwock
       
       j1 = A.new
       j1.css.color("red").font_size(10)
-      assert_equal(j1.showCssString, "a {\ncolor: red;\nfont-size: 10;\n}")     
+      assert_equal(j1.showCssString, "a {\n\tcolor: red;\n\tfont-size: 10;\n}")     
     end
 
     
@@ -80,6 +82,21 @@ module Jabverwock
       
     end
 
+
+    test "add symble label case 1" do
+
+      @a.content = "test" + :a.variable
+      ans = @a.pressDefault
+      ans2 = @a.pressVal.showTempleteString
+      
+      assert_equal(ans, "<a>test</a>")
+      assert_not_equal(ans, ans2)
+      
+    #     // not equal <j>testLABEL_INSERT_START + "a" + LABEL_INSERT_END</j>
+    #     // because at press method , remove LABEL_INSERT_START + "a" + LABEL_INSERT_END
+      
+    end
+
     
     test "add label case 2" do
 
@@ -89,6 +106,33 @@ module Jabverwock
       assert_equal(ans, "<a>test is done</a>")
 
     end
+
+    test "add symble label case 2-1" do
+
+      @a.content = "test" + :a.variable # -> symble
+      @a.pressDefault
+      ans = @a.pressInsert("a".varIs" is done") # -> string
+      assert_equal(ans, "<a>test is done</a>")
+
+    end
+    
+    test "add symble label case 2-2" do
+
+      @a.content = "test" + :a.variable # -> symble
+      @a.pressDefault
+      ans = @a.pressInsert(:a.varIs " is done") # -> symble
+      assert_equal(ans, "<a>test is done</a>")
+
+    end
+    test "add symble label case 2-3" do
+
+      @a.content = "test" + "a".variable # -> string
+      @a.pressDefault
+      ans = @a.pressInsert(:a.varIs " is done") # -> symble
+      assert_equal(ans, "<a>test is done</a>")
+
+    end
+
     
     test "add label case 3" do
 

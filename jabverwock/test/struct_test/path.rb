@@ -8,5 +8,3 @@ require "../../lib/global/jw_CSS"
 require "../../lib/global/jw_CSS_JS"
 require "../../lib/global/press"
 require "../../lib/global/struct"
-
-require '../../lib/css/css'

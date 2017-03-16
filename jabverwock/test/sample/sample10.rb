@@ -1,11 +1,13 @@
 require "./path"
 
+### checking add member order ###
+
 module Jabverwock
   using StringExtension
   using ArrayExtension
   
   
-  $SA = "sample10"
+  $SA = "sample11"
 
   
   html= HTML.new

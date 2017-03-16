@@ -3,6 +3,7 @@ require "./path"
 module Jabverwock
   using StringExtension
   using ArrayExtension
+  using SymbolExtension
 
   $SA = "sample6"
   $PAGES =  %w(home)

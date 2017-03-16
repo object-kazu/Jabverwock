@@ -33,6 +33,15 @@ module Jabverwock
       @isWithBreak      = false
     end
 
+    #koko now
+    def tAttr(tag, *val)
+      if tag.is_a? Symbol
+        sim = tag.to_s
+        elem = sim.split "_"
+        @tagManager.tagAttr elem[0], elem[1]
+      end
+      self
+    end
     def attr(tag, val)
       @tagManager.tagAttr(tag,val)
       self

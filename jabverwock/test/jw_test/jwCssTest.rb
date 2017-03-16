@@ -180,6 +180,8 @@ module Jabverwock
       
     end
 
+
+    
     test "add members" do
       
       j1 = JW_CSS.new

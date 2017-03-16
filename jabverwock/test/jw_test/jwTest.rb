@@ -93,6 +93,15 @@ module Jabverwock
       assert_equal(ans, "<p class=\"test\">\n</p>")
     end
 
+    test "set cls use symble" do
+      @tm.name ="p"
+      @tm.tAttr(:cls_test)
+      
+      ans = @tm.pressDefault
+      assert_equal(ans, "<p class=\"test\">\n</p>")
+      
+    end
+
     test "set cls, bad Arg" do
       assert_raise(){
         @tm.setCls= 1

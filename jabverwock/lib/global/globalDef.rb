@@ -47,15 +47,16 @@ module StringExtension
       $LABEL_INSERT_START + self + $LABEL_INSERT_END
     end  
 
+    <<-VAL_Usage
+        a = "a".dataIs "dddd"# => {:label=>"a", :data=>"dddd"}
+        p a
+        p a[:label]
+        p a[:data]
     
-    # a = "a".dataIs "dddd"# => {:label=>"a", :data=>"dddd"}
-    # p a
-    # p a[:label]
-    # p a[:data]
-    #
-    # # >> {:label=>"a", :data=>"dddd"}
-    # # >> "a"
-    # # >> "dddd"
+        # >> {:label=>"a", :data=>"dddd"}
+        # >> "a"
+        # >> "dddd"
+    VAL_Usage
     def varIs(val)
       {:label => self, :data => val}
     end
@@ -67,6 +68,22 @@ module StringExtension
     def colSpan(val)
       self + $COL_SPAN + "#{val}"
     end
+    
+  end
+end
+
+# ## Symbol extension ############
+
+module SymbolExtension
+  refine Symbol do
+    def variable
+      $LABEL_INSERT_START + self.to_s + $LABEL_INSERT_END
+    end  
+    def varIs(val)
+      {:label => self.to_s, :data => val}
+    end
+
+    
     
   end
 end
@@ -106,7 +123,7 @@ end
 module Jabverwock
   using StringExtension
   using ArrayExtension
- 
+  using SymbolExtension
   
   # global constant ############
 
@@ -126,6 +143,13 @@ module Jabverwock
   $LABEL_INSERT_START  = "##LABELSTART##"
   $LABEL_INSERT_END    = "##LABELEND##"
 
+  
+  ## struct ##########
+  $CHILD = "_c_"
+  $MEMBER = "_m_"
+  $ENDMARK = "_e_"
+
+  
   # # Table ####################
   $BR      = "<br>"
   $ROW_SPAN = "%rowSpan="

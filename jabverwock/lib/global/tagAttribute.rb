@@ -17,7 +17,8 @@ module Jabverwock
   using StringExtension
   
   class TagAttribute < TagAttributeTemplete
-
+    
+    # caution! do not use "_", because symbole like ":id_test" may splite as "id" and "test"
     list  = [:id,:cls,:href,:lang, :target, :type, :rel]
     list += [:name, :http_equiv,:content,:charset,:scheme]
     list += [:accesskey,:contenteditable,:dir, :hidden, :spellcheck, :style, :tabindex,:title,:translate]
