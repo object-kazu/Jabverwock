@@ -9,7 +9,11 @@ module Jabverwock
   $PAGES =  %w(home)
   
   def self.testPATH
-    switch = true
+    current = ENV['PWD']
+    switch = false
+    if current.include?("BitTorrent")
+      switch = true
+    end
     switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
     "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{$SA}/"
   end

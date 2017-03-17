@@ -27,6 +27,7 @@ module Jabverwock
       @nameList = [] # 重複判定に利用
       
     end
+
     
     ########## CSS #############
     def usageCSS

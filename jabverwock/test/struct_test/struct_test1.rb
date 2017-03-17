@@ -24,7 +24,7 @@ module Jabverwock
     def setup
       p :setup
 
-      @st = Structure.new
+      @st = StructDescript.new
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
@@ -166,29 +166,29 @@ module Jabverwock
     end
     
     
-    # test "sample case 1" do
-    #   t = "a,b"
-    #  @st.structing t
+    test "sample case 1" do
+      t = "a,b"
+     @st.structing t
       
-    #   # p ">>>"
-    #   # p @st.showResult
+      # p ">>>"
+      # p @st.showResult
        
-    #   assert_equal(@st.showResult, "a.addMember(b)\n")
-    # end
+      assert_equal(@st.showResult, "a.addMember(b)\n")
+    end
     
-    # test "sample case 2" do
-    #   t = "a{b}"
-    #   @st.structing t
-    #   assert_equal @st.showResult, "a.addChild(b)\n"
+    test "sample case 2" do
+      t = "a{b}"
+      @st.structing t
+      assert_equal @st.showResult, "a.addChild(b)\n"
       
-    # end
+    end
 
-    # test "sample case 3" do
-    #   t = "a{b,c}"
-    #   @st.structing t
-    #   assert_equal @st.showResult, "b.addMember(c)\na.addChild(b)\n"
+    test "sample case 3" do
+      t = "a{b,c}"
+      @st.structing t
+      assert_equal @st.showResult, "b.addMember(c)\na.addChild(b)\n"
             
-    # end
+    end
 
     test "sample case 4" do
       t = "a{b,c},d"

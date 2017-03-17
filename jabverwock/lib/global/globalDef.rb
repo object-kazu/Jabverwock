@@ -1,7 +1,4 @@
 ##
-## koko now
-# id, cls, nameがあるときは、自動的にセレクターを挿入するように！
-# press時にまとめてTabを挿入。前処理としてすべてのインデントを削除
 
 # ## String extension ############
 module StringExtension

@@ -3,6 +3,7 @@ if $FOR_GEM
   require "global/globalDef"
   require "global/tagManager"
   require "global/press"
+  require "global/structDescript"
 
 else
 
@@ -10,12 +11,16 @@ else
   require_relative "globalDef" 
   require_relative "tagManager"  
   require_relative "press"
+  require_relative "structDescript"
 
 end
 
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
+  using SymbolExtension
+  
   class JW
 
     attr_accessor :name, :aData, :templeteString, :pressVal, :tagManager
@@ -30,9 +35,24 @@ module Jabverwock
       @memberStringArray   = []
       @pressVal       = Press.new ## input -> templeteString, output -> resultString
       @tagManager     = TagManager.new
-      @isWithBreak      = false
+      @isWithBreak    = false
+      @struct         = StructDescript.new
     end
 
+    ### struct description ####
+    def structExp(str)
+      # @struct.structing str
+      # res = @struct.showResult
+      # arr = res.split("\n")
+      # arr.each do |s|
+      #   eval "s"
+      # end
+    end
+
+    def showStructExp
+      @struct.showResult
+    end
+    
     #koko now
     def tAttr(tag, *val)
       if tag.is_a? Symbol
@@ -42,6 +62,7 @@ module Jabverwock
       end
       self
     end
+    
     def attr(tag, val)
       @tagManager.tagAttr(tag,val)
       self
@@ -238,12 +259,20 @@ module Jabverwock
     end
     
     # press for testing
-    $EXPORT_TESTPRESS_Dir = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
-#    $EXPORT_TESTPRESS_Dir = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
+    
+    $EXPORT_TESTPRESS_Dir_MACBOOK = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
+    $EXPORT_TESTPRESS_Dir_iMAC = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
     
     def testPress(name)
+      _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
+      
+      current = ENV['PWD']
+      if current.include?("BitTorrent")
+        _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
+      end
+      
       n = name + "Pressed" + ".html"
-      pressConfig(name: n, dist: $EXPORT_TESTPRESS_Dir)
+      pressConfig(name: n, dist: _dir_)
       prepPress
       press
     end
@@ -252,7 +281,7 @@ module Jabverwock
   end
 
   #p a = JW.new
-  
+
 end
 
 

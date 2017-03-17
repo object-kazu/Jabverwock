@@ -20,7 +20,7 @@ module Jabverwock
   using SymbolExtension
   
   
-  class Structure
+  class StructDescript
 
     attr_accessor :parArr, :parIndex
     
@@ -35,7 +35,13 @@ module Jabverwock
       ans = arraying ans
       ans = readCoden ans
     end
-    
+
+    def expr (str)
+      structing str
+      res = showResult
+      res.split("\n")
+    end
+
     def prep (str)
       ans = str.gsub(/\t/," ")
       ans = ans.gsub(/\n/,"").gsub(/\s/, "")
@@ -165,9 +171,11 @@ module Jabverwock
       end
       ans
     end
-  
+
+    
   end
 
+  
   #p a = JW.new
   
 end

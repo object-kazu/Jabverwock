@@ -98,8 +98,6 @@ module Jabverwock
       ans.split()
     end
     
-    parArr = [] #親を覚えておく
-    parIndex = 0
     def coden(l, c, r)
       case c
       when $CHILD
@@ -186,60 +184,6 @@ module Jabverwock
       assert_equal(arr, ans)
            
     end
-
-    test "showParent" do
-      parArr = %w(a,b,c)
-      assert_equal(showParent(1), "a")
-      
-    end
-    
-    # test "addMember" do
-    #   a = addMember "doc", "head"
-    #   assert_equal(a, "doc.addMember(head)\n")
-    # end
-    
-    # test "addMember case 2" do
-    #   a = addMember "doc", "head", "footer"
-    #   assert_equal(a, "doc.addMember(head)\ndoc.addMember(footer)\n")
-    # end
-
-    # test "addChild" do
-    #   a = addChild "doc", "meta"
-    #   assert_equal(a, "doc.addChild(meta)\n")
-    # end
-
-    # test "addChild case 2" do
-    #   a = addChild "doc", "meta", "script"
-    #   assert_equal(a, "doc.addChild(meta)\ndoc.addChild(script)\n")
-    # end
-
-    # test "{} ,suitable space" do
-    #   t = "doc{head} foot"
-      
-      
-    #   assert_equal(ans, "doc{head} foot")
-    # end
-
-    
-    
-    # test "sample,{} connect" do
-    #   t = "doc {a{b{c}}} head"
-
-    #   assert_equal(ans, "doc&(a&(b&c)) head")
-    # end
-    
-    # test "prep long version " do
-    #   b = <<-MEM2
-    #       doctype {d1{d2}
-    #             }
-    #       head {h1{h2}
-    #         h3
-    #        } 
-      
-    #   MEM2
-      
-    #   assert_equal(prep(b), " doctype{d1{d2} } head{h1{h2} h3 } ")
-    # end
 
     
   end
