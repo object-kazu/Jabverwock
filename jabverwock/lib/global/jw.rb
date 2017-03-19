@@ -36,22 +36,9 @@ module Jabverwock
       @pressVal       = Press.new ## input -> templeteString, output -> resultString
       @tagManager     = TagManager.new
       @isWithBreak    = false
-      @struct         = StructDescript.new
     end
 
-    ### struct description ####
-    def structExp(str)
-      # @struct.structing str
-      # res = @struct.showResult
-      # arr = res.split("\n")
-      # arr.each do |s|
-      #   eval "s"
-      # end
-    end
 
-    def showStructExp
-      @struct.showResult
-    end
     
     def attr(tag, *val)
       return unless tag.is_a? Symbol
@@ -68,11 +55,6 @@ module Jabverwock
       self
     end
     
-    # def attr(tag, val)
-    #   @tagManager.tagAttr(tag,val)
-    #   self
-    # end
-
     def withBreak(with = true)
       @isWithBreak = with
       self
