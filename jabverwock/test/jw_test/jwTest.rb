@@ -93,14 +93,6 @@ module Jabverwock
       assert_equal(ans, "<p class=\"test\">\n</p>")
     end
 
-    test "set cls use symble" do
-      @tm.name ="p"
-      @tm.tAttr(:cls_test)
-      
-      ans = @tm.pressDefault
-      assert_equal(ans, "<p class=\"test\">\n</p>")
-      
-    end
 
     test "set cls, bad Arg" do
       assert_raise(){
@@ -166,7 +158,46 @@ module Jabverwock
       assert_true j.isExistID
       assert_true j.isExistCls
     end
+
+    test "attr bind with  __ " do
+      j = JW.new.attr(:id__sample)
+      assert_true j.isExistID
+      assert_equal j.tgStr, "<jw id=\"sample\">\n</jw>"
+    end
     
+    test "attr: replace _ to - " do
+      j = JW.new.attr(:font_size, "10")
+      assert_equal j.tgStr, "<jw font-size=\"10\">\n</jw>"
+    end
+    
+    test "attr bind with __ case 2" do
+      j = JW.new.attr(:font_size__10)
+      assert_equal j.tgStr, "<jw font-size=\"10\">\n</jw>"
+    end
+    
+    test "attr bind with __ case 3" do
+      j = JW.new.attr(:font_size, "10")
+      assert_equal j.tgStr, "<jw font-size=\"10\">\n</jw>"
+    end
+
+    test "set cls use symble" do
+      @tm.name ="p"
+      @tm.attr(:cls__test)
+      
+      ans = @tm.pressDefault
+      assert_equal(ans, "<p class=\"test\">\n</p>")
+      
+    end
+    
+    test "set cls use not symble" do
+      @tm.name ="p"
+      @tm.attr("cla")
+      
+      ans = @tm.pressDefault
+      assert_equal(ans, "<p>\n</p>")
+      
+    end
+
     
   end
 end

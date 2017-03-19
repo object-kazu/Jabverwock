@@ -18,12 +18,37 @@ module Jabverwock
   
   class TagAttribute < TagAttributeTemplete
     
-    # caution! do not use "_", because symbole like ":id_test" may splite as "id" and "test"
-    list  = [:id,:cls,:href,:lang, :target, :type, :rel]
-    list += [:name, :http_equiv,:content,:charset,:scheme]
-    list += [:accesskey,:contenteditable,:dir, :hidden, :spellcheck, :style, :tabindex,:title,:translate]
-    list += [:rowspan, :colspan, :border, :cellpadding, :cellspacing]
-    list += [:src, :alt, :width, :height]
+    # caution! do not use "__", because JW class may split symbole like ":id_test"  as "id" and "test"
+    list  = [:accesskey,:autofoucus, :alt,:autocomplete,]
+    list += [:border,]
+    list += [:contenteditable,:cls,:content,:charset,:cellpadding,:checked, :cellspacing,:colspan,]
+    list += [:dir,:disable,:dirname,]
+    list += []
+    list += [:font_family, :font_size, :form,]
+    list += []
+    list += []
+    list += [:hidden,:http_equiv, :href,:height,]
+    list += [:id,:inputmode,]
+    list += []
+    list += [:lang, :line_height,:list]
+    list += [:margin, :maxlength, :minlength,:max, :min, :multiple]
+    list += []
+    list += [:name,] 
+    list += []
+    list += [:position,:pattern,:placeholder,]
+    list += []
+    list += []
+    list += [:required, :readonly, :rel,:rowspan,]
+    list += [:spellcheck,:scheme, :style, :size,:src, :step,]
+    list += [:target, :type,:tabindex,:title,:translate,]
+    list += []
+    list += []
+    list += []
+    list += []
+    list += []
+    list += [:value, ]
+    list += [ :width,]
+
     self.define_attributes list
        
     def initialize

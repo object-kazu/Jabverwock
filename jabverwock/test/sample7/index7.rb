@@ -4,7 +4,6 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
   using SymbolExtension
-
   
   
   def self.header
@@ -16,61 +15,59 @@ module Jabverwock
     head
   end
 
-  def self.divReds
-    heading = HEADING.new(1).contentIs "This text is red"
-    heading.attr(:id, "example1")
-
-    pp = P.new.contentIs "This text is yellow"
+  def self.divNav
+    ul = UL.new
+    list = %w(index contact adress)
+    for i in list
+      a = A.new.attr(:href, i).contentIs"#{i.capitalize}"      
+      l = LI.new.contentIs a.tgStr
+      ul.addChild l
+    end
     
     d = DIV.new
-    d.attr(:id, "reds")
-    d.addChild heading
-    d.addChild pp
+    d.attr(:id, "nav")
+    d.addChild ul
     
     d
   end
 
-  def self.divBlues
-    head2 = HEADING.new(2).contentIs "This text is blue"
-    head2.attr(:id, "example2")
-    d = DIV.new
-    d.attr(:id, "blues")
-    d.addChild head2
-    d
-  end
+  # def self.divSelections
+  #   head2 = HEADING.new(2).contentIs "This text is blue"
+  #   head2.attr(:id, "example2")
+  #   d = DIV.new
+  #   d.attr(:id, "blues")
+  #   d.addChild head2
+  #   d
+  # end
+
+  # def self.divInputs
+
+    
+  # end
   
   def self.bodier
     
     body = BODY.new    
     
-    body.addChild divReds
-    body.addChild divBlues
+    body.addChild divNav
 
-    c = CSS.new(:id_reds).color "red"
-    cc = CSS.new(:id_blues).color "blue"
-    ccc = c.dpName.addChildren("p").color("yellow")
-    
-    body.addCss c, cc, ccc
+    # c = CSS.new(:id_reds).color "red"
+    # cc = CSS.new(:id_blues).color "blue"
+    # ccc = c.dpName.addChildren("p").color("yellow")    
+    # body.addCss c, cc, ccc
     
     body
   end
-  
-  # html.addChild header
-  # html.addChild bodier
-  
-  html= HTML.new  
-  head = header
-  body = bodier
 
   
-  t = <<-TEX
-    html{head,body}
-  TEX
   
-  StructDescript.new.expr(t).each{ |s| eval s }
-
-
-  $SA = "sample6"
+  html = HTML.new
+  html.addChild header
+  html.addChild bodier
+  
+  
+  
+  $SA = "sample7"
   $PAGES =  %w(home)
   
   def self.testPATH
@@ -82,7 +79,7 @@ module Jabverwock
     switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
     "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{$SA}/"
   end
-
+  
   
   $PAGES.each do |pp|
     if pp == "home"
@@ -94,6 +91,4 @@ module Jabverwock
 
   end
 
-  
-  
 end

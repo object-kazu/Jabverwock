@@ -36,7 +36,7 @@ module Jabverwock
     
   end
 
-  oneTagList = ["DOCTYPE","META", "IMG", "LINK"]
+  oneTagList = ["DOCTYPE","META", "IMG", "LINK", "INPUT"]
   
   oneTagList.each do |list|
     Object.const_set list, Class.new(JWOneTag){

@@ -53,20 +53,25 @@ module Jabverwock
       @struct.showResult
     end
     
-    #koko now
-    def tAttr(tag, *val)
-      if tag.is_a? Symbol
-        sim = tag.to_s
-        elem = sim.split "_"
-        @tagManager.tagAttr elem[0], elem[1]
+    def attr(tag, *val)
+      return unless tag.is_a? Symbol
+      
+      if val.count > 0
+        @tagManager.tagAttr(tag,val.first)
+        return self
       end
+      
+      sim = tag.to_s
+      elem = sim.split "__"
+      @tagManager.tagAttr elem[0], elem[1]
+      
       self
     end
     
-    def attr(tag, val)
-      @tagManager.tagAttr(tag,val)
-      self
-    end
+    # def attr(tag, val)
+    #   @tagManager.tagAttr(tag,val)
+    #   self
+    # end
 
     def withBreak(with = true)
       @isWithBreak = with

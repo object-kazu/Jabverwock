@@ -60,7 +60,6 @@ module Jabverwock
     end
     
     def readCoden (arr)
-      #ans = ["a", "_c_", "b", "_m_", "c","_c_","d", "_e_","_m_", "e","_e_", "_m_", "f"]
       arr.each_with_index do |ele, index|
         break if index + 3 > arr.count
         
@@ -68,7 +67,6 @@ module Jabverwock
         c = arr[index + 1]
         r = arr[index + 2]
         
-        p "#{l}, #{c}, #{r}"
         coden l,c,r        
       end
     end
@@ -171,8 +169,6 @@ module Jabverwock
       end
       ans
     end
-
-    
   end
 
   

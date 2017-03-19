@@ -1,4 +1,6 @@
 ##
+## koko now!  
+### 　動的にCSSのWidht,Heightをきめられないか？  
 
 # ## String extension ############
 module StringExtension

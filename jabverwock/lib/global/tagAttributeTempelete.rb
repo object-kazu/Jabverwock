@@ -76,6 +76,10 @@ module Jabverwock
       if index == "cls"
         index = "class"
       end
+
+      if index.include?("_")
+        index = index.gsub(/_/, "-")
+      end
       
       src = index + "=".inDoubleQuot(val)
       unless val.empty?
