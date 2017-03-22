@@ -30,18 +30,68 @@ module Jabverwock
     
     d
   end
+  
+  def self.divSelections
+    
+    select = SELECT.new
+    colors = %w(red blue white black)
+    colors.each do |c|
+      op = OPTION.new.attr(:value , "#{c}").contentIs "#{c.capitalize}"
+      select.addChild op      
+    end
 
-  # def self.divSelections
-  #   head2 = HEADING.new(2).contentIs "This text is blue"
-  #   head2.attr(:id, "example2")
-  #   d = DIV.new
-  #   d.attr(:id, "blues")
-  #   d.addChild head2
-  #   d
-  # end
+    div = DIV.new.attr(:id__selctions)
+    div.addChild select 
+    div
+  end
 
-  # def self.divInputs
-
+  def self.divInputs
+    table = TABLE.new
+    name = TableData.new.contentIs "name"
+    inputName = INPUT.new.attr(:type__text).attr(:)
+    tdName = TableData.new.contentIs 
+    
+  end
+	# <div id="inputs">
+	#     <form method="POST" action="xxx.cgi">
+	# 	<table>
+	# 	    <tr>
+	# 		<td>名前：</td>
+	# 		<td><input type=text name="namae"></td>
+	# 	    </tr>
+	# 	    <tr>
+	# 		<td>パスワード：</td>
+	# 		<td><input type=password name="passwd"></td>
+	# 	    </tr>
+	# 	    <tr>
+	# 		<td>転送ファイル：</td>
+	# 		<td><input type=file name="tensou"></td>
+	# 	    </tr>
+	# 	    <tr>
+	# 		<td>性別：</td>
+	# 		<td>
+	# 		    <input type=radio name="seibetsu" value="male" checked>男
+	# 		    <input type=radio name="seibetsu" value="female">女
+	# 		</td>
+	# 	    </tr>
+	# 	    <tr>
+	# 		<td>趣味：</td>
+	# 		<td>
+	# 		    <input type=checkbox name="shumi" value="PC">パソコン
+	# 		    <input type=checkbox name="shumi" value="SP">スポーツ
+	# 		    <input type=checkbox name="shumi" value="RD">読書
+	# 		</td>
+	# 	    </tr>
+	# 	    <tr>
+	# 		<td></td>
+	# 		<td>
+	# 		    <input type=submit value=" 送信 ">
+	# 		    <input type=reset value=" 取消 ">
+	# 		</td>
+	# 	    </tr>
+	# 	</table>
+	#     </form>	    
+	# </div>
     
   # end
   
@@ -50,6 +100,7 @@ module Jabverwock
     body = BODY.new    
     
     body.addChild divNav
+    body.addChild divSelections
 
     # c = CSS.new(:id_reds).color "red"
     # cc = CSS.new(:id_blues).color "blue"

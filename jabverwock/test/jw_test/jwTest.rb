@@ -92,7 +92,7 @@ module Jabverwock
       ans = @tm.pressDefault
       assert_equal(ans, "<p class=\"test\">\n</p>")
     end
-
+ 
 
     test "set cls, bad Arg" do
       assert_raise(){
@@ -106,13 +106,38 @@ module Jabverwock
       assert_equal(@tm.selectorCls, ".sample")
     end
 
-    test"get id " do
+    
+    
+    test"get id and clss " do
       @tm.name = "test"
       @tm.attr(:cls,"sample").attr(:id,"dada")
       assert_equal(@tm.selectorID, "#dada")
+      ans = @tm.pressDefault
+      assert_equal ans, "<test class=\"sample\" id=\"dada\">\n</test>"      
     end
-
     
+    test"get id and clss case 2 " do
+      @tm.name = "test"
+      @tm.attrSymbol :cls__sample
+      @tm.attrSymbol :id__data
+
+      ans = @tm.pressDefault
+      assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
+    end
+    
+    test"get id and clss case 3 " do
+      @tm.name = "test"
+      @tm.attr(:cls__sample,:id__data)
+      ans = @tm.pressDefault
+      assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
+    end
+    
+    test"get id and clss case 4 " do
+      @tm.name = "test"
+      @tm.attr(:cls__sample,:id__data, :name, "test")
+      ans = @tm.pressDefault
+      assert_equal ans, "<test class=\"sample\" id=\"data\" name=\"test\">\n</test>"      
+    end
     
     test "add lang"do
       

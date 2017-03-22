@@ -112,7 +112,7 @@ module Jabverwock
   end
 
   multiList = ["HEAD", "BODY","FOOTER","DIV","HTML","SCRIPT","BLOCKQUOTE",
-               "PRE","STYLE"]
+               "PRE","STYLE", "SELECT"]
 
   multiList += ["OL", "UL", "LI_multi"]
   

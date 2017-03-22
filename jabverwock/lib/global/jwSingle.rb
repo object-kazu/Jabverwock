@@ -101,7 +101,7 @@ module Jabverwock
   end
   
   singleList = ["P","A","B","HR","BR","I","EM","STRONG","DT","DD",
-                "LIST_ITEM","TITLE",]
+                "LIST_ITEM","TITLE","OPTION",]
   
   singleList += ["LI"]
   

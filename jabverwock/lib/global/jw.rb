@@ -38,21 +38,51 @@ module Jabverwock
       @isWithBreak    = false
     end
 
-
     
     def attr(tag, *val)
       return unless tag.is_a? Symbol
-      
-      if val.count > 0
-        @tagManager.tagAttr(tag,val.first)
+            
+      # tag -> symbols, val = []
+      if val.count == 0
+        attrSymbol tag
+        return self
+      end
+
+      # tag -> symbols, val = [Symbol, ..., Symbol]      
+      if val.last.is_a? Symbol
+        attrSymbol tag
+        val.each do |s|
+           attrSymbol s 
+        end
+        return self
+      end
+
+      #tag -> symbols, val = [String]
+      if val.first.is_a? String
+        @tagManager.tagAttr tag, val.first
         return self
       end
       
+      #tag -> symbols, val = [Symbol, ..., String]
+      c = val.count 
+      a1 = val.slice(0,c-2)
+      a2 = val.slice(c-2,c)
+      
+      attrSymbol tag
+      
+      #a1 = symbols
+      for i in a1
+        attrSymbol i
+      end
+      #a2 = symbols + String
+      @tagManager.tagAttr(a2.first, a2.last)      
+      self
+    end
+
+    def attrSymbol(tag)
       sim = tag.to_s
       elem = sim.split "__"
-      @tagManager.tagAttr elem[0], elem[1]
-      
-      self
+      @tagManager.tagAttr elem[0], elem[1]  
     end
     
     def withBreak(with = true)
