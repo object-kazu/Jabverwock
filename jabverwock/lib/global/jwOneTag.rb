@@ -31,9 +31,19 @@ module Jabverwock
     ## overide ##
     def makeResult
       @templeteString = @tagManager.tempOpenString
+
+      if @content.is_a? NilClass
+        @content = ""
+      end
+      
+      unless @content == ""
+        @templeteString << @content
+      end
+            
       @templeteString = KString.removeLastRET(@templeteString)
     end
-    
+
+
   end
 
   oneTagList = ["DOCTYPE","META", "IMG", "LINK", "INPUT"]

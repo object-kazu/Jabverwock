@@ -45,71 +45,77 @@ module Jabverwock
     div
   end
 
-  def self.makeTD(title, *attr)
-    ti = TableData.new.contentIs title
-    input = INPUT.new.attr(:type__text, :name__namae)
+  def self.td (content)
+    ti = TableData.new.contentIs content
+    ti
+  end
+
+  def self.input (attrArr)
+    input = INPUT.new.attrWithSymbolsArray attrArr
+    input
+  end
+  
+  def self.tRow(title, tdContents, *attrArr)
+    t1 = td title
+    
+    tds = ""
+    t2 = []
+    attrArr.each_with_index do |a, index|
+      c = tdContents[index]
+      inp = input a
+      unless c == ""
+        inp.contentIs c
+        t2 << inp.tgStr
+      end            
+    end
+    
+    # t2 = [con1, con2, ...]
+    tt = ""
+    t2.each do |s|
+      tt << s + "\n"
+    end
+    tds = td(tt).tgStr
+
+    tr = TableRow.new
+    tr.addChild t1
+    tr.addChildString tds
+    tr
+  end
+
+  def self.form
+    name = tRow "name", "", [:type__text, :name__namae]
+    pswd = tRow "password", "", [:type__password, :name__passwd]
+    fil  = tRow "files", "", [:type__file, :name__tensou]
+    sex  = tRow "sex", ["male","female"], [:type__radio, :name__seibetu, :value__male], [:type__radio, :name__seibetu, :value__feMale]
+    hoby = tRow "hoby",["pc", "sports","reading"], [:type__checkbox, :name__shumi,:value__PC],  [:type__checkbox, :name__shumi,:value__SP],
+                [:type__checkbox, :name__shumi,:value__RD]
+                
+    send = tRow "", "", [:type__submit, :value__Send],  [:type__reset, :value__Cancel]
+    
+    table = TABLE.new
+    table.addChildren [name, pswd, fil, sex,hoby,send]
+
+    form = FORM.new.attr(:method__POST, :action, "xxx.cgi")
+    form.addChild table
+    form
     
   end
   
   def self.divInputs
-    table = TABLE.new
-    
+    div = DIV.new.attr(:id__inputs)
+    div.addChild form
+    div
   end
-	# <div id="inputs">
-	#     <form method="POST" action="xxx.cgi">
-	# 	<table>
-	# 	    <tr>
-	# 		<td>名前：</td>
-	# 		<td><input type=text name="namae"></td>
-	# 	    </tr>
-	# 	    <tr>
-	# 		<td>パスワード：</td>
-	# 		<td><input type=password name="passwd"></td>
-	# 	    </tr>
-	# 	    <tr>
-	# 		<td>転送ファイル：</td>
-	# 		<td><input type=file name="tensou"></td>
-	# 	    </tr>
-	# 	    <tr>
-	# 		<td>性別：</td>
-	# 		<td>
-	# 		    <input type=radio name="seibetsu" value="male" checked>男
-	# 		    <input type=radio name="seibetsu" value="female">女
-	# 		</td>
-	# 	    </tr>
-	# 	    <tr>
-	# 		<td>趣味：</td>
-	# 		<td>
-	# 		    <input type=checkbox name="shumi" value="PC">パソコン
-	# 		    <input type=checkbox name="shumi" value="SP">スポーツ
-	# 		    <input type=checkbox name="shumi" value="RD">読書
-	# 		</td>
-	# 	    </tr>
-	# 	    <tr>
-	# 		<td></td>
-	# 		<td>
-	# 		    <input type=submit value=" 送信 ">
-	# 		    <input type=reset value=" 取消 ">
-	# 		</td>
-	# 	    </tr>
-	# 	</table>
-	#     </form>	    
-	# </div>
-    
-  # end
   
+    
   def self.bodier
     
     body = BODY.new    
     
     body.addChild divNav
     body.addChild divSelections
-
-    # c = CSS.new(:id_reds).color "red"
-    # cc = CSS.new(:id_blues).color "blue"
-    # ccc = c.dpName.addChildren("p").color("yellow")    
-    # body.addCss c, cc, ccc
-    
+    body.addChild divInputs
+        
     body
   end
 

@@ -163,7 +163,7 @@ module Jabverwock
     end
   end
   
-  class TableRow < JWSingle
+  class TableRow < JWMulti
     def initialize
       super
       @name = "tr"

@@ -44,6 +44,7 @@ module Jabverwock
         return unless t.is_a? Symbol
         attrSymbol t
       end
+      self
     end
     
     def attr(tag, *val)

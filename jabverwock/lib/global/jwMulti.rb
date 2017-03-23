@@ -34,7 +34,8 @@ module Jabverwock
 
     def addChild(child)
       unless child.is_a? JW
-          p "child should be JW, JW_CSS_JS or JW_CSS class "
+        p "child is >> #{child.class}" 
+        p "error: child should be JW, JW_CSS_JS or JW_CSS class "
         assert_raise{}
       end
       
@@ -56,7 +57,6 @@ module Jabverwock
     end
 
     def addChildren(children)
-
       children.each do |c| 
         addChild c
       end
@@ -111,8 +111,8 @@ module Jabverwock
     
   end
 
-  multiList = ["HEAD", "BODY","FOOTER","DIV","HTML","SCRIPT","BLOCKQUOTE",
-               "PRE","STYLE", "SELECT"]
+  multiList = ["BLOCKQUOTE","BODY","DIV","FOOTER","FORM","HTML","HEAD","PRE","SCRIPT",
+               "STYLE", "SELECT"]
 
   multiList += ["OL", "UL", "LI_multi"]
   
