@@ -45,11 +45,14 @@ module Jabverwock
     div
   end
 
+  def self.makeTD(title, *attr)
+    ti = TableData.new.contentIs title
+    input = INPUT.new.attr(:type__text, :name__namae)
+    
+  end
+  
   def self.divInputs
     table = TABLE.new
-    name = TableData.new.contentIs "name"
-    inputName = INPUT.new.attr(:type__text).attr(:)
-    tdName = TableData.new.contentIs 
     
   end
 	# <div id="inputs">

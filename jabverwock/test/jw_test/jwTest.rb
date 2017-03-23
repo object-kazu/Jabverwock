@@ -223,6 +223,16 @@ module Jabverwock
       
     end
 
+
+    test "attrWithSymbolsArray" do
+      @tm.name = "p"
+      arr = [:id__test, :cls__sample]
+      @tm.attrWithSymbolsArray arr
+      ans = @tm.pressDefault
+      assert_equal ans, "<p id=\"test\" class=\"sample\">\n</p>"
+     
+    end
+    
     
   end
 end

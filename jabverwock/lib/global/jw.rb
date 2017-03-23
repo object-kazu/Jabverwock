@@ -38,6 +38,13 @@ module Jabverwock
       @isWithBreak    = false
     end
 
+    def attrWithSymbolsArray(tag)
+      return unless tag.is_a? Array
+      tag.each do |t|
+        return unless t.is_a? Symbol
+        attrSymbol t
+      end
+    end
     
     def attr(tag, *val)
       return unless tag.is_a? Symbol
