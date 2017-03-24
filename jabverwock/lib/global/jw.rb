@@ -88,9 +88,12 @@ module Jabverwock
     end
 
     def attrSymbol(tag)
-      sim = tag.to_s
-      elem = sim.split "__"
-      @tagManager.tagAttr elem[0], elem[1]  
+      unless tag.is_a? Symbol
+        p "tag class is #{tag}"
+        assert_raise("tag should be symbol")
+      end
+      e = tag.divid
+      @tagManager.tagAttr e[0], e[1]  
     end
     
     def withBreak(with = true)

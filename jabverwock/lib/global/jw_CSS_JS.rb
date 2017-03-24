@@ -16,9 +16,6 @@ else
 end
 
 
-
-
-
 module Jabverwock
   using StringExtension
   using ArrayExtension
@@ -38,8 +35,8 @@ module Jabverwock
     end
      
     ####### add child ############
-    def isJsAvailable
-      @js.nil? ? false : true
+    def isJsArrayAvailable
+      @jsArray.count > 0 ? true : false
     end
 
     
@@ -48,23 +45,24 @@ module Jabverwock
     def addJS(member)
       unless member.is_a?(JW_CSS_JS)
         assert_raise{
+          p "member class is #{member.class}"
           p "error, member should be JW_CSS_JS"
         }
       end
      
-      ## koko now
-      if member.isJsAvailable
-        self.jsArray.append member.js
+      if member.isJsArrayAvailable
+        @jsArray.append member.js
 
         if member.jsArray.count > 0
-          self.jsArray.appendArray member.jsArray
+          @jsArray.appendArray member.jsArray
         end
         
       end
     end
 
     def applyJS
-      # koko now
+      p "koko now"
+      
       # js collect from child and member
       # js code import into <script> tag
       

@@ -20,26 +20,25 @@ module Jabverwock
            
     attr_accessor :doc
     
-    def initialize(id, cls, name)
-      super
-      @doc
-      attrInit(id, cls, name)
-      
+    def initialize(*inits)
+      super inits
+      @doc = JsDocument.new()
+      updateSelector inits
     end
     
-    def attrInit(id, cls, name)
-      attrBaseInit(id, cls, name)
-      @doc = JsDocument.new(@id, @cls, @name)
+    def updateSelector(*inits)
+      setSelectors inits.flatten
+      @doc.setSelectors inits.flatten
+      self
     end
-    
     
     
   end
 
 
-  # a = JsObject.new("","","")
+  #  a = JsObject.new(:id__test)
   # p a.doc
-  # p a.doc.byID
+  # p a.doc.byID.element
   
   
 end

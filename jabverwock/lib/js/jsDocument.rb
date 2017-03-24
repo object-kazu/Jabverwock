@@ -20,8 +20,8 @@ module Jabverwock
   class JsDocument < JsBase
     attr_accessor :result, :query
     
-    def initialize(id,cls,name)
-      super
+    def initialize(*inits)
+      super inits
       @obj = "document"
       @query = ""
       @element = Element.new
@@ -29,19 +29,18 @@ module Jabverwock
     end
     
     def selectElement(slect,obj)
-      attrBaseInit(@id,@cls,@name)
       @element.content = @obj.dot(slect).inParenth(obj) + $JS_CMD_END
       @element
     end
 
     def modifyElement(order, elem)
-      attrBaseInit(@id,@cls,@name)
+      updateSelector(@id,@cls,@name)
       @result = @obj.dot(order).inParenth(elem)
       @result + $JS_CMD_END      
     end
 
     def treatElement (order,elem)
-      attrBaseInit(@id,@cls,@name)
+      updateSelector(@id,@cls,@name)
       @result = @obj.dot(order) + "(" + "#{elem}" + ")"
       @result + $JS_CMD_END            
     end
@@ -70,24 +69,28 @@ module Jabverwock
 
 
     ### find element ###
-    
     def byID
-     selectElement("getElementById", @id)
+      updateSelector(@id,@cls,@name)
+      selectElement("getElementById", @id)
     end
     
     def byClassName
+      updateSelector(@id,@cls,@name)
       selectElement("getElementByClassName",@cls)
     end
 
     def byTagName
+      updateSelector(@id,@cls,@name)
       selectElement("getElementByTagName", @name)
     end
 
     def querySelectorAll
+      updateSelector(@id,@cls,@name)
       selectElement("querySelectorAll",@query)
     end
     
     def querySelectorAllBy(que)
+      updateSelector(@id,@cls,@name)
       @query = que
       querySelectorAll
     end
@@ -152,7 +155,7 @@ module Jabverwock
       s.dot(act) + $EQUAL.inDoubleQuot(str) + $JS_CMD_END      
     end
     
-    def elementChanging (act,str)
+     def elementChanging (act,str)
       s = KString.remove_Js_Cmd_End @content
       s.dot(act) + "(" + str + ")" + $JS_CMD_END
     end

@@ -82,7 +82,12 @@ module SymbolExtension
       {:label => self.to_s, :data => val}
     end
 
-    
+
+    def divid
+      sim = self.to_s
+      elem = sim.split "__"
+      elem
+    end
     
   end
 end

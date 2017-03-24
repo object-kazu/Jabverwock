@@ -46,19 +46,19 @@ module Jabverwock
     #   p @jwjs
     # end
 
-    test "isJsAvailable, true" do
-      @jwjs.jsObjects = ["a"]
-      assert_true(@jwjs.isJsAvailable)
+    test "isJsArrayAvailable, true" do
+      @jwjs.jsArray = ["a"]
+      assert_true(@jwjs.isJsArrayAvailable)
     end
     
-    test "isJsAvailable, false" do      
-      assert_false(@jwjs.isJsAvailable)
+    test "isJsArrayAvailable, false" do      
+      assert_false(@jwjs.isJsArrayAvailable)
     end
     
-    test "jwcssjs test writing" do
-      a = JsObject.new
-      @jwjs.jsObjects =[a]
-      assert_true(@jwjs.isJsAvailable)
+    test "jwcssjs test isJsArrayAvailable" do
+      a = JsObject.new("","","")
+      @jwjs.jsArray = [a]
+      assert_true(@jwjs.isJsArrayAvailable)
     end
 
     test "dot" do
@@ -69,7 +69,9 @@ module Jabverwock
       assert_equal("a" << $JS_CMD_END, "a;")
      
     end
-
+    
+    ##### doc ###########
+    
     test "document write" do
       d = JsDocument.new
       assert_equal(d.write("a"), "document.write('a');")
@@ -78,6 +80,10 @@ module Jabverwock
     test "document write case 2" do
       d = JsDocument.new.write("a")
       assert_equal(d, "document.write('a');")
+    end
+    test "document write case 3" do
+      a = @jwjs.js.doc.write "a"
+      assert_equal(a, "document.write('a');")
     end
 
 

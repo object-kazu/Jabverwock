@@ -7,6 +7,7 @@ require '../../lib/js/jsDocument'
 module Jabverwock
   using StringExtension
   using ArrayExtension
+  using SymbolExtension
   
   class JsObjectTest < Test::Unit::TestCase
     class << self
@@ -25,7 +26,7 @@ module Jabverwock
     # 毎回テスト実行前に呼ばれる
     def setup
       p :setup
-      @jso = JsObject.new("","","")
+      @jso = JsObject.new
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
@@ -46,17 +47,17 @@ module Jabverwock
 
     
     test "document confirm, correct id setting" do
-      @jso.attrInit("koko","","")
-      assert_equal(@jso.doc.byID, "document.getElementById('koko');")
+      @jso.updateSelector :id__koko
+      assert_equal(@jso.doc.byID.element, "document.getElementById('koko');")
     end
 
     test "document confirm, correct id setting case 2" do
-      jso = JsObject.new("koko","opop","iii")
-      assert_equal(jso.doc.byID, "document.getElementById('koko');")
+      jso = JsObject.new("id__koko","cls__opop","name__iii")
+      assert_equal(jso.doc.byID.element, "document.getElementById('koko');")
     end
     
     test "document confirm, correct id setting case 3" do
-      a = @jso.attrInit("koko","","").byID
+      a = @jso.updateSelector(:id__koko).doc.byID.element
       assert_equal(a, "document.getElementById('koko');")
     end
     

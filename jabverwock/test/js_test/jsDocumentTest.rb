@@ -24,7 +24,7 @@ module Jabverwock
     # 毎回テスト実行前に呼ばれる
     def setup
       p :setup
-      @jsd = JsDocument.new("","","")
+      @jsd = JsDocument.new
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
@@ -47,42 +47,52 @@ module Jabverwock
     ### find element ###
 
     test "select by id" do
-      @jsd.attrBaseInit("koko","","")
-      assert_equal(@jsd.byID.element, "document.getElementById('koko');")
+      @jsd.id = "test"
+      assert_equal(@jsd.byID.element, "document.getElementById('test');")
     end
     
     test "select by class" do
-      @jsd.attrBaseInit("koko","p","")
+      @jsd.updateSelector "id__koko", "cls__p"
+      assert_equal(@jsd.byID.element, "document.getElementById('koko');")
+      assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
+    end
+    test "select by class case 2" do
+      @jsd.updateSelector :id__koko, :cls__p
       assert_equal(@jsd.byID.element, "document.getElementById('koko');")
       assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
     end
     
     test "select by TagName" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector "id__koko","cls__p","name__popo"
+      assert_equal(@jsd.byID.element, "document.getElementById('koko');")
+      assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
+      assert_equal(@jsd.byTagName.element, "document.getElementByTagName('popo');")
+    end
+    test "select by TagName case 2" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       assert_equal(@jsd.byID.element, "document.getElementById('koko');")
       assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
       assert_equal(@jsd.byTagName.element, "document.getElementByTagName('popo');")
     end
     
     
-    
-    ### add and delete element ###
+    # # ### add and delete element ###
     test "createElement" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.createElement "koko"
       assert_equal(a, "document.createElement('koko');")
 
     end
 
     test "removeChild" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.removeChild "aaa"
       assert_equal(a, "document.removeChild(aaa);")
 
     end
 
     test "removeChild case 2" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       aaa = Element.new
       a = @jsd.removeChild "#{aaa.element}"
       assert_equal(a, "document.removeChild();")
@@ -92,34 +102,34 @@ module Jabverwock
     
     
     test "document write" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.write "koko"
       assert_equal(a, "document.write('koko');")
     end
 
     
     
-    ### change element ###
+    # ### change element ###
     test "innerHTML" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.innerHTML "aaa"
       assert_equal(a, "document.getElementById('koko').innerHTML=\"aaa\";")
     end
 
     test "attribute" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.attribute "aaa"
       assert_equal(a, "document.getElementById('koko').attribute=\"aaa\";")
     end
 
     test "setAttribute" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.setAttribute("btn","red")
       assert_equal(a, "document.getElementById('koko').setAttribute(\"btn\",\"red\");")
     end
 
     test "style" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.style("backgroundColor", "red")
       assert_equal(a, "document.getElementById('koko').style.backgroundColor=\"red\";")
     end
@@ -127,7 +137,7 @@ module Jabverwock
     
     ### index ###
     test "index" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.index(0).innerHTML ("aaa")
       assert_equal(a,"document.getElementById('koko')[0].innerHTML=\"aaa\";")
 
@@ -137,7 +147,7 @@ module Jabverwock
     end
 
     test "index element" do
-      @jsd.attrBaseInit("koko","p","popo")
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.index(0).element
       assert_equal(a,"document.getElementById('koko')[0];")
 
