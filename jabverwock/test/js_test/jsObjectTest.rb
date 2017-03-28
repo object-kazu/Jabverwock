@@ -48,17 +48,30 @@ module Jabverwock
     
     test "document confirm, correct id setting" do
       @jso.updateSelector :id__koko
-      assert_equal(@jso.doc.byID.element, "document.getElementById('koko');")
+      @jso.doc.byID.rec
+      a = @jso.doc.orders[0]
+      assert_equal(a, "document.getElementById('koko');")
     end
 
     test "document confirm, correct id setting case 2" do
       jso = JsObject.new("id__koko","cls__opop","name__iii")
-      assert_equal(jso.doc.byID.element, "document.getElementById('koko');")
+      jso.doc.byID.rec
+      a = jso.doc.orders[0]
+      assert_equal(a, "document.getElementById('koko');")
     end
     
     test "document confirm, correct id setting case 3" do
-      a = @jso.updateSelector(:id__koko).doc.byID.element
+      @jso.updateSelector(:id__koko).doc.byID.rec
+      
+      a = @jso.doc.orders[0]
+      
       assert_equal(a, "document.getElementById('koko');")
+    end
+    
+    test "document confirm, correct id setting case 4" do
+      @jso.updateSelector(:id__koko).doc.byID.rec
+      
+      assert_equal(@jso.doc.orders.count , 1)
     end
     
 

@@ -113,7 +113,7 @@ module Jabverwock
         -＞ cssArrayに追加するときに処理するため
       CSSpropertyTreatment
       css.name = add_ID_CLS_NAME css.name
-      tCssArray = makeCssArray(css, cssArray)
+      tCssArray = makeElementArray(css, cssArray)
 
       tCssArray.each do |cs|
         
@@ -163,17 +163,17 @@ module Jabverwock
     end
     
 
-    def makeCssArray (css, cssArray)
-      temCssArray = []
+    def makeElementArray (element, elementArray)
+      tempArray = []
       
-      if css != nil
-        temCssArray << css
+      if element != nil
+        tempArray << element
       end
       
-      if cssArray.count > 0
-        temCssArray += cssArray
+      if elementArray.count > 0
+        tempArray += elementArray
       end      
-      return temCssArray
+      return tempArray
     end
     
 

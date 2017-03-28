@@ -53,6 +53,9 @@ module Jabverwock
       # html
       child.assemble
       addChildString(child.templeteString)
+
+      # js
+      addJS child
             
     end
 

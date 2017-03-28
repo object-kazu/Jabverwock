@@ -31,7 +31,11 @@ module Jabverwock
       @doc.setSelectors inits.flatten
       self
     end
-    
+
+    def orderList
+      @jsStrings << @doc.jsStrings
+      @jsStrings.flatten!
+    end
     
   end
 

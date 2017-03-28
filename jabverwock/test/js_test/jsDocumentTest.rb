@@ -51,11 +51,34 @@ module Jabverwock
       assert_equal(@jsd.byID.element, "document.getElementById('test');")
     end
     
+    test "select by id, no rec" do
+      @jsd.id = "test"
+      assert_equal(@jsd.orders[0], nil)
+    end
+
+    
+    test "select by id and rec" do
+      @jsd.id = "test"
+      @jsd.byID.rec
+      assert_equal(@jsd.orders[0] , "document.getElementById('test');")
+    end
+    
+   
     test "select by class" do
       @jsd.updateSelector "id__koko", "cls__p"
       assert_equal(@jsd.byID.element, "document.getElementById('koko');")
       assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
     end
+
+    test "select by class and rec" do
+      @jsd.updateSelector "id__koko", "cls__p"
+      @jsd.byID.rec
+      @jsd.byClassName.rec
+      assert_equal(@jsd.orders[0], "document.getElementById('koko');")
+      assert_equal(@jsd.orders[1], "document.getElementByClassName('p');")
+    end
+
+    
     test "select by class case 2" do
       @jsd.updateSelector :id__koko, :cls__p
       assert_equal(@jsd.byID.element, "document.getElementById('koko');")
@@ -68,6 +91,7 @@ module Jabverwock
       assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
       assert_equal(@jsd.byTagName.element, "document.getElementByTagName('popo');")
     end
+    
     test "select by TagName case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       assert_equal(@jsd.byID.element, "document.getElementById('koko');")
@@ -76,74 +100,141 @@ module Jabverwock
     end
     
     
-    # # ### add and delete element ###
-    test "createElement" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.createElement "koko"
-      assert_equal(a, "document.createElement('koko');")
+    # # # # ### add and delete element ###
+    # test "createElement" do
+    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
+    #   @jsd.createElement("koko").rec
+    #   assert_equal(@jsd.orders[0], "document.createElement('koko');")
 
-    end
+    # end
+    # test "createElement orders count" do
+    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
+    #   @jsd.createElement("koko").rec
+    #   assert_equal(@jsd.orders.count, 1)
 
-    test "removeChild" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.removeChild "aaa"
-      assert_equal(a, "document.removeChild(aaa);")
+    # end
+    
+    # test "removeChild" do
+    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
+    #   @jsd.removeChild("aaa").rec
+    #   assert_equal(@jsd.orders[0], "document.removeChild(aaa);")
 
-    end
-
-    test "removeChild case 2" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      aaa = Element.new
-      a = @jsd.removeChild "#{aaa.element}"
-      assert_equal(a, "document.removeChild();")
-
-    end
+    # end
+    
+    
+    # test "document write ,rec" do
+    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
+    #   @jsd.write("koko").rec 
+    #   assert_equal(@jsd.orders[0], "document.write('koko');")
+    # end
 
     
     
-    test "document write" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.write "koko"
-      assert_equal(a, "document.write('koko');")
-    end
-
+    # # ### change element ###
     
-    
-    # ### change element ###
-    test "innerHTML" do
+    test "innerHTML, no rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.innerHTML "aaa"
-      assert_equal(a, "document.getElementById('koko').innerHTML=\"aaa\";")
-    end
-
-    test "attribute" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID.attribute "aaa"
-      assert_equal(a, "document.getElementById('koko').attribute=\"aaa\";")
-    end
-
-    test "setAttribute" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID.setAttribute("btn","red")
-      assert_equal(a, "document.getElementById('koko').setAttribute(\"btn\",\"red\");")
-    end
-
-    test "style" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID.style("backgroundColor", "red")
-      assert_equal(a, "document.getElementById('koko').style.backgroundColor=\"red\";")
+      assert_equal(@jsd.orders[0], nil)
     end
 
     
-    ### index ###
+    test "innerHTML, rec" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.innerHTML("aaa").rec
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
+    end
+    
+    test "innerHTML, rec case 2" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      a = @jsd.byID
+      a.innerHTML("aaa").rec
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
+    end
+     
+    test "innerHTML, rec case 3" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      a = @jsd.byID
+      a.innerHTML("aaa").rec
+      a.innerHTML("bbb").rec
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML=\"bbb\";")
+    end
+    
+    test "innerHTML, rec case 4" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      a = @jsd.byID
+      a.innerHTML("aaa").rec
+      a.innerHTML("bbb").rec
+      a.innerHTML("ccc").rec
+      assert_equal(@jsd.orders[2], "document.getElementById('koko').innerHTML=\"ccc\";")
+    end
+
+        
+    test "attribute, no rec" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.attribute "aaa"
+      assert_equal(@jsd.orders[0], nil)
+    end
+    
+    test "attribute, rec" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.attribute "aaa"
+      @jsd.rec
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').attribute=\"aaa\";")
+    end
+
+    test "setAttribute, no rec" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.setAttribute("btn","red")
+      assert_equal(@jsd.orders[0], nil)
+
+    end
+    
+    test "setAttribute, rec" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.setAttribute("btn","red").rec
+      @jsd.byID.setAttribute("btn","blue").rec
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').setAttribute(\"btn\",\"red\");")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').setAttribute(\"btn\",\"blue\");")
+    end
+
+    test "style, no rec" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.style("backgroundColor", "red")
+      assert_equal(@jsd.orders[0], nil)
+    end
+    
+    test "style, rec" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.style("backgroundColor", "red").rec
+      @jsd.byID.style("color", "red").rec
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor=\"red\";")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color=\"red\";")
+    end
+
+    test "style, rec case 2" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      a = @jsd.byID
+      a.style("backgroundColor", "red").rec
+      a.style("color", "red").rec
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor=\"red\";")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color=\"red\";")
+    end
+    
+    # ### index ###
     test "index" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID.index(0).innerHTML ("aaa")
-      assert_equal(a,"document.getElementById('koko')[0].innerHTML=\"aaa\";")
+      @jsd.byID.index(0).innerHTML("aaa").rec
+      assert_equal(@jsd.orders[0],"document.getElementById('koko')[0].innerHTML=\"aaa\";")
 
-      b = @jsd.byID.innerHTML ("bbb")
-      assert_equal(b,"document.getElementById('koko').innerHTML=\"bbb\";")
-      
+    end
+    
+    test "index case 2" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.index(0).innerHTML("aaa").rec
+      @jsd.byID.index(1).innerHTML("bbb").rec
+      assert_equal(@jsd.orders[1],"document.getElementById('koko')[1].innerHTML=\"bbb\";")
+
     end
 
     test "index element" do

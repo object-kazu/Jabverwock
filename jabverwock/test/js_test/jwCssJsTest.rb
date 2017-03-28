@@ -74,16 +74,39 @@ module Jabverwock
     
     test "document write" do
       d = JsDocument.new
-      assert_equal(d.write("a"), "document.write('a');")
+      a = d.write("a")
+      assert_equal(a[0], "document.write('a');")
     end
+
 
     test "document write case 2" do
       d = JsDocument.new.write("a")
-      assert_equal(d, "document.write('a');")
+      assert_equal(d[0], "document.write('a');")
     end
+    
     test "document write case 3" do
       a = @jwjs.js.doc.write "a"
-      assert_equal(a, "document.write('a');")
+      assert_equal(a[0], "document.write('a');")
+    end
+    
+    test "document write case 4" do
+      @jwjs.js.doc.write "a"
+      ans = @jwjs.js.doc.jsStrings[0]
+      assert_equal ans, "document.write('a');"
+      
+    end
+    
+    
+    test "document write case 5" do
+      @jwjs.js.doc.write "a"
+      @jwjs.js.doc.write "bb"
+      
+      ans1 = @jwjs.js.doc.jsStrings[0]
+      ans2 = @jwjs.js.doc.jsStrings[1]
+      
+      assert_equal ans1, "document.write('a');"
+      assert_equal ans2, "document.write('bb');"
+      
     end
 
 

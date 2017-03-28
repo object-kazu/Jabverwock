@@ -21,25 +21,25 @@ module Jabverwock
   using ArrayExtension
   
   class JW_CSS_JS < JW_CSS # add css functions
-    attr_accessor :js , :jsArray
+    attr_accessor :js
     
     def initialize
       super
-      @js = JsObject.new("","","")
+      @js = JsObject.new
       
       # koko now
       # jsObjectsから jsに変換するメソッドが必要
       #      
-      @jsArray = [] ## [js]
-      @jsStatement = [] ## [String]
+      # @jsArray = []     ## [js]
+      @jsStatements = [] ## [String]
+      #@sctriptStr = ""
+      
     end
      
     ####### add child ############
-    def isJsArrayAvailable
-      @jsArray.count > 0 ? true : false
-    end
-
-    
+    # def isJsArrayAvailable
+    #   @jsArray.count > 0 ? true : false
+    # end
     
     ## override
     def addJS(member)
@@ -49,32 +49,57 @@ module Jabverwock
           p "error, member should be JW_CSS_JS"
         }
       end
-     
-      if member.isJsArrayAvailable
-        @jsArray.append member.js
 
-        if member.jsArray.count > 0
-          @jsArray.appendArray member.jsArray
-        end
-        
+      @jsArray.append member.js
+
+      if member.jsArray.count > 0
+        @jsArray.appendArray member.jsArray
       end
     end
 
     def applyJS
       p "koko now"
-      
-      # js collect from child and member
+      assembleJS
       # js code import into <script> tag
+      s = SCRIPT.new.contentIs @jsStatement
       
+      ## head tagがあればaddMemberで追加する
+      ## なければheader tagを追加してaddMemberする
+      self.addMember s
+      
+    end
+    
+    def assembleJS
+      # js collect from child and member
+
+      tJsArray = makeElementArray @js, @jsArray
+      tJsArray.flatten!
+      
+      tJsArray.each do |j|
+        p j.jsStrings
+        extractJsString j
+      end
+      @jsStatement.removeLastRET
+            
+    end
+
+    def extractJsString(js)
+      return unless js.is_a? JsObject
+
+      
+      if js.jsStrings.count > 0
+        js.each do |j|
+          @jsStatement << j << $RET
+        end
+      end
     end
     
     ### override ###
     def assemble
       @templeteString = ""
-      assembleHTML
-      assembleCSS      
       applyJS
-      
+      assembleHTML
+      assembleCSS            
     end
 
     
@@ -132,7 +157,7 @@ module Jabverwock
      
 #      */
     
-    # def isJsAvailable
+     # def isJsAvailable
     #   if !@jsExportType.empty? || !@jsExportPath.empty? || !@jsExportFileName.empty? # <script> available
     #     return true
     #   end

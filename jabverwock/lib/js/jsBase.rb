@@ -16,14 +16,23 @@ module Jabverwock
   using SymbolExtension
   
   class JsBase
-    attr_accessor :id, :cls, :name
+    attr_accessor :id, :cls, :name, :orders
     
     #ex) initialize :id__test, :cls__sample, "name__koko"
     def initialize(*inits)
       @obj = ""
       @id, @cls, @name = "", "",""
+
+      @orders = []
+            
       setSelectors inits
     end
+    
+    # delegate
+    def recBy (str)
+      @orders << str
+    end
+
     
     def setSelectors(inits)
       inits.each do |s|        
@@ -66,8 +75,6 @@ module Jabverwock
     def isBase (i,s)
       s.to_s.include?(i) ? true : false            
     end
-        
-    
     
   end
 

@@ -24,25 +24,36 @@ module Jabverwock
       super inits
       @obj = "document"
       @query = ""
-      @element = Element.new
-      @result = ""
+      @element = Element.new(self)
+    end
+
+    #delegate    
+    def rec
+      recBy @element.ec
+    end
+
+    def recBy (str)
+      @orders << str
     end
     
     def selectElement(slect,obj)
-      @element.content = @obj.dot(slect).inParenth(obj) + $JS_CMD_END
+      cp =  @obj.dot(slect).inParenth(obj) + $JS_CMD_END
+      @element.content = cp
       @element
     end
 
     def modifyElement(order, elem)
       updateSelector(@id,@cls,@name)
-      @result = @obj.dot(order).inParenth(elem)
-      @result + $JS_CMD_END      
+      cp =  @obj.dot(order).inParenth(elem) + $JS_CMD_END
+      @element.content = cp
+      @element
     end
 
     def treatElement (order,elem)
       updateSelector(@id,@cls,@name)
-      @result = @obj.dot(order) + "(" + "#{elem}" + ")"
-      @result + $JS_CMD_END            
+      cp = @obj.dot(order) + "(" + "#{elem}" + ")"  + $JS_CMD_END
+      @element.content = cp
+      @element
     end
 
     ### add and delete element ###
@@ -133,34 +144,50 @@ module Jabverwock
 
 
   class Element
-    attr_accessor :content
     
-    def initialize
+    # contentを受け取ってecを返す
+   attr_writer :content
+   attr_reader :ec
+   
+    def initialize(delegate)
+      @delegate = delegate
       @content = ""
+      @ec = ""
     end
 
     def element
       @content
     end
-
+    
+    def rec
+      if @ec == ""
+        @ec = @content
+      end
+      @delegate.recBy @ec
+      @ec = ""
+    end
+    
     def index(i)
       s = KString.remove_Js_Cmd_End @content
-      @content = s + "[#{i}];"
+      @ec = s + "[#{i}];"
+      @content = @ec
       self
     end
     
     ### change element ###
     def elementChanging_Equal (act,str)
       s = KString.remove_Js_Cmd_End @content
-      s.dot(act) + $EQUAL.inDoubleQuot(str) + $JS_CMD_END      
+      @ec = s.dot(act) + $EQUAL.inDoubleQuot(str) + $JS_CMD_END
+      self
     end
     
      def elementChanging (act,str)
-      s = KString.remove_Js_Cmd_End @content
-      s.dot(act) + "(" + str + ")" + $JS_CMD_END
+       s = KString.remove_Js_Cmd_End @content
+       @ec = s.dot(act) + "(" + str + ")" + $JS_CMD_END
+       self
     end
     
-    def innerHTML(str)
+     def innerHTML(str)
       elementChanging_Equal("innerHTML",str)
     end
 
@@ -169,13 +196,14 @@ module Jabverwock
     end
 
     def setAttribute(attr,str)
-      s = "".inDoubleQuot(attr) + $COMMA.inDoubleQuot(str)      
-      elementChanging("setAttribute",s)
+      e = "".inDoubleQuot(attr) + $COMMA.inDoubleQuot(str)      
+      elementChanging("setAttribute",e)
     end
     
     def style (property, val)
       s = KString.remove_Js_Cmd_End @content
-      s.dot("style").dot(property) + $EQUAL.inDoubleQuot(val) + $JS_CMD_END
+      @ec = s.dot("style").dot(property) +  $EQUAL.inDoubleQuot(val) + $JS_CMD_END
+      self
     end
     
   end
