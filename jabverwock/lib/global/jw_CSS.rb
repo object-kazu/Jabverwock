@@ -50,8 +50,7 @@ module Jabverwock
     MEMO_css
       
     end
-    
-    
+        
     def cssWithName (name)
       name = KString::checkString(name)
       @css.name = name

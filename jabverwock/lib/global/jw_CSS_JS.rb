@@ -61,7 +61,6 @@ module Jabverwock
       if member.jsArray.count > 0
         @jsArray.append member.jsArray
       end
-      
     end
 
     def applyJS
@@ -80,7 +79,6 @@ module Jabverwock
       }
       ans
     end
-
     
     def self_JsOrders_add_to_self_jsArray
       @jsArray.append @js.orders
@@ -102,6 +100,9 @@ module Jabverwock
 
     def isExistHeadTag
       @templeteString.include? "<head>"
+    end
+    def isExistScriptTag
+      @templeteString.include? "<script>"
     end
     
     def reader(str) # sentence -> arr
@@ -149,7 +150,9 @@ module Jabverwock
     ### override ###
     def assembleHTML
       super
-      insertScriptToHead if isExistHeadTag 
+      if isExistHeadTag
+        insertScriptToHead unless isExistScriptTag
+      end
     end
 
 

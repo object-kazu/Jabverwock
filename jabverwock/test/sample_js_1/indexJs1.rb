@@ -6,36 +6,46 @@ module Jabverwock
   using SymbolExtension
   
 
-  class << self
+  # class << self
     
     
-    def header
-      head = HEAD.new
-      title = TITLE.new
-      title.content = "Hello world"
-      head.addChild title
+  #   def header
+  #     head = HEAD.new
+  #     title = TITLE.new
+  #     title.content = "Hello world"
+  #     head.addChild title
       
-      head.js.doc.write "hello world"
+  #     head.js.doc.write("hello world").rec
       
-      head
-    end
+      
+  #     head
+  #   end
 
     
-    def bodier
-      body = BODY.new
+  #   def bodier
+  #     body = BODY.new
+  #     body.js.doc.write("next world").rec
       
-      body
-    end
+  #     body
+  #   end
 
     
     
-  end
+  # end
   
   
   html = HTML.new
-  # html.addChild header
-  # html.addChild bodier
+
+  header = HEAD.new
+  header.js.doc.write("hello!").rec
+  body = BODY.new
+  body.js.doc.write("new world").rec
   
+  # html.addChild header
+  # html.addChild body
+
+  html.addMember header
+  html.addMember body
   
   
   $SA = "sample_Js_1"

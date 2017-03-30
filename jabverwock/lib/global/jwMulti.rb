@@ -15,10 +15,6 @@ else
   
 end
 
-
-
-
-
 module Jabverwock
   using StringExtension
   
@@ -39,6 +35,8 @@ module Jabverwock
         assert_raise{}
       end
       
+      # js
+      addJS child
 
       # css
       if child.cssArray.count > 0
@@ -51,11 +49,9 @@ module Jabverwock
             
       
       # html
-      child.assemble
+      child.assembleHTML
       addChildString(child.templeteString)
 
-      # js
-      addJS child
             
     end
 
@@ -98,14 +94,6 @@ module Jabverwock
 
     end
 
-    # def addTab(element)
-    #   ans = ""
-    #   element.lines{ |l|
-    #     ans += "\t" + l
-    #   }
-    #   ans
-    # end
-    
     def childAssemble
       tem = []
       @childStringArray.each do |t|
