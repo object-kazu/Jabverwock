@@ -11,8 +11,6 @@ else
 end
 
 
-
-
 module Jabverwock
   using StringExtension
   using ArrayExtension

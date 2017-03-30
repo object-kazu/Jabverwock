@@ -8,7 +8,7 @@ if $FOR_GEM
 else
   # test
   require '../../lib/global/globalDef'  
-  require '../../lib/global/jw'  
+  require '../../lib/global/jw'
   require '../../lib/css/css'  
   require '../../lib/global/jw_CSS'  
   require '../../lib/js/jsObject'  
@@ -21,26 +21,33 @@ module Jabverwock
   using ArrayExtension
   
   class JW_CSS_JS < JW_CSS # add css functions
-    attr_accessor :js
+    attr_accessor :js, :jsArray
     
     def initialize
       super
       @js = JsObject.new
-      
-      # koko now
-      # jsObjectsから jsに変換するメソッドが必要
-      #      
-      # @jsArray = []     ## [js]
-      @jsStatements = [] ## [String]
-      #@sctriptStr = ""
-      
+      @jsResult = ""
+      @jsArray = []
+      @scriptTag = ""
     end
      
-    ####### add child ############
-    # def isJsArrayAvailable
-    #   @jsArray.count > 0 ? true : false
-    # end
+    ####### js ###################
+    def rec
+      @js.rec
+    end
+
+    def orders
+      @js.orders
+    end
     
+    def attrSymbol(tag)
+      super tag # see jw class
+
+      #selectors(id, cls, name) -> JsObject -> JsDocumet, ect
+      @js.updateSelector tag
+    end
+    
+    ####### add child ############
     ## override
     def addJS(member)
       unless member.is_a?(JW_CSS_JS)
@@ -49,121 +56,111 @@ module Jabverwock
           p "error, member should be JW_CSS_JS"
         }
       end
-
-      @jsArray.append member.js
-
+      @jsArray.append member.orders
+      
       if member.jsArray.count > 0
-        @jsArray.appendArray member.jsArray
+        @jsArray.append member.jsArray
       end
+      
     end
 
     def applyJS
-      p "koko now"
       assembleJS
-      # js code import into <script> tag
-      s = SCRIPT.new.contentIs @jsStatement
+      startTag = "<script>"
+      endTag = "</script>"
+      content = addTab @jsResult
+      @scriptTag << startTag << content << endTag
       
-      ## head tagがあればaddMemberで追加する
-      ## なければheader tagを追加してaddMemberする
-      self.addMember s
-      
+    end
+    
+    def addTab(element)
+      ans = ""
+      element.lines{ |l|
+        ans += "\t" + l
+      }
+      ans
+    end
+
+    
+    def self_JsOrders_add_to_self_jsArray
+      @jsArray.append @js.orders
     end
     
     def assembleJS
       # js collect from child and member
-
-      tJsArray = makeElementArray @js, @jsArray
-      tJsArray.flatten!
-      
-      tJsArray.each do |j|
-        p j.jsStrings
-        extractJsString j
+      @jsResult = ""
+      self_JsOrders_add_to_self_jsArray
+      @jsArray.each do |j|
+        @jsResult << j + $RET
       end
-      @jsStatement.removeLastRET
-            
+      @jsResult.removeLastRET   
     end
 
-    def extractJsString(js)
-      return unless js.is_a? JsObject
+    def showJsResult
+      @jsResult
+    end
 
-      
-      if js.jsStrings.count > 0
-        js.each do |j|
-          @jsStatement << j << $RET
+    def isExistHeadTag
+      @templeteString.include? "<head>"
+    end
+    
+    def reader(str) # sentence -> arr
+      str.lines
+    end
+
+   def writer(arr) # arr -> sentence
+     arr.inject("") do |temp, s|
+       temp << s    
+     end
+    end
+
+    def insertIndex (arr)
+      arr.index { |i| i =~ /<\/head>/ }
+    end
+
+    def tabCount(str)
+      str.count("\t")
+    end
+
+    def insertText(arr,txt)
+      index = insertIndex arr
+      temp = ""
+      tabs = 0
+      arr.each_with_index do |l,ind|
+        if ind == index - 1
+          tabs = tabCount l
         end
+        
+        if ind == index
+          tabs.times{ temp << "\t"}
+          temp << txt << "\n"
+        end
+        temp  << l
       end
+      temp
+    end
+
+    def insertScriptToHead
+      arr = []      
+      arr = reader @templeteString
+      @templeteString = insertText arr, @scriptTag
     end
     
     ### override ###
+    def assembleHTML
+      super
+      insertScriptToHead if isExistHeadTag 
+    end
+
+
+    
     def assemble
       @templeteString = ""
       applyJS
       assembleHTML
       assembleCSS            
-    end
-
-    
+    end    
   end
-
-      #####  js           ###########################
-    
-#     /// js <script></script>に挟まれた文字列を取り出す
-#     func extranctBetweenScriptTag (target: [String]) -> (scriptTag:[String], extract:[String]) {
-#         /*
-#          [0] = "<!DOCTYPE html type=\"text/javascript\" src=\"/Users/shimizukazuyuki/Desktop/index/test.js\">"
-#          [1] = "<script type=\"text/javascript\" src=\"/Users/shimizukazuyuki/Desktop/index/test.js\">"
-#          [2] = "\ttest\t"
-#          [3] = "</script>"
-         
-#          */
-        
-#         var s : [String] = []
-#         var e : [String] = []
-        
-#         var start = false
-#         for st in target {
-#             if st.contains("<script") {
-#                 s.append(st)
-#                 start = true
-#                 continue
-#             }
-            
-#             if st.contains("</script>") {
-#                 s.append(st)
-#                 start = false
-#                 continue
-#             }
-            
-#             if start {
-#                 e.append(st)
-                
-#             }else{
-#                 s.append(st)
-#             }
-            
-            
-#         }
-#         return (scriptTag: s, extract: e)
-#     }
-
-    
-#     /*
-#      => isNeedJsSrc
-#      <script type="text/javascript" src="/Users/shimizukazuyuki/Desktop/index/test.js"></script>
-     
-#      => InDocument
-#      <script type="text/javascript"></script>
-     
-     
-#      */
-    
-     # def isJsAvailable
-    #   if !@jsExportType.empty? || !@jsExportPath.empty? || !@jsExportFileName.empty? # <script> available
-    #     return true
-    #   end
-    #   return false
-    # end
-
   
    # a = JW_CSS_JS.new
    # p a

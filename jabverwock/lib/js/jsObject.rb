@@ -32,18 +32,19 @@ module Jabverwock
       self
     end
 
-    def orderList
-      @jsStrings << @doc.jsStrings
-      @jsStrings.flatten!
+    def orders
+      l = []
+      l << @orders << @doc.orders 
+      l.flatten
     end
     
   end
 
 
-  #  a = JsObject.new(:id__test)
+  # a = JsObject.new(:id__test)
   # p a.doc
   # p a.doc.byID.element
-  
+  # p a.orderList
   
 end
 

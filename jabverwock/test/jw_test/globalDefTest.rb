@@ -256,23 +256,35 @@ module Jabverwock
       a.append 5
       assert_equal(a, [2,3,4,5])
     end
+    
+    test "append val case 2" do
+      a = [2,3,4]
+      a.append [5]
+      assert_equal(a, [2,3,4,5])
+    end
 
     test "appends vals" do
       a = [2,3,4]
-      a.appends(5, 6)
+      a.appends [5,6]
       assert_equal(a, [2,3,4,5,6])
     end
     
-    test "appendArray vals" do
+    test "appends vals case 2" do
       a = [2,3,4]
-      a.appendArray [5,6]
-      assert_equal(a, [2,3,4,5,6])
+      a.appends [11,22], [33,33]
+      assert_equal(a, [2,3,4,11,22,33,33])
     end
     
-    test "appendArray vals case 2" do
-      a = [2,3,4].appendArray [5,6]
-      assert_equal(a, [2,3,4,5,6])
-    end
+    # test "appendArray vals" do
+    #   a = [2,3,4]
+    #   a.appendArray [5,6]
+    #   assert_equal(a, [2,3,4,5,6])
+    # end
+    
+    # test "appendArray vals case 2" do
+    #   a = [2,3,4].appendArray [5,6]
+    #   assert_equal(a, [2,3,4,5,6])
+    # end
     
     
     

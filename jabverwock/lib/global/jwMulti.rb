@@ -71,6 +71,10 @@ module Jabverwock
     end
     
     def addChildString(childString)
+      # if childString == nil
+      #   p "childString is nill"
+      #   return
+      # end      
       childString = KString.checkString childString      
       @childStringArray << childString
     end
@@ -94,13 +98,13 @@ module Jabverwock
 
     end
 
-    def addTab(element)
-      ans = ""
-      element.lines{ |l|
-        ans += "\t" + l
-      }
-      ans
-    end
+    # def addTab(element)
+    #   ans = ""
+    #   element.lines{ |l|
+    #     ans += "\t" + l
+    #   }
+    #   ans
+    # end
     
     def childAssemble
       tem = []

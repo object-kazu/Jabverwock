@@ -1,4 +1,5 @@
 require 'test/unit'
+
 require '../../lib/global/globalDef'  
 require '../../lib/css/css'
 require "../../lib/global/jw_CSS_JS"
@@ -9,6 +10,7 @@ require "../../lib/js/jsDocument"
 module Jabverwock
   using StringExtension
   using ArrayExtension
+  using SymbolExtension
   
   class JWCssJsTest < Test::Unit::TestCase
     class << self
@@ -46,69 +48,142 @@ module Jabverwock
     #   p @jwjs
     # end
 
-    test "isJsArrayAvailable, true" do
-      @jwjs.jsArray = ["a"]
-      assert_true(@jwjs.isJsArrayAvailable)
-    end
-    
-    test "isJsArrayAvailable, false" do      
-      assert_false(@jwjs.isJsArrayAvailable)
-    end
-    
-    test "jwcssjs test isJsArrayAvailable" do
-      a = JsObject.new("","","")
-      @jwjs.jsArray = [a]
-      assert_true(@jwjs.isJsArrayAvailable)
-    end
+    # test "dot" do
+    #   assert_equal("a.a", "a".dot("a"))
+    # end
 
-    test "dot" do
-      assert_equal("a.a", "a".dot("a"))
-    end
-
-    test "js cmd end" do
-      assert_equal("a" << $JS_CMD_END, "a;")
+    # test "js cmd end" do
+    #   assert_equal("a" << $JS_CMD_END, "a;")
      
-    end
+    # end
     
     ##### doc ###########
     
-    test "document write" do
-      d = JsDocument.new
-      a = d.write("a")
-      assert_equal(a[0], "document.write('a');")
+    test "document write case 1" do
+      @jwjs.js.doc.write("a").rec
+      assert_equal(@jwjs.js.doc.orders[0], "document.write('a');")
     end
-
-
+    
     test "document write case 2" do
-      d = JsDocument.new.write("a")
-      assert_equal(d[0], "document.write('a');")
+      @jwjs.js.doc.write("a").rec
+      assert_equal(@jwjs.js.orders[0], "document.write('a');")
+    end
+    
+    test "document write case 2-2" do
+      a = @jwjs.js.doc.write("a")
+      a.rec
+      assert_equal(@jwjs.js.orders[0], "document.write('a');")
     end
     
     test "document write case 3" do
-      a = @jwjs.js.doc.write "a"
-      assert_equal(a[0], "document.write('a');")
-    end
-    
-    test "document write case 4" do
-      @jwjs.js.doc.write "a"
-      ans = @jwjs.js.doc.jsStrings[0]
-      assert_equal ans, "document.write('a');"
-      
-    end
-    
-    
-    test "document write case 5" do
-      @jwjs.js.doc.write "a"
-      @jwjs.js.doc.write "bb"
-      
-      ans1 = @jwjs.js.doc.jsStrings[0]
-      ans2 = @jwjs.js.doc.jsStrings[1]
-      
-      assert_equal ans1, "document.write('a');"
-      assert_equal ans2, "document.write('bb');"
-      
+      a = @jwjs.js.doc.write("a")
+      a.rec
+      assert_equal(@jwjs.orders[0], "document.write('a');")
     end
 
+    test "document write case 4" do
+      @jwjs.js.doc.updateSelector :id__sample
+      a = @jwjs.js.doc.write("a")
+      a.rec
+      @jwjs.js.doc.byID.innerHTML("aa").rec
+      
+      assert_equal(@jwjs.orders[1], "document.getElementById('sample').innerHTML=\"aa\";")
+    end
+
+    test "when set jwjs class id, js id set at the same time" do
+      @jwjs.attr :id__sample
+      a = @jwjs.js.doc.byID.element
+      assert_equal a, "document.getElementById('sample');"
+    end
+    
+    # #### add member ####
+
+    test "add jsArray to js.orders case 1" do
+      parent = JW_CSS_JS.new.attr(:id__sample)
+      parent.js.doc.write("parent").rec
+      
+      assert_equal parent.jsArray.count, 0
+    end
+    
+    test "add jsArray to js.orders case 2" do
+      parent = JW_CSS_JS.new.attr(:id__sample)
+      parent.js.doc.write("parent").rec
+
+      # this is expression for test of assembleJS
+      # this mean self.js.orders convert to self.jsArray
+      #parent.jsArray.append parent.js.orders
+      parent.self_JsOrders_add_to_self_jsArray
+      
+      assert_equal parent.jsArray.count, 1
+    end
+
+    
+    
+    test "add member " do
+      parent = JW_CSS_JS.new.attr(:id__sample)
+      parent.js.doc.write("parent").rec
+      
+      child  = JW_CSS_JS.new.attr(:id__test)
+      child.js.doc.write("child").rec
+          
+      parent.addMember child
+      
+      assert_equal parent.jsArray, child.orders
+    end
+    
+    test "add member case 2 " do
+      parent = JW_CSS_JS.new.attr(:id__sample)
+      parent.js.doc.write("parent").rec
+      
+      child  = JW_CSS_JS.new.attr(:id__test)
+      child.js.doc.write("child").rec
+      child.js.doc.write("child again").rec
+      
+      parent.addMember child
+      
+      assert_equal parent.jsArray.count, 2 # child and child again
+    end
+    
+    test "add member case 3 " do
+      parent = JW_CSS_JS.new.attr(:id__sample)
+      parent.js.doc.write("parent").rec
+      
+      child  = JW_CSS_JS.new.attr(:id__test)
+      child.js.doc.write("child").rec
+      child.js.doc.write("child again").rec
+      
+      parent.addMember child
+      parent.self_JsOrders_add_to_self_jsArray
+      assert_equal parent.jsArray.count, 3 # parent, child and child again
+    end
+
+    # test "assembleJS, show JS Result" do
+    #   parent = JW_CSS_JS.new.attr(:id__sample)
+    #   parent.js.doc.write("parent").rec
+      
+    #   child  = JW_CSS_JS.new.attr(:id__test)
+    #   child.js.doc.write("child").rec
+    #   child.js.doc.write("child again").rec
+      
+    #   parent.addMember child
+    #   parent.assembleJS
+    #   p parent.showJsResult
+
+    #   p parent.applyJS
+     
+    # end
+    
+    test "assembleHTML test" do
+      parent = JW_CSS_JS.new.attr(:id__sample)
+      parent.js.doc.write("parent").rec
+      
+      child  = JW_CSS_JS.new.attr(:id__test)
+      child.js.doc.write("child").rec
+      child.js.doc.write("child again").rec
+      
+      parent.addMember child
+      parent.assemble
+    end
 
   end
 end

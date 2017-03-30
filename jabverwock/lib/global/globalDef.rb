@@ -97,8 +97,9 @@ module ArrayExtension
   
   refine Array do
     
-    def append(element)
+    def append(element)      
       self << element
+      self.flatten!
     end
 
     def appends (*element)
@@ -107,17 +108,21 @@ module ArrayExtension
       end
     end
 
-    def appendArray(arr)
-      self.concat arr
-    end
+    # def appendArray(arr)
+    #   self.concat arr
+    # end
 
-    # a = [1,2,3]
-    # a.append 4 # => [1, 2, 3, 4]
-
+    # a = [1,2,3,4]
     # b = [4,5,6]
-    # #a.append b # => [1, 2, 3, 4, [4, 5, 6]]
+    # p a.append 4 # => [1, 2, 3, 4]
+   
+    
 
-    # a.appendArray b # => [1, 2, 3, 4, 4, 5, 6]
+    # c = []
+    # p a.append c
+    #p a.append b # => [1, 2, 3, 4, [4, 5, 6]]
+
+    #p a.appendArray b # => [1, 2, 3, 4, 4, 5, 6]
     
   end
 end

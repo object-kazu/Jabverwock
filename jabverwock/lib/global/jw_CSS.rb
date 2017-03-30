@@ -14,7 +14,9 @@ end
 
 module Jabverwock
   using StringExtension
-
+  using ArrayExtension
+  using SymbolExtension
+  
   class JW_CSS < JW # add css functions
 
     attr_accessor :css, :cssArray, :cssString
@@ -210,13 +212,15 @@ module Jabverwock
     def addCSSmember(member)
       
       if member.cssArray.count > 0
-        @cssArray += member.cssArray
+        #@cssArray += member.cssArray
+        @cssArray.append member.cssArray
       end
       
       # id, cls add to css name
       cssRename = member.add_ID_CLS_NAME member.css.name      
       member.css.name = cssRename
-      @cssArray << member.css
+      #@cssArray << member.css
+       @cssArray.append member.css
     end
     
     def addHTML(member)

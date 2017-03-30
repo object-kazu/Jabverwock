@@ -73,7 +73,13 @@ module Jabverwock
       
       assert_equal(@jso.doc.orders.count , 1)
     end
-    
+
+
+    test "jsObject extract from jsObject" do
+      @jso.updateSelector(:id__koko).doc.byID.rec
+      @jso.orderList
+      
+    end
 
   end
 end

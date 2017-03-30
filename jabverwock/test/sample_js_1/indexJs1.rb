@@ -33,8 +33,8 @@ module Jabverwock
   
   
   html = HTML.new
-  html.addChild header
-  html.addChild bodier
+  # html.addChild header
+  # html.addChild bodier
   
   
   

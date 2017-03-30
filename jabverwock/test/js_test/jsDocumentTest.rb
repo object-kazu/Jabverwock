@@ -101,34 +101,33 @@ module Jabverwock
     
     
     # # # # ### add and delete element ###
-    # test "createElement" do
-    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
-    #   @jsd.createElement("koko").rec
-    #   assert_equal(@jsd.orders[0], "document.createElement('koko');")
+    test "createElement" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.createElement("koko").rec
+      assert_equal(@jsd.orders[0], "document.createElement('koko');")
 
-    # end
-    # test "createElement orders count" do
-    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
-    #   @jsd.createElement("koko").rec
-    #   assert_equal(@jsd.orders.count, 1)
+    end
+    
+    test "createElement orders count" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.createElement("koko").rec
+      assert_equal(@jsd.orders.count, 1)
 
-    # end
+    end
     
-    # test "removeChild" do
-    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
-    #   @jsd.removeChild("aaa").rec
-    #   assert_equal(@jsd.orders[0], "document.removeChild(aaa);")
+    test "removeChild" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.removeChild("aaa").rec
+      assert_equal(@jsd.orders[0], "document.removeChild(aaa);")
 
-    # end
+    end
     
     
-    # test "document write ,rec" do
-    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
-    #   @jsd.write("koko").rec 
-    #   assert_equal(@jsd.orders[0], "document.write('koko');")
-    # end
-
-    
+    test "document write ,rec" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.write("koko").rec 
+      assert_equal(@jsd.orders[0], "document.write('koko');")
+    end
     
     # # ### change element ###
     
@@ -239,6 +238,13 @@ module Jabverwock
 
     test "index element" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      a = @jsd.byID.index(0).element
+      assert_equal(a,"document.getElementById('koko')[0];")
+
+    end
+    
+    test "index element case 2" do  
+      @jsd.updateSelector :id__koko
       a = @jsd.byID.index(0).element
       assert_equal(a,"document.getElementById('koko')[0];")
 
