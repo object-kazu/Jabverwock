@@ -19,6 +19,7 @@ end
 module Jabverwock
   using StringExtension
   using ArrayExtension
+  using SymbolExtension
   
   class JW_CSS_JS < JW_CSS # add css functions
     attr_accessor :js, :jsArray
@@ -68,8 +69,7 @@ module Jabverwock
       startTag = "<script>"
       endTag = "</script>"
       content = addTab @jsResult
-      @scriptTag << startTag << content << endTag
-      
+      @scriptTag << startTag << "\n" << content << endTag
     end
     
     def addTab(element)
@@ -98,10 +98,10 @@ module Jabverwock
       @jsResult
     end
 
-    def isExistHeadTag
+    def isExistHeadTagAtTempleteString
       @templeteString.include? "<head>"
     end
-    def isExistScriptTag
+    def isExistScriptTagAtTempleteString
       @templeteString.include? "<script>"
     end
     
@@ -109,6 +109,10 @@ module Jabverwock
       str.lines
     end
 
+    def templeteStringArray
+      reader @templeteString
+    end
+    
    def writer(arr) # arr -> sentence
      arr.inject("") do |temp, s|
        temp << s    
@@ -123,35 +127,44 @@ module Jabverwock
       str.count("\t")
     end
 
+    def tabNumberHeaderTag
+      arr = templeteStringArray
+      num = 0
+      arr.each do |v|
+        if v.include? "<head>"
+          num = tabCount v
+        end
+      end
+      num
+    end
+    
     def insertText(arr,txt)
       index = insertIndex arr
       temp = ""
-      tabs = 0
+      n = tabNumberHeaderTag + 1
       arr.each_with_index do |l,ind|
-        if ind == index - 1
-          tabs = tabCount l
-        end
-        
         if ind == index
-          tabs.times{ temp << "\t"}
-          temp << txt << "\n"
+          temp << KString.addTabEachLine(txt) << "\n"
+#          temp << KString.addTab(str: txt, num: n) << "\n"
         end
         temp  << l
       end
+      
       temp
     end
 
     def insertScriptToHead
-      arr = []      
-      arr = reader @templeteString
-      @templeteString = insertText arr, @scriptTag
+      
+      #number of tab before head tag
+      
+      @templeteString = insertText templeteStringArray, @scriptTag
     end
     
     ### override ###
     def assembleHTML
       super
-      if isExistHeadTag
-        insertScriptToHead unless isExistScriptTag
+      if isExistHeadTagAtTempleteString
+        insertScriptToHead unless isExistScriptTagAtTempleteString
       end
     end
 

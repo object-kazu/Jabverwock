@@ -41,11 +41,11 @@ module Jabverwock
   body = BODY.new
   body.js.doc.write("new world").rec
   
-  # html.addChild header
-  # html.addChild body
+  html.addChild header
+  html.addChild body
 
-  html.addMember header
-  html.addMember body
+  # html.addMember header
+  # html.addMember body
   
   
   $SA = "sample_Js_1"
