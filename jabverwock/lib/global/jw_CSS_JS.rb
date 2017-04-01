@@ -145,7 +145,6 @@ module Jabverwock
       arr.each_with_index do |l,ind|
         if ind == index
           temp << KString.addTabEachLine(txt) << "\n"
-#          temp << KString.addTab(str: txt, num: n) << "\n"
         end
         temp  << l
       end
