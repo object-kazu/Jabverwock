@@ -1,6 +1,3 @@
-##
-## koko now!  
-### 　動的にCSSのWidht,Heightをきめられないか？  
 
 # ## String extension ############
 module StringExtension
@@ -88,7 +85,12 @@ module SymbolExtension
       elem = sim.split "__"
       elem
     end
-    
+
+    def hasDoubleUnderBar?
+      ans = self.to_s
+      return true if ans.include? "__"
+      false
+    end
   end
 end
 
@@ -159,145 +161,128 @@ module Jabverwock
   $ENDMARK = "_e_"
 
   
-  # # Table ####################
+  ## Table ####################
   $BR      = "<br>"
   $ROW_SPAN = "%rowSpan="
   $COL_SPAN = "%colSpan="
   
+  
+  # This module is utility, not depend on class instance
   module KSUtil
     class << self
-      def callSelfCls(cls)
-        "#{cls.class}"
+      
+      def pressPath
+        _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
+        current = ENV['PWD']
+        if current.include?("BitTorrent")
+          _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
+        end
+        _dir_
       end
-    
-      def is_bool(v)
+
+      def isBool(v)
         !!v === v
       end
 
-      
-      def labelDataPair?(p)
-        if !p.is_a?(Hash)
-          p "pair is hash, like {label:, data:}"
-          raise RuntimeError
-        end        
+      def isDoubleUnderBarSymbol(sym)
+        return nil unless sym.is_a? Symbol
+        sym.hasDoubleUnderBar?
       end
-      
+          
     end
   end
   
+  
+  # this class is HTML arrange, especialy treat with RET and TAB.
   module KString
     # 型チェック
     class << self
 
-      def check_type(type, instance, nilable =false)
-
-        if (instance.nil?)
-          unless nilable
-            raise ArgumentError::new("non-nil constraint vioration")
-          end # nilable
-        else
-          unless instance.kind_of?(type)
-            raise ArgumentError::new("type mismatch: #{instance.class} for #{type}")
-          end # instance, type
-        end # instance.nil?
-
-        return instance
+      def check_type(type, instance)
+        # pass check -> true
+        # fail check -> ArgumentError
+        
+        unless instance.kind_of?(type)
+          raise ArgumentError::new("type mismatch: #{instance.class} for #{type}")
+        end
+        true
       end
 
-      def checkString (instance, nilable=false)
+      def isString? (instance)
         check_type(String, instance)
       end
 
-      def chechInt(instance,nilable=false)
+      def isInt?(instance)
         check_type(Integer,instance)
       end
-      
 
       def removeLastRET(text)
-        text = checkString(text)
-        ans = text.chomp
-        if ans != nil
-          return ans
-        end
-        text
+        isString? text
+        text.chomp
       end
 
       def removeLastTAB(text)
-        text = checkString(text)
-        ans  = text.gsub!(/\t$/, "")
-        if ans != nil
-          return ans
-        end
-        text
+        isString? text
+        text.gsub(/\t$/, "")
       end
       
       def remove_Js_Cmd_End(text)
-        text = checkString(text)
-        ans  = text.gsub!(/;$/, "")
-        if ans != nil
-          return ans
-        end
-        text
+        isString? text
+        text.gsub(/;$/, "")
       end
-
       
       def removeHeadTAB(text)
-        text = checkString(text)
-        ans = text.gsub!(/^\t/, "")
-        if ans != nil
-          return ans
-        end
-        text
+        isString? text
+        text.gsub(/^\t/, "")
       end
 
-
       def addSpace(str)
-        if !str.empty?
-          str = checkString(str)
+        isString? str
+        unless str.empty?
           str = $SPC + str
         end
         str
       end
 
       def stringArrayConectRET (arr)
-        ans = ""
-        if arr.count > 0
-          arr.each { |d| 
-            ans += checkString(d)
-            ans += $RET
-          }
+        return if arr.count == 0 
+        
+        arr.inject("") do |ans, d|
+          isString? d
+          ans << d << $RET
         end
-        ans
       end
 
-
       def reprace(str:, of:, with:)
-        str = checkString(str)
-        of = checkString(of)
-        with = checkString(with)
-        str = str.gsub!(of,with)
+        isString? str
+        isString? of
+        isString? with
+
+        str.gsub(of,with)
       end
 
       # tab揃え
       def tabCount(str)
-        str = checkString(str)
-        # //余分なTabを除く
-        str = removeLastTAB(str)
-        str.count("#{$TAB}")
+        isString? str
+        str = removeLastTAB str
+        str.count $TAB
       end
 
-      def addTab(str:, num:)
-        str = checkString(str)
-        tabMax = chechInt(num)
+      # def addTab(str:, num:)
+      #   isString?(str)
+      #   isInt? num
+        
+      #   tabMax = num
+      #   ans = ""
+      #   str.each_line { |l|
+      #     tn = tabCount(l)
+      #     df = tabMax - tn
+      #     ans += addHeadTab(str: l, num: df)
+      #   }
+      #   ans
+      # end
 
-        ans = ""
-        str.each_line { |l|
-          tn = tabCount(l)
-          df = tabMax - tn
-          ans += addHeadTab(str: l, num: df)
-        }
-        ans
-      end
+      
 
       def addTabEachLine (str)
         ans = ""
@@ -308,40 +293,58 @@ module Jabverwock
       end
       
       def addHeadTab(str:, num:)
-        str = checkString(str)
-        num = chechInt(num)
-
-        t = ""
-        num.times do |i| 
-          t += $TAB
-        end
+        isString? str
+        isInt? num
+        t = makeSerialTab num
         t += str
         
       end
 
+      def makeSerialTab (num)
+        num.times.inject("") do |t| 
+          t += $TAB
+        end
+      end
+      
       def getTabNumber (testStr)
-        testStr = checkString(testStr)
+        isString?(testStr)
+        
         testStr.each_line{ |l|
-          if l.count("#{$TAB}") > 0
+          if l.count($TAB) > 0
             return tabCount(l) 
           end  
         }
         return 0
       end
-
-      # def getTabMax(str)
-      #   str = checkString(str)
-      #   max = 0
-      #   str.each_line{ |l|
-      #     a = tabCount(l)
-      #     if a > max
-      #       max = a
-      #     end
-      #   }
-      #   return max
-      # end
       
     end 
   end
 end 
 
+
+
+## garbage code
+
+      # def check_type(type, instance, nilable=false)
+      #   if (instance.nil?)
+      #     unless nilable
+      #       raise ArgumentError::new("non-nil constraint vioration")
+      #     end # nilable
+      #   else
+      #     unless instance.kind_of?(type)
+      #       raise ArgumentError::new("type mismatch: #{instance.class} for #{type}")
+      #     end # instance, type
+      #   end # instance.nil?
+
+      #   return instance
+      # end
+
+      # def isString? (instance, nilable=false)
+      #   check_type(String, instance)
+      # end
+
+      # def isInt?(instance, nilable=false)
+      #   check_type(Integer,instance)
+      # end
+      
+      

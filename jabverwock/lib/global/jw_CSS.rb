@@ -52,7 +52,7 @@ module Jabverwock
     end
         
     def cssWithName (name)
-      name = KString::checkString(name)
+      KString::checkString(name)
       @css.name = name
     end
     
@@ -196,7 +196,7 @@ module Jabverwock
     ####### add member ############
     
     def addMemberString (memberString)
-      memberString = KString::checkString(memberString)
+      KString::checkString(memberString)
       @memberStringArray << memberString
     end
 

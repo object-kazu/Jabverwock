@@ -21,9 +21,11 @@ module Jabverwock
   using ArrayExtension
   using SymbolExtension
   
+  # this class is base html class 
   class JW
 
     attr_accessor :name, :aData, :templeteString, :pressVal, :tagManager
+    
     
     def initialize
       @name           = self.name
@@ -46,44 +48,30 @@ module Jabverwock
       end
       self
     end
+
+    # def isDoubleUnderBarSymbol(sym)
+    #   return nil unless sym.is_a? Symbol
+    #   sym.hasDoubleUnderBar?
+    # end
     
     def attr(tag, *val)
       return unless tag.is_a? Symbol
-            
-      # tag -> symbols, val = []
-      if val.count == 0
-        attrSymbol tag
-        return self
-      end
 
-      # tag -> symbols, val = [Symbol, ..., Symbol]      
-      if val.last.is_a? Symbol
-        attrSymbol tag
-        val.each do |s|
-           attrSymbol s 
+      arr = Array(tag).append val
+      
+      arr.each_with_index do |v, index|
+        if KSUtil.isDoubleUnderBarSymbol v
+          attrSymbol v
+          next
         end
-        return self
-      end
 
-      #tag -> symbols, val = [String]
-      if val.first.is_a? String
-        @tagManager.tagAttr tag, val.first
-        return self
+        if v.is_a? Symbol
+          unless index + 1 >= arr.count
+            @tagManager.tagAttr v, arr[index + 1]
+          end          
+        end
       end
       
-      #tag -> symbols, val = [Symbol, ..., String]
-      c = val.count 
-      a1 = val.slice(0,c-2)
-      a2 = val.slice(c-2,c)
-      
-      attrSymbol tag
-      
-      #a1 = symbols
-      for i in a1
-        attrSymbol i
-      end
-      #a2 = symbols + String
-      @tagManager.tagAttr(a2.first, a2.last)      
       self
     end
 
@@ -96,8 +84,8 @@ module Jabverwock
       @tagManager.tagAttr e[0], e[1]  
     end
     
-    def withBreak(with = true)
-      @isWithBreak = with
+    def withBreak()
+      @isWithBreak = true
       self
     end
     
@@ -116,49 +104,36 @@ module Jabverwock
       end
     end
     
-    
     def name
       self.class.to_s.split("::").last.downcase
     end
-    
-    
+     
     def tgStr
       assemble
       @templeteString
     end
-        
+
     def isSingleTag(isSingle)
-      if KSUtil.is_bool(isSingle)
-        @tagManager.isSingleTag = isSingle        
-      end
-    end
-    
-    
-    def setLang= (lang)
-      lang = KString.checkString(lang)
-      @tagManager.tagAttribute.addLang = lang
+      @tagManager.isSingleTag = isSingle  if KSUtil.isBool isSingle
     end
 
-        
+     ################ ID ################
     def selectorID
       "#" + @tagManager.tagAttribute.id
     end
 
     def isExistID
-      if @tagManager.tagAttribute.id == ""
-        return false
-      end
+      return false if @tagManager.tagAttribute.id.empty?
       true
     end
-
+    
+     ################ cls  ################
     def selectorCls
       "." + @tagManager.tagAttribute.cls
     end
 
     def isExistCls
-      if @tagManager.tagAttribute.cls == ""
-        return false
-      end
+      return false if @tagManager.tagAttribute.cls.empty?
       true
     end
     
@@ -187,7 +162,7 @@ module Jabverwock
     end
 
     def tag
-      if @tagManager.name == ""
+      if @tagManager.name.empty?
         @tagManager.name = @name        
       end
       @tagManager.name
@@ -212,43 +187,7 @@ module Jabverwock
     end
     
     def prepPress
-      assemble
-      
-#      if @tagManager.isJsAvailable
-#         if self.tagManager.isJsAvailable() {
-#             if self.tagManager.isNeedJsSrc() {
-#                 // prep for js
-#                 // <script>　と<その他>を分離
-#                 // <その他>を別ファイルに書き出す
-#                 // ＜script＞を通常通り書き出す
-#                 let a = enumerateLine(target: self.templeteString)
-#                 let ans = self.tagManager.extranctBetweenScriptTag(target: a)
-#                 var b : [String] = []
-#                 for t in ans.extract {
-#                     b.append(removeHeadTAB(str: t))
-#                 }
-#                 self.templeteString = b.joined(separator: "\n")
-                
-#                 // export to js file
-#                 self.pressVal.templeteString = self.templeteString
-#                 self.pressVal.initResutString()               // templeteString -> resultString
-#                 self.pressVal.removeAllLabel()                // remove label string
-#                 let tempName = self.tagManager.jsFileName
-#                 let tempDir = self.tagManager.jsPath
-#                 self.pressVal.core(name: tempName, dist: tempDir)    // press resultString
-
-#                 // prep for html and css
-#                 self.templeteString = ans.scriptTag.joined(separator: "\n")
-                
-                
-#             }else{
-#                 //通常のTagと同じ処理
-#             }
-            
-#         }
-        
-###      end
-      
+      assemble      
       @pressVal.initResutString      
       @pressVal.removeAllLabel
     end
@@ -292,13 +231,14 @@ module Jabverwock
     $EXPORT_TESTPRESS_Dir_iMAC = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
     
     def testPress(name)
-      _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
+      # _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
       
-      current = ENV['PWD']
-      if current.include?("BitTorrent")
-        _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
-      end
+      # current = ENV['PWD']
+      # if current.include?("BitTorrent")
+      #   _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
+      # end
       
+      _dir_ = KSUtil.pressPath
       n = name + "Pressed" + ".html"
       pressConfig(name: n, dist: _dir_)
       prepPress

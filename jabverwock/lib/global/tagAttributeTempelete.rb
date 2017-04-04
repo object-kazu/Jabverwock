@@ -8,6 +8,7 @@ end
 module Jabverwock
   using StringExtension
   using SymbolExtension
+  using ArrayExtension
   
   class TagAttributeTemplete
     class << self
@@ -57,7 +58,7 @@ module Jabverwock
 
     def insertSPace(target)
       if @aString.empty?
-        @aString = KString.checkString(@aString)
+        KString.isString?(@aString)
         @aString += target
       else
         @aString += $SPC + target
@@ -69,8 +70,8 @@ module Jabverwock
     
     def templeteAdd (index, val)
       
-      index = KString.checkString(index)
-      val = KString.checkString(val)
+      # KString.isString?(index)
+      # KString.isString?(val)
 
       # exchange, cls => class
       if index == "cls"

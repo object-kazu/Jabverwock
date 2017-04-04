@@ -51,8 +51,9 @@ module Jabverwock
 
     def addAttribute
       if !@tagAttribute.aString.empty?
-        @attributeString = KString.checkString(@attributeString)
+        KString.isString?(@attributeString)
         @attributeString = KString.addSpace(@tagAttribute.aString)
+        
       end
     end
 

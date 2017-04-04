@@ -45,16 +45,24 @@ module Jabverwock
     end
 
     def insertLabelData(label:, data:)
-      label = KString.checkString(label)
-      data = KString.checkString(data)
+      KString.isString?(label)
+      KString.isString?(data)
       
       targetString = label.variable
       dataPlusTargetString = targetString + data
       @resultString.gsub!(targetString, dataPlusTargetString)
     end
     
+    def labelDataPair?(p)
+      if !p.is_a?(Hash)
+        p "pair is hash, like {label:, data:}"
+        raise RuntimeError
+      end        
+    end
+
+    
     def insertData(insertData)
-      KSUtil.labelDataPair?(insertData)
+      labelDataPair?(insertData)
       insertLabelData(label: insertData[:label], data: insertData[:data])
     end
 
@@ -73,7 +81,7 @@ module Jabverwock
     end
     
     def withInsert(insertData)
-      KSUtil.labelDataPair?(insertData)
+      labelDataPair?(insertData)
       initResutString
       insertData(insertData)
       removeAllLabel
@@ -84,7 +92,7 @@ module Jabverwock
       initResutString
       
       insertData.each do |i|
-        KSUtil.labelDataPair?(i)
+        labelDataPair?(i)
         insertData(i)
       end
       

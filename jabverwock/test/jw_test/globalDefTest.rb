@@ -4,6 +4,7 @@ require '../../lib/global/globalDef'
 module Jabverwock
   using StringExtension
   using ArrayExtension
+  using SymbolExtension
   
   class GlobaDefTest < Test::Unit::TestCase
     class << self
@@ -77,13 +78,13 @@ module Jabverwock
     test"check type case pass"do
       tm = "a"
       tm = KString.check_type(String,tm)
-      assert_equal(tm,"a")
+      assert_equal(tm,true)
     end
        
     test "check type straing" do
       tm = "a"
-      tm = KString.checkString(tm)
-      assert_equal(tm ,"a")
+      tm = KString.isString?(tm)
+      assert_equal(tm ,true)
     end
 
     #variable
@@ -93,10 +94,10 @@ module Jabverwock
       assert_equal(tm, ans)
     end
 
-    test "callSelfCls" do
-      tm = "d"
-       assert_equal("String", KSUtil.callSelfCls(tm))
-    end
+    # test "callSelfCls" do
+    #   tm = "d"
+    #    assert_equal("String", KSUtil.callSelfCls(tm))
+    # end
 
     test "removeLastRET" do
       tm = "dadfafadfa\nfdfafadfa\n"
@@ -156,10 +157,10 @@ module Jabverwock
     end
 
     
-    test "is_Bool" do
-      assert_true(KSUtil.is_bool(true))
-      assert_false(KSUtil.is_bool(1))
-    end
+    # test "is_Bool" do
+    #   assert_true(KSUtil.is_bool(true))
+    #   assert_false(KSUtil.is_bool(1))
+    # end
 
     test "addSpace" do
       tm = "a"
@@ -193,6 +194,7 @@ module Jabverwock
       target = KString.reprace(str: target, of:"this", with: "that")
       assert_equal(target, "that is test")
     end
+    
     test "reprace str of with case 2" do
       target = "this is test"
       assert_equal( KString.reprace(str: target, of:"this", with: "that"), "that is test")
@@ -225,11 +227,11 @@ module Jabverwock
       assert_equal(ans,2)
     end
 
-    test "addTab" do
-      target = "a"
-      ans  = KString.addTab(str: target, num: 2)
-      assert_equal(ans, $TAB + $TAB + target)
-    end
+    # test "addTab" do
+    #   target = "a"
+    #   ans  = KString.addTab(str: target, num: 2)
+    #   assert_equal(ans, $TAB + $TAB + target)
+    # end
     
     test "a variable and data pair is true " do
       a = "a".varIs("aa")
@@ -286,6 +288,18 @@ module Jabverwock
     #   assert_equal(a, [2,3,4,5,6])
     # end
     
+    # ## Symbol extension ############
+    test "isDoubleUnderBarSymbole, false" do
+      a = :test
+      assert_false a.hasDoubleUnderBar?
+      
+    end
+    
+    test "isDoubleUnderBarSymbole, true" do
+      a = :test__test
+      assert_true a.hasDoubleUnderBar?
+      
+    end
     
     
   end

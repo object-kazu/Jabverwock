@@ -53,9 +53,9 @@ module Jabverwock
       assert_equal(ans, true)
     end
 
-    test "JW,  isSingle method nil" do      
-      ans = @tm.isSingleTag(1)
-      assert_equal(ans, nil)
+    test "JW,  isSingle method nil" do
+      ans = @tm.isSingleTag 1
+      assert_equal ans,nil
     end
 
     test "pretest: pressDefault, nothing" do 
@@ -63,13 +63,13 @@ module Jabverwock
       assert_equal(@tm.pressVal.resultString, "")
     end
 
-    # test "pretest: pressDefault, add text" do 
-    #   @tm.templeteString = "test"
-    #   @tm.pressVal.initResutString    
-    #   @tm.prepPress
-    #   ans = @tm.pressVal.resultString
-    #   assert_equal(ans, "test")
-    # end
+    # # test "pretest: pressDefault, add text" do 
+    # #   @tm.templeteString = "test"
+    # #   @tm.pressVal.initResutString    
+    # #   @tm.prepPress
+    # #   ans = @tm.pressVal.resultString
+    # #   assert_equal(ans, "test")
+    # # end
 
     test "assemble" do      
       @tm.name = "test"
@@ -125,7 +125,14 @@ module Jabverwock
       assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
     end
     
-    test"get id and clss case 3 " do
+    test"get id and clss case 3-1 " do
+      @tm.name = "test"
+      @tm.attr(:cls__sample)
+      ans = @tm.pressDefault
+      assert_equal ans, "<test class=\"sample\">\n</test>"      
+    end
+    
+    test"get id and clss case 3-2 " do
       @tm.name = "test"
       @tm.attr(:cls__sample,:id__data)
       ans = @tm.pressDefault
@@ -137,6 +144,22 @@ module Jabverwock
       @tm.attr(:cls__sample,:id__data, :name, "test")
       ans = @tm.pressDefault
       assert_equal ans, "<test class=\"sample\" id=\"data\" name=\"test\">\n</test>"      
+    end
+    
+    test"get id and clss error case " do
+      @tm.name = "test"
+      @tm.attr(:cls__sample,:id__data, :name) # ignore :name
+      ans = @tm.pressDefault
+      assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
+
+    end
+    
+    test"get id and clss error case 2 " do
+      @tm.name = "test"
+      @tm.attr(:cls__sample,:id__data, "name") #ignore "name"
+      ans = @tm.pressDefault
+      assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
+
     end
     
     test "add lang"do
@@ -232,7 +255,7 @@ module Jabverwock
       assert_equal ans, "<p id=\"test\" class=\"sample\">\n</p>"
      
     end
-    
+
     
   end
 end

@@ -1,0 +1,20 @@
+UncommunicativeMethodName:
+ enabled: false
+ 
+UncommunicativeVariableName:
+ enabled: false
+
+UncommunicativeParameterName:
+ enabled: false
+
+Attribute:
+ enabled: false
+
+TooManyMethods:
+ max_methods: 30
+
+DuplicateMethodCall:
+ max_calls: 2
+
+TooManyInstanceVariables:
+ max_instance_variables: 10

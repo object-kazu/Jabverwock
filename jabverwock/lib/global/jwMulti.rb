@@ -71,7 +71,7 @@ module Jabverwock
       #   p "childString is nill"
       #   return
       # end      
-      childString = KString.checkString childString      
+      KString.isString? childString      
       @childStringArray << childString
     end
       
