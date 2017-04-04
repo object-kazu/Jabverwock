@@ -89,41 +89,6 @@ module Jabverwock
       
     end
 
-    test "isExistCssString" do
-      c = CSS.new("p")
-      ans = KString.isExistCssString c.noNameStr
-      assert_false ans
-      
-    end
-
-     test "isExistCssString case" do
-       ### true ### no style
-       a = "p {\n\n}"
-       ans = KString.isExistCssString a
-       assert_false ans
-       
-       a = "p"
-       ans = KString.isExistCssString a
-       assert_false ans
-      
-       a = "jw_css {\n" + "\n" + "}"
-       ans = KString.isExistCssString a
-       assert_false ans
-              
-       ### false ### with style
-       a = "p {aaa}"
-       ans = KString.isExistCssString a
-       assert_true ans
-       
-       a = "p {aa}"
-       ans = KString.isExistCssString a
-       assert_true ans
-       
-       a = "p {\n\tfont-size: 10;\n}"
-       ans = KString.isExistCssString a
-       assert_true ans
-           
-    end
     
     
     test "cssArray add css" do

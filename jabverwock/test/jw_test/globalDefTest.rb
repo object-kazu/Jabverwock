@@ -94,10 +94,6 @@ module Jabverwock
       assert_equal(tm, ans)
     end
 
-    # test "callSelfCls" do
-    #   tm = "d"
-    #    assert_equal("String", KSUtil.callSelfCls(tm))
-    # end
 
     test "removeLastRET" do
       tm = "dadfafadfa\nfdfafadfa\n"
@@ -157,10 +153,6 @@ module Jabverwock
     end
 
     
-    # test "is_Bool" do
-    #   assert_true(KSUtil.is_bool(true))
-    #   assert_false(KSUtil.is_bool(1))
-    # end
 
     test "addSpace" do
       tm = "a"
@@ -227,11 +219,6 @@ module Jabverwock
       assert_equal(ans,2)
     end
 
-    # test "addTab" do
-    #   target = "a"
-    #   ans  = KString.addTab(str: target, num: 2)
-    #   assert_equal(ans, $TAB + $TAB + target)
-    # end
     
     test "a variable and data pair is true " do
       a = "a".varIs("aa")
@@ -251,6 +238,35 @@ module Jabverwock
       assert_equal(a[:data], "aa")
     end
 
+
+    test "isExistCssString case" do
+      ### true ### no style
+      a = "p {\n\n}"
+      ans = KString.isExistCssString a
+      assert_false ans
+      
+      a = "p"
+      ans = KString.isExistCssString a
+      assert_false ans
+      
+      a = "jw_css {\n" + "\n" + "}"
+      ans = KString.isExistCssString a
+      assert_false ans
+      
+      ### false ### with style
+      a = "p {aaa}"
+      ans = KString.isExistCssString a
+      assert_true ans
+      
+      a = "p {aa}"
+      ans = KString.isExistCssString a
+      assert_true ans
+      
+      a = "p {\n\tfont-size: 10;\n}"
+      ans = KString.isExistCssString a
+      assert_true ans
+      
+    end
     
     # ## Array extension ############
     test "append val" do
@@ -277,16 +293,6 @@ module Jabverwock
       assert_equal(a, [2,3,4,11,22,33,33])
     end
     
-    # test "appendArray vals" do
-    #   a = [2,3,4]
-    #   a.appendArray [5,6]
-    #   assert_equal(a, [2,3,4,5,6])
-    # end
-    
-    # test "appendArray vals case 2" do
-    #   a = [2,3,4].appendArray [5,6]
-    #   assert_equal(a, [2,3,4,5,6])
-    # end
     
     # ## Symbol extension ############
     test "isDoubleUnderBarSymbole, false" do
@@ -305,3 +311,18 @@ module Jabverwock
   end
 
 end
+
+
+    # test "addTab" do
+    #   target = "a"
+    #   ans  = KString.addTab(str: target, num: 2)
+    #   assert_equal(ans, $TAB + $TAB + target)
+    # end
+    # test "callSelfCls" do
+    #   tm = "d"
+    #    assert_equal("String", KSUtil.callSelfCls(tm))
+    # end
+    # test "is_Bool" do
+    #   assert_true(KSUtil.is_bool(true))
+    #   assert_false(KSUtil.is_bool(1))
+    # end

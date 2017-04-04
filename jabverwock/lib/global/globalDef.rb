@@ -188,7 +188,9 @@ module Jabverwock
         return nil unless sym.is_a? Symbol
         sym.hasDoubleUnderBar?
       end
-          
+
+
+      
     end
   end
   
@@ -316,6 +318,38 @@ module Jabverwock
         }
         return 0
       end
+
+      def intoStyleTag (str)
+        tabbedEachLine = addTabEachLine str
+        styTag   = "<style>\n" << "#{tabbedEachLine}\n" << "\t</style>\n"
+        addTabEachLine styTag
+      end
+      
+      def makeElementArray (element, elementArray)
+        tempArray = []
+        
+        if element != nil
+          tempArray << element
+        end
+        
+        if elementArray.count > 0
+          tempArray += elementArray
+        end      
+        return tempArray
+      end
+
+      def isExistCssString(str)        
+        return false if str.empty?
+
+        if !str.include?("{") || !str.include?("}")
+          return false
+        end
+        
+        removeFront = str.gsub(/.*{/, "").gsub(/}/, "").gsub(/\n/, "")        
+        
+        return false if removeFront == ""
+        return true
+      end
       
     end 
   end
@@ -325,7 +359,11 @@ end
 
 ## garbage code
 
-      # def check_type(type, instance, nilable=false)
+        # removeFront = str.gsub(/.*{/, "") 
+        # removeBack = removeFront.gsub(/}/, "")
+        # removeRET = removeBack.gsub(/\n/, "")
+
+# def check_type(type, instance, nilable=false)
       #   if (instance.nil?)
       #     unless nilable
       #       raise ArgumentError::new("non-nil constraint vioration")
@@ -347,4 +385,22 @@ end
       #   check_type(Integer,instance)
       # end
       
+      # def isExistCssString(str)
+        
+      #   return false if str.empty?
+
+      #   if !str.include?("{") || !str.include?("}")
+      #     return false
+      #   end
+        
+      #   removeFront = str.gsub(/.*{/, "") 
+      #   removeBack = removeFront.gsub(/}/, "")
+      #   removeRET = removeBack.gsub(/\n/, "")
+        
+      #   if removeRET.nil? || removeRET == ""
+      #     return false
+      #   end
+
+      #   return true
+      # end
       

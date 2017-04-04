@@ -52,7 +52,7 @@ module Jabverwock
     end
         
     def cssWithName (name)
-      KString::checkString(name)
+      KString.isString? name
       @css.name = name
     end
     
@@ -74,7 +74,7 @@ module Jabverwock
       atcs = assembleTabedCss
 
       unless atcs == ""
-        tgCss = intoStyleTag atcs
+        tgCss = KString.intoStyleTag atcs
         addAssembeTabbedStyle tgCss
       end
       
@@ -83,16 +83,6 @@ module Jabverwock
     def assembleTabedCss
       ans = cssAssemble(@css, @cssArray)
       KString.addTabEachLine ans      
-    end
-    
-    def intoStyleTag(str)
-      tabbedEachLine = KString.addTabEachLine str
-      styStart   = "<style>\n"
-      styContent = "#{tabbedEachLine}\n"
-      styEnd     = "\t</style>\n"
-        
-      styTag = styStart << styContent << styEnd
-      KString.addTabEachLine styTag
     end
     
     def addAssembeTabbedStyle(str)
@@ -114,12 +104,12 @@ module Jabverwock
         -＞ cssArrayに追加するときに処理するため
       CSSpropertyTreatment
       css.name = add_ID_CLS_NAME css.name
-      tCssArray = makeElementArray(css, cssArray)
+      tCssArray = KString.makeElementArray(css, cssArray)
 
       tCssArray.each do |cs|
         
         #  スタイルがない（｛｝のみ）なら標示しない
-        next unless isExistCssString cs.str
+        next unless KString.isExistCssString cs.str
         
         # 同じ名前のスタイルは書き込まない（重複書き込み禁止）
         next if isSameCSSName(cs.name)
@@ -141,41 +131,6 @@ module Jabverwock
       end
       tmpName
     end
-
-    def isExistCssString(str)
-      
-      if str == nil
-        return false
-      end
-
-      if !str.include?("{") || !str.include?("}")
-        return false
-      end
-      
-      removeFront = str.gsub(/.*{/, "") 
-      removeBack = removeFront.gsub(/}/, "")
-      removeRET = removeBack.gsub(/\n/, "")
-      
-      if removeRET.nil? || removeRET == ""
-        return false
-      end
-
-      return true
-    end
-    
-
-    def makeElementArray (element, elementArray)
-      tempArray = []
-      
-      if element != nil
-        tempArray << element
-      end
-      
-      if elementArray.count > 0
-        tempArray += elementArray
-      end      
-      return tempArray
-    end
     
 
     def isSameCSSName(name)
@@ -196,7 +151,7 @@ module Jabverwock
     ####### add member ############
     
     def addMemberString (memberString)
-      KString::checkString(memberString)
+      KString.isString? memberString
       @memberStringArray << memberString
     end
 
@@ -227,8 +182,9 @@ module Jabverwock
       addMemberString(member.templeteString)
     end
     
-    def addJS(member)
+    def addJS( member )
       # implement at class JW_CSS_JS
+      member # just write for reek warnig
     end
     
     
