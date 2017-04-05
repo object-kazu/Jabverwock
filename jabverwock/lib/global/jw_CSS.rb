@@ -17,6 +17,7 @@ module Jabverwock
   using ArrayExtension
   using SymbolExtension
   
+  # this class is css function add to jw class
   class JW_CSS < JW # add css functions
 
     attr_accessor :css, :cssArray, :cssString
@@ -27,7 +28,7 @@ module Jabverwock
       @cssArray = []
       @cssString  = ""      
       @nameList = [] # 重複判定に利用
-      
+
     end
 
     
@@ -92,21 +93,36 @@ module Jabverwock
       @pressVal.applyStyle str
       
     end
+
+    def cssAssembleInit(css, cssArray)
+      css.updateCssName activeID, activeCls
+      KString.makeElementArray(css, cssArray)
+    end
+
+    def activeID
+      ids = ""
+      if isExistID
+        ids = "#{selectorID}"        
+      end
+      ids
+    end
     
-    # change to function as cssAssemble need arguments
-    # ex) cssAssemble(@css, @cssArray)
-    def cssAssemble(css, cssArray)
-      @nameList = []
-
-      <<-CSSpropertyTreatment
-        - cssのみはid,clsの処理を追加
-        - cssArrayの中身は処理しない
-        -＞ cssArrayに追加するときに処理するため
-      CSSpropertyTreatment
-      css.name = add_ID_CLS_NAME css.name
-      tCssArray = KString.makeElementArray(css, cssArray)
-
-      tCssArray.each do |cs|
+    def activeCls
+      cls = ""
+      if isExistCls
+        clss = "#{selectorCls}"
+      end
+      cls
+    end
+    
+    
+    def cssAssembleCore(css)
+        @nameList << css.name        
+        @cssString << css.str << $RET 
+    end
+    
+    def cssAssembleLoop(arr)
+      arr.each do |cs|
         
         #  スタイルがない（｛｝のみ）なら標示しない
         next unless KString.isExistCssString cs.str
@@ -114,34 +130,30 @@ module Jabverwock
         # 同じ名前のスタイルは書き込まない（重複書き込み禁止）
         next if isSameCSSName(cs.name)
 
-        @nameList << cs.name        
-        @cssString << cs.str << $RET
-      end
-      
-       @cssString.removeLastRET
+        cssAssembleCore cs
+      end      
+    end
+    
+    # change to function as cssAssemble need arguments
+    # ex) cssAssemble(@css, @cssArray)
+
+    #   - cssのみはid,clsの処理を追加
+    #   - cssArrayの中身は処理しない
+    #   -＞ cssArrayに追加するときに処理するため
+    
+    def cssAssemble(css, cssArray)
+      @nameList = []
+      newArr = cssAssembleInit css, cssArray
+      cssAssembleLoop newArr
+      @cssString.removeLastRET
     end
 
-    def add_ID_CLS_NAME(name)
-      tmpName = name
-      if isExistID
-        tmpName << "#{selectorID}"        
-      end
-      if isExistCls
-        tmpName << "#{selectorCls}"
-      end
-      tmpName
-    end
     
 
     def isSameCSSName(name)
-      @nameList.each do |n |
-        if n == name
-          return true
-        end
-      end
-      return false
-    end
-
+      @nameList.include? name
+     end
+    
     def showCssString
       cssStringInit
       cssAssemble(@css, @cssArray)
@@ -165,21 +177,17 @@ module Jabverwock
 
     def addCSSmember(member)
       
-      if member.cssArray.count > 0
-        #@cssArray += member.cssArray
+      unless member.cssArray.empty?
         @cssArray.append member.cssArray
       end
       
-      # id, cls add to css name
-      cssRename = member.add_ID_CLS_NAME member.css.name      
-      member.css.name = cssRename
-      #@cssArray << member.css
-       @cssArray.append member.css
+      member.css.updateCssName activeID, activeCls
+      @cssArray.append member.css
     end
     
     def addHTML(member)
       member.assembleHTML
-      addMemberString(member.templeteString)
+      addMemberString member.templeteString
     end
     
     def addJS( member )
@@ -199,7 +207,7 @@ module Jabverwock
     #########  press ###########
     ### override ###
     def assembleHTML
-      if @tagManager.name == ""
+      if @tagManager.name.empty?
         @tagManager.name = @name        
       end
       makeTag

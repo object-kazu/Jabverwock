@@ -33,6 +33,36 @@ module Jabverwock
       @name = obj.name.dup
     end
 
+    def updateCssName(id,cls)
+      updateCssNameWithID id
+      updateCssNameWithCls cls
+    end
+    
+    def updateCssNameWithID(id)
+      unless id.empty?
+        @name << id
+      end
+    end
+    def updateCssNameWithCls(cls)
+      unless cls.empty?
+        @name << cls
+      end
+      
+    end
+    
+    
+    # def add_ID_CLS_NAME(name)
+    #   tmpName = name
+    #   if isExistID
+    #     tmpName << "#{selectorID}"        
+    #   end
+    #   if isExistCls
+    #     tmpName << "#{selectorCls}"
+    #   end
+    #   tmpName
+    # end
+
+    
     def dpName
       # cation, dup is deep copy of name only
       self.dup

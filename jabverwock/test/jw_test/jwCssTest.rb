@@ -92,7 +92,7 @@ module Jabverwock
     test "isExistCssString" do
       c = CSS.new("p")
       ans = KString.isExistCssString c.noNameStr
-      assert_false ans
+       assert_false ans
       
     end
 
@@ -122,7 +122,7 @@ module Jabverwock
        a = "p {\n\tfont-size: 10;\n}"
        ans = KString.isExistCssString a
        assert_true ans
-           
+            
     end
     
     
