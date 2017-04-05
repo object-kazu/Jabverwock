@@ -21,6 +21,7 @@ module Jabverwock
   using ArrayExtension
   using SymbolExtension
   
+  #JW_CSS_JS class add function of Javascript, mainly DOM functions
   class JW_CSS_JS < JW_CSS # add css functions
     attr_accessor :js, :jsArray
     
