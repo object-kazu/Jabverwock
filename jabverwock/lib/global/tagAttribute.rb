@@ -16,6 +16,7 @@ end
 module Jabverwock
   using StringExtension
   
+  # This class is control tagAttribute(selector), such as id, name, class, lang and so on.
   class TagAttribute < TagAttributeTemplete
     
     # caution! do not use "__", because JW class may split symbole like ":id_test"  as "id" and "test"

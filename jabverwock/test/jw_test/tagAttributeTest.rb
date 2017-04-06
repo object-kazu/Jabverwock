@@ -49,6 +49,14 @@ module Jabverwock
       assert_equal(tm.aString, "class=\"test\"")
       
     end  
+    
+    test "TagAttribute, class case 2 " do
+      tm = TagAttribute.new 
+      tm.add_font_size("test" )
+
+      assert_equal(tm.aString, "font-size=\"test\"")
+      
+    end  
 
     
   end

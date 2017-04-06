@@ -16,8 +16,12 @@ end
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
+  using SymbolExtension
+  
+  #this class manage html tag
   class TagManager
-    attr_accessor :name, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString #:id, :cls,
+    attr_accessor :name, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString
     attr_accessor :withBreak
     
     def initialize
@@ -26,21 +30,11 @@ module Jabverwock
 
     ### reset tags #######
     def resetTags
-      @tempOpenString = String.new
-      @tempCloseString = String.new
-      
-      @name = String.new
+      @tempOpenString, @tempCloseString, @name, @attributeString = "","", "", ""
       @doctype = "" #DOCTYPE only use
-      
       @tagAttribute = TagAttribute.new
-      @attributeString = String.new
-
-      @isSingleTag = false
+      @isSingleTag, @closeStringNotRequire, @withBreak = false, false, false
       
-      #img, meta tag
-      @closeStringNotRequire = false
-
-      @withBreak = false
     end
     
     ####### add attribute #############################
@@ -52,8 +46,7 @@ module Jabverwock
     def addAttribute
       if !@tagAttribute.aString.empty?
         KString.isString?(@attributeString)
-        @attributeString = KString.addSpace(@tagAttribute.aString)
-        
+        @attributeString = KString.addSpace(@tagAttribute.aString)        
       end
     end
 
@@ -87,76 +80,69 @@ module Jabverwock
     def closeStringReplace(of, with)
       @tempCloseString = KString.reprace(str: @tempCloseString, of: of, with: with)
     end
+
+    def openStringDocType
+        if @doctype.empty?
+          @doctype = "html" #default html5 
+        end
+        addAttribute
+        @tempOpenString = "<" + "!DOCTYPE" + $SPC + @doctype + @attributeString + ">"
+    end
     
     def openString
-      if @name == ""
+      if @name.empty?
         assert_raise{
           p ">>> call no name"          
         }
       end
       
       if isDocType
-        if @doctype == ""
-          @doctype = "html" #default html5 
-        end
-        addAttribute
-        @tempOpenString = "<" + "!DOCTYPE" + $SPC + @doctype + @attributeString + ">"
-        return @tempOpenString
+        return openStringDocType
       end
-      
-      if isHrTag
+            
+      if isHrTag || isBrTag
         return ""
       end
-
-      if isBrTag
-        return ""
-      end
-                      
-#         // script
-#         if isScriptTag() {
-#             return scriptTag()
-#         }
             
       addAttribute
       @tempOpenString = "<" + @name + @attributeString + ">"
     end
     
-    
-    def closeString
-      if @name == ""
-        return ""
-      end
-      if isDocType
-        return ""
-      end
-      
-      if isHrTag
+    def closeStringHrTag
         @tempCloseString = "<#{@name}>"
         if @withBreak
           @tempCloseString << $BR
         end
-        return @tempCloseString
+        @tempCloseString
+    end
+
+    def breakTreat
+      if @withBreak
+        @tempCloseString << $BR
+      end
+      
+      @tempCloseString      
+    end
+    
+    def closeString
+      # closeStringNotRequire => bool値に変更する      
+      # // not require
+      # /// meta, img
+      
+      if @name.empty? || isDocType || isSingleTag || closeStringNotRequire
+        return @tempCloseString = ""
+      end
+      
+      if isHrTag
+        return closeStringHrTag
       end
       
       if isBrTag
         return @tempCloseString = "<#{@name}>"
       end
 
-      # closeStringNotRequire => bool値に変更する      
-      # // not require
-      # /// meta, img
-      if closeStringNotRequire
-        return "" # no close string
-      end
-
-      if isSingleTag
-        return @tempCloseString = ""
-      end
-        
       @tempCloseString = "</#{@name}>"
-      if @withBreak
-        @tempCloseString << $BR
-      end
+      breakTreat      
     end
     
   end

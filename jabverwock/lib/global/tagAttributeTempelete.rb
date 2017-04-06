@@ -10,6 +10,7 @@ module Jabverwock
   using SymbolExtension
   using ArrayExtension
   
+  # This class is control tagAttribute(selector), such as id, name, class, lang and so on.
   class TagAttributeTemplete
     class << self
 
@@ -55,7 +56,6 @@ module Jabverwock
       end  
     end
 
-
     def insertSPace(target)
       if @aString.empty?
         KString.isString?(@aString)
@@ -69,25 +69,32 @@ module Jabverwock
     
     
     def templeteAdd (index, val)
-      
-      # KString.isString?(index)
-      # KString.isString?(val)
-
       # exchange, cls => class
-      if index == "cls"
-        index = "class"
-      end
-
-      if index.include?("_")
-        index = index.gsub(/_/, "-")
-      end
       
+      index = KString.renameCls index
+      index = KString.renameUnderBar index 
+            
       src = index + "=".inDoubleQuot(val)
       unless val.empty?
         insertSPace(src)
       end
 
     end
+
+    # def renameCls (str)
+    #   if str == "cls"
+    #     return "class"
+    #   end
+    #   str
+    # end
+
+    # def renameUnderBar (str)
+    #   if str.include?("_")
+    #     return str.gsub(/_/, "-")
+    #   end
+    #   str
+    # end
+      
 
   end
 

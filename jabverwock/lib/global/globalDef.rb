@@ -43,6 +43,7 @@ module StringExtension
       $LABEL_INSERT_START + self + $LABEL_INSERT_END
     end  
 
+
     <<-VAL_Usage
         a = "a".dataIs "dddd"# => {:label=>"a", :data=>"dddd"}
         p a
@@ -200,6 +201,20 @@ module Jabverwock
     # 型チェック
     class << self
 
+      def renameCls (str)
+        if str == "cls"
+          return "class"
+        end
+        str
+      end
+
+      def renameUnderBar (str)
+        if str.include?("_")
+          return str.gsub(/_/, "-")
+        end
+        str
+      end
+      
       def reader(str) # sentence -> arr
         str.lines
       end

@@ -38,6 +38,10 @@ module Jabverwock
     test "global?" do
       p $SPC + "good"
     end
+
+
+    
+    ############## String Extension ###############
     
     test "string extension inSingleQuo" do
       tm =  "a".inSingleQuo("bc")
@@ -63,7 +67,6 @@ module Jabverwock
 
     end
 
-
     test"string extension inPara" do
       tm = "a".inParenth("bc")
       assert_equal(tm,"a('bc')")
@@ -73,6 +76,10 @@ module Jabverwock
       tm = "a".inParenth(1)
       assert_equal(tm,nil)
     end
+
+    
+    
+    ############## KSting ###############
 
     #check_type
     test"check type case pass"do
