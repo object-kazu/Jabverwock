@@ -12,6 +12,7 @@ module Jabverwock
   $EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
   $EXPORT_TEST_File = "resultRuby.txt"
   
+  # This class is making HTML, CSS, JS code
   class Press
     
     attr_writer  :templeteString
@@ -73,11 +74,7 @@ module Jabverwock
     end
 
     def removeAllLabel
-      ans = @resultString.gsub!(/##LABELSTART##.*?##LABELEND##/,"")
-      if ans == nil
-        return @resultString
-      end
-      @resultString = ans
+      @resultString = @resultString.gsub(/##LABELSTART##.*?##LABELEND##/,"")
     end
     
     def withInsert(insertData)
@@ -92,14 +89,12 @@ module Jabverwock
       initResutString
       
       insertData.each do |i|
-        labelDataPair?(i)
         insertData(i)
       end
       
       removeAllLabel
       core
     end
-
     
     #  // templeteString -> resultString -> export
     def core
@@ -113,8 +108,7 @@ module Jabverwock
 
     #### css ####
     def isExistHeadTag
-      a = @templeteString
-      a.include?("<head>") && a.include?("</head>")
+      @templeteString.include?("<head>") && @templeteString.include?("</head>")
     end
 
     def applyStyle(style)
