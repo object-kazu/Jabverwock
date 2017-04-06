@@ -97,7 +97,7 @@ module Jabverwock
     def childAssemble
       tem = []
       @childStringArray.each do |t|
-        tem << addTab(t)
+        tem << KString.addTab(t)
       end
       tem.each do |a|
         @templeteString += a + $RET

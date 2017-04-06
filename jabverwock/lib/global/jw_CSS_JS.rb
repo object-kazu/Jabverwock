@@ -69,17 +69,17 @@ module Jabverwock
       assembleJS
       startTag = "<script>"
       endTag = "</script>"
-      content = addTab @jsResult
+      content = KString.addTab @jsResult
       @scriptTag << startTag << "\n" << content << endTag
     end
     
-    def addTab(element)
-      ans = ""
-      element.lines{ |l|
-        ans += "\t" + l
-      }
-      ans
-    end
+    # def addTab(element)
+    #   ans = ""
+    #   element.lines{ |l|
+    #     ans += "\t" + l
+    #   }
+    #   ans
+    # end
     
     def self_JsOrders_add_to_self_jsArray
       @jsArray.append @js.orders
@@ -106,58 +106,73 @@ module Jabverwock
       @templeteString.include? "<script>"
     end
     
-    def reader(str) # sentence -> arr
-      str.lines
-    end
+    # def reader(str) # sentence -> arr
+    #   str.lines
+    # end
 
     def templeteStringArray
-      reader @templeteString
+      KString.reader @templeteString
     end
     
-   def writer(arr) # arr -> sentence
-     arr.inject("") do |temp, s|
-       temp << s    
-     end
-    end
+   # def writer(arr) # arr -> sentence
+   #   arr.inject("") do |temp, s|
+   #     temp << s    
+   #   end
+   #  end
 
-    def insertIndex (arr)
-      arr.index { |i| i =~ /<\/head>/ }
-    end
+    # def insertIndex (arr)
+    #   arr.index { |i| i =~ /<\/head>/ }
+    # end
 
-    def tabCount(str)
-      str.count("\t")
-    end
+    # def tabCount(str)
+    #   str.count("\t")
+    # end
 
     def tabNumberHeaderTag
       arr = templeteStringArray
       num = 0
       arr.each do |v|
         if v.include? "<head>"
-          num = tabCount v
+          num = KString.tabCount v
         end
       end
       num
     end
+
     
-    def insertText(arr,txt)
-      index = insertIndex arr
-      temp = ""
-      n = tabNumberHeaderTag + 1
-      arr.each_with_index do |l,ind|
-        if ind == index
-          temp << KString.addTabEachLine(txt) << "\n"
-        end
-        temp  << l
-      end
+    
+    # def insertText(arr,txt)
+    #   index = KString.insertIndex arr
+    #   KString.insertTextLoop arr, index, txt
       
-      temp
-    end
+    #   #temp = ""
+    #   #n = tabNumberHeaderTag + 1
+    #   # arr.each_with_index do |l,ind|
+    #   #   if ind == index
+    #   #     temp << KString.addTabEachLine(txt) << "\n"
+    #   #   end
+    #   #   temp  << l
+    #   # end
+      
+    #   # temp
+    # end
+
+    # def insertTextLoop(arr,index,original)
+    #   newText = ""
+    #   arr.each_with_index do |l,ind|
+    #     if ind == index
+    #       newText << KString.addTabEachLine(original) << "\n"
+    #     end
+    #     newText  << l
+    #   end
+    #   newText
+    # end
 
     def insertScriptToHead
       
       #number of tab before head tag
       
-      @templeteString = insertText templeteStringArray, @scriptTag
+      @templeteString = KString.insertText templeteStringArray, @scriptTag
     end
     
     ### override ###

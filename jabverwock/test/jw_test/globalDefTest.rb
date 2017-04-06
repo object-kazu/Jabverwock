@@ -267,6 +267,37 @@ module Jabverwock
       assert_true ans
       
     end
+
+    test "reader" do
+      a = "a\nb"
+      ans = KString.reader a
+      assert_equal ans, ["a\n","b"]
+       
+    end
+
+
+    test "insertIndex" do
+      a = ["a", "b", "<\/head>"]
+      ans = KString.insertIndex a
+      assert_equal ans, 2
+      
+    end
+
+    test "insert Target befor </head>" do
+      a = ["a", "b", "<\/head>"]
+      index = KString.insertIndex a
+      a.insert index,"!!"
+      assert_equal a,  ["a", "b","!!", "<\/head>"]
+      
+    end
+    
+    test "insertText befor </head>" do
+      a = ["a", "b", "<\/head>"]
+      ans = KString.insertText a, "!!"
+      assert_equal ans, "\ta\n\tb\n\t!!\n\t<\/head>\n"
+    end
+    
+    
     
     # ## Array extension ############
     test "append val" do
@@ -306,6 +337,7 @@ module Jabverwock
       assert_true a.hasDoubleUnderBar?
       
     end
+    
     
     
   end

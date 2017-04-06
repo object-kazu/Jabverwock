@@ -200,6 +200,36 @@ module Jabverwock
     # 型チェック
     class << self
 
+      def reader(str) # sentence -> arr
+        str.lines
+      end
+      
+      def insertText(arr,txt)
+        index = insertIndex arr
+        arr.insert index, txt
+        insertTextLoop arr
+      end
+      
+      def insertIndex (arr)
+        arr.index { |i| i =~ /<\/head>/ }
+      end
+      
+      def insertTextLoop(arr)        
+        newText = ""
+        arr.each do |l|
+          newText << addTabEachLine(l) << "\n"
+        end
+        newText
+      end
+
+      
+      # def writer(arr) # arr -> sentence
+      #   arr.inject("") do |temp, s|
+      #     temp << s    
+      #   end
+      # end
+
+      
       def check_type(type, instance)
         # pass check -> true
         # fail check -> ArgumentError
@@ -246,11 +276,17 @@ module Jabverwock
         str
       end
 
+      def isStringInArray(arr)
+        arr.each do |a|
+          isString? a
+        end
+      end
+      
       def stringArrayConectRET (arr)
-        return if arr.count == 0 
+        return if arr.empty? 
+        isStringInArray arr
         
         arr.inject("") do |ans, d|
-          isString? d
           ans << d << $RET
         end
       end
@@ -263,29 +299,21 @@ module Jabverwock
         str.gsub(of,with)
       end
 
-      # tab揃え
+      
       def tabCount(str)
         isString? str
         str = removeLastTAB str
         str.count $TAB
       end
 
-      # def addTab(str:, num:)
-      #   isString?(str)
-      #   isInt? num
-        
-      #   tabMax = num
-      #   ans = ""
-      #   str.each_line { |l|
-      #     tn = tabCount(l)
-      #     df = tabMax - tn
-      #     ans += addHeadTab(str: l, num: df)
-      #   }
-      #   ans
-      # end
-
+      def addTab(element)
+        ans = ""
+        element.lines{ |l|
+          ans += "\t" + l
+        }
+        ans
+      end
       
-
       def addTabEachLine (str)
         ans = ""
         str.each_line { |l|
@@ -404,3 +432,24 @@ end
       #   return true
       # end
       
+      # tab揃え
+      # def tabCount(str)
+      #   str.count("\t")
+      # end
+      
+      # def addTab(str:, num:)
+      #   isString?(str)
+      #   isInt? num
+        
+      #   tabMax = num
+      #   ans = ""
+      #   str.each_line { |l|
+      #     tn = tabCount(l)
+      #     df = tabMax - tn
+      #     ans += addHeadTab(str: l, num: df)
+      #   }
+      #   ans
+      # end
+
+      
+
