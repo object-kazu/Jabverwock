@@ -49,11 +49,6 @@ module Jabverwock
       self
     end
 
-    # def isDoubleUnderBarSymbol(sym)
-    #   return nil unless sym.is_a? Symbol
-    #   sym.hasDoubleUnderBar?
-    # end
-    
     def attr(tag, *val)
       return unless tag.is_a? Symbol
 
@@ -150,6 +145,8 @@ module Jabverwock
       if @memberStringArray.count > 0
          @templeteString += $RET
          ans = KString.stringArrayConectRET(@memberStringArray)
+         
+         p ans
          @templeteString += ans
       end
       @memberStringArray = []
@@ -193,7 +190,7 @@ module Jabverwock
     end
     
     def press
-      @pressVal.core      
+      @pressVal.core
       p "Press Done!"
       pressFingerPrint
     end
@@ -230,14 +227,7 @@ module Jabverwock
     $EXPORT_TESTPRESS_Dir_MACBOOK = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
     $EXPORT_TESTPRESS_Dir_iMAC = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
     
-    def testPress(name)
-      # _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
-      
-      # current = ENV['PWD']
-      # if current.include?("BitTorrent")
-      #   _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
-      # end
-      
+    def testPress(name)      
       _dir_ = KSUtil.pressPath
       n = name + "Pressed" + ".html"
       pressConfig(name: n, dist: _dir_)
@@ -253,3 +243,15 @@ module Jabverwock
 end
 
 
+    # def isDoubleUnderBarSymbol(sym)
+    #   return nil unless sym.is_a? Symbol
+    #   sym.hasDoubleUnderBar?
+    # end
+    
+
+      # _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
+      
+      # current = ENV['PWD']
+      # if current.include?("BitTorrent")
+      #   _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
+      # end

@@ -17,14 +17,23 @@ end
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
+  using SymbolExtension
   
+  #This class express multi line html tag, like head, body etc.
   class JWMulti < JW_CSS_JS
     attr_accessor :childStringArray
-    
     
     def initialize
       super
       @childStringArray = []
+#      @name = self.class.name.downcase
+
+      if @name == "li_multi"
+        @name = "li"
+      end
+      
+      @css = CSS.new("#{@name}")
       
     end
 
@@ -46,8 +55,7 @@ module Jabverwock
       if child.css != nil
         @cssArray << child.css
       end
-            
-      
+                 
       # html
       child.assembleHTML
       addChildString(child.templeteString)
@@ -67,10 +75,6 @@ module Jabverwock
     end
     
     def addChildString(childString)
-      # if childString == nil
-      #   p "childString is nill"
-      #   return
-      # end      
       KString.isString? childString      
       @childStringArray << childString
     end
@@ -82,7 +86,6 @@ module Jabverwock
     end
     
     def makeResult
-
       @templeteString += @tagManager.tempOpenString + $RET
       
       childAssemble
@@ -95,12 +98,16 @@ module Jabverwock
     end
 
     def childAssemble
-      tem = []
-      @childStringArray.each do |t|
-        tem << KString.addTab(t)
-      end
-      tem.each do |a|
-        @templeteString += a + $RET
+      # tem = []
+
+      # @childStringArray.each do |t|
+      #   tem << KString.addTab(t)
+      # end
+      # tem.each do |a|
+      #   @templeteString << a + $RET
+      # end
+      @childStringArray.each do |a|
+        @templeteString << a << $RET       
       end
     end
     
@@ -112,26 +119,29 @@ module Jabverwock
   multiList += ["OL", "UL", "LI_multi"]
   
   multiList.each do |list|
-    Object.const_set list, Class.new(JWMulti){
-    
-      attr_accessor :name
-      
-      def initialize
-        super
-        @name = self.class.name.downcase
+    Object.const_set list, Class.new(JWMulti){    
+#      attr_accessor :name
 
-        if @name == "li_multi"
-          @name = "li"
-        end
+      # def initialize
+
+      #   @name = self.class.name.downcase
+
+      #   if @name == "li_multi"
+      #     @name = "li"
+      #   end
         
-        @css = CSS.new("#{@name}")
-  
-      end
+      #   @css = CSS.new("#{@name}")
+
+      # end
     }
   end
 
 
-  # a = JW_CSS_JS.new
-  # p a
+   # a = JWMulti.new
+ #  p a
+ #  # a.css.name = "pp"
+ #  # a.css.color = "red"
+ #  #a.name = "test"
+  # p a.pressDefault
   
 end

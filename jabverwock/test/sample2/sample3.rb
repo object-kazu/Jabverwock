@@ -3,8 +3,8 @@ require "./path"
 module Jabverwock
   using StringExtension
   using ArrayExtension
-
-  $SA = "sample3"
+  using SymbolExtension
+ 
 
   html= HTML.new
 
@@ -64,12 +64,25 @@ module Jabverwock
   html.addChild header
   html.addChild bodier
 
-  EXPORT_TESTPRESS_Dir2 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample2/"
+
+  $SA = "sample2"
+
+  
+  def self.testPATH
+    current = ENV['PWD']
+    switch = false
+    if current.include?("BitTorrent")
+      switch = true
+    end
+    switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
+    "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{$SA}/"
+  end
+  
 
   n = $SA + "Pressed" + ".html"
-  html.pressConfig(name: n, dist: EXPORT_TESTPRESS_Dir2)
+  html.pressConfig(name: n, dist: testPATH)
   html.pressDefault
-
+  
 
   
   

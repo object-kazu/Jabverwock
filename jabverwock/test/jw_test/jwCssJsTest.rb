@@ -285,6 +285,35 @@ module Jabverwock
     end
 
     
+    
+    test "isExistScriptTagAtTempleteString, script tag exist " do
+      j = JW_CSS_JS.new
+      text = "<script></script>"
+      j.templeteString = text
+      assert_true j.isExistScriptTagAtTempleteString
+    end
+    
+    test "isExistScriptTagAtTempleteString, script content not exist " do
+      j = JW_CSS_JS.new
+      text = "<script></script>"
+      j.templeteString = text
+      assert_false j.isExistScriptContentAtTempleteString
+    end
+    
+    test "isExistScriptTagAtTempleteString, script content not exist case 2" do
+      j = JW_CSS_JS.new
+      j.assemble
+      
+      assert_false j.isExistScriptContentAtTempleteString
+    end
+    
+    test "isExistScriptTagAtTempleteString, script content exist " do
+      j = JW_CSS_JS.new
+      j.js.doc.write("test").rec
+      j.assemble
+      
+      assert_true j.isExistScriptContentAtTempleteString
+    end
 
     
   end

@@ -51,18 +51,6 @@ module Jabverwock
     end
     
     
-    # def add_ID_CLS_NAME(name)
-    #   tmpName = name
-    #   if isExistID
-    #     tmpName << "#{selectorID}"        
-    #   end
-    #   if isExistCls
-    #     tmpName << "#{selectorCls}"
-    #   end
-    #   tmpName
-    # end
-
-    
     def dpName
       # cation, dup is deep copy of name only
       self.dup

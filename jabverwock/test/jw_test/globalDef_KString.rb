@@ -41,41 +41,6 @@ module Jabverwock
 
 
     
-    ############## String Extension ###############
-    
-    test "string extension inSingleQuo" do
-      tm =  "a".inSingleQuo("bc")
-      assert_equal(tm, "a'bc'")
-
-    end
-
-    test "string extension inSingleQuo fail" do
-      tm =  "a".inSingleQuo(1)
-      assert_equal(tm, nil)
-
-    end
-
-    test "string extension inDoubleQuot" do
-      tm =  "a".inDoubleQuot("bc")
-      assert_equal(tm, "a\"bc\"")
-
-    end
-
-    test "string extension inDoubleQuot fail" do
-      tm =  "a".inDoubleQuot(1)
-      assert_equal(tm, nil)
-
-    end
-
-    test"string extension inPara" do
-      tm = "a".inParenth("bc")
-      assert_equal(tm,"a('bc')")
-    end
-    
-    test"string extension inPara fail" do
-      tm = "a".inParenth(1)
-      assert_equal(tm,nil)
-    end
 
     
     
@@ -128,38 +93,6 @@ module Jabverwock
       assert_equal(tm, "dadfafadfa\nfdfafadfaA")
     end
 
-    
-    test "removeLastTAB" do
-      tm = "dadfafadfa\tfdfafadfa\t"
-      tm = KString.removeLastTAB(tm)
-      assert_equal(tm, "dadfafadfa\tfdfafadfa")
-
-    end
-
-    
-    test "removeLastTAB case 2" do
-      tm = "dadfafadfa\tfdfafadfa"
-      tm = KString.removeLastTAB(tm)
-      assert_equal(tm, "dadfafadfa\tfdfafadfa")
-
-    end
-
-    
-    test "removeHeadTAB" do
-      tm = "\tdadfafadfa\tfdfafadfa\t"
-      tm = KString.removeHeadTAB(tm)
-      assert_equal(tm, "dadfafadfa\tfdfafadfa\t")
-
-    end
-    
-    test "removeHeadTAB without head tab" do
-      tm = "dadfafadfa\tfdfafadfa\t"
-      tm = KString.removeHeadTAB(tm)
-      assert_equal(tm, "dadfafadfa\tfdfafadfa\t")
-
-    end
-
-    
 
     test "addSpace" do
       tm = "a"
@@ -207,24 +140,6 @@ module Jabverwock
       }
     end
 
-    test "count tab number" do
-      target = "abc" + $TAB + "decg" + $TAB + "dfdfdfa"
-      ans = KString.tabCount(target)
-      assert_equal(ans,2)
-    end
-
-    test "count tab number and end tab" do
-      target = "abc" + $TAB + "decg" + $TAB
-      ans = KString.tabCount(target)
-      assert_equal(ans,1) # because end Tab remove at tabCount method
-      
-    end
-    
-    test "getTabNumber" do
-      target = $TAB + "abc" + $TAB + "decg" + $TAB
-      ans = KString.getTabNumber(target)
-      assert_equal(ans,2)
-    end
 
     
     test "a variable and data pair is true " do
@@ -297,71 +212,75 @@ module Jabverwock
       assert_equal a,  ["a", "b","!!", "<\/head>"]
       
     end
+
+    test "insertTextLoop" do
+      a = %w(a b </head>)
+      ans = KString.insertTextLoop a
+      assert_equal ans, "a\nb\n</head>\n"
+      
+    end
     
     test "insertText befor </head>" do
       a = ["a", "b", "<\/head>"]
       ans = KString.insertText a, "!!"
-      assert_equal ans, "\ta\n\tb\n\t!!\n\t<\/head>\n"
-    end
-    
-    
-    
-    # ## Array extension ############
-    test "append val" do
-      a = [2,3,4]
-      a.append 5
-      assert_equal(a, [2,3,4,5])
-    end
-    
-    test "append val case 2" do
-      a = [2,3,4]
-      a.append [5]
-      assert_equal(a, [2,3,4,5])
+      assert_equal ans, "a\nb\n!!\n<\/head>\n"
     end
 
-    test "appends vals" do
-      a = [2,3,4]
-      a.appends [5,6]
-      assert_equal(a, [2,3,4,5,6])
+
+    test "removeAllRET" do
+      a = ["a\n", "b\n", "c"]
+      b = KString.removeAllRET a
+      assert_equal b, ["a", "b", "c"]
     end
-    
-    test "appends vals case 2" do
-      a = [2,3,4]
-      a.appends [11,22], [33,33]
-      assert_equal(a, [2,3,4,11,22,33,33])
-    end
-    
-    
-    # ## Symbol extension ############
-    test "isDoubleUnderBarSymbole, false" do
-      a = :test
-      assert_false a.hasDoubleUnderBar?
-      
-    end
-    
-    test "isDoubleUnderBarSymbole, true" do
-      a = :test__test
-      assert_true a.hasDoubleUnderBar?
-      
-    end
-    
-    
     
   end
-
 end
 
+__END__
+#
 
-    # test "addTab" do
-    #   target = "a"
-    #   ans  = KString.addTab(str: target, num: 2)
-    #   assert_equal(ans, $TAB + $TAB + target)
+    test "removeLastTAB" do
+      tm = "dadfafadfa\tfdfafadfa\t"
+      tm = KString.removeLastTAB(tm)
+      assert_equal(tm, "dadfafadfa\tfdfafadfa")
+
+    end
+    # test "removeLastTAB case 2" do
+    #   tm = "dadfafadfa\tfdfafadfa"
+    #   tm = KString.removeLastTAB(tm)
+    #   assert_equal(tm, "dadfafadfa\tfdfafadfa")
+
     # end
-    # test "callSelfCls" do
-    #   tm = "d"
-    #    assert_equal("String", KSUtil.callSelfCls(tm))
+
+    
+    # test "removeHeadTAB" do
+    #   tm = "\tdadfafadfa\tfdfafadfa\t"
+    #   tm = KString.removeHeadTAB(tm)
+    #   assert_equal(tm, "dadfafadfa\tfdfafadfa\t")
+
     # end
-    # test "is_Bool" do
-    #   assert_true(KSUtil.is_bool(true))
-    #   assert_false(KSUtil.is_bool(1))
+    
+    # test "removeHeadTAB without head tab" do
+    #   tm = "dadfafadfa\tfdfafadfa\t"
+    #   tm = KString.removeHeadTAB(tm)
+    #   assert_equal(tm, "dadfafadfa\tfdfafadfa\t")
+
+    # end
+    test "count tab number" do
+      target = "abc" + $TAB + "decg" + $TAB + "dfdfdfa"
+      ans = KString.tabCount(target)
+      assert_equal(ans,2)
+    end
+
+    # test "count tab number and end tab" do
+    #   target = "abc" + $TAB + "decg" + $TAB
+    #   ans = KString.tabCount(target)
+    #   assert_equal(ans,1) # because end Tab remove at tabCount method
+      
+    # end
+    
+    # test "getTabNumber" do
+    #   target = $TAB + "abc" + $TAB + "decg" + $TAB
+    #   ans = KString.getTabNumber(target)
+    #   assert_equal(ans,2)
     # end

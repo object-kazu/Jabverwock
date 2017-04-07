@@ -14,12 +14,12 @@ module Jabverwock
   head.addChild title
   
   body = BODY.new
-  c = P.new.contentIs "Hello world!" 
+  c = P.new.contentIs "Hello world! #{$SA}" 
   body.addChild c
 
   html.addChild head
   html.addChild body
-
+  
   html.testPress($SA)
   
   

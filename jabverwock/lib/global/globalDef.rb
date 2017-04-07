@@ -10,11 +10,6 @@ module StringExtension
     def removeLastRET
       self.chomp
     end
-
-    def removeAllTab
-      return self unless self.include?("\t")
-      self.gsub!(/\t/, "")
-    end
     
     def inDoubleQuot(insert)
       if insert.is_a?(String)
@@ -76,10 +71,10 @@ module SymbolExtension
     def variable
       $LABEL_INSERT_START + self.to_s + $LABEL_INSERT_END
     end  
+    
     def varIs(val)
       {:label => self.to_s, :data => val}
     end
-
 
     def divid
       sim = self.to_s
@@ -221,29 +216,20 @@ module Jabverwock
       
       def insertText(arr,txt)
         index = insertIndex arr
-        arr.insert index, txt
-        insertTextLoop arr
+        tArr = removeAllRET arr
+        tArr.insert index, txt
+        insertTextLoop tArr
+      end
+
+      def insertTextLoop (arr)
+        ans = arr.inject("")do |a,t|
+          a << t << $RET
+        end
       end
       
       def insertIndex (arr)
         arr.index { |i| i =~ /<\/head>/ }
       end
-      
-      def insertTextLoop(arr)        
-        newText = ""
-        arr.each do |l|
-          newText << addTabEachLine(l) << "\n"
-        end
-        newText
-      end
-
-      
-      # def writer(arr) # arr -> sentence
-      #   arr.inject("") do |temp, s|
-      #     temp << s    
-      #   end
-      # end
-
       
       def check_type(type, instance)
         # pass check -> true
@@ -268,9 +254,8 @@ module Jabverwock
         text.chomp
       end
 
-      def removeLastTAB(text)
-        isString? text
-        text.gsub(/\t$/, "")
+      def removeAllRET(arr)
+        arr.map { |s| s.chomp }
       end
       
       def remove_Js_Cmd_End(text)
@@ -278,10 +263,6 @@ module Jabverwock
         text.gsub(/;$/, "")
       end
       
-      def removeHeadTAB(text)
-        isString? text
-        text.gsub(/^\t/, "")
-      end
 
       def addSpace(str)
         isString? str
@@ -315,57 +296,13 @@ module Jabverwock
       end
 
       
-      def tabCount(str)
-        isString? str
-        str = removeLastTAB str
-        str.count $TAB
-      end
-
-      def addTab(element)
-        ans = ""
-        element.lines{ |l|
-          ans += "\t" + l
-        }
-        ans
-      end
-      
-      def addTabEachLine (str)
-        ans = ""
-        str.each_line { |l|
-          ans += addHeadTab(str: l, num: 1)
-        }
-        ans
-      end
-      
-      def addHeadTab(str:, num:)
-        isString? str
-        isInt? num
-        t = makeSerialTab num
-        t += str
-        
-      end
-
-      def makeSerialTab (num)
-        num.times.inject("") do |t| 
-          t += $TAB
-        end
-      end
-      
-      def getTabNumber (testStr)
-        isString?(testStr)
-        
-        testStr.each_line{ |l|
-          if l.count($TAB) > 0
-            return tabCount(l) 
-          end  
-        }
-        return 0
-      end
 
       def intoStyleTag (str)
-        tabbedEachLine = addTabEachLine str
-        styTag   = "<style>\n" << "#{tabbedEachLine}\n" << "\t</style>\n"
-        addTabEachLine styTag
+        "<style>\n" << "#{str}\n" << "</style>\n"
+        
+        # tabbedEachLine = addTabEachLine str
+        # styTag   = "<style>\n" << "#{tabbedEachLine}\n" << "\t</style>\n"
+        # addTabEachLine styTag
       end
       
       def makeElementArray (element, elementArray)
@@ -397,74 +334,4 @@ module Jabverwock
     end 
   end
 end 
-
-
-
-## garbage code
-
-        # removeFront = str.gsub(/.*{/, "") 
-        # removeBack = removeFront.gsub(/}/, "")
-        # removeRET = removeBack.gsub(/\n/, "")
-
-# def check_type(type, instance, nilable=false)
-      #   if (instance.nil?)
-      #     unless nilable
-      #       raise ArgumentError::new("non-nil constraint vioration")
-      #     end # nilable
-      #   else
-      #     unless instance.kind_of?(type)
-      #       raise ArgumentError::new("type mismatch: #{instance.class} for #{type}")
-      #     end # instance, type
-      #   end # instance.nil?
-
-      #   return instance
-      # end
-
-      # def isString? (instance, nilable=false)
-      #   check_type(String, instance)
-      # end
-
-      # def isInt?(instance, nilable=false)
-      #   check_type(Integer,instance)
-      # end
-      
-      # def isExistCssString(str)
-        
-      #   return false if str.empty?
-
-      #   if !str.include?("{") || !str.include?("}")
-      #     return false
-      #   end
-        
-      #   removeFront = str.gsub(/.*{/, "") 
-      #   removeBack = removeFront.gsub(/}/, "")
-      #   removeRET = removeBack.gsub(/\n/, "")
-        
-      #   if removeRET.nil? || removeRET == ""
-      #     return false
-      #   end
-
-      #   return true
-      # end
-      
-      # tab揃え
-      # def tabCount(str)
-      #   str.count("\t")
-      # end
-      
-      # def addTab(str:, num:)
-      #   isString?(str)
-      #   isInt? num
-        
-      #   tabMax = num
-      #   ans = ""
-      #   str.each_line { |l|
-      #     tn = tabCount(l)
-      #     df = tabMax - tn
-      #     ans += addHeadTab(str: l, num: df)
-      #   }
-      #   ans
-      # end
-
-      
 

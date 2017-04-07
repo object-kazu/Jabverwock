@@ -72,21 +72,20 @@ module Jabverwock
     
     def applyCss
       cssStringInit
-      atcs = assembleTabedCss
+      atcs = cssAssemble @css, @cssArray  #assembleTabedCss
 
       unless atcs == ""
         tgCss = KString.intoStyleTag atcs
-        addAssembeTabbedStyle tgCss
+        addAssembleStyle tgCss
       end
       
     end
 
-    def assembleTabedCss
-      ans = cssAssemble(@css, @cssArray)
-      KString.addTabEachLine ans      
-    end
+    # def assembleTabedCss
+    #   ans = cssAssemble(@css, @cssArray)
+    # end
     
-    def addAssembeTabbedStyle(str)
+    def addAssembleStyle(str)
       # koko now
       # head tagがないとなにもない仕様にしてある
       # 外部ファイルに書き出す機能を追加するか？
