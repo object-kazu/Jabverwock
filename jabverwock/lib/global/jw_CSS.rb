@@ -72,8 +72,8 @@ module Jabverwock
     
     def applyCss
       cssStringInit
-      atcs = cssAssemble @css, @cssArray  #assembleTabedCss
-
+      atcs = showCssString
+           
       unless atcs == ""
         tgCss = KString.intoStyleTag atcs
         addAssembleStyle tgCss
@@ -81,6 +81,7 @@ module Jabverwock
       
     end
 
+    
     # def assembleTabedCss
     #   ans = cssAssemble(@css, @cssArray)
     # end
@@ -93,13 +94,13 @@ module Jabverwock
       
     end
 
-    def cssAssembleInit(css, cssArray)
+    def cssAssembleInit(css, cssArray)      
       css.updateCssName activeID, activeCls
       KString.makeElementArray(css, cssArray)
     end
 
     def activeID
-      ids = ""
+      ids = ""      
       if isExistID
         ids = "#{selectorID}"        
       end
@@ -109,20 +110,19 @@ module Jabverwock
     def activeCls
       cls = ""
       if isExistCls
-        clss = "#{selectorCls}"
+        cls = "#{selectorCls}"
       end
       cls
     end
     
     
     def cssAssembleCore(css)
-        @nameList << css.name        
-        @cssString << css.str << $RET 
+      @nameList << css.name        
+      @cssString << css.str << $RET
     end
     
     def cssAssembleLoop(arr)
       arr.each do |cs|
-        
         #  スタイルがない（｛｝のみ）なら標示しない
         next unless KString.isExistCssString cs.str
         
@@ -140,8 +140,8 @@ module Jabverwock
     #   - cssArrayの中身は処理しない
     #   -＞ cssArrayに追加するときに処理するため
     
-    def cssAssemble(css, cssArray)
-      @nameList = []
+    def cssAssemble(css, cssArray)      
+      @nameList = []      
       newArr = cssAssembleInit css, cssArray
       cssAssembleLoop newArr
       @cssString.removeLastRET
@@ -153,11 +153,15 @@ module Jabverwock
       @nameList.include? name
      end
     
+    
     def showCssString
       cssStringInit
-      cssAssemble(@css, @cssArray)
+      cssAssemble @css, @cssArray
     end
-    
+
+    def updateCssName
+      @css.updateCssName activeID, activeCls
+    end
     
     ####### add member ############
     
@@ -180,7 +184,7 @@ module Jabverwock
         @cssArray.append member.cssArray
       end
       
-      member.css.updateCssName activeID, activeCls
+      member.updateCssName
       @cssArray.append member.css
     end
     

@@ -108,12 +108,12 @@ module Jabverwock
 
     #### css ####
     def isExistHeadTag
-      @templeteString.include?("<head>") && @templeteString.include?("</head>")
+      @templeteString.include?("<head") && @templeteString.include?("</head>")
     end
 
     def applyStyle(style)
       if isExistHeadTag
-        @templeteString.gsub!(/<\/head>/, "#{style}\n\t</head>")
+        @templeteString.gsub!(/<\/head>/, "#{style}</head>")
       end
     end
 

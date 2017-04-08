@@ -48,23 +48,23 @@ module Jabverwock
 
     ############## test ###############
 
-    test "css html first test, for print debug " do
-      # p CSS.new "t"
-      # p HEAD.new
+    # test "css html first test, for print debug " do
+    #   # p CSS.new "t"
+    #   # p HEAD.new
 
       
-    end
+    # end
 
     test "set css property" do
       h = HEAD.new().contentIs "this is test"
       h.css.font_size = 10
-      assert_equal(h.css.str, "head {\n\tfont-size: 10;\n}")
+      assert_equal(h.css.str, "head {\nfont-size: 10;\n}")
     end
     
     test "set css property case 2" do
       h = HEAD.new().contentIs "this is test"
       h.css.font_size("10")
-      assert_equal(h.css.str, "head {\n\tfont-size: 10;\n}")
+      assert_equal(h.css.str, "head {\nfont-size: 10;\n}")
     end
     
     test "add css property not" do
@@ -72,21 +72,21 @@ module Jabverwock
       c = CSS.new "head"
       c.font_size = 10
       h.addCss c
-      a = h.assembleTabedCss
+      a = h.showCssString
       
-      assert_equal(a.removeAllTab, "head {\nfont-size: 10;\n}")
+      assert_equal(a, "head {\nfont-size: 10;\n}")
     end
     
     test "add css property , different name" do
       h = HEAD.new().contentIs "this is test"
       c = CSS.new "p"
       c.font_size = 10
-      p c.str
+
       
       h.addCss c
-      a = h.assembleTabedCss
+      a = h.showCssString
       
-      assert_equal(a.removeAllTab, "p {\nfont-size: 10;\n}")
+      assert_equal(a, "p {\nfont-size: 10;\n}")
     end
 
     
@@ -99,16 +99,11 @@ module Jabverwock
       pressed = h.pressDefault
       
       assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
       assert_true(pressed.include?("</style>"))
 
     end
 
-    test "addHead" do 
-      a = "a\n" + "b\n"
-      ans = KString.addTabEachLine(a)
-      assert_equal(ans, "\ta\n\tb\n")
-    end
     
     test "add member " do
       h = HEAD.new().contentIs "this is test"
@@ -124,13 +119,26 @@ module Jabverwock
       pressed = h.pressDefault
       
       assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
-      assert_true(pressed.include?("\tbody {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?("</style>"))
+
+    end
+    
+     test "set id, selector id case 1" do
+
+      head = HEAD.new.attr(:id, "sample")
+      head.css.color "red"
+      
+      pressed = head.pressDefault
+
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head #sample {\ncolor: red;\n}\n"))
       assert_true(pressed.include?("</style>"))
 
     end
 
-    test "set id, selector id " do
+    test "set id, selector id case 2" do
       h = HEAD.new().contentIs "this is test"
       c = CSS.new "head"
       c.font_size = 10
@@ -138,14 +146,15 @@ module Jabverwock
 
       body = BODY.new.attr(:id, "sample")
       body.css.color "red"
-
-      h.addMember body
             
+      h.addMember body
+      
+      
       pressed = h.pressDefault
       
       assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
-      assert_true(pressed.include?("\tbody #sample {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body #sample {\ncolor: red;\n}\n"))
       assert_true(pressed.include?("</style>"))
 
     end
@@ -162,10 +171,11 @@ module Jabverwock
       h.addMember body
             
       pressed = h.pressDefault
+
       
       assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
-      assert_true(pressed.include?("\tbody .sample {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body .sample {\ncolor: red;\n}\n"))
       assert_true(pressed.include?("</style>"))
 
     end
@@ -184,14 +194,14 @@ module Jabverwock
       pressed = h.pressDefault
       
       assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
-      assert_true(pressed.include?("\tbody #test .sample {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body #test .sample {\ncolor: red;\n}\n"))
       assert_true(pressed.include?("</style>"))
 
     end
 
 
-    test "check child, set cls. id, selector cls,id " do
+    test "check addChild, set cls. id, selector cls,id " do
       h = HEAD.new().contentIs "this is test"
       c = CSS.new "head"
       c.font_size = 10
@@ -205,11 +215,11 @@ module Jabverwock
       pressed = h.pressDefault
       
       assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("\thead {\n\t\t\t\tfont-size: 10;\n\t\t\t}\n"))
-      assert_true(pressed.include?("\tbody #test .sample {\n\t\t\t\tcolor: red;\n\t\t\t}\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body #test .sample {\ncolor: red;\n}\n"))
       assert_true(pressed.include?("</style>"))
 
-    end
+      end
 
     
   end

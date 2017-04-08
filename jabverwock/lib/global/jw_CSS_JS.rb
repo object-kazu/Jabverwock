@@ -125,7 +125,6 @@ module Jabverwock
     ### override ###
     def assembleHTML
       super      
-      # koko >>> headerがあるとjsがなくても表示されてしまう問題あり！
       return unless isExistHeadTagAtTempleteString
       return unless isExistScriptTagAtTempleteString
       return unless isExistScriptContentAtTempleteString

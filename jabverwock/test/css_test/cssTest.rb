@@ -68,35 +68,35 @@ module Jabverwock
       @css.name = "head"
       @css.font_size = 10
       assert_equal(@css.str,
-                   "head {\n\tfont-size: 10;\n}")
+                   "head {\nfont-size: 10;\n}")
     end
 
     test "property default method, not chain" do
       @css.name = "head"
       @css.font_size = 10
       @css.color = "red"
-      assert_equal(@css.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n}")
+      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
     end
 
     test "property method chain" do      
       @css.name = "head"
       @css.font_size("10").color("red")
 
-      assert_equal(@css.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n}")
+      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
     end
 
     test "property method chain case 2" do
       
       @css.name = "head"
       @css.font_size("10").color("red").font_style("bold")
-      assert_equal(@css.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n\tfont-style: bold;\n}")
+      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
     end
 
 
     test "css name define" do
       c = CSS.new("head")
       c.font_size("10").color("red").font_style("bold")
-      assert_equal(c.str, "head {\n\tcolor: red;\n\tfont-size: 10;\n\tfont-style: bold;\n}")
+      assert_equal(c.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
     end
    
     test "combineSelectors" do
@@ -135,8 +135,8 @@ module Jabverwock
       c = CSS.new(:id_reds).color "red"
       cc = c.dpName.addChildren("p").color("yellow")
 
-      assert_equal(c.str, "#reds {\n\tcolor: red;\n}")
-      assert_equal(cc.str, "#reds p {\n\tcolor: yellow;\n}")
+      assert_equal(c.str, "#reds {\ncolor: red;\n}")
+      assert_equal(cc.str, "#reds p {\ncolor: yellow;\n}")
     end
 
 

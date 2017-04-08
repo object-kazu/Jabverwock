@@ -82,7 +82,7 @@ module Jabverwock
       if result.count == 0
         return ""
       end
-       result.join("\n\t")
+       result.join("\n")
     end
     
     # format of property is difference

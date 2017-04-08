@@ -40,12 +40,12 @@ module Jabverwock
     
     def updateCssNameWithID(id)
       unless id.empty?
-        @name << id
+        @name << $SPC << id
       end
     end
     def updateCssNameWithCls(cls)
       unless cls.empty?
-        @name << cls
+        @name << $SPC << cls
       end
       
     end
@@ -68,6 +68,7 @@ module Jabverwock
     end
 
     def addBaseic(isChild, *sel)
+      
       divi = ","
       if isChild
         divi = " "
@@ -87,7 +88,7 @@ module Jabverwock
       self
     end
     
-    def str
+    def str      
       @cssResultString = ""
       if @name.empty?
         p "css name is empry. set cssName"

@@ -232,6 +232,18 @@ module Jabverwock
       b = KString.removeAllRET a
       assert_equal b, ["a", "b", "c"]
     end
+
+    test "isExistCssString case 1" do
+      test = "head {\nfont-size: 10;\n}"
+
+koko
+    end
+    
+    test "isExistCssString case 2" do
+
+      test = "head#sample {\ncolor: red;\n}"
+koko
+    end
     
   end
 end

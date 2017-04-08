@@ -318,7 +318,7 @@ module Jabverwock
         return tempArray
       end
 
-      def isExistCssString(str)        
+      def isExistCssString(str)
         return false if str.empty?
 
         if !str.include?("{") || !str.include?("}")
@@ -328,7 +328,7 @@ module Jabverwock
         removeFront = str.gsub(/.*{/, "").gsub(/}/, "").gsub(/\n/, "")        
         
         return false if removeFront == ""
-        return true
+        true
       end
       
     end 

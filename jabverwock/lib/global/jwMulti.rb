@@ -52,7 +52,8 @@ module Jabverwock
         @cssArray += child.cssArray
       end
 
-      if child.css != nil
+      if child.css ||= CSS.new("#{@name}")
+        child.updateCssName
         @cssArray << child.css
       end
                  
@@ -137,11 +138,11 @@ module Jabverwock
   end
 
 
-   # a = JWMulti.new
- #  p a
- #  # a.css.name = "pp"
- #  # a.css.color = "red"
- #  #a.name = "test"
+  #  a = JWMulti.new
+  # p a
+  # # a.css.name = "pp"
+  # # a.css.color = "red"
+  # #a.name = "test"
   # p a.pressDefault
   
 end

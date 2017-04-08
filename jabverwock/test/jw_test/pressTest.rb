@@ -176,6 +176,15 @@ module Jabverwock
       assert_true(pr.isExistHeadTag)
       
     end
+    
+    test "isExistHeadTag case true case 2" do
+      
+      pr = Press.new
+      pr.templeteString = "<head id=\"test\">this is test</head>"
+      pr.initResutString
+      assert_true(pr.isExistHeadTag)
+      
+    end
 
     
   end
