@@ -60,13 +60,14 @@ module Jabverwock
         h0 = TableHeader.new
         headerStr += h0.tgStr
         
+        
         headerList.each do |hl| 
           h = TableHeader.new
           h.content = hl
           headerStr += h.tgStr
         end
-
-        tr.content = headerStr
+      
+        tr.contentIs headerStr
         @childStringArray << tr.tgStr
       end
     end
@@ -106,7 +107,7 @@ module Jabverwock
         arr.each do |hl|
           dataString += tdTreatment(hl)
         end
-        tr.content = dataString
+        tr.contentIs dataString
         @childStringArray << tr.tgStr
       end
       
@@ -142,16 +143,22 @@ module Jabverwock
     end
     
     ### override ###
-    def assemble
-      if @tagManager.name == ""
+    def assembleHTML
+      if @tagManager.name.empty?
         @tagManager.name = @name        
       end
-      
       makeTag
       addCaption
       addTableHeader
       dataTreatment     
       makeResult
+      memberAssemble
+
+      return unless isExistHeadTagAtTempleteString
+      return unless isExistScriptTagAtTempleteString
+      return unless isExistScriptContentAtTempleteString
+      insertScriptToHead
+
     end
     
   end    

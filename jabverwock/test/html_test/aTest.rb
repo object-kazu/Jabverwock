@@ -53,7 +53,7 @@ module Jabverwock
       
       j1 = A.new
       j1.css.color("red").font_size(10)
-      assert_equal(j1.showCssString, "a {\n\tcolor: red;\n\tfont-size: 10;\n}")     
+      assert_equal(j1.showCssString, "a {\ncolor: red;\nfont-size: 10;\n}")     
     end
 
     

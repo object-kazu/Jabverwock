@@ -200,27 +200,27 @@ module Jabverwock
     # end
 
 
-    # test "check child, set cls. id, selector cls,id " do
-    #   h = HEAD.new().contentIs "this is test"
-    #   c = CSS.new "head"
-    #   c.font_size = 10
-    #   h.addCss c
+    test "check child, set cls. id, selector cls,id " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
 
-    #   body = BODY.new.attr(:cls, "sample").attr(:id, "test")
-    #   body.css.color "red"
+      body = BODY.new.attr(:cls, "sample").attr(:id, "test")
+      body.css.color "red"
 
-    #   h.addChild body
+      h.addChild body
             
-    #   pressed = h.pressDefault
+      pressed = h.pressDefault
 
+      byebug
       
-      
-    #   assert_true(pressed.include?("<style>\n"))
-    #   assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-    #   assert_true(pressed.include?("body #test .sample {\ncolor: red;\n}\n"))
-    #   assert_true(pressed.include?("</style>"))
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body #test .sample {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?("</style>"))
 
-    # end
+    end
 
     
   end

@@ -45,11 +45,11 @@ module Jabverwock
       assert_equal(ans, "<img>")
     end
     
-    test "content add, ignore" do
+    test "content add" do
       
       @img.content = "test"
       ans = @img.pressDefault
-      assert_equal(ans, "<img>")
+      assert_equal(ans, "<img>test")
 
     end
     
@@ -59,7 +59,7 @@ module Jabverwock
       @img.content = "test" + "a".variable
       ans = @img.pressDefault
       
-      assert_equal(ans, "<img>")
+      assert_equal(ans, "<img>test")
     end
 
        

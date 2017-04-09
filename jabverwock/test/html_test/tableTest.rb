@@ -57,7 +57,7 @@ module Jabverwock
 
     test "table row confirm" do
       c = TableRow.new
-      assert_equal(c.tgStr, "<tr></tr>")
+      assert_equal(c.tgStr, "<tr>\n</tr>")
     end
 
     test "table header confirm" do
@@ -78,23 +78,22 @@ module Jabverwock
       
     end
     
-    ## table ##
+#     ## table ##
     test "table" do
       t = JWTable.new
       assert_equal(t.pressDefault, "<table>\n</table>")
     end
+
+    test "table with id" do
+      t = JWTable.new.attr(:id__sample)
+      assert_equal(t.pressDefault, "<table id=\"sample\">\n</table>")
+    end
+    
     
     test "add caption" do
       t = JWTable.new
       t.caption "test"
-      assert_equal(t.pressDefault, "<table>\n\t<caption>test</caption>\n</table>")
-      
-#         /* answer
-#          <table>
-#             <captiom>test</caption>
-#          </table>
-         
-#          */
+      assert_equal(t.pressDefault, "<table>\n<caption>test</caption>\n</table>")
       
      end
 
@@ -103,9 +102,10 @@ module Jabverwock
       t.caption "test"
       t.headerList = ["name","address","tel"]
       ans = t.pressDefault
+      
       l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
+      l2="<caption>test</caption>\n"
+      l3="<tr>\n<th></th><th>name</th><th>address</th><th>tel</th>\n</tr>\n"
       lend="</table>"
 
       assert_equal(ans,l1 + l2 + l3 + lend)      
@@ -119,10 +119,11 @@ module Jabverwock
       ans = t.pressDefault
       
       l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
-      l4="\t<tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
+      l2="<caption>test</caption>\n"
+      l3="<tr>\n<th></th><th>name</th><th>address</th><th>tel</th>\n</tr>\n"
+      l4="<tr>\n<td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td>\n</tr>\n"
       lend="</table>"
+      
       assert_equal(ans,l1 + l2 + l3 + l4 + lend)      
     end
 
@@ -134,9 +135,9 @@ module Jabverwock
       ans = t.pressDefault
       
       l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
-      l4="\t<tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
+      l2="<caption>test</caption>\n"
+      l3="<tr>\n<th></th><th>name</th><th>address</th><th>tel</th>\n</tr>\n"
+      l4="<tr>\n<td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td>\n</tr>\n"
       lend="</table>"
       assert_equal(ans,l1 + l2 + l3 + l4 + lend)      
     end
@@ -290,10 +291,10 @@ module Jabverwock
       ans = t.pressDefault
       
       l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
-      l4="\t<tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
-      l5="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
+      l2="<caption>test</caption>\n"
+      l3="<tr>\n<th></th><th>name</th><th>address</th><th>tel</th>\n</tr>\n"
+      l4="<tr>\n<td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td>\n</tr>\n"
+      l5="<tr>\n<td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td>\n</tr>\n"
 
       lend="</table>"
       assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)      
@@ -309,10 +310,10 @@ module Jabverwock
       ans = t.pressDefault
       
       l1 = "<table>\n"
-      l2 = "\t<caption>test</caption>\n"
-      l3 = "\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
-      l4 = "\t<tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
-      l5 = "\t<tr><td><br></td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
+      l2 = "<caption>test</caption>\n"
+      l3 = "<tr>\n<th></th><th>name</th><th>address</th><th>tel</th>\n</tr>\n"
+      l4 = "<tr>\n<td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td>\n</tr>\n"
+      l5 = "<tr>\n<td><br></td><td>shi2</td><td>tokyo2</td><td>030000002</td>\n</tr>\n"
       lend = "</table>"
       assert_equal(ans, l1 + l2 + l3 + l4 + l5 + lend)      
     end
@@ -329,10 +330,10 @@ module Jabverwock
       ans = t.pressDefault
       
       l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
-      l4="\t<tr><td rowspan=\"2\">line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>\n"
-      l5="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
+      l2="<caption>test</caption>\n"
+      l3="<tr>\n<th></th><th>name</th><th>address</th><th>tel</th>\n</tr>\n"
+      l4="<tr>\n<td rowspan=\"2\">line1</td><td>shi</td><td>tokyo</td><td>03000000</td>\n</tr>\n"
+      l5="<tr>\n<td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td>\n</tr>\n"
       lend="</table>"
       assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)      
             
@@ -349,10 +350,10 @@ module Jabverwock
       ans = t.pressDefault
       
       l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><th></th><th>name</th><th>address</th><th>tel</th></tr>\n"
-      l4="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"
-      l5 = "\t<tr><td>line3</td><td>shi3</td><td>tokyo3</td><td>111</td></tr>\n"
+      l2="<caption>test</caption>\n"
+      l3="<tr>\n<th></th><th>name</th><th>address</th><th>tel</th>\n</tr>\n"
+      l4="<tr>\n<td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td>\n</tr>\n"
+      l5 = "<tr>\n<td>line3</td><td>shi3</td><td>tokyo3</td><td>111</td>\n</tr>\n"
       
       lend="</table>"
       assert_equal(ans,l1 + l2 + l3 + l4 + l5 + lend)
@@ -371,9 +372,9 @@ module Jabverwock
       ans = t.pressDefault
       
       l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"      
-      l4="\t<tr><td>line22</td><td>shi22</td><td>tokyo22</td><td>0300000022</td></tr>\n"      
+      l2="<caption>test</caption>\n"
+      l3="<tr>\n<td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td>\n</tr>\n"      
+      l4="<tr>\n<td>line22</td><td>shi22</td><td>tokyo22</td><td>0300000022</td>\n</tr>\n"      
       lend="</table>"
 
       assert_equal(ans,l1 + l2 + l3 + l4 + lend) 
@@ -392,9 +393,9 @@ module Jabverwock
       ans = t.pressDefault
 
       l1= "<table>\n"
-      l2="\t<caption>test</caption>\n"
-      l3="\t<tr><td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td></tr>\n"      
-      l4="\t<tr><td>line22</td><td>shi22</td><td>tokyo22</td><td>0300000022</td></tr>\n"      
+      l2="<caption>test</caption>\n"
+      l3="<tr>\n<td>line2</td><td>shi2</td><td>tokyo2</td><td>030000002</td>\n</tr>\n"      
+      l4="<tr>\n<td>line22</td><td>shi22</td><td>tokyo22</td><td>0300000022</td>\n</tr>\n"      
       lend="</table>"
 
       assert_equal(ans,l1 + l2 + l3 + l4 + l4 + lend) 

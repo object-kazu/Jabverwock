@@ -77,8 +77,8 @@ module Jabverwock
 
     test "jsObject extract from jsObject" do
       @jso.updateSelector(:id__koko).doc.byID.rec
-      @jso.orderList
-      
+      p @jso.orders
+      assert_equal(@jso.orders[0], "document.getElementById('koko');")
     end
 
   end

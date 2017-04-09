@@ -49,7 +49,7 @@ module Jabverwock
       
       @link.content = "test"
       ans = @link.pressDefault
-      assert_equal(ans, "<link>")
+      assert_equal(ans, "<link>test")
 
     end
     
@@ -59,7 +59,7 @@ module Jabverwock
       @link.content = "test" + "a".variable
       ans = @link.pressDefault
       
-      assert_equal(ans, "<link>")
+      assert_equal(ans, "<link>test")
     end
 
        
@@ -70,8 +70,8 @@ module Jabverwock
       
     end
     
-    test "src add" do
-      @link.tagManager .tagAttsr(:src, "http://www")
+    test "src add case 2" do
+      @link.tagManager .tagAttr(:src, "http://www")
       ans = @link.pressDefault
       assert_equal(ans,"<link src=\"http://www\">")
       
