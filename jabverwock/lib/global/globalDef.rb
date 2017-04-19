@@ -295,8 +295,6 @@ module Jabverwock
         str.gsub(of,with)
       end
 
-      
-
       def intoStyleTag (str)
         "<style>\n" << "#{str}\n" << "</style>\n"
         
