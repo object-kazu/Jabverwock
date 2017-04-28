@@ -103,12 +103,9 @@ module Jabverwock
     
   end
   
-  singleList = ["P","A","B","HR","BR","I","EM","STRONG","DT","DD",
-                "LIST_ITEM","TITLE","OPTION",]
+  singleList = KSUtil.singleTags
   
-  singleList += ["LI"]
-  
-  singleList.each do |list|
+    singleList.each do |list|
     Object.const_set list, Class.new(JWSingle){
     
       attr_accessor :name

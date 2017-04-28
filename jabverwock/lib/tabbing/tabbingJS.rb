@@ -62,5 +62,5 @@ module Jabverwock
     
   end
 
-   p t = TabbingJS.new
+   # p t = TabbingJS.new
 end

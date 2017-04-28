@@ -72,7 +72,7 @@ module Jabverwock
     # t2 = [con1, con2, ...]
     tt = ""
     t2.each do |s|
-      tt << s + "\n"
+      tt << s #+ "\n"
     end
     tds = td(tt).tgStr
 

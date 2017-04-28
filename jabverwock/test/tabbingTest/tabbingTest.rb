@@ -143,6 +143,7 @@ module Jabverwock
       t.readLine l
       assert_equal t.tabbedTxt, "<html>\n\t<head>\n\t\t<script>\n\t\t\tp{color:red}\n\t\t</script>\n\t</head>\n</html>"
     end
+
     
   end
 end

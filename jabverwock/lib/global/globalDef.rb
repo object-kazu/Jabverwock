@@ -186,6 +186,17 @@ module Jabverwock
       end
 
 
+      def multiTags
+          %w(BLOCKQUOTE BODY DIV FOOTER FORM HTML HEAD PRE SCRIPT STYLE SELECT OL UL LI_multi)
+      end
+
+      def tableTags
+        %w(TR TABLE)
+      end
+      
+      def singleTags
+        %w(P A B HR BR I EM STRONG DT DD LIST_ITEM TITLE OPTION LI TD)
+      end
       
     end
   end

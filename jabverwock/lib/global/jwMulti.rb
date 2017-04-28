@@ -114,10 +114,7 @@ module Jabverwock
     
   end
 
-  multiList = ["BLOCKQUOTE","BODY","DIV","FOOTER","FORM","HTML","HEAD","PRE","SCRIPT",
-               "STYLE", "SELECT"]
-
-  multiList += ["OL", "UL", "LI_multi"]
+  multiList = KSUtil.multiTags
   
   multiList.each do |list|
     Object.const_set list, Class.new(JWMulti){    

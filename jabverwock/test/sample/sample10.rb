@@ -7,7 +7,7 @@ module Jabverwock
   using ArrayExtension
   
   
-  $SA = "sample11"
+  $SA = "sample10"
 
   
   html= HTML.new

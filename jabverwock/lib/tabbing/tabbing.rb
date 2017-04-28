@@ -27,8 +27,8 @@ module Jabverwock
     
     def initialize
       super
-      #koko now -> 統合するときは、JWMulti classを参照するように変更
-      @multiTagList = %w(HTML HEAD BODY FOTTER)
+      @multiTagList = KSUtil.multiTags
+      @multiTagList += KSUtil.tableTags
       
     end
 

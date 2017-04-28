@@ -1,5 +1,16 @@
+if $FOR_GEM
+  require "tabbing/tabbing"
+else
+
+  #test
+  require_relative "../tabbing/tabbing"
+end
+
+
 module Jabverwock
   using StringExtension
+  using ArrayExtension
+  using SymbolExtension
   
 #  // export html & css
 # let EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
@@ -100,8 +111,12 @@ module Jabverwock
     def core
       pathName = @exportPath + @exportFile
 
+      #tabbing
+      tabbing = Tabbing.new
+      tabbing.readLine @resultString
+      
       File.open(pathName, "w") do |f| 
-        f.puts @resultString
+        f.puts tabbing.tabbedTxt #@resultString
       end
       
     end
