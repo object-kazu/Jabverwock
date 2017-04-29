@@ -279,7 +279,7 @@ module Jabverwock
       end
       
       def insertIndex (arr)
-        arr.index { |i| i =~ /<\/head>/ }
+        arr.index { |i| i =~ /<\/body>/ }
       end
       
       def check_type(type, instance)
