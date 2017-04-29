@@ -38,12 +38,9 @@ module Jabverwock
   html.addChild header
   html.addChild bodier
 
-
-  $EXPORT_TESTPRESS_Dir2 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample2/"
-
-  n = $SA + "Pressed" + ".html" 
-  html.press(name: n, dist:$EXPORT_TESTPRESS_Dir2)
-
+  folder = "sample2"
+  name = "sample11"
+  html.testPress(folder, name)
   
   
 end

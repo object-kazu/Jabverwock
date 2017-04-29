@@ -145,8 +145,7 @@ module Jabverwock
       if @memberStringArray.count > 0
          @templeteString += $RET
          ans = KString.stringArrayConectRET(@memberStringArray)
-         
-         p ans
+        
          @templeteString += ans
       end
       @memberStringArray = []
@@ -223,17 +222,27 @@ module Jabverwock
     end
     
     # press for testing
-    
-    $EXPORT_TESTPRESS_Dir_MACBOOK = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
-    $EXPORT_TESTPRESS_Dir_iMAC = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample/"
-    
-    def testPress(name)      
-      _dir_ = KSUtil.pressPath
+        
+    def testPress(folder,name)
+      _dir_ = KSUtil.testPATH folder
       n = name + "Pressed" + ".html"
       pressConfig(name: n, dist: _dir_)
       prepPress
       press
     end
+
+
+    
+    
+    # $PAGES.each do |pp|
+    #   if pp == "home"
+    #     pp = "index"
+    #   end
+    #   n = pp + "Pressed" + ".html"
+    #   html.pressConfig(name: n, dist: testPATH)
+    #   html.pressInsert("a".varIs"#{pp}")
+
+    # end
 
     
   end

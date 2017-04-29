@@ -43,7 +43,7 @@ module Jabverwock
   
   html.addChild header
   html.addChild body
-
+  
   # html.addMember header
   # html.addMember body
   

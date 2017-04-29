@@ -5,7 +5,7 @@ module Jabverwock
   using ArrayExtension
   
   
-  $SA = "sample7"
+  $SA = "sample8"
 
   html= HTML.new
 
@@ -15,7 +15,7 @@ module Jabverwock
     title = TITLE.new
     title.content = "This is my first page"
     head.addChild title
-    head.tgStr
+    head
   end
 
   def self.pContent
@@ -30,7 +30,10 @@ module Jabverwock
     
     h = HR.new
 
-    [cc, h, cc2]
+    brock = BLOCKQUOTE.new.contentIs "presented by Jabverwock"
+    
+    [cc, h, cc2, brock]
+
     
   end
   
@@ -42,28 +45,12 @@ module Jabverwock
     arr.unshift c
     
     body.addChildren arr
-    body.tgStr
-    
+    body
   end
   
-  # def self.bodies
-  #   body = BODY.new
-  #   c = HEADING.new.contentIs "Hello #{$SA}! again"
-  #   b = B.new.contentIs "this"
-    
-  #   base = " is test #{$BR} for you"
-    
-  #   str = b.tgStr + base
-  #   cc = P.new.contentIs str
-  #   cc2 = P.new.contentIs "this" + base
-    
-  #   h = HR.new
-    
-  #   body.addChildren [c,cc,h,cc2]
-  #   body.tgStr
-  # end
-  
-  html.addChildStrings [header,bodies]
-  html.testPress($SA) 
+  html.addChildren [header,bodies]
+  folder = "sample1"
+  name = "sample8"
+  html.testPress(folder, name)
   
 end

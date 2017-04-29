@@ -64,7 +64,7 @@ module Jabverwock
       
       j1.addCss c
       
-      ans = "jw_css {\n\tfont-size: 10;\n}"
+      ans = "jw_css {\nfont-size: 10;\n}"
 
       assert_equal(j1.showCssString, ans)
         

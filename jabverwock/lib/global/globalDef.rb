@@ -167,14 +167,24 @@ module Jabverwock
   module KSUtil
     class << self
       
-      def pressPath
-        _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
+      def testPATH(folder)
         current = ENV['PWD']
+        switch = false
         if current.include?("BitTorrent")
-          _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
+          switch = true
         end
-        _dir_
+        switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
+        "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{folder}/"
       end
+      
+      # def pressPath
+      #   # _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
+      #   # current = ENV['PWD']
+      #   # if current.include?("BitTorrent")
+      #   #   _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
+      #   # end
+      #   # _dir_
+      # end
 
       def isBool(v)
         !!v === v

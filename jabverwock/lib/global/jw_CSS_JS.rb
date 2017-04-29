@@ -58,19 +58,26 @@ module Jabverwock
           p "error, member should be JW_CSS_JS"
         }
       end
+
       @jsArray.append member.orders
-      
+
       if member.jsArray.count > 0
         @jsArray.append member.jsArray
       end
+
+      
     end
 
     def applyJS
+      
       assembleJS
       startTag = "<script>"
       endTag = "</script>"
       content = @jsResult
+
+      
       @scriptTag << startTag << "\n" << content << endTag << $RET
+      
     end
         
     def self_JsOrders_add_to_self_jsArray
@@ -94,6 +101,7 @@ module Jabverwock
     def isExistHeadTagAtTempleteString
       @templeteString.include? "<head>"
     end
+    
     def isExistScriptTagAtTempleteString
       @templeteString.include? "<script>"
     end
@@ -124,10 +132,12 @@ module Jabverwock
     
     ### override ###
     def assembleHTML
-      super      
+      super
+
       return unless isExistHeadTagAtTempleteString
-      return unless isExistScriptTagAtTempleteString
+      return if     isExistScriptTagAtTempleteString
       return unless isExistScriptContentAtTempleteString
+      
       insertScriptToHead
       
     end

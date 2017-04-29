@@ -47,18 +47,44 @@ module Jabverwock
   html.addChild header
   html.addChild bodier
 
-   EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
-  # EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
+
+  $SA = "sample3"
+  $PAGES =  %w(home)
+  
+  def self.testPATH
+    current = ENV['PWD']
+    switch = false
+    if current.include?("BitTorrent")
+      switch = true
+    end
+    switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
+    "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{$SA}/"
+  end
+  
   
   $PAGES.each do |pp|
     if pp == "home"
       pp = "index"
     end
     n = pp + "Pressed" + ".html"
-    html.pressConfig(name: n, dist: EXPORT_TESTPRESS_Dir3)
+    html.pressConfig(name: n, dist: testPATH)
     html.pressInsert("a".varIs"#{pp}")
 
   end
+
+  
+  #  EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/BitTorrent Sync/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
+  # # EXPORT_TESTPRESS_Dir3 = "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/sample3/"
+  
+  # $PAGES.each do |pp|
+  #   if pp == "home"
+  #     pp = "index"
+  #   end
+  #   n = pp + "Pressed" + ".html"
+  #   html.pressConfig(name: n, dist: EXPORT_TESTPRESS_Dir3)
+  #   html.pressInsert("a".varIs"#{pp}")
+
+  # end
 
   
   

@@ -3,9 +3,9 @@ require "./path"
 module Jabverwock
   using StringExtension
   using ArrayExtension
-  
-  
-  $SA = "sample2"
+
+  folder = "sample1"
+  name = "sample"
   
   html= HTML.new
   head = HEAD.new
@@ -15,13 +15,13 @@ module Jabverwock
   head.addChild title
   
   body = BODY.new
-  c = HEADING.new.contentIs "Hello world! again" 
+  c = P.new.contentIs "Hello world! #{folder}" 
   body.addChild c
 
   html.addChild head
   html.addChild body
-
-  html.testPress($SA)
   
+  html.testPress(folder, name)
+
   
 end

@@ -25,9 +25,12 @@ module Jabverwock
   #a{b},c
   #a.addChild b
   #a.addMember c
+  
   html.addMember body
   html.addChild head
   
-  html.testPress($SA) 
+  folder = "sample1_1"
+  name = "sample11"
+  html.testPress(folder, name)
   
 end

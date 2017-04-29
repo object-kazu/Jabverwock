@@ -46,6 +46,8 @@ module Jabverwock
   end
   
   html.addChildren [header,bodies]
-  html.testPress($SA) 
+  folder = "sample1"
+  name = "sample71"
+  html.testPress(folder, name)
   
 end

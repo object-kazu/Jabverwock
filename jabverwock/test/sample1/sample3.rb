@@ -4,8 +4,7 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
   
-  
-  $SA = "sample3"
+ 
 
   html= HTML.new
 
@@ -30,6 +29,10 @@ module Jabverwock
   # html.addChildString bodies
   
   html.addChildStrings [header,bodies]
-  html.testPress($SA) 
+  
+  folder = "sample1"
+  name = "sample3"
+  html.testPress(folder, name)
+
   
 end

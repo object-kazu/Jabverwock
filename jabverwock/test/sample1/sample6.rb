@@ -28,6 +28,13 @@ module Jabverwock
   end
   
   html.addChildStrings [header,bodies]
-  html.testPress($SA) 
+
+
+  folder = "sample1"
+  name = "sample6"
+  html.testPress(folder, name)
+
+  
+
   
 end

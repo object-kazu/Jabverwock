@@ -5,7 +5,7 @@ module Jabverwock
   using ArrayExtension
   
   
-  $SA = "sample5"
+  $SA = "sample4"
 
   html= HTML.new
 
@@ -21,13 +21,17 @@ module Jabverwock
   def self.bodies
     body = BODY.new
     c = HEADING.new.contentIs "Hello #{$SA}! again"
-    cc = P.new.contentIs "this is test #{$BR} for you"
+    cc = P.new.contentIs "this is test"
     
     body.addChildren [c,cc]
     body.tgStr
   end
   
   html.addChildStrings [header,bodies]
-  html.testPress($SA) 
+  
+  folder = "sample1"
+  name = "sample4"
+  html.testPress(folder, name)
+  
   
 end
