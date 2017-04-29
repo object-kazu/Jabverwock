@@ -35,9 +35,9 @@ module Jabverwock
       while @elmArray.count > 0
         target = @elmArray.first
         
-        if isOpenPara(target) || isStyle(target)
+        if KSUtil.isOpenPara(target) || isStyle(target)
           shiftPlusTab
-        elsif isClosePara(target)|| isCloseStyle(target)
+        elsif KSUtil.isClosePara(target)|| isCloseStyle(target)
           minusTabShift
         else
           shiftMain
@@ -45,16 +45,16 @@ module Jabverwock
       end    
     end
     
-    def isOpenPara(tag)
-      tag.include? "{"
-    end
+    # def isOpenPara(tag)
+    #   tag.include? "{"
+    # end
 
-    def isClosePara(tag)
-      tag.include? "}"
-    end
+    # def isClosePara(tag)
+    #   tag.include? "}"
+    # end
 
     def isAttList(tag)
-      return true if !isOpenPara(tag) && !isClosePara(tag) && !isStyle(tag)
+      return true if !KSUtil.isOpenPara(tag) && !KSUtil.isClosePara(tag) && !isStyle(tag)
       false
     end
     

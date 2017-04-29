@@ -57,7 +57,7 @@ module Jabverwock
 
       @jwcss.cssWithName("p")
       @jwcss.css.color = "red"
-      assert_equal(@jwcss.css.str, "p {\n\tcolor: red;\n}")
+      assert_equal(@jwcss.css.str, "p {\ncolor: red;\n}")
       
     end
 
@@ -65,20 +65,20 @@ module Jabverwock
 
       @jwcss.cssWithName("p")
       @jwcss.css.color("red").font_size(10)
-      assert_equal(@jwcss.css.str, "p {\n\tcolor: red;\n\tfont-size: 10;\n}")
+      assert_equal(@jwcss.css.str, "p {\ncolor: red;\nfont-size: 10;\n}")
       
     end
     
     test "jwCss style defualt name is class name "do
       @jwcss.css.color("red").font_size(10)
-      assert_equal(@jwcss.css.str, "jw_css {\n\tcolor: red;\n\tfont-size: 10;\n}")
+      assert_equal(@jwcss.css.str, "jw_css {\ncolor: red;\nfont-size: 10;\n}")
       
     end
     
     test "jwCss style with Property "do
       @jwcss.cssWithName("p")
       @jwcss.css.color("red").font_size(10)
-      assert_equal(@jwcss.css.str, "p {\n\tcolor: red;\n\tfont-size: 10;\n}")
+      assert_equal(@jwcss.css.str, "p {\ncolor: red;\nfont-size: 10;\n}")
       
     end
 
@@ -122,7 +122,7 @@ module Jabverwock
        ans = KString.isExistCssString a
        assert_true ans
        
-       a = "p {\n\tfont-size: 10;\n}"
+       a = "p {\nfont-size: 10;\n}"
        ans = KString.isExistCssString a
        assert_true ans
            
@@ -135,7 +135,7 @@ module Jabverwock
       b = CSS.new("b")
       ca = [c,b]
       @jwcss.cssAssemble(c, ca)
-      assert_equal(@jwcss.cssString, "p {\n\tfont-size: 10;\n}\n")
+      assert_equal(@jwcss.cssString, "p {\nfont-size: 10;\n}\n")
       
     end
 
@@ -144,7 +144,7 @@ module Jabverwock
       b = CSS.new("b").color("red")
       ca = [c,b]
       @jwcss.cssAssemble(c, ca)
-      assert_equal(@jwcss.cssString, "p {\n\tfont-size: 10;\n}\nb {\n\tcolor: red;\n}\n")
+      assert_equal(@jwcss.cssString, "p {\nfont-size: 10;\n}\nb {\ncolor: red;\n}\n")
       
     end
     
@@ -153,7 +153,7 @@ module Jabverwock
       b = CSS.new("p").color("red")
       ca = [c,b]
       @jwcss.cssAssemble(c, ca)
-      assert_equal(@jwcss.cssString, "p {\n\tfont-size: 10;\n}\n")
+      assert_equal(@jwcss.cssString, "p {\nfont-size: 10;\n}\n")
     end
     
     test "add member, do not use same name" do
@@ -167,7 +167,7 @@ module Jabverwock
 
       j1.addMember j2
      
-      assert_equal(j1.showCssString, "jw_css {\n\tcolor: red;\n\tfont-size: 10;\n}\np {\n\tfont-style: bold;\n}")
+      assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}\np {\nfont-style: bold;\n}")
       
     end
     
@@ -181,7 +181,7 @@ module Jabverwock
 
       j1.addMember j2
 
-      assert_equal(j1.showCssString, "jw_css {\n\tcolor: red;\n\tfont-size: 10;\n}")
+      assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}")
       
     end
 
@@ -202,7 +202,7 @@ module Jabverwock
         
       j1.addMembers(j2, j3)
       
-      assert_equal(j1.showCssString, "jw_css {\n\tcolor: red;\n}\np {\n\tfont-style: bold;\n}\nb {\n\tfont-size: 10;\n}")
+      assert_equal(j1.showCssString, "jw_css {\ncolor: red;\n}\np {\nfont-style: bold;\n}\nb {\nfont-size: 10;\n}")
           
     end
 
@@ -214,7 +214,7 @@ module Jabverwock
       
       j1.addCss c
 
-      assert_equal(j1.showCssString, "t {\n\tfont-size: 10;\n}")
+      assert_equal(j1.showCssString, "t {\nfont-size: 10;\n}")
     end
         
     test "add css, when set css name void, name is same as class" do
@@ -225,7 +225,7 @@ module Jabverwock
       
       j1.addCss c
 
-      assert_equal(j1.showCssString, "jw_css {\n\tfont-size: 10;\n}")
+      assert_equal(j1.showCssString, "jw_css {\nfont-size: 10;\n}")
     end
 
 

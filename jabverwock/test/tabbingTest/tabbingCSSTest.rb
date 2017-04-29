@@ -46,32 +46,32 @@ module Jabverwock
 
     test "isOpenPara case true" do
       l = "p { \n"
-      assert_true @tc.isOpenPara l
+      assert_true KSUtil.isOpenPara l
     end
 
     test "isOpenPara case true 2" do
       l = "p .sample { \n"
-      assert_true @tc.isOpenPara l
+      assert_true KSUtil.isOpenPara l
     end
     
     test "isOpenPara case false " do
       l = "p .sample } \n"
-      assert_false @tc.isOpenPara l
+      assert_false KSUtil.isOpenPara l
     end
     
     test "isOpenPara case false 2 " do
       l = "p .sample \n"
-      assert_false @tc.isOpenPara l
+      assert_false KSUtil.isOpenPara l
     end
 
     test "isClose case true" do
       l = "}"
-      assert_true @tc.isClosePara l
+      assert_true KSUtil.isClosePara l
     end
     
     test "isClose case true 2" do
       l = "{ sample }"
-      assert_true @tc.isClosePara l
+      assert_true KSUtil.isClosePara l
     end
 
     test "isAttList case true" do

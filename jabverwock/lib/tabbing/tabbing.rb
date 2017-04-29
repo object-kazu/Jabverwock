@@ -14,13 +14,13 @@ else
 
 end
 
-# add tab arrange to html, css, js file.
 module Jabverwock
   using StringExtension
   using ArrayExtension
   using SymbolExtension
 
 
+  # add tab arrange to html, css, js file.
   class Tabbing < TabbingBase
 
     attr_reader :elmArray, :tagArray
@@ -78,24 +78,35 @@ module Jabverwock
         end          
       end
     end
+    
+    # def isIntegerIndex(range)
+    #   return false unless range.first.is_a? Integer
+    #   return false unless range.last.is_a? Integer
+    #   true
+    # end
 
+    # def sliceRange(range)      
+    #   (range.first + 1)..(range.last + 1)
+    # end
     
     def extractStyle
+
       index = [startIndex,endIndex]
 
-      return "" unless index.first.is_a? Integer
-      return "" unless index.last.is_a? Integer
+      return "" unless KString.isIntegerIndex index
       
       insertStyleTagConstant index.first
-      range = (index.first + 1)..(index.last + 1)
+      range = KString.sliceRange index
       @elmArray.slice!(range)
       
     end
 
     def cssTabbing
-      css = TabbingCSS.new
-      css.readArray extractStyle
-      css.tabbedArr
+      TabbingCSS.new.tabbedArrFrom extractStyle
+      
+      # css = TabbingCSS.new
+      # css.readArray extractStyle
+      # css.tabbedArr
     end
     
     def insertStyleTagConstant(index)
@@ -104,17 +115,17 @@ module Jabverwock
 
     def replaceStyleTagConstantTo(str)
       num = tabNumberAtLineWith STYLE_TAG_EXTRACTED
-      ans = addTabEachArray str, num
+      ans = KString.addTabEachArray str, num
       @result.gsub!(STYLE_TAG_EXTRACTED, ans)
     end
     
-    def addTabEachArray(arr, number)
-      return "" if arr.empty?    
-      arr.map{ |a|
-        "\t" * number << a
-      }.join.sub!("\t" * number, "")
+    # def addTabEachArray(arr, number)
+    #   return "" if arr.empty?    
+    #   arr.map{ |a|
+    #     "\t" * number << a
+    #   }.join.sub!("\t" * number, "")
 
-    end
+    # end
     
     def tabNumberAtLineWith (str)
       @result.each_line { |l|
@@ -136,18 +147,20 @@ module Jabverwock
     def extractScript
       index = [startScriptIndex, endScriptIndex]
 
-      return "" unless index.first.is_a? Integer
-      return "" unless index.last.is_a? Integer
+      return "" unless KString.isIntegerIndex index
       
       insertScriptTagConstant index.first
-      range = (index.first + 1)..(index.last + 1)
+      range = KString.sliceRange index
       @elmArray.slice!(range)    
     end
 
     def jsTabbing
-      js = TabbingJS.new
-      js.readArray extractScript
-      js.tabbedArr
+      TabbingJS.new.tabbedArrFrom extractScript
+      
+      # js = TabbingJS.new
+      # js.tabbedArrFrom extractScript
+      ## js.readArray extractScript
+      ## js.tabbedArr
     end
 
     def insertScriptTagConstant(index)
@@ -156,7 +169,7 @@ module Jabverwock
 
     def replaceScriptConstantTo(str)
       num = tabNumberAtLineWith SCRIPT_TAG_EXTRACTED
-      ans = addTabEachArray str, num
+      ans = KString.addTabEachArray str, num
       @result.gsub!(SCRIPT_TAG_EXTRACTED,ans)    
     end
     

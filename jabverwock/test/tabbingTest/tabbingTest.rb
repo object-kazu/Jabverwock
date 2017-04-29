@@ -115,13 +115,6 @@ module Jabverwock
       ans = @tb.jsTabbing
       assert_equal ans, ""
     end
-
-
-    test "addTabEachArray" do
-      l = ["a", "b"]
-      ans = @tb.addTabEachArray l, 3
-      assert_equal ans, "a\t\t\tb"
-    end
     
     test "main loop " do
       l = "<html>\n<head>\n<p></p>\n</head>\n</html>"
@@ -143,6 +136,7 @@ module Jabverwock
       t.readLine l
       assert_equal t.tabbedTxt, "<html>\n\t<head>\n\t\t<script>\n\t\t\tp{color:red}\n\t\t</script>\n\t</head>\n</html>"
     end
+    
 
     
   end

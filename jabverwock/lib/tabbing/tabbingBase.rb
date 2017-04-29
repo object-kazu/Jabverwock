@@ -16,6 +16,7 @@ module Jabverwock
   using ArrayExtension
   using SymbolExtension
 
+  # tabbibg basic class
   class TabbingBase
 
     attr_reader :elmArray, :tagArray
@@ -46,6 +47,11 @@ module Jabverwock
       @elmArray
     end
 
+
+    def tabbedArrFrom(arr)
+      readArray arr
+      tabbedArr
+    end
     
     ######### divid: txt -> line -> array  #######
     
@@ -64,7 +70,6 @@ module Jabverwock
       end
     end
 
-    # for test
     def readLine(str)
       str.each_line do |l|
         @elmArray << l      
@@ -82,27 +87,27 @@ module Jabverwock
     
     ######## HTML tag ######
     
-    def isOpenTag(tag)
-      tag.match(/^(\t)*<(\w+)/) do |d|
-        return true
-      end
-      false
-    end
+    # def isOpenTag(tag)
+    #   tag.match(/^(\t)*<(\w+)/) do |d|
+    #     return true
+    #   end
+    #   false
+    # end
     
-    def isCloseTag(tag)
-      tag.match(/<\/(\w+)/) do
-        return true
-      end
-      false
-    end
+    # def isCloseTag(tag)
+    #   tag.match(/<\/(\w+)/) do
+    #     return true
+    #   end
+    #   false
+    # end
 
     def isMultiOpenTag(tag)    
-      return true if isOpenTag(tag) && !isCloseTag(tag) && isMultiTag(tag)
+      return true if KSUtil.isOpenTag(tag) && !KSUtil.isCloseTag(tag) && isMultiTag(tag)
       false
     end
 
     def isMultiCloseTag(tag)
-      return true if !isOpenTag(tag) && isCloseTag(tag)
+      return true if !KSUtil.isOpenTag(tag) && KSUtil.isCloseTag(tag)
       false
     end
 
@@ -118,14 +123,16 @@ module Jabverwock
     def isStyle(tag)
       tag.include? "<style"
     end
+    
     def isCloseStyle(tag)
       tag.include? "</style"
     end
 
-    #### for js #########
+    ##### for js #########
     def isScript(tag)
       tag.include? "<script"
     end
+    
     def isCloseScript(tag)
       tag.include? "</script"
     end

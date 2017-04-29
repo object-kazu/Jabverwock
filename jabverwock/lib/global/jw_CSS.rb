@@ -75,7 +75,7 @@ module Jabverwock
       atcs = showCssString
            
       unless atcs == ""
-        tgCss = KString.intoStyleTag atcs
+        tgCss = KSUtil.intoStyleTag atcs
         addAssembleStyle tgCss
       end
       

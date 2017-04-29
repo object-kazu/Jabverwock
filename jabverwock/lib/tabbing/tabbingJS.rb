@@ -44,15 +44,6 @@ module Jabverwock
         
       end    
     end
-
-
-    ## js original
-    def isScript(tag)
-      tag.include? "<script"
-    end
-    def isCloseScript(tag)
-      tag.include? "</script"
-    end
     
 
     def isAttList(tag)

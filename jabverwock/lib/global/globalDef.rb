@@ -197,7 +197,37 @@ module Jabverwock
       def singleTags
         %w(P A B HR BR I EM STRONG DT DD LIST_ITEM TITLE OPTION LI TD)
       end
+
+      def intoStyleTag (str)
+        "<style>\n" << "#{str}\n" << "</style>\n"
+        
+        # tabbedEachLine = addTabEachLine str
+        # styTag   = "<style>\n" << "#{tabbedEachLine}\n" << "\t</style>\n"
+        # addTabEachLine styTag
+      end
       
+      def isOpenTag(tag)
+        tag.match(/^(\t)*<(\w+)/) do |d|
+          return true
+        end
+        false
+      end
+      
+      def isCloseTag(tag)
+        tag.match(/<\/(\w+)/) do
+          return true
+        end
+        false
+      end
+      
+      def isOpenPara(tag)
+        tag.include? "{"
+      end
+
+      def isClosePara(tag)
+        tag.include? "}"
+      end
+
     end
   end
   
@@ -305,14 +335,6 @@ module Jabverwock
 
         str.gsub(of,with)
       end
-
-      def intoStyleTag (str)
-        "<style>\n" << "#{str}\n" << "</style>\n"
-        
-        # tabbedEachLine = addTabEachLine str
-        # styTag   = "<style>\n" << "#{tabbedEachLine}\n" << "\t</style>\n"
-        # addTabEachLine styTag
-      end
       
       def makeElementArray (element, elementArray)
         tempArray = []
@@ -338,6 +360,23 @@ module Jabverwock
         
         return false if removeFront == ""
         true
+      end
+
+      def addTabEachArray(arr, number)
+        return "" if arr.empty?    
+        arr.map{ |a|
+          "\t" * number << a
+        }.join.sub!("\t" * number, "")
+      end
+
+      def isIntegerIndex(range)
+        return false unless range.first.is_a? Integer
+        return false unless range.last.is_a? Integer
+        true
+      end
+
+      def sliceRange(range)      
+        (range.first + 1)..(range.last + 1)
       end
       
     end 

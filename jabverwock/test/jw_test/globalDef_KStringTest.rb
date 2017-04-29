@@ -235,15 +235,20 @@ module Jabverwock
 
     test "isExistCssString case 1" do
       test = "head {\nfont-size: 10;\n}"
-
-koko
     end
     
     test "isExistCssString case 2" do
 
       test = "head#sample {\ncolor: red;\n}"
-koko
     end
+
+    
+    test "addTabEachArray" do
+      l = ["a", "b"]
+      ans = KString.addTabEachArray l, 3
+      assert_equal ans, "a\t\t\tb"
+    end
+
     
   end
 end
