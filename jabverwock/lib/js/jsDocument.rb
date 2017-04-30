@@ -179,16 +179,20 @@ module Jabverwock
       self
     end
     
-     def elementChanging (act,str)
-       s = KString.remove_Js_Cmd_End @content
-       @ec = s.dot(act) + "(" + str + ")" + $JS_CMD_END
-       self
+    def elementChanging (act,str)
+      s = KString.remove_Js_Cmd_End @content
+      @ec = s.dot(act) + "(" + str + ")" + $JS_CMD_END
+      self
     end
     
-     def innerHTML(str)
+    def innerHTML(str)
       elementChanging_Equal("innerHTML",str)
     end
 
+    def src (str)
+      elementChanging_Equal("src",str)
+    end
+     
     def attribute(str)
       elementChanging_Equal("attribute",str)
     end

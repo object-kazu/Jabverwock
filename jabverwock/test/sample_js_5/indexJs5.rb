@@ -21,18 +21,7 @@ module Jabverwock
     
     def bodier
       body = BODY.new
-      para = P.new.attr(:id__test).contentIs "yes"
-      para.js.doc.byID.innerHTML("test done").rec
-
-      para2 = P.new.contentIs "yes yes"
-      para2.js.doc.byTagName.innerHTML("test again").rec
-
-      para3 = P.new.attr(:cls__sample).contentIs "yes no"
-      para3.js.doc.byClassName.innerHTML("test forever").rec
       
-      body.addChild para
-      body.addChild para2
-      body.addChild para3
       
       body
     end
@@ -51,7 +40,7 @@ module Jabverwock
   # html.addMember body
   
   
-  $SA = "sample_Js_4"
+  $SA = "sample_Js_5"
   $PAGES =  %w(home)
   
   def self.testPATH

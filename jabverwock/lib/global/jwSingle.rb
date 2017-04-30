@@ -11,9 +11,6 @@ else
 end
 
 
-
-
-
 module Jabverwock
   using StringExtension
   
@@ -27,7 +24,7 @@ module Jabverwock
 
     ## override ##
     def tgStr
-      treatContentToSpan @content
+      # treatContentToSpan @content
       assemble
       @templeteString
     end
@@ -36,42 +33,6 @@ module Jabverwock
       @content = str
       self
     end
-
-    
-    # content = "test".rowSpan(2) --> <td rowspan="2">test</td>
-    # content = "test".colSpan(2) --> <td colspan="2">test</td>
-    def treatContentToSpan (str)
-
-      return if str == nil
-      
-      if str.include? $ROW_SPAN
-        t = str.split $ROW_SPAN
-        setRowSpan(t[1].to_i)
-        @content = t[0]
-      end
-
-      if str.include? $COL_SPAN
-        t = str.split $COL_SPAN
-        setColSpan(t[1].to_i)
-        @content = t[0]
-      end
-      
-    end
-    
-    def setRowSpan (number)
-      if number.is_a?(Integer)
-        @tagManager.tagAttr(:rowspan, number.to_s)      
-      end
-      self
-    end
-
-    def setColSpan (number)
-      if number.is_a?(Integer)
-        @tagManager.tagAttr(:colspan,number.to_s)        
-      end
-      self
-    end
-
     
     ### override ###
     def makeResult  

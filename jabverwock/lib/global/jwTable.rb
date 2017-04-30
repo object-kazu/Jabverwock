@@ -88,17 +88,24 @@ module Jabverwock
     
     # data -> [[1,1,1],[1,1,1]]
     def addTableDataList(arr)
-      
+      addGeneral arr, "addTableData"      
+    end
+
+    def addRows (*arr)
+       addGeneral arr, "addRowEach"
+    end
+
+    def addGeneral(arr, function)
       unless arr[0].is_a? Array
-        return addTableData arr
+        return send(function, arr)
       end
       
       arr.each do |a|
-        addTableData(a)
-      end
+        send(function, a)
+      end  
       
     end
-        
+    
     # data -> [1,1,1]
     def addTableData(arr)
       dataString = ""
@@ -109,16 +116,7 @@ module Jabverwock
         end
         tr.contentIs dataString
         @childStringArray << tr.tgStr
-      end
-      
-      # if @headerList.count > 0
-      #   tr = TableRow.new
-      #   arr.each do |hl|
-      #     dataString += tdTreatment(hl)
-      #   end
-      #   tr.content = dataString
-      #   @childStringArray << tr.tgStr
-      # end
+      end      
     end
 
     def tdTreatment (str)
@@ -128,15 +126,6 @@ module Jabverwock
       eachDataString += h.tgStr          
     end
     
-    def addRows (*arr)
-      unless arr[0].is_a?(Array)
-        return addRowEach(arr)
-      end
-      
-      arr.each do |a| 
-        addRowEach a
-      end  
-    end
     
     def addRowEach (arr)
       @rows << arr
@@ -154,11 +143,13 @@ module Jabverwock
       makeResult
       memberAssemble
 
-      return unless isExistHeadTagAtTempleteString
-      return unless isExistScriptTagAtTempleteString
+      return unless isExistBodyTagAtTempleteString
+      return if     isExistScriptTagAtTempleteString
       return unless isExistScriptContentAtTempleteString
-      insertScriptToHead
 
+      insertScriptToBody
+
+      
     end
     
   end    
@@ -204,35 +195,28 @@ module Jabverwock
     # content = "test".rowSpan(2) --> <td rowspan="2">test</td>
     # content = "test".colSpan(2) --> <td colspan="2">test</td>
     def treatContentToTag (str)
-      if str.include?($ROW_SPAN)
-        t = str.split($ROW_SPAN)
-        setRowSpan(t.last.to_i)
-        @content = t.first
-        
-        # setRowSpan(t[1].to_i)
-        # @content = t[0]
-      end
+      treatGeneral str, $ROW_SPAN, :rowspan
+      treatGeneral str, $COL_SPAN, :colspan
+    end
 
-      if str.include?($COL_SPAN)
-        t = str.split($COL_SPAN)
-        setColSpan(t.last.to_i)
+    def treatGeneral(str, target, targetSym)      
+      if str.include? target
+        t = str.split target
+        number = t.last.to_i
+        @tagManager.tagAttr(targetSym, number.to_s)
         @content = t.first
-        
-        # setColSpan(t[1].to_i)
-        # @content = t[0]
       end
-      
     end
     
     def setRowSpan (number)
-      if number.is_a?(Integer)
+      if number.is_a? Integer
         @tagManager.tagAttr(:rowspan, number.to_s)      
       end
       self
     end
 
     def setColSpan (number)
-      if number.is_a?(Integer)
+      if number.is_a? Integer
         @tagManager.tagAttr(:colspan,number.to_s)        
       end
       self
@@ -253,8 +237,7 @@ module Jabverwock
     when "TDATA"
       obj = TableData
     end
-    
-    
+        
     Object.const_set list, Class.new(obj){
     
       attr_accessor :name

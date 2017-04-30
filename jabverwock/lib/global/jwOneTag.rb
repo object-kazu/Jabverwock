@@ -20,8 +20,6 @@ module Jabverwock
     def initialize
       super
       @doctype = ""
-
-
     end
     
     ## overide ##
@@ -59,7 +57,7 @@ module Jabverwock
         @name = self.class.name.downcase
         @css = CSS.new("#{name}")
       end
-    }
+     }
   end
 
   
