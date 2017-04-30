@@ -27,14 +27,11 @@ module Jabverwock
     def initialize
       super
       @childStringArray = []
-#      @name = self.class.name.downcase
-
       if @name == "li_multi"
         @name = "li"
       end
       
       @css = CSS.new("#{@name}")
-      
     end
 
     def addChild(child)

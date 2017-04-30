@@ -31,6 +31,11 @@ module Jabverwock
       @doc.setSelectors inits.flatten
       self
     end
+    
+    def setTagName(name)
+      self.name = name
+      @doc.name = name
+    end
 
     def orders
       l = []
@@ -44,7 +49,7 @@ module Jabverwock
   # a = JsObject.new(:id__test)
   # p a.doc
   # p a.doc.byID.element
-  # p a.orderList
+  # p a.orders
   
 end
 

@@ -23,8 +23,12 @@ module Jabverwock
       body = BODY.new
       para = P.new.attr(:id__test).contentIs "yes"
       para.js.doc.byID.innerHTML("test done").rec
+
+      para2 = P.new.contentIs "yes yes"
+      para2.js.doc.byTagName.innerHTML("test again").rec
       
       body.addChild para
+      body.addChild para2
       
       body
     end

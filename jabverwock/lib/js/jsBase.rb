@@ -18,7 +18,7 @@ module Jabverwock
   class JsBase
     attr_accessor :id, :cls, :name, :orders
     
-    #ex) initialize :id__test, :cls__sample, "name__koko"
+    #ex) initialize :id__test, :cls__sample, ":name__koko"
     def initialize(*inits)
       @obj = ""
       @id, @cls, @name = "", "",""

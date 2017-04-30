@@ -4,6 +4,10 @@ require '../../lib/global/globalDef'
 require '../../lib/js/jsObject'
 require '../../lib/js/jsBase'
 require '../../lib/js/jsDocument'
+require "../../lib/global/jwSingle"
+require "../../lib/global/jwMulti"
+require "../../lib/global/jwOneTag"
+require "../../lib/global/jwTable"
 
 module Jabverwock
   using StringExtension
@@ -94,12 +98,53 @@ module Jabverwock
       js = JsBase.new(:id__sample)
       assert_equal js.id, "sample" 
     end
+    
     test"initialize case 3" do
       js = JsBase.new(:attr__test)
       assert_equal js.id, "" 
     end
 
     
+    test"initialize case tagName case 1 " do
+      js = JsBase.new(:name__sample)
+      assert_equal js.name, "sample" 
+    end
+    
+    test"initialize case tagName case 2 " do
+      para = P.new.attr(:name__sample)
+      assert_equal para.js.name, "sample" 
+    end
+
+    
+    test"initialize case tagName default value is class name  " do
+      para = P.new
+      assert_equal para.js.name, "p" 
+    end
+    
+    test"initialize case tagName default value is class name case 2 " do
+      h = HTML.new
+      assert_equal h.js.name, "html" 
+    end
+    
+    test"initialize case tagName default value is class name case 3 " do
+      h = DOCTYPE.new
+      assert_equal h.js.name, "doctype" 
+    end
+    
+    test"initialize case tagName default value is class name case 4 " do
+      h = TABLE.new
+      assert_equal h.js.name, "table" 
+    end
+
+    test "js.doc.byTagName set by default name" do
+      para = P.new
+      assert_equal para.js.doc.byTagName.element, "document.getElementByTagName('p');"
+    end
+    
+    test "js.doc.byTagName set by default name case 2" do
+      para = HTML.new
+      assert_equal para.js.doc.byTagName.element, "document.getElementByTagName('html');"
+    end
 
   end
 end

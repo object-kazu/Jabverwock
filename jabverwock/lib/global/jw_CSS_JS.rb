@@ -31,6 +31,9 @@ module Jabverwock
       @jsResult = ""
       @jsArray = []
       @scriptTag = ""
+
+      @js.setTagName self.class.name.downcase
+
     end
      
     ####### js ###################
@@ -48,6 +51,7 @@ module Jabverwock
       #selectors(id, cls, name) -> JsObject -> JsDocumet, ect
       @js.updateSelector tag
     end
+
     
     ####### add child ############
     ## override
@@ -98,10 +102,6 @@ module Jabverwock
       @jsResult
     end
 
-    # def isExistHeadTagAtTempleteString
-    #   @templeteString.include? "<head>"
-    # end
-    
     def isExistBodyTagAtTempleteString
       @templeteString.include? "<body>"
     end
@@ -119,16 +119,6 @@ module Jabverwock
       KString.reader @templeteString
     end
     
-    # def tabNumberHeaderTag
-    #   arr = templeteStringArray
-    #   num = 0
-    #   arr.each do |v|
-    #     if v.include? "<head>"
-    #       num = KString.tabCount v
-    #     end
-    #   end
-    #   num
-    # end
     
     def tabNumberBodyTag
       arr = templeteStringArray
@@ -141,9 +131,6 @@ module Jabverwock
       num
     end
 
-    # def insertScriptToHead     
-    #   @templeteString = KString.insertText templeteStringArray, @scriptTag
-    # end
     def insertScriptToBody     
       @templeteString = KString.insertText templeteStringArray, @scriptTag
     end
@@ -152,11 +139,6 @@ module Jabverwock
     def assembleHTML
       super
 
-      # return unless isExistHeadTagAtTempleteString
-      # return if     isExistScriptTagAtTempleteString
-      # return unless isExistScriptContentAtTempleteString
-      # insertScriptToHead
-      
       return unless isExistBodyTagAtTempleteString
       return if     isExistScriptTagAtTempleteString
       return unless isExistScriptContentAtTempleteString
@@ -164,7 +146,6 @@ module Jabverwock
       insertScriptToBody
       
     end
-
 
     
     def assemble

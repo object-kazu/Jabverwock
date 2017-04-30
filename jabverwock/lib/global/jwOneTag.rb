@@ -20,6 +20,8 @@ module Jabverwock
     def initialize
       super
       @doctype = ""
+
+
     end
     
     ## overide ##
