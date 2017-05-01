@@ -45,14 +45,6 @@ module Jabverwock
       end    
     end
     
-    # def isOpenPara(tag)
-    #   tag.include? "{"
-    # end
-
-    # def isClosePara(tag)
-    #   tag.include? "}"
-    # end
-
     def isAttList(tag)
       return true if !KSUtil.isOpenPara(tag) && !KSUtil.isClosePara(tag) && !isStyle(tag)
       false

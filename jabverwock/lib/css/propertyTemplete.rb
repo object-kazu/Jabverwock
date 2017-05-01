@@ -2,6 +2,7 @@ module Jabverwock
   
   #http://masayuki14.hatenablog.com/entry/2016/04/28/122359
   
+  #Css attribute managee
   class CssAttrTemplate
     class << self
 
@@ -53,37 +54,33 @@ module Jabverwock
     
     MEMO_NAME
     def nameWithSelectors(name)
-      n = name.to_s
+      @name = name.to_s
       
-      if n.include?("id_")
-        n = "##{n.split("id_").last}"
+      if @name.include?("id_")
+        @name = "##{@name.split("id_").last}"
       end
 
-      if n.include?("cls_")
-        n = ".#{n.split("cls_").last}"
+      if @name.include?("cls_")
+        @name = ".#{@name.split("cls_").last}"
       end
-      
-      @name = n
       
     end
     
     # エクスポート
     def pStr # vars + vals
-      result = []
-      varArray = vars
-      valArray = vals
-      varArray.each_with_index{ |v , index|
-        x = vals[index]
-        
-        next if x == EmptyStr
-        result << "%s: %s;" % [v,x]
-      }
-      
-      if result.count == 0
-        return ""
-      end
-       result.join("\n")
+      return "" if vars.count == 0
+      varsAddVals.join("\n")
     end
+
+    def varsAddVals # vars + vals
+      result = []
+      vars.each_with_index{ |v , index|
+        next if vals[index] == EmptyStr
+        result << "%s: %s;" % [v,vals[index]]
+      }
+      result
+    end
+
     
     # format of property is difference
     # ex)
@@ -92,14 +89,12 @@ module Jabverwock
     
     private
     def vars
-      result = []
-      instance_variables.each { |var|
+      instance_variables.inject([])do |result,var|
         k = var.to_s.tr('@','')
         k.gsub!(/_/, "-")
         
-        result << "%s" % [k]
-      }
-      result
+        result << "%s" % [k]        
+      end
     end
 
     def vals

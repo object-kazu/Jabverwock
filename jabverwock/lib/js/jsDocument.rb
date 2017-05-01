@@ -15,6 +15,7 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
   
+  #This class express JS Document class
   class JsDocument < JsBase
     attr_accessor :result, :query
     
@@ -107,7 +108,8 @@ module Jabverwock
     ### evant handler ###
     #    document.getElementById(id).onclick = function(){code}
     def onclick (code)
-      
+      #under constuct
+      p "#{code}"
     end
 
     ### Finding HTML Objects ###
@@ -140,7 +142,8 @@ module Jabverwock
     
   end
 
-
+  
+  # This class express element
   class Element
     
     # contentを受け取ってecを返す

@@ -230,37 +230,9 @@ module Jabverwock
       prepPress
       press
     end
-
-
-    
-    
-    # $PAGES.each do |pp|
-    #   if pp == "home"
-    #     pp = "index"
-    #   end
-    #   n = pp + "Pressed" + ".html"
-    #   html.pressConfig(name: n, dist: testPATH)
-    #   html.pressInsert("a".varIs"#{pp}")
-
-    # end
-
     
   end
 
   #p a = JW.new
 
 end
-
-
-    # def isDoubleUnderBarSymbol(sym)
-    #   return nil unless sym.is_a? Symbol
-    #   sym.hasDoubleUnderBar?
-    # end
-    
-
-      # _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
-      
-      # current = ENV['PWD']
-      # if current.include?("BitTorrent")
-      #   _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
-      # end

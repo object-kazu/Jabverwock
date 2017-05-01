@@ -44,11 +44,11 @@ module Jabverwock
       assert_equal(s.name , "input")
     end
 
-    test "JWOneTag first test" do
-      ans = @t.pressDefault
-      assert_equal(ans, "<jwonetag>")
+    # test "JWOneTag first test" do
+    #   ans = @t.pressDefault
+    #   assert_equal(ans, "<jwonetag>")
 
-    end
+    # end
         
     test "content add" do
       @t.name="j"

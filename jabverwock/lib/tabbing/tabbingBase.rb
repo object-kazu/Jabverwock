@@ -87,19 +87,6 @@ module Jabverwock
     
     ######## HTML tag ######
     
-    # def isOpenTag(tag)
-    #   tag.match(/^(\t)*<(\w+)/) do |d|
-    #     return true
-    #   end
-    #   false
-    # end
-    
-    # def isCloseTag(tag)
-    #   tag.match(/<\/(\w+)/) do
-    #     return true
-    #   end
-    #   false
-    # end
 
     def isMultiOpenTag(tag)    
       return true if KSUtil.isOpenTag(tag) && !KSUtil.isCloseTag(tag) && isMultiTag(tag)

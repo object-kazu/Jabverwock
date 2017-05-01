@@ -2,9 +2,6 @@ require 'test/unit'
 require '../../lib/global/jwMulti'
 require '../../lib/global/jw_CSS_JS'
 
-
-
-
 module Jabverwock
   using StringExtension
   class JwMultiTest < Test::Unit::TestCase

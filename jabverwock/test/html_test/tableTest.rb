@@ -14,6 +14,8 @@ require "../../lib/global/jwTable"
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
+  using SymbolExtension
   
   class TableTest < Test::Unit::TestCase
         class << self
@@ -193,7 +195,7 @@ module Jabverwock
     test "isDoubleArray, false" do
       t = JWTable.new
       list = ["a", "b"]
-      assert_false(t.isDoubleArray list)
+      assert_false(KSUtil.isDoubleArray list)
       
     end
     
@@ -202,7 +204,7 @@ module Jabverwock
       list = ["a", "b"]
       lista = ["a", "b"]
       listb = [list, lista]
-      assert_true(t.isDoubleArray listb)
+      assert_true(KSUtil.isDoubleArray listb)
       
     end
 

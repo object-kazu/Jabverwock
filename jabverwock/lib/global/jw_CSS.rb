@@ -179,7 +179,7 @@ module Jabverwock
     end
 
     def addCSSmember(member)
-      
+   
       unless member.cssArray.empty?
         @cssArray.append member.cssArray
       end

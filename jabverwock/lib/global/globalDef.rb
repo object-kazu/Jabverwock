@@ -169,25 +169,19 @@ module Jabverwock
       
       def testPATH(folder)
         current = ENV['PWD']
-        switch = false
-        if current.include?("BitTorrent")
-          switch = true
-        end
-        switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
+        current.include?("BitTorrent") ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
         "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{folder}/"
       end
       
-      # def pressPath
-      #   # _dir_ = $EXPORT_TESTPRESS_Dir_iMAC
-      #   # current = ENV['PWD']
-      #   # if current.include?("BitTorrent")
-      #   #   _dir_ = $EXPORT_TESTPRESS_Dir_MACBOOK 
-      #   # end
-      #   # _dir_
-      # end
-
       def isBool(v)
         !!v === v
+      end
+      
+      def stringConvertSymbole(s)
+        if s.is_a? String
+          s = s.to_sym
+        end
+        s
       end
 
       def isDoubleUnderBarSymbol(sym)
@@ -195,7 +189,27 @@ module Jabverwock
         sym.hasDoubleUnderBar?
       end
 
+      def isDoubleArray (data)
+        data[0].is_a?(Array)
+      end
 
+      def isBase (i,s)
+        s.to_s.include?(i) ? true : false            
+      end
+
+      def isID(s)
+        isBase "id", s
+      end
+
+      def isCls(s)
+        isBase "cls", s
+      end
+
+      def isName(s)
+        isBase "name", s      
+      end
+
+      
       def multiTags
           %w(BLOCKQUOTE BODY DIV FOOTER FORM HTML HEAD PRE SCRIPT STYLE SELECT OL UL LI_multi)
       end
@@ -208,6 +222,10 @@ module Jabverwock
         %w(P A B HR BR I EM STRONG DT DD LIST_ITEM TITLE OPTION LI TD)
       end
 
+      def oneTags
+        %w(DOCTYPE META IMG LINK INPUT)
+      end
+      
       def intoStyleTag (str)
         "<style>\n" << "#{str}\n" << "</style>\n"
         
@@ -330,12 +348,12 @@ module Jabverwock
       end
       
       def stringArrayConectRET (arr)
-        return if arr.empty? 
-        isStringInArray arr
+        return if arr.empty?
+        return unless isStringInArray arr
         
         arr.inject("") do |ans, d|
           ans << d << $RET
-        end
+        end          
       end
 
       def reprace(str:, of:, with:)

@@ -11,9 +11,6 @@ else
   
 end
 
-
-
-
 module Jabverwock
   using StringExtension
   using ArrayExtension
@@ -90,15 +87,9 @@ module Jabverwock
     end
     
     def openString
-      if @name.empty?
-        assert_raise{
-          p ">>> call no name"          
-        }
-      end
+      nameCheck
       
-      if isDocType
-        return openStringDocType
-      end
+      return openStringDocType if isDocType
             
       if isHrTag || isBrTag
         return ""
@@ -106,6 +97,14 @@ module Jabverwock
             
       addAttribute
       @tempOpenString = "<" + @name + @attributeString + ">"
+    end
+
+    def nameCheck
+      if @name.empty?
+        assert_raise{
+          p ">>> call no name"          
+        }
+      end
     end
     
     def closeStringHrTag

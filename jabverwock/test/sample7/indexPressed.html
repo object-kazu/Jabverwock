@@ -3,9 +3,50 @@
 		<title>This is my first page</title>
 	</head>
 	<body>
-		<h1>index</h1>
-		<a href="home.html">home</a><br>
-		<a href="about.html">about</a><br>
-		<a href="contact.html">contact</a><br>
+		<div id="nav">
+			<ul>
+				<li><a href="index">Index</a></li>
+				<li><a href="contact">Contact</a></li>
+				<li><a href="adress">Adress</a></li>
+			</ul>
+		</div>
+		<div id="selctions">
+			<select>
+				<option value="red">Red</option>
+				<option value="blue">Blue</option>
+				<option value="white">White</option>
+				<option value="black">Black</option>
+			</select>
+		</div>
+		<div id="inputs">
+			<form method="POST" action="xxx.cgi">
+				<table>
+					<tr>
+						<td>name</td>
+						<td><input type="text" name="namae"></td>
+					</tr>
+					<tr>
+						<td>password</td>
+						<td><input type="password" name="passwd"></td>
+					</tr>
+					<tr>
+						<td>files</td>
+						<td><input type="file" name="tensou"></td>
+					</tr>
+					<tr>
+						<td>sex</td>
+						<td><input type="radio" name="seibetu" value="male">male<input type="radio" name="seibetu" value="feMale">female</td>
+					</tr>
+					<tr>
+						<td>hoby</td>
+						<td><input type="checkbox" name="shumi" value="PC">pc<input type="checkbox" name="shumi" value="SP">sports<input type="checkbox" name="shumi" value="RD">reading</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" value="Send"><input type="reset" value="Cancel"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	</body>
 </html>

@@ -16,6 +16,7 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
   
+  # this class is JS main
   class JsObject < JsBase
            
     attr_accessor :doc

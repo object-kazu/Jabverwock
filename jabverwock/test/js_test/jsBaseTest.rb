@@ -51,42 +51,33 @@ module Jabverwock
     # end
 
     test "id" do
-      js = JsBase.new
-      assert_true js.isID("id")
+      assert_true KSUtil.isID("id")
     end
     test "id case 2" do
-      js = JsBase.new
-      assert_true js.isID("id_s")
+      assert_true KSUtil.isID("id_s")
     end
     test "id case 3" do
-      js = JsBase.new
-      assert_false js.isID("name")
+      assert_false KSUtil.isID("name")
     end
     
     test "cls" do
-      js = JsBase.new
-      assert_true js.isCls("cls")
+      assert_true KSUtil.isCls("cls")
     end
     test "cls case 2" do
-      js = JsBase.new
-      assert_true js.isCls("cls_s")
+      assert_true KSUtil.isCls("cls_s")
     end
     test "cls case 3" do
-      js = JsBase.new
-      assert_false js.isCls("name")
+      assert_false KSUtil.isCls("name")
     end
     
     test "name" do
-      js = JsBase.new
-      assert_true js.isName("name")
+      assert_true KSUtil.isName("name")
     end
     test "name case 2" do
-      js = JsBase.new
-      assert_true js.isName("name_s")
+      assert_true KSUtil.isName("name_s")
     end
     test "name case 3" do
-      js = JsBase.new
-      assert_false js.isName("cls")
+      assert_false KSUtil.isName("cls")
     end
     
     test"initialize case 1" do

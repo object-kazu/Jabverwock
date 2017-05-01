@@ -36,8 +36,7 @@ module Jabverwock
 
     def addChild(child)
       unless child.is_a? JW
-        p "child is >> #{child.class}" 
-        p "error: child should be JW, JW_CSS_JS or JW_CSS class "
+        p "child is >> #{child.class} error: child should be JW, JW_CSS_JS or JW_CSS class "
         assert_raise{}
       end
       
@@ -45,6 +44,14 @@ module Jabverwock
       addJS child
 
       # css
+      addChildCSS child
+                 
+      # html
+      addChildHTML child
+            
+    end
+
+    def addChildCSS(child)
       if child.cssArray.count > 0
         @cssArray += child.cssArray
       end
@@ -53,14 +60,14 @@ module Jabverwock
         child.updateCssName
         @cssArray << child.css
       end
-                 
-      # html
-      child.assembleHTML
-      addChildString(child.templeteString)
-
-            
     end
 
+    def addChildHTML(child)
+      child.assembleHTML
+      addChildString(child.templeteString)      
+    end
+    
+    
     def addChildren(children)
       children.each do |c| 
         addChild c

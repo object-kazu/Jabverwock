@@ -13,13 +13,20 @@ end
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
+  using SymbolExtension
   
+  # this class is single line html, like HEADING tag
   class JWSingle < JW_CSS_JS
     attr_accessor :content
     
     def initialize
       super
       @content = ""
+      
+      @name = self.class.name.downcase
+      @css = CSS.new("#{@name}")
+
     end
 
     ## override ##
@@ -44,13 +51,16 @@ module Jabverwock
     
   end
 
+  #This class express <h1>, <h2>, <h3>, <h4>, <h5>, <h6>
   class HEADING < JWSingle
     
     def initialize (level = 1)
       super()
       @content = ""
       @level = level
-      insertLevel
+      # insertLevel
+      
+      @name = self.class.name.downcase
       @css = CSS.new("#{@name}")
     end
 
@@ -69,12 +79,12 @@ module Jabverwock
     singleList.each do |list|
     Object.const_set list, Class.new(JWSingle){
     
-      attr_accessor :name
-      def initialize
-        super
-        @name = self.class.name.downcase
-        @css = CSS.new("#{@name}")
-      end
+      # attr_accessor :name
+      # def initialize
+      #   super
+      #   @name = self.class.name.downcase
+      #   @css = CSS.new("#{@name}")
+      # end
     }
   end
 

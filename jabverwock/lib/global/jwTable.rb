@@ -23,7 +23,10 @@ end
 
 module Jabverwock
   using StringExtension  
+  using ArrayExtension
+  using SymbolExtension
   
+  # this class express table
   class JWTable < JWMulti
 
     attr_accessor  :headerList
@@ -55,26 +58,24 @@ module Jabverwock
 
     def addTableHeader
       if @headerList.count > 0
-        headerStr = ""
-        tr = TableRow.new
-        h0 = TableHeader.new
-        headerStr += h0.tgStr
-        
-        
-        headerList.each do |hl| 
-          h = TableHeader.new
-          h.content = hl
-          headerStr += h.tgStr
-        end
-      
-        tr.contentIs headerStr
+        headerStr = TableHeader.new.tgStr
+        headerStr << tableHeaderListTreat
+             
+        tr = TableRow.new.contentIs headerStr
         @childStringArray << tr.tgStr
       end
     end
 
+    def tableHeaderListTreat
+      @headerList.inject("") do |str,hl|
+        h = TableHeader.new.contentIs hl
+        str << h.tgStr
+      end      
+    end
+    
     def dataTreatment
-      if isDoubleArray(@rows)
-        addTableDataList(@rows)
+      if KSUtil.isDoubleArray @rows
+        addTableDataList @rows
         return true # confirm code,for test
       else
         addTableData(@rows)
@@ -82,9 +83,6 @@ module Jabverwock
       end
     end
     
-    def isDoubleArray (data)
-      data[0].is_a?(Array)
-    end
     
     # data -> [[1,1,1],[1,1,1]]
     def addTableDataList(arr)
@@ -108,24 +106,17 @@ module Jabverwock
     
     # data -> [1,1,1]
     def addTableData(arr)
-      dataString = ""
       if arr.count > 0
-        tr = TableRow.new
-        arr.each do |hl|
-          dataString += tdTreatment(hl)
-        end
-        tr.contentIs dataString
+        tr = TableRow.new.contentIs dataString(arr)
         @childStringArray << tr.tgStr
-      end      
-    end
-
-    def tdTreatment (str)
-      eachDataString = ""
-      h = TableData.new
-      h.content = str
-      eachDataString += h.tgStr          
+      end
     end
     
+    def dataString(arr)
+      arr.inject("") do |ds, hl|
+        ds += TableData.new.tgStrWithContent hl
+      end
+    end
     
     def addRowEach (arr)
       @rows << arr
@@ -133,27 +124,33 @@ module Jabverwock
     
     ### override ###
     def assembleHTML
-      if @tagManager.name.empty?
-        @tagManager.name = @name        
-      end
+      nameCheck
       makeTag
       addCaption
       addTableHeader
       dataTreatment     
       makeResult
       memberAssemble
+      insertScript
+    end
 
+    def nameCheck
+      if @tagManager.name.empty?
+        @tagManager.name = @name        
+      end
+    end
+
+    def insertScript
       return unless isExistBodyTagAtTempleteString
       return if     isExistScriptTagAtTempleteString
       return unless isExistScriptContentAtTempleteString
 
       insertScriptToBody
-
-      
     end
     
   end    
     
+  # table caption express
   class TableCaption < JWSingle
     def initialize
       super
@@ -161,6 +158,7 @@ module Jabverwock
     end
   end
   
+  # TR tag express
   class TableRow < JWMulti
     def initialize
       super
@@ -168,14 +166,16 @@ module Jabverwock
     end
     
   end
-
+  
+  # TH tag express
   class TableHeader < JWSingle
     def initialize
       super
       @name = "th"
     end
   end
-
+  
+  # TD tag express
   class TableData < JWSingle
 
     def initialize
@@ -189,6 +189,11 @@ module Jabverwock
       treatContentToTag @content
       assemble
       @templeteString
+    end
+
+    def tgStrWithContent(str)
+      @content = str
+      tgStr      
     end
 
     
@@ -240,13 +245,13 @@ module Jabverwock
         
     Object.const_set list, Class.new(obj){
     
-      attr_accessor :name
-      def initialize
-        super
-        @name = self.class.name.downcase
-        @css = CSS.new("#{name}")
-      end
-    }
+    #   attr_accessor :name
+    #   def initialize
+    #     super
+    #     @name = self.class.name.downcase
+    #     @css = CSS.new("#{name}")
+    #   end
+     }
   end
 
   

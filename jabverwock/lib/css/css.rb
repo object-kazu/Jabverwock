@@ -9,11 +9,12 @@ else
   
 end
 
-
-
-
 module Jabverwock
   using StringExtension
+  using ArrayExtension
+  using SymbolExtension
+  
+  # this class manage CSS
   class CSS < CssAttrTemplate
         
     self.define_attributes [:cssResultString]
@@ -57,60 +58,58 @@ module Jabverwock
     end
     
     def addMembers(*sel)
-    #def andSelectorIs(*sel)
-      addBaseic false, *sel
+      addBaseic ",", *sel
       self
     end
 
     def addChildren(*sel)
-      addBaseic true, *sel
+      addBaseic " ", *sel
       self
     end
 
-    def addBaseic(isChild, *sel)
-      
-      divi = ","
-      if isChild
-        divi = " "
-      end
-      name = ""
-      sel.each do |s|
-        next name << s if name == ""
-        name << divi << s
-      end
+    def addBaseic (divi, *sel)
+      name = nameWithDividStr sel, divi
+      addName name, divi
+      self
+    end
+    
 
+    def addName(name, divi)
       if @name == ""
         @name << name
       else
         @name << divi << name
       end
       
-      self
+    end
+    
+    def nameWithDividStr(sel, divi)
+      sel.inject("") do |name, s|
+        next name << s if name == ""
+        name << divi << s        
+      end
     end
     
     def str      
+      nameErrorCheck
+      
       @cssResultString = ""
+      # 接頭句
+      @cssResultString += @name + $SPC + "{" + $RET + noNameStr                                
+      # 接尾句
+      @cssResultString += $RET + "}"
+    end
+
+    def nameErrorCheck
       if @name.empty?
         p "css name is empry. set cssName"
         raise RuntimeError
       end
-      
-      #接頭句
-      @cssResultString += @name + $SPC + "{" + $RET + noNameStr
-                                
-      # #  接尾句
-      @cssResultString += $RET + "}"
-      return @cssResultString
-      
     end
-
+    
     # remove name form  pStr
     def noNameStr
-      ans = self.pStr.gsub!(/name:.+?;\n/, "")
-      if ans.nil?
-        return ""
-      end
-      ans
+      self.pStr.gsub!(/name:.+?;\n/, "") || ""
     end
     
   end

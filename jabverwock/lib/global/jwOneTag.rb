@@ -13,7 +13,10 @@ end
 
 module Jabverwock
   using StringExtension
+  using ArrayExtension
+  using SymbolExtension
   
+  #this class express ["DOCTYPE","META", "IMG", "LINK", "INPUT"]
   class JWOneTag < JWSingle
     attr_accessor :doctype
     
@@ -46,17 +49,17 @@ module Jabverwock
 
   end
 
-  oneTagList = ["DOCTYPE","META", "IMG", "LINK", "INPUT"]
+  oneTagList = KSUtil.oneTags
   
   oneTagList.each do |list|
     Object.const_set list, Class.new(JWOneTag){
     
-      attr_accessor :name
-      def initialize
-        super
-        @name = self.class.name.downcase
-        @css = CSS.new("#{name}")
-      end
+      # attr_accessor :name
+      # def initialize
+      #   super
+      #   @name = self.class.name.downcase
+      #   @css = CSS.new("#{name}")
+      # end
      }
   end
 
