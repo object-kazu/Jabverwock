@@ -183,6 +183,12 @@ module Jabverwock
         end
         s
       end
+      
+      # attr(:id, "test") -> attr(:id__test) -> treat attr
+      def combineSym(sym, str)
+        ans = sym.to_s << "__" << str
+        ans.to_sym
+      end
 
       def isDoubleUnderBarSymbol(sym)
         return nil unless sym.is_a? Symbol

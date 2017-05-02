@@ -54,6 +54,8 @@ module Jabverwock
 
       arr = Array(tag).append val
       
+      #byebug
+      
       arr.each_with_index do |v, index|
         if KSUtil.isDoubleUnderBarSymbol v
           attrSymbol v
@@ -63,6 +65,7 @@ module Jabverwock
         if v.is_a? Symbol
           unless index + 1 >= arr.count
             @tagManager.tagAttr v, arr[index + 1]
+            jsAttrForSymboleStringData v, arr[index + 1]
           end          
         end
       end
@@ -77,6 +80,12 @@ module Jabverwock
       end
       e = tag.divid
       @tagManager.tagAttr e[0], e[1]  
+    end
+
+    def jsAttrForSymboleStringData(symbol, string)
+      #override at jwCssJs class
+      p symbol
+      p string
     end
     
     def withBreak()

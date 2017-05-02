@@ -52,6 +52,11 @@ module Jabverwock
       @js.updateSelector tag
     end
 
+    #override
+    def jsAttrForSymboleStringData(symbol,string)
+      ans = KSUtil.combineSym symbol, string
+      @js.updateSelector ans
+    end
     
     ####### add child ############
     ## override
