@@ -88,6 +88,25 @@ module Jabverwock
       
     end
     
+    ##### ByClass ###########
+    test "document.getElementByClass case 1" do
+      img = IMG.new.attr(:cls__MyImage, :src, "simple.gif")      
+      img.js.doc.byClassName.src("landscape.jpg").rec
+      
+      ans = "document.getElementByClassName('MyImage').src=\"landscape.jpg\";"
+      assert_equal ans, img.js.orders[0]
+      
+    end
+    
+    test "document.getElementByCls case 2" do
+      img = IMG.new.attr(:cls,"sample").attr(:src, "simple.gif")
+      img.js.doc.byClassName.src("landscape.jpg").rec
+      
+      ans = "document.getElementByClassName('sample').src=\"landscape.jpg\";"
+      assert_equal ans, img.js.orders[0]
+      
+    end
+    
     
 
   end

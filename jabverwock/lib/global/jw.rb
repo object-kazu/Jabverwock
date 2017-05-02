@@ -54,10 +54,8 @@ module Jabverwock
 
       arr = Array(tag).append val
       
-      #byebug
-      
       arr.each_with_index do |v, index|
-        if KSUtil.isDoubleUnderBarSymbol v
+        if KSUtil.isDoubleUnderBarSymbol v    
           attrSymbol v
           next
         end
