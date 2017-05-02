@@ -159,6 +159,10 @@ module Jabverwock
     def element
       @content
     end
+
+    def export
+      @ec
+    end
     
     def rec
       if @ec == ""
@@ -206,10 +210,14 @@ module Jabverwock
     end
     
     def style (property, val)
+      
       s = KString.remove_Js_Cmd_End @content
-      @ec = s.dot("style").dot(property) +  $EQUAL.inDoubleQuot(val) + $JS_CMD_END
+    
+      @ec = s.dot("style").dot(property.to_s) +  $EQUAL.inDoubleQuot(val) + $JS_CMD_END
       self
     end
+
+    
     
   end
 

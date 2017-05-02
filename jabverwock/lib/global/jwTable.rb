@@ -40,6 +40,8 @@ module Jabverwock
 
       @name = "table"
       @tagManager.name = @name
+      @js.setTagName @name
+
     end
 
     def caption(str)
@@ -155,6 +157,7 @@ module Jabverwock
     def initialize
       super
       @name = "caption"
+      @js.setTagName @name
     end
   end
   
@@ -163,6 +166,7 @@ module Jabverwock
     def initialize
       super
       @name = "tr"
+      @js.setTagName @name
     end
     
   end
@@ -172,6 +176,8 @@ module Jabverwock
     def initialize
       super
       @name = "th"
+      @js.setTagName @name
+            
     end
   end
   
@@ -182,6 +188,8 @@ module Jabverwock
       super
       @name = "td"
       @tagManager.name = @name
+      @js.setTagName @name
+
     end
     
     ## override ##

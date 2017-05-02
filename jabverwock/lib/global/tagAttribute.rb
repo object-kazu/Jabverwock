@@ -35,7 +35,7 @@ module Jabverwock
     list += [:margin, :maxlength, :minlength,:max, :min, :multiple, :method]
     list += []
     list += [:name,] 
-    list += []
+    list += [:onclick,]
     list += [:position,:pattern,:placeholder,]
     list += []
     list += []

@@ -177,7 +177,7 @@ module Jabverwock
         !!v === v
       end
       
-      def stringConvertSymbole(s)
+      def strinrgConvertSymbole(s)
         if s.is_a? String
           s = s.to_sym
         end
@@ -225,11 +225,11 @@ module Jabverwock
       end
       
       def singleTags
-        %w(P A B HR BR I EM STRONG DT DD LIST_ITEM TITLE OPTION LI TD)
+        %w(P A B HR BR BUTTON I EM STRONG DT DD LIST_ITEM TITLE OPTION LI TD)
       end
 
       def oneTags
-        %w(DOCTYPE META IMG LINK INPUT)
+        %w(DOCTYPE IMG INPUT META LINK)
       end
       
       def intoStyleTag (str)

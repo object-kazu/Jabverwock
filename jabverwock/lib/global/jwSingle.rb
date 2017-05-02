@@ -58,9 +58,8 @@ module Jabverwock
       super()
       @content = ""
       @level = level
-      # insertLevel
+      insertLevel
       
-      @name = self.class.name.downcase
       @css = CSS.new("#{@name}")
     end
 
@@ -68,7 +67,9 @@ module Jabverwock
       @level = 1 if @level > 6
       @level = 1 if @level < 0
       
-      @name = "h#{@level}" 
+      @name = "h#{@level}"
+      @js.setTagName @name
+
     end
 
     

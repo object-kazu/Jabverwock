@@ -51,7 +51,14 @@ module Jabverwock
       assert_equal(a.tgStr , "<h1>test</h1>")
     end
     
-    
+
+    test "tagName check" do
+      a = HEADING.new.contentIs "test"
+      # assert_equal para.js.doc.byTagName.element, "document.getElementByTagName('p');"
+
+      ans = a.js.doc.byTagName.style(:color, "red").export
+      assert_equal ans, "document.getElementByTagName('h1').style.color=\"red\";"
+    end
     
     
   end

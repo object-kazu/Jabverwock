@@ -30,11 +30,10 @@ module Jabverwock
     def recBy (str)
       @orders << str
     end
-
     
     def setSelectors(inits)
       inits.each do |s|        
-        setSelector KSUtil.stringConvertSymbole(s)
+        setSelector KSUtil.strinrgConvertSymbole s
       end      
     end
 
