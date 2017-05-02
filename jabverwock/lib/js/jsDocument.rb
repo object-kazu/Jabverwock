@@ -213,7 +213,7 @@ module Jabverwock
       
       s = KString.remove_Js_Cmd_End @content
     
-      @ec = s.dot("style").dot(property.to_s) +  $EQUAL.inDoubleQuot(val) + $JS_CMD_END
+      @ec = s.dot("style").dot(property.to_s) +  $EQUAL.inSingleQuo(val) + $JS_CMD_END
       self
     end
 

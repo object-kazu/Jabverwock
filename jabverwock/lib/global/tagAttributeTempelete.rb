@@ -73,7 +73,7 @@ module Jabverwock
       
       index = KString.renameCls index
       index = KString.renameUnderBar index 
-            
+      
       src = index + "=".inDoubleQuot(val)
       unless val.empty?
         insertSPace(src)
@@ -81,19 +81,6 @@ module Jabverwock
 
     end
 
-    # def renameCls (str)
-    #   if str == "cls"
-    #     return "class"
-    #   end
-    #   str
-    # end
-
-    # def renameUnderBar (str)
-    #   if str.include?("_")
-    #     return str.gsub(/_/, "-")
-    #   end
-    #   str
-    # end
       
 
   end
