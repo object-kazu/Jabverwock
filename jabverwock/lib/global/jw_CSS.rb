@@ -61,7 +61,7 @@ module Jabverwock
       @cssString = ""
     end
 
-    def addCss (*css) #change arg, that is array
+    def addCss (*css)
       css.each do |c|
         if c.name == ""
           c.name = @css.name

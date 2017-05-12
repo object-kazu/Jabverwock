@@ -43,10 +43,10 @@ module Jabverwock
     <<-MEMO_NAME
        - nameWithSelectorsの役割
 
-        a = Test.new(:id_test)
+        a = Test.new(:id__test)
         p a.name# => "#test"
 
-        b = Test.new(:cls_test)
+        b = Test.new(:cls__test)
         p b.name# => ".test"
 
         c = Test.new("ss")
@@ -56,12 +56,12 @@ module Jabverwock
     def nameWithSelectors(name)
       @name = name.to_s
       
-      if @name.include?("id_")
-        @name = "##{@name.split("id_").last}"
+      if @name.include?("id__")
+        @name = "##{@name.split("id__").last}"
       end
 
-      if @name.include?("cls_")
-        @name = ".#{@name.split("cls_").last}"
+      if @name.include?("cls__")
+        @name = ".#{@name.split("cls__").last}"
       end
       
     end

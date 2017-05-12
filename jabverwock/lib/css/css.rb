@@ -1,11 +1,13 @@
 if $FOR_GEM
   require "global/globalDef"
   require "css/propertyTemplete"
+  # require "css/CssUtil"
     
 else
 
   require "../../lib/global/globalDef"
   require_relative "propertyTemplete"
+  # require_relative "CssUtil"
   
 end
 
@@ -26,6 +28,8 @@ module Jabverwock
                             :background_image, :background_position, :background_position_x,
                             :background_position_y,:background_repeat]
 
+    self.define_attributes [:width, :height, :position]
+    
     def initialize(name)
       super
     end
@@ -38,19 +42,37 @@ module Jabverwock
       updateCssNameWithID id
       updateCssNameWithCls cls
     end
+
+    # ID_ELEM_ID = "id::"
+    # ID_ELEM_CLS = "cls::"
     
     def updateCssNameWithID(id)
       unless id.empty?
-        @name << $SPC << id
+        @name << $SPC << $ID_ELEM_ID << id
       end
-    end
-    def updateCssNameWithCls(cls)
-      unless cls.empty?
-        @name << $SPC << cls
-      end
-      
     end
     
+    def updateCssNameWithCls(cls)
+      unless cls.empty?
+        @name << $SPC << $ID_ELEM_CLS << cls
+      end  
+    end
+
+    def use(*selector)
+      # @name => p id:#test cls:.sample
+      # @treatName => p #test .sample
+      # use(:id) -> #test
+      # use(:cls) -> .sample
+      # use(:name) -> p
+      # use(:id, :name) -> p #test
+      
+      return use :name, :id, :cls  if selector.empty?
+
+      arr = CssUtil.dividBySpace @name
+      ans = CssUtil.useCore selector, arr      
+      @name = ans.join(" ")      
+      self
+    end
     
     def dpName
       # cation, dup is deep copy of name only
@@ -68,7 +90,7 @@ module Jabverwock
     end
 
     def addBaseic (divi, *sel)
-      name = nameWithDividStr sel, divi
+      name = CssUtil.nameWithDividStr sel, divi
       addName name, divi
       self
     end
@@ -82,14 +104,7 @@ module Jabverwock
       end
       
     end
-    
-    def nameWithDividStr(sel, divi)
-      sel.inject("") do |name, s|
-        next name << s if name == ""
-        name << divi << s        
-      end
-    end
-    
+        
     def str      
       nameErrorCheck
       
@@ -113,7 +128,7 @@ module Jabverwock
     end
     
   end
-
+  
   # a = CSS.new("s")
   # p a.font_size(10)
   # # p a.name

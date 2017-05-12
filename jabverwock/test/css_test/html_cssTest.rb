@@ -221,6 +221,35 @@ module Jabverwock
 
       end
 
+
+    #case 1
+    # c = CSS.new "#container"
+    # c.width("100px").height("100px").position("100px").background("red")
+    # div.addCss c
+    
+    #case 2
+    # c = CSS.new :id__container
+    # c.width("100px").height("100px").position("100px").background("red")
+    # div.addCss c
+
+    #case 3
+    #div.css.use(:id).width("100px")
+    
+    # #case 4
+    # c = CSS.new
+    # c.width("100px").height("100px").position("100px").background("red")
+    # div.addCssUse(:id) c
+
+    
+    test "css use function case 1" do
+      head = HEAD.new.attr(:id__test, :cls_sample)
+      head.css.use(:id).width("100")
+      
+      pressed = head.pressDefault
+      assert_true(pressed.include?("test {\nwidth: 100\n}\n"))
+      
+      
+    end
     
   end
 

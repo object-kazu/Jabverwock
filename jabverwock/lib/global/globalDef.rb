@@ -161,7 +161,78 @@ module Jabverwock
   $BR      = "<br>"
   $ROW_SPAN = "%rowSpan="
   $COL_SPAN = "%colSpan="
-  
+
+  ## Css ####################  
+  $ID_ELEM_ID = "id::"
+  $ID_ELEM_CLS = "cls::"
+
+  #This class is utility for css.rb
+  module CssUtil
+    class << self
+      def nameWithDividStr(sel, divi)
+        sel.inject("") do |name, s|
+          next name << s if name == ""
+          name << divi << s        
+        end
+      end
+
+      def useCore(sel, arr)
+        sel.inject([]) do |ans,s|
+          next ans <<  idElm(arr) if includeID s,arr
+          next ans <<  clsElm(arr) if includeCls s,arr
+          next ans.unshift arr.first if s == :name
+          ans
+        end
+      end
+      
+      def includeID(elm, arr)
+        KSUtil.isID(elm.to_s) && symbolInclude(:id,arr) ? true:false
+      end
+
+      def includeCls(elm,arr)
+        KSUtil.isCls(elm.to_s) && symbolInclude(:cls, arr) ? true : false
+      end
+      
+      def dividBySpace(str)
+        str.split
+      end
+
+      def idElm(arr)
+        index = findIDIndex arr
+        removeIDIndex arr[index]
+      end
+
+      def clsElm(arr)
+        index = findClsIndex arr
+        removeClsIndex arr[index]
+      end
+
+      def symbolInclude(sym, arr)
+        arr.each do |a|
+          return true if a.include? sym.to_s
+        end
+        false
+      end
+      
+      def findIDIndex(arr)      
+        arr.index{ |f| f =~ /^#{$ID_ELEM_ID}/ }
+      end
+
+      def findClsIndex(arr)
+        arr.index{ |f| f =~ /^#{$ID_ELEM_CLS}/ }
+      end
+
+      def removeIDIndex(str)
+        str.split($ID_ELEM_ID).last
+      end
+      
+      def removeClsIndex(str)
+        str.split($ID_ELEM_CLS).last
+      end
+
+      
+    end
+  end
   
   # This module is utility, not depend on class instance
   module KSUtil

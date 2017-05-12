@@ -49,11 +49,11 @@ module Jabverwock
 
     ############## test ###############
 
-    test "css first test, for print debug " do
-      #p @css
+    # test "css first test, for print debug " do
+    #   #p @css
 
       
-    end
+    # end
     
     test "set property" do
       @css.name = "head"
@@ -75,30 +75,42 @@ module Jabverwock
       @css.name = "head"
       @css.font_size = 10
       @css.color = "red"
-      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(@css.str, "head {\nfont-size: 10;\ncolor: red;\n}")
     end
 
     test "property method chain" do      
       @css.name = "head"
       @css.font_size("10").color("red")
 
-      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(@css.str, "head {\nfont-size: 10;\ncolor: red;\n}")
     end
 
     test "property method chain case 2" do
       
       @css.name = "head"
       @css.font_size("10").color("red").font_style("bold")
-      assert_equal(@css.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
-    end
+      assert_equal(@css.str, "head {\nfont-size: 10;\ncolor: red;\nfont-style: bold;\n}")
 
+    end
 
     test "css name define" do
       c = CSS.new("head")
       c.font_size("10").color("red").font_style("bold")
-      assert_equal(c.str, "head {\ncolor: red;\nfont-size: 10;\nfont-style: bold;\n}")
+      assert_equal(c.str, "head {\nfont-size: 10;\ncolor: red;\nfont-style: bold;\n}")
     end
-   
+
+    test "css name symbole case 1" do
+      c = CSS.new :head
+      c.font_size("10").color("red").font_style("bold")
+      assert_equal(c.str, "head {\nfont-size: 10;\ncolor: red;\nfont-style: bold;\n}")
+    end
+
+    test "css name symbole case use id" do
+      c = CSS.new :id__head
+      c.font_size("10").color("red").font_style("bold")
+      assert_equal(c.str, "#head {\nfont-size: 10;\ncolor: red;\nfont-style: bold;\n}")
+    end
+    
     test "combineSelectors" do
       c = CSS.new("ss").addMembers "s","h"
       assert_equal(c.name, "ss,s,h")
@@ -115,7 +127,7 @@ module Jabverwock
     end
 
     test "dup" do
-      c = CSS.new(:id_reds)
+      c = CSS.new(:id__reds)
       cc = c.dup
       ccc = cc.addChildren("p")
 
@@ -124,7 +136,7 @@ module Jabverwock
     end
 
     test "dpName" do
-      c = CSS.new(:id_reds)
+      c = CSS.new(:id__reds)
       cc = c.dpName.addChildren "p"
 
       assert_equal(c.name, "#reds")
@@ -132,7 +144,7 @@ module Jabverwock
     end
 
     test "dup css property" do
-      c = CSS.new(:id_reds).color "red"
+      c = CSS.new(:id__reds).color "red"
       cc = c.dpName.addChildren("p").color("yellow")
 
       assert_equal(c.str, "#reds {\ncolor: red;\n}")
@@ -140,6 +152,73 @@ module Jabverwock
     end
 
 
+    test "use case id"  do
+      @css.name = "p id::#test cls::.sample"
+      @css.use :id
+      assert_equal @css.name, "#test"
+      
+    end
+
+    test "use case cls"  do
+      @css.name = "p id::#test cls::.sample"
+      @css.use :cls
+      assert_equal @css.name, ".sample"
+      
+    end
+
+    test "use case id and cls"  do
+      @css.name = "p id::#test cls::.sample"
+      @css.use :cls, :id
+      assert_equal @css.name, ".sample #test"
+      
+    end
+
+    test "use case name"  do
+      @css.name = "p id::#test cls::.sample"
+      @css.use :name
+      assert_equal @css.name, "p"
+      
+    end
+    
+    test "use case all-1"  do
+      @css.name = "p id::#test cls::.sample"
+      @css.use :name, :id, :cls
+      assert_equal @css.name, "p #test .sample"
+      
+    end
+
+    test "use case all-2"  do
+      @css.name = "p id::#test cls::.sample"
+      @css.use
+      assert_equal @css.name, "p #test .sample"
+      
+    end
+
+    test "no id use case name "  do
+      @css.name = "p cls::.sample"
+            
+      @css.use :name
+      assert_equal @css.name, "p"
+      
+    end
+    
+    test "no id use case id "  do
+      @css.name = "p cls::.sample"
+            
+      @css.use :id
+      assert_equal @css.name, ""
+      
+    end
+
+    test "no id use case cls "  do
+      @css.name = "p cls::.sample"
+            
+      @css.use :cls
+      assert_equal @css.name, ".sample"
+      
+    end
+
+    
     
   end
 
