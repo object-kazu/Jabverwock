@@ -176,11 +176,11 @@ module Jabverwock
         end
       end
 
-      def useCore(sel, arr)
+      def useCore(sel, arr)        
         sel.inject([]) do |ans,s|
           next ans <<  idElm(arr) if includeID s,arr
           next ans <<  clsElm(arr) if includeCls s,arr
-          next ans.unshift arr.first if s == :name
+          next ans.unshift arr.first if s == :name # tagNameは一番前に挿入
           ans
         end
       end
@@ -210,6 +210,13 @@ module Jabverwock
       def symbolInclude(sym, arr)
         arr.each do |a|
           return true if a.include? sym.to_s
+        end
+        false
+      end
+
+      def hasSymbolArrTargetSymbol(sym,symArr)
+        symArr.each do |s|
+          return true if s == sym
         end
         false
       end
@@ -455,6 +462,8 @@ module Jabverwock
       end
 
       def isExistCssString(str)
+       
+        
         return false if str.empty?
 
         if !str.include?("{") || !str.include?("}")

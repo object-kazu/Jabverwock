@@ -39,8 +39,17 @@ module Jabverwock
       p $SPC + "good"
     end
 
+    ############## CssUtil ###############
 
+    test "hasSymbolArrTargetSymbol case true" do
+      a = %i(a b c)
+      assert_true CssUtil.hasSymbolArrTargetSymbol :a, a
+    end
     
+    test "hasSymbolArrTargetSymbol case false" do
+      a = %i(a b c)
+      assert_false CssUtil.hasSymbolArrTargetSymbol :ab, a
+    end
 
     
     
@@ -249,6 +258,8 @@ module Jabverwock
       assert_equal ans, "a\t\t\tb"
     end
 
+
+    
     
   end
 end

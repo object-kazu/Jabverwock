@@ -119,11 +119,14 @@ module Jabverwock
     def cssAssembleCore(css)
       @nameList << css.name        
       @cssString << css.str << $RET
+      css.useFlagsInit
     end
     
     def cssAssembleLoop(arr)
+      
       arr.each do |cs|
-        #  スタイルがない（｛｝のみ）なら標示しない
+
+        #  スタイルがない（｛｝のみ）なら標示しない        
         next unless KString.isExistCssString cs.str
         
         # 同じ名前のスタイルは書き込まない（重複書き込み禁止）

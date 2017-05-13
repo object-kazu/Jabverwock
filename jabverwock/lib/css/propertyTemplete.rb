@@ -33,6 +33,7 @@ module Jabverwock
     
     def initialize(name)
       nameWithSelectors name
+
       
       self.class.index_to_attr.each_with_index do |value, index|
         attr = self.class.index_to_attr[index] # クラスメソッドの `index_to_attr` で読込
