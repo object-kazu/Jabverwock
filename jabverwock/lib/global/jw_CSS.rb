@@ -81,11 +81,7 @@ module Jabverwock
       
     end
 
-    
-    # def assembleTabedCss
-    #   ans = cssAssemble(@css, @cssArray)
-    # end
-    
+        
     def addAssembleStyle(str)
       # koko now
       # head tagがないとなにもない仕様にしてある

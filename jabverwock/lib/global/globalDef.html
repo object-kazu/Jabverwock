@@ -80,7 +80,7 @@
   </head>
   <body>
     <div id="header">
-      <h1>Reek Output - <span class="total-warnings">2 total warnings</span></h1>
+      <h1>Reek Output - <span class="total-warnings">4 total warnings</span></h1>
     </div>
     <div id="reek-smells">
       <div class="box">
@@ -88,8 +88,18 @@
           
           <div class="list-item">
             <div class="content">
+              <div class="heading"><strong>Jabverwock::CssUtil#hasSymbolArrTargetSymbol</strong> is controlled by argument 'sym' (ControlParameter)</div>
+              <small class="text-muted pull-right">Line [236]</small>
+              <p>
+              <small>global/globalDef.rb</small>
+              </p>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="content">
               <div class="heading"><strong>Jabverwock::KString#check_type</strong> refers to 'instance' more than self (maybe move it to another class?) (FeatureEnvy)</div>
-              <small class="text-muted pull-right">Line [384, 385]</small>
+              <small class="text-muted pull-right">Line [408, 409]</small>
               <p>
               <small>global/globalDef.rb</small>
               </p>
@@ -99,7 +109,17 @@
           <div class="list-item">
             <div class="content">
               <div class="heading"><strong>Jabverwock::KString#stringArrayConectRET</strong> refers to 'arr' more than self (maybe move it to another class?) (FeatureEnvy)</div>
-              <small class="text-muted pull-right">Line [428, 431]</small>
+              <small class="text-muted pull-right">Line [452, 455]</small>
+              <p>
+              <small>global/globalDef.rb</small>
+              </p>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="content">
+              <div class="heading"><strong>Jabverwock::CssUtil#useCore</strong> has approx 6 statements (TooManyStatements)</div>
+              <small class="text-muted pull-right">Line [179]</small>
               <p>
               <small>global/globalDef.rb</small>
               </p>

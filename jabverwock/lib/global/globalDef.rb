@@ -176,33 +176,24 @@ module Jabverwock
         end
       end
 
-      # def useCore(sel, arr)
-      #   p ">>> #{arr}"
-        
-      #   sel.inject([]) do |ans,s|
-      #     next ans <<  idElm(arr) if includeID s,arr
-      #     next ans <<  clsElm(arr) if includeCls s,arr          
-      #     next ans.unshift arr.first if s == :name # tagNameは一番前に挿入
-      #     ans
-      #   end
-      # end
-
       def useCore(sel, arr)
         ans = []
         sel.each do |s|
           next ans <<  idElm(arr) if includeID s,arr
           next ans <<  clsElm(arr) if includeCls s,arr          
-
-          if s == :name
-            arr.each do |v|
-              ans.unshift v unless include_ID_ELEM_ID(v) || include_ID_ELEM_CLS(v)
-            end
-            next
-          end          
+          next ans.unshift useCoreWithName(arr) if s == :name
         end
         ans
       end
 
+      def useCoreWithName(arr)
+        ans = []
+        arr.each do |v|
+          ans.unshift v unless include_ID_ELEM_ID(v) || include_ID_ELEM_CLS(v)        
+        end
+        ans
+      end
+      
       def include_ID_ELEM_ID(val)
         val.include?($ID_ELEM_ID) ? true : false
       end
