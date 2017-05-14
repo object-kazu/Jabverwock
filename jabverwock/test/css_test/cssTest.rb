@@ -143,13 +143,13 @@ module Jabverwock
       assert_equal(cc.name, "#reds p")
     end
 
-    # test "dup css property" do
-    #   c = CSS.new(:id__reds).color "red"
-    #   cc = c.dpName.addChildren("p").color("yellow")
+    test "dup css property" do
+      c = CSS.new(:id__reds).color "red"
+      cc = c.dpName.addChildren("p").color("yellow")
 
-    #   assert_equal(c.str, "#reds {\ncolor: red;\n}")
-    #   assert_equal(cc.str, "#reds p {\ncolor: yellow;\n}")
-    # end
+      assert_equal(c.str, "#reds {\ncolor: red;\n}")
+      assert_equal(cc.str, "p #reds {\ncolor: yellow;\n}")
+    end
 
 
     test "use case id"  do

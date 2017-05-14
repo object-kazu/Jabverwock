@@ -31,7 +31,7 @@ module Jabverwock
       # div.addCss c
 
       #case 3
-      div.css.use(:id).width("100px")
+      # div.css.use(:id).width("100px")
       
       # #case 4
       # c = CSS.new
