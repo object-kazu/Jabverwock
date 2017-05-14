@@ -77,16 +77,12 @@ module Jabverwock
       
     end
 
-    def applyJS
-      
+    def applyJS      
       assembleJS
       startTag = "<script>"
       endTag = "</script>"
       content = @jsResult
-
-      
       @scriptTag << startTag << "\n" << content << endTag << $RET
-      
     end
         
     def self_JsOrders_add_to_self_jsArray

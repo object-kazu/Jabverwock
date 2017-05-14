@@ -1,16 +1,12 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<style>
-			#container {
-				width: 100px;
-			}
-		</style>
-	</head>
 	<body>
-		<div id="container">
-			<div id="animate">
-				My animate will go here
-			</div>
-		</div>
+		<h1 onclick="changeText(this)">Click on this text!</h1>
+		<script>
+			function changeText(id){
+			      id.innerHTML = "Ooops!";
+			}
+		</script>
+		
 	</body>
 </html>

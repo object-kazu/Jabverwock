@@ -65,8 +65,7 @@ module Jabverwock
     def updateSelector(*inits)
       setSelectors inits
       self
-    end
-    
+    end    
   end
 
 

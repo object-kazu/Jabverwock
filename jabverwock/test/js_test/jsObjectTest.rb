@@ -45,7 +45,23 @@ module Jabverwock
     #   p @jso
     # end
 
+    ############## jsFunction ###############
+    test "JsFunction " do
+      @jso.func.define "test", "code is dead;", "name", "age"
+      assert_equal @jso.orders[0], "function test(name, age){
+      code is dead;
+      }"
+    end
+
+    test "JsFunction use symbol" do
+      @jso.func.define :test, "code is dead;", :name, :age
+      assert_equal @jso.orders[0], "function test(name, age){
+      code is dead;
+      }"
+    end
+
     
+    ############## jsDocument ###############
     test "document confirm, correct id setting" do
       @jso.updateSelector :id__koko
       @jso.doc.byID.rec

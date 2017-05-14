@@ -2,12 +2,15 @@ if $FOR_GEM
   require "global/globalDef"
   require "js/jsDocument"
   require "js/jsBase"
+  require "js/jsFunction"
   
   
 else
   require_relative "../global/globalDef" 
   require_relative "./jsDocument"
   require_relative "./jsBase"
+  require_relative "./jsFunction"
+  
 
 end
 
@@ -19,14 +22,20 @@ module Jabverwock
   # this class is JS main
   class JsObject < JsBase
            
-    attr_accessor :doc
+    attr_accessor :doc, :func
     
     def initialize(*inits)
       super inits
-      @doc = JsDocument.new()
+      @doc = JsDocument.new
+      @func = JsFunction.new
+      
       updateSelector inits
     end
+
+    ######## function ###########
     
+    
+    ######## doc ###########
     def updateSelector(*inits)
       setSelectors inits.flatten
       @doc.setSelectors inits.flatten
@@ -38,9 +47,10 @@ module Jabverwock
       @doc.name = name
     end
 
+    ######## orders -> jsArray -> jsResult  ###########
     def orders
       l = []
-      l << @orders << @doc.orders 
+      l << @orders << @doc.orders << @func.orders
       l.flatten
     end
     
