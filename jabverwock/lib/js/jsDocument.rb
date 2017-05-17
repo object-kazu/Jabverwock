@@ -26,13 +26,21 @@ module Jabverwock
       @element = Element.new(self)
     end
 
-    #delegate    
+    ### delegate  ###
     def rec
       recBy @element.ec
     end
 
     def recBy (str)
       @orders << str
+    end    
+
+    def recs
+      recsBy @element.ecs
+    end
+
+    def recsBy (str)
+      str.each{ |s| recBy s }
     end
     
     def selectElement(slect,obj)
@@ -148,12 +156,14 @@ module Jabverwock
     
     # contentを受け取ってecを返す
    attr_writer :content
-   attr_reader :ec
+   attr_reader :ec, :ecs
    
     def initialize(delegate)
       @delegate = delegate
       @content = ""
       @ec = ""
+
+      @ecs = []
     end
 
     def element
@@ -165,11 +175,21 @@ module Jabverwock
     end
     
     def rec
-      if @ec == ""
-        @ec = @content
+      if @ecs.count > 0
+        recs
+        return
       end
+      
+      @ec = @content if @ec == ""
       @delegate.recBy @ec
       @ec = ""
+
+    end
+
+    def recs
+      @delegate.recsBy @ecs
+      @ecs = []
+      
     end
     
     def index(i)
@@ -192,6 +212,37 @@ module Jabverwock
       self
     end
     
+    ### each element ###
+
+    def attribute(str)
+      elementChanging_Equal("attribute",str)
+    end
+
+    def addEventListenerUseCapture(**event_function_hash)
+      
+    end
+
+    
+    # arg ex) :click_ or :click_2 and so on == :click
+    # because addEventListener allow use same event(such as click),
+    # but ruby hash do not allow same key
+    # see jsDocumentTest.rb
+    def addEventListener(**event_function) 
+      s = KString.remove_Js_Cmd_End @content
+      event_function.each do |event, func| 
+        rKey = event.to_s.split("_").first
+        @ecs <<  s.dot("addEventListener") + "(".inDoubleQuot(rKey) + $COMMA.inSingleQuo(func) + ")" + $JS_CMD_END
+    
+      end
+      self
+    end
+    
+    # def addEventListener(event,func) 
+    #     rEvent = event.to_s.split("_").first
+    #     e = "".inDoubleQuot(rEvent) + $COMMA.inDoubleQuot(func)
+    #     elementChanging("addEventListener",e)
+    # end
+    
     def innerHTML(str)
       elementChanging_Equal("innerHTML",str)
     end
@@ -200,10 +251,6 @@ module Jabverwock
       elementChanging_Equal("src",str)
     end
      
-    def attribute(str)
-      elementChanging_Equal("attribute",str)
-    end
-
     def setAttribute(attr,str)
       e = "".inDoubleQuot(attr) + $COMMA.inDoubleQuot(str)      
       elementChanging("setAttribute",e)

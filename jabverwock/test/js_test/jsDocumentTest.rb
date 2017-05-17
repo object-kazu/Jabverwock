@@ -207,8 +207,8 @@ module Jabverwock
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.byID.style("backgroundColor", "red").rec
       @jsd.byID.style("color", "red").rec
-      assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor=\"red\";")
-      assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color=\"red\";")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor='red';")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color='red';")
     end
 
     test "style, rec case 2" do
@@ -216,8 +216,8 @@ module Jabverwock
       a = @jsd.byID
       a.style("backgroundColor", "red").rec
       a.style("color", "red").rec
-      assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor=\"red\";")
-      assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color=\"red\";")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor='red';")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color='red';")
     end
     
     # ### index ###
@@ -251,5 +251,29 @@ module Jabverwock
     end
 
 
+    ### addEventListener #####
+    test "addEventListener case 1" do
+      @jsd.byID.addEventListener(click:"myFunction()").rec
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunction()');"
+            
+    end
+
+    test "addEventListener case 2" do
+      @jsd.byID.addEventListener(click:"ksFunc",onclick:"muFinc()").rec
+      
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'ksFunc');"
+      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"onclick\",'muFinc()');"
+    end
+
+
+    test "addEventListener case same event" do
+      @jsd.byID.addEventListener(click:"ksFunc",click_:"muFinc()").rec
+      
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'ksFunc');"
+      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'muFinc()');"
+    end
+
+
+    
   end
 end
