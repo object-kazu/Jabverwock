@@ -281,8 +281,7 @@ module Jabverwock
     test "addEventListenerUseCapture case same event" do
       @jsd.byID.addEventListenerUseCapture(click:"myFunc", click_:"ksFunc").rec
       assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunc',true);"
-      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'ksFunc',true);"
-      
+      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'ksFunc',true);"      
     end
     
   end
