@@ -218,30 +218,35 @@ module Jabverwock
       elementChanging_Equal("attribute",str)
     end
 
-    def addEventListenerUseCapture(**event_function_hash)
-      
-    end
 
     
     # arg ex) :click_ or :click_2 and so on == :click
     # because addEventListener allow use same event(such as click),
     # but ruby hash do not allow same key
     # see jsDocumentTest.rb
-    def addEventListener(**event_function) 
-      s = KString.remove_Js_Cmd_End @content
-      event_function.each do |event, func| 
-        rKey = event.to_s.split("_").first
-        @ecs <<  s.dot("addEventListener") + "(".inDoubleQuot(rKey) + $COMMA.inSingleQuo(func) + ")" + $JS_CMD_END
-    
-      end
+    def addEventListener(**event_function_hash)
+      addEventListenerBase false, event_function_hash
       self
     end
     
-    # def addEventListener(event,func) 
-    #     rEvent = event.to_s.split("_").first
-    #     e = "".inDoubleQuot(rEvent) + $COMMA.inDoubleQuot(func)
-    #     elementChanging("addEventListener",e)
-    # end
+    def addEventListenerUseCapture(**event_function_hash)
+      addEventListenerBase true, event_function_hash
+      self
+    end
+
+    def addEventListenerBase(ucp, event_function_hash)
+      s = KString.remove_Js_Cmd_End @content
+      event_function_hash.each do |event, func| 
+        rKey = event.to_s.split("_").first
+        @ecs << addEventListenerMain(s, rKey, func, ucp) 
+      end
+    end
+    
+    def addEventListenerMain(content, event, func, useCaption = false)
+      ucp = useCaption ? ",true": ""
+      content.dot("addEventListener") + "(".inDoubleQuot(event) + $COMMA.inSingleQuo(func) + ucp + ")" + $JS_CMD_END
+    end
+    
     
     def innerHTML(str)
       elementChanging_Equal("innerHTML",str)
@@ -256,11 +261,11 @@ module Jabverwock
       elementChanging("setAttribute",e)
     end
     
-    def style (property, val)
-      
+    def style (**property_val)
       s = KString.remove_Js_Cmd_End @content
-    
-      @ec = s.dot("style").dot(property.to_s) +  $EQUAL.inSingleQuo(val) + $JS_CMD_END
+      property_val.each do |property, val| 
+        @ecs << s.dot("style").dot(property.to_s) +  $EQUAL.inSingleQuo(val) + $JS_CMD_END
+      end
       self
     end
 

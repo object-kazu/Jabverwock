@@ -197,16 +197,16 @@ module Jabverwock
       assert_equal(@jsd.orders[1], "document.getElementById('koko').setAttribute(\"btn\",\"blue\");")
     end
 
-    test "style, no rec" do
+    test "style, no rec ==> error!" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.style("backgroundColor", "red")
+      @jsd.byID.style(backgroundColor:"red")
       assert_equal(@jsd.orders[0], nil)
     end
     
     test "style, rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.style("backgroundColor", "red").rec
-      @jsd.byID.style("color", "red").rec
+      @jsd.byID.style(backgroundColor:"red").rec
+      @jsd.byID.style(color:"red").rec
       assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor='red';")
       assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color='red';")
     end
@@ -214,8 +214,7 @@ module Jabverwock
     test "style, rec case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID
-      a.style("backgroundColor", "red").rec
-      a.style("color", "red").rec
+      a.style(backgroundColor:"red",color:"red").rec
       assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor='red';")
       assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color='red';")
     end
@@ -273,7 +272,18 @@ module Jabverwock
       assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'muFinc()');"
     end
 
+    test "addEventListenerUseCapture case 1" do
+      @jsd.byID.addEventListenerUseCapture(click:"myFunc").rec
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunc',true);"
+      
+    end
 
+    test "addEventListenerUseCapture case same event" do
+      @jsd.byID.addEventListenerUseCapture(click:"myFunc", click_:"ksFunc").rec
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunc',true);"
+      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'ksFunc',true);"
+      
+    end
     
   end
 end
