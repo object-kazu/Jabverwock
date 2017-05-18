@@ -14,14 +14,16 @@ module Jabverwock
       body = BODY.new
       
       ### JSFunction ####
-      h1 = HEADING.new.attr(:onclick,"changeText(this)").contentIs "Click on this text!"
-      h1.js.func.define :changeText,:id, :name,"id.innerHTML = \"Ooops!\";"
-
-      ### onchange attr ###
-      input = INPUT.new.attr(:type__text, :id__frame, :onchange, "upperCase()")
+      h1 = HEADING.new.attr(:id__myBtn).contentIs "Click on this text!"
+      func = "function(){alert(\"hello world\");}"
+      h1.js.doc.byID.addEventListener(click:"#{func}")
+      
+      mf = "myFunc"
+      h1.js.doc.byID.addEventListener(click_:"#{mf}")
+      h1.js.func.define mf.to_sym,"#{func}"
       
       body.addChild h1
-      body.addChild input
+
       body
     end
 

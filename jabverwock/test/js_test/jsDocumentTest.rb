@@ -100,7 +100,7 @@ module Jabverwock
     end
     
     
-    # # # # ### add and delete element ###
+    # # # # # ### add and delete element ###
     test "createElement" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.createElement("koko").rec
@@ -123,90 +123,99 @@ module Jabverwock
     end
     
     
-    test "document write ,rec" do
+    test "document write, do not need rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.write("koko").rec 
+      @jsd.write("koko")
       assert_equal(@jsd.orders[0], "document.write('koko');")
     end
     
-    # # ### change element ###
+    # # # ### change element ###
     
     test "innerHTML, no rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.innerHTML "aaa"
-      assert_equal(@jsd.orders[0], nil)
-    end
-
-    
-    test "innerHTML, rec" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.innerHTML("aaa").rec
       assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
     end
-    
+
+        
     test "innerHTML, rec case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID
-      a.innerHTML("aaa").rec
+      a.innerHTML("aaa")
       assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
     end
      
     test "innerHTML, rec case 3" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID
-      a.innerHTML("aaa").rec
-      a.innerHTML("bbb").rec
+      a.innerHTML("aaa")
+      a.innerHTML("bbb")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
       assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML=\"bbb\";")
     end
     
     test "innerHTML, rec case 4" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID
-      a.innerHTML("aaa").rec
-      a.innerHTML("bbb").rec
-      a.innerHTML("ccc").rec
-      assert_equal(@jsd.orders[2], "document.getElementById('koko').innerHTML=\"ccc\";")
+      a = @jsd.byID.innerHTML("aaa")      
+      
+      # if you want to write a.innerHTML "bbb",
+      # write following code
+      # a = @jsd.byID
+      # a.innerHTML("aaa")
+      # a.innerHTML("bbb")
+
+      assert_raise{
+        a.innerHTML "bbb"
+        
+      }
+
     end
 
         
-    test "attribute, no rec" do
+    test "attribute case 1 (rec do not call)" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.byID.attribute "aaa"
-      assert_equal(@jsd.orders[0], nil)
-    end
-    
-    test "attribute, rec" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.attribute "aaa"
-      @jsd.rec
       assert_equal(@jsd.orders[0], "document.getElementById('koko').attribute=\"aaa\";")
     end
-
-    test "setAttribute, no rec" do
+    
+    test "attribute, call rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.setAttribute("btn","red")
-      assert_equal(@jsd.orders[0], nil)
+      assert_raise {
+        @jsd.byID.attribute ("aaa").rec
+      }
+    end
+
+    # ### setAttribute ###
+    
+    test "setAttribute case 1" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.setAttribute(btn:"red")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').setAttribute(\"btn\",\"red\");")
 
     end
     
-    test "setAttribute, rec" do
+    test "setAttribute, case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.setAttribute("btn","red").rec
-      @jsd.byID.setAttribute("btn","blue").rec
+      @jsd.byID.setAttribute(btn:"red")
+      @jsd.byID.setAttribute(btn:"blue")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').setAttribute(\"btn\",\"red\");")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').setAttribute(\"btn\",\"blue\");")
+    end
+    
+    test "setAttribute, rec case 3" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.byID.setAttribute(btn:"red", btn_:"blue")
       assert_equal(@jsd.orders[0], "document.getElementById('koko').setAttribute(\"btn\",\"red\");")
       assert_equal(@jsd.orders[1], "document.getElementById('koko').setAttribute(\"btn\",\"blue\");")
     end
 
-    test "style, no rec ==> error!" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.style(backgroundColor:"red")
-      assert_equal(@jsd.orders[0], nil)
-    end
+    
+    # ### style ####
     
     test "style, rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.style(backgroundColor:"red").rec
-      @jsd.byID.style(color:"red").rec
+      @jsd.byID.style(backgroundColor:"red")
+      @jsd.byID.style(color:"red")
       assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor='red';")
       assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color='red';")
     end
@@ -214,7 +223,7 @@ module Jabverwock
     test "style, rec case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID
-      a.style(backgroundColor:"red",color:"red").rec
+      a.style(backgroundColor:"red",color:"red")
       assert_equal(@jsd.orders[0], "document.getElementById('koko').style.backgroundColor='red';")
       assert_equal(@jsd.orders[1], "document.getElementById('koko').style.color='red';")
     end
@@ -222,15 +231,15 @@ module Jabverwock
     # ### index ###
     test "index" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.index(0).innerHTML("aaa").rec
+      @jsd.byID.index(0).innerHTML("aaa")
       assert_equal(@jsd.orders[0],"document.getElementById('koko')[0].innerHTML=\"aaa\";")
 
     end
     
     test "index case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.index(0).innerHTML("aaa").rec
-      @jsd.byID.index(1).innerHTML("bbb").rec
+      @jsd.byID.index(0).innerHTML("aaa")
+      @jsd.byID.index(1).innerHTML("bbb")
       assert_equal(@jsd.orders[1],"document.getElementById('koko')[1].innerHTML=\"bbb\";")
 
     end
@@ -250,36 +259,37 @@ module Jabverwock
     end
 
 
-    ### addEventListener #####
+    # ### addEventListener #####
     test "addEventListener case 1" do
-      @jsd.byID.addEventListener(click:"myFunction()").rec
+      @jsd.byID.addEventListener(click:"myFunction()")
       assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunction()');"
             
     end
 
     test "addEventListener case 2" do
-      @jsd.byID.addEventListener(click:"ksFunc",onclick:"muFinc()").rec
+      @jsd.byID.addEventListener(click:"ksFunc",onclick:"muFinc()")
       
       assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'ksFunc');"
       assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"onclick\",'muFinc()');"
     end
 
-
+    
+    
     test "addEventListener case same event" do
-      @jsd.byID.addEventListener(click:"ksFunc",click_:"muFinc()").rec
+      @jsd.byID.addEventListener(click:"ksFunc",click_:"muFinc()")
       
       assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'ksFunc');"
       assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'muFinc()');"
     end
 
     test "addEventListenerUseCapture case 1" do
-      @jsd.byID.addEventListenerUseCapture(click:"myFunc").rec
+      @jsd.byID.addEventListenerUseCapture(click:"myFunc")
       assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunc',true);"
       
     end
 
     test "addEventListenerUseCapture case same event" do
-      @jsd.byID.addEventListenerUseCapture(click:"myFunc", click_:"ksFunc").rec
+      @jsd.byID.addEventListenerUseCapture(click:"myFunc", click_:"ksFunc")
       assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunc',true);"
       assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'ksFunc',true);"      
     end

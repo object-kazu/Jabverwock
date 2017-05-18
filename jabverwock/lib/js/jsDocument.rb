@@ -50,14 +50,14 @@ module Jabverwock
     end
 
     def modifyElement(order, elem)
-      updateSelector(@id,@cls,@name)
+      updateSelectors
       cp =  @obj.dot(order).inParenth(elem) + $JS_CMD_END
       @element.content = cp
       @element
     end
 
     def treatElement (order,elem)
-      updateSelector(@id,@cls,@name)
+      updateSelectors
       cp = @obj.dot(order) + "(" + "#{elem}" + ")"  + $JS_CMD_END
       @element.content = cp
       @element
@@ -80,35 +80,38 @@ module Jabverwock
       treatElement("replaceChild",child)
     end
 
+    
+    # write function include rec, so do not allow to chain other method
+    # like: createElement.innerHTML....
     def write(str)
-      modifyElement("write", str)
+      modifyElement("write", str).rec
     end    
     
 
 
     ### find element ###
     def byID
-      updateSelector(@id,@cls,@name)
+      updateSelectors
       selectElement("getElementById", @id)
     end
     
     def byClassName
-      updateSelector(@id,@cls,@name)
+      updateSelectors
       selectElement("getElementByClassName",@cls)
     end
 
     def byTagName
-      updateSelector(@id,@cls,@name)
+      updateSelectors
       selectElement("getElementByTagName", @name)
     end
 
     def querySelectorAll
-      updateSelector(@id,@cls,@name)
+      updateSelectors
       selectElement("querySelectorAll",@query)
     end
     
     def querySelectorAllBy(que)
-      updateSelector(@id,@cls,@name)
+      updateSelectors
       @query = que
       querySelectorAll
     end
@@ -146,7 +149,12 @@ module Jabverwock
     # document.strictErrorChecking	Returns if error checking is enforced	3
     # document.title	Returns the <title> element	1
     # document.URL	Returns the complete URL of the document
-    
+
+
+    private
+    def updateSelectors
+      updateSelector(@id,@cls,@name)      
+    end
     
   end
 
@@ -185,12 +193,6 @@ module Jabverwock
       @ec = ""
 
     end
-
-    def recs
-      @delegate.recsBy @ecs
-      @ecs = []
-      
-    end
     
     def index(i)
       s = KString.remove_Js_Cmd_End @content
@@ -199,46 +201,76 @@ module Jabverwock
       self
     end
     
-    ### change element ###
-    def elementChanging_Equal (act,str)
-      s = KString.remove_Js_Cmd_End @content
-      @ec = s.dot(act) + $EQUAL.inDoubleQuot(str) + $JS_CMD_END
-      self
-    end
-    
-    def elementChanging (act,str)
-      s = KString.remove_Js_Cmd_End @content
-      @ec = s.dot(act) + "(" + str + ")" + $JS_CMD_END
-      self
-    end
-    
     ### each element ###
 
     def attribute(str)
       elementChanging_Equal("attribute",str)
+      rec
     end
 
-
-    
     # arg ex) :click_ or :click_2 and so on == :click
     # because addEventListener allow use same event(such as click),
     # but ruby hash do not allow same key
     # see jsDocumentTest.rb
     def addEventListener(**event_function_hash)
       addEventListenerBase false, event_function_hash
-      self
+      rec
     end
     
     def addEventListenerUseCapture(**event_function_hash)
       addEventListenerBase true, event_function_hash
-      self
+      rec
     end
 
+        
+    def innerHTML(str)
+      elementChanging_Equal("innerHTML",str)
+      rec
+    end
+
+
+    def setAttribute(**attrStr)
+      attrStr.each do |att, str|
+        sKey = spliteSympbolByUnderBar att 
+        e = "".inDoubleQuot(sKey) + $COMMA.inDoubleQuot(str)
+        @ecs << contentRemoveJSEnd.dot("setAttribute") + "(" + e + ")" + $JS_CMD_END
+      end
+      rec
+    end
+    
+    def style (**property_val)
+      property_val.each do |property, val|
+        @ecs << contentRemoveJSEnd.dot("style").dot(property.to_s) +  $EQUAL.inSingleQuo(val) + $JS_CMD_END
+      end
+      rec
+    end
+
+
+    ### private methods ###
+
+    private
+    def recs
+      @delegate.recsBy @ecs
+      @ecs = []
+      
+    end
+    
+    def src (str)
+      elementChanging_Equal("src",str)
+    end
+
+    def spliteSympbolByUnderBar(sym)
+      sym.to_s.split("_").first
+    end
+
+    def contentRemoveJSEnd
+      KString.remove_Js_Cmd_End @content
+    end
+    
     def addEventListenerBase(ucp, event_function_hash)
-      s = KString.remove_Js_Cmd_End @content
       event_function_hash.each do |event, func| 
-        rKey = event.to_s.split("_").first
-        @ecs << addEventListenerMain(s, rKey, func, ucp) 
+        rKey = spliteSympbolByUnderBar event
+        @ecs << addEventListenerMain(contentRemoveJSEnd, rKey, func, ucp) 
       end
     end
     
@@ -247,29 +279,17 @@ module Jabverwock
       content.dot("addEventListener") + "(".inDoubleQuot(event) + $COMMA.inSingleQuo(func) + ucp + ")" + $JS_CMD_END
     end
     
-    
-    def innerHTML(str)
-      elementChanging_Equal("innerHTML",str)
-    end
-
-    def src (str)
-      elementChanging_Equal("src",str)
-    end
-     
-    def setAttribute(attr,str)
-      e = "".inDoubleQuot(attr) + $COMMA.inDoubleQuot(str)      
-      elementChanging("setAttribute",e)
-    end
-    
-    def style (**property_val)
+    ### change element ###
+    def elementChanging_Equal (act,str)
       s = KString.remove_Js_Cmd_End @content
-      property_val.each do |property, val| 
-        @ecs << s.dot("style").dot(property.to_s) +  $EQUAL.inSingleQuo(val) + $JS_CMD_END
-      end
+      @ec = contentRemoveJSEnd.dot(act) + $EQUAL.inDoubleQuot(str) + $JS_CMD_END
       self
     end
-
     
+    def elementChanging (act,str)
+      @ec = contentRemoveJSEnd.dot(act) + "(" + str + ")" + $JS_CMD_END
+      self
+    end
     
   end
 

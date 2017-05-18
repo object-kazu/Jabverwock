@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<h1 onclick="changeText(this)">Click on this text!</h1>
-		<input type="text" id="frame" onchange="upperCase()">
+		<h1 id="myBtn">Click on this text!</h1>
 		<script>
-			function changeText(id, name){
-			      id.innerHTML = "Ooops!";
+			document.getElementById('myBtn').addEventListener("click",'function(){alert("hello world");}');
+			document.getElementById('myBtn').addEventListener("click",'myFunc');
+			function myFunc(){
+			      function(){alert("hello world");}
 			}
 		</script>
 		
