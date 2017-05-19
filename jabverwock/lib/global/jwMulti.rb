@@ -68,7 +68,7 @@ module Jabverwock
     end
     
     
-    def addChildren(children)
+    def addChildren(*children)
       children.each do |c| 
         addChild c
       end
@@ -84,7 +84,7 @@ module Jabverwock
       @childStringArray << childString
     end
       
-    def addChildStrings(children)
+    def addChildStrings(*children)
       children.each do |c|
         addChildString c
       end

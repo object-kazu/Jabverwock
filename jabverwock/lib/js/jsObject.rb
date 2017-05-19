@@ -3,14 +3,14 @@ if $FOR_GEM
   require "js/jsDocument"
   require "js/jsBase"
   require "js/jsFunction"
-  
+  require "js/jsVar"
   
 else
   require_relative "../global/globalDef" 
   require_relative "./jsDocument"
   require_relative "./jsBase"
   require_relative "./jsFunction"
-  
+  require_relative "./jsVar"
 
 end
 
@@ -18,6 +18,7 @@ end
 module Jabverwock
   using StringExtension
   using ArrayExtension
+  using SymbolExtension
   
   # this class is JS main
   class JsObject < JsBase

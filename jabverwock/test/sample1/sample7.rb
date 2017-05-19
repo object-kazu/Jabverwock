@@ -29,7 +29,6 @@ module Jabverwock
     cc2 = P.new.contentIs "this" + base
     
     h = HR.new
-
     [cc, h, cc2]
     
   end
@@ -41,7 +40,10 @@ module Jabverwock
     arr = self.pContent
     arr.unshift c
     
-    body.addChildren arr
+    arr.each do |a|
+      body.addChild a    
+    end
+
     body.tgStr
     
   end
@@ -63,7 +65,7 @@ module Jabverwock
   #   body.tgStr
   # end
   
-  html.addChildStrings [header,bodies]
+  html.addChildStrings header,bodies
   
   folder = "sample1"
   name = "sample7"

@@ -28,8 +28,7 @@ module Jabverwock
   # html.addChildString header
   # html.addChildString bodies
   
-  html.addChildStrings [header,bodies]
-  
+  html.addChildStrings header,bodies  
   folder = "sample1"
   name = "sample3"
   html.testPress(folder, name)

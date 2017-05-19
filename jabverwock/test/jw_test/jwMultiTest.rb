@@ -38,8 +38,7 @@ module Jabverwock
     # test "confirm path" do
     #    p @t
     # end
-    
-    
+        
     test "addChildString, without RET" do
       @t.childStringArray = ["a","b"]
       @t.addChildString "c"
@@ -84,7 +83,6 @@ module Jabverwock
       assert_equal(b.pressDefault, "<body>\ndd\n</body>")      
     end
     
-
     test "body addChildStrings" do
       b = BODY.new
       bc = "dd"
@@ -92,8 +90,7 @@ module Jabverwock
       b.addChildString bc
       b.addChildString bc
       
-      assert_equal(b.pressDefault, "<body>\ndd\ndd\ndd\n</body>")      
-      
+      assert_equal(b.pressDefault, "<body>\ndd\ndd\ndd\n</body>")            
     end
 
     test "head confirm, because script tag add after treatment" do
@@ -104,21 +101,17 @@ module Jabverwock
     test "addchild, multi class check, pass" do
       a = HEAD.new
       @t.addChild a
-      p @t.pressDefault
+    
       assert_equal(@t.pressDefault, "<jwmulti>\n<head>\n</head>\n</jwmulti>")
     end
     
     test "addchildren" do
       b = BODY.new
       c = HEAD.new
-      bc = [b,c]
-      @t.addChildren bc
+      @t.addChildren b, c
       
-      p @t.pressDefault
-      assert_equal(@t.pressDefault,"<jwmulti>\n<body>\n</body>\n<head>\n</head>\n</jwmulti>")
-      
+      assert_equal(@t.pressDefault,"<jwmulti>\n<body>\n</body>\n<head>\n</head>\n</jwmulti>")  
     end
-    
     
   end
 end

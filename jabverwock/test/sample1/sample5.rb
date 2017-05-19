@@ -23,11 +23,11 @@ module Jabverwock
     c = HEADING.new.contentIs "Hello #{$SA}! again"
     cc = P.new.contentIs "this is test #{$BR} for you"
     
-    body.addChildren [c,cc]
+    body.addChildren c,cc
     body.tgStr
   end
   
-  html.addChildStrings [header,bodies]
+  html.addChildStrings header,bodies
   
   folder = "sample1"
   name = "sample5"
