@@ -247,20 +247,23 @@ module Jabverwock
 
 
     ### node ###
-    def node(kind,type)
+    def node(kind,*type)
+      
       k = kind.to_s
+      t = type.empty? ? "" : type.first.to_s
+      
       ans = contentRemoveJSEnd.dot(k)
-      ans << "".dot(typeName(type)) unless type.to_s.empty?
+      ans << "".dot(typeName(t)) unless t.empty?
       @ecs << ans + $JS_CMD_END
       rec            
     end
 
-    def parentNode(type)
-      node :parentNode, type
+    def parentNode(*type)
+      node :parentNode, *type
     end
     
-    def childNodes(position, type)
-      node "childNodes[#{position}]",type
+    def childNodes(position, *type)
+      node "childNodes[#{position}]",*type
     end
 
     def nextSibling
@@ -272,23 +275,14 @@ module Jabverwock
     end
     
     
-    def firstChild(type)
-      node :firstChild, type
+    def firstChild(*type)
+      node :firstChild, *type
     end
 
-    def lastChild(type)
-      node :lastChild, type
+    def lastChild(*type)
+      node :lastChild, *type
     end
 
-    def typeName(t)
-      v = "node"
-      tArr = %w(Value Type Name)
-      tArr.each do |a|
-        if a.downcase == t.to_s
-          return v << a
-        end
-      end
-    end
 
     ### private methods ###
 
@@ -333,6 +327,17 @@ module Jabverwock
       @ec = contentRemoveJSEnd.dot(act) + "(" + str + ")" + $JS_CMD_END
       self
     end
+
+    def typeName(t)
+      v = "node"
+      tArr = %w(Value Type Name)
+      tArr.each do |a|
+        if a.downcase == t.to_s
+          return v << a
+        end
+      end
+    end
+
     
   end
 

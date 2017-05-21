@@ -308,17 +308,47 @@ module Jabverwock
       @jsd.byID.firstChild(:name)
       assert_equal @jsd.orders.first, "document.getElementById('').firstChild.nodeName;"  
     end
+    
+    test "first node no type" do
+      
+      @jsd.byID.firstChild ""
+      assert_equal @jsd.orders.first, "document.getElementById('').firstChild;"
+      
+    end
+    
+    test "first node ommit type" do
+      
+      @jsd.byID.firstChild
+      assert_equal @jsd.orders.first, "document.getElementById('').firstChild;"
+      
+    end
 
+    
+    
     test "last node case symbol"do
       @jsd.byID.lastChild :name
       assert_equal @jsd.orders.first, "document.getElementById('').lastChild.nodeName;"
     end
 
+
+    test "last node case ommit type" do
+      @jsd.byID.lastChild
+      assert_equal @jsd.orders.first, "document.getElementById('').lastChild;"
+    end
+
+    
+    
     test "parent node case symbol" do
       @jsd.byID.parentNode :type
       assert_equal @jsd.orders.first, "document.getElementById('').parentNode.nodeType;"
     end
 
+    test "parentNode ommit type" do
+      @jsd.byID.parentNode
+      assert_equal @jsd.orders.first, "document.getElementById('').parentNode;"
+    end
+    
+    
     test "nextSibling" do
       @jsd.byID.nextSibling
       assert_equal @jsd.orders.first, "document.getElementById('').nextSibling;"
@@ -334,6 +364,12 @@ module Jabverwock
       @jsd.byID.childNodes(0,:type)
       assert_equal @jsd.orders.first, "document.getElementById('').childNodes[0].nodeType;"
     end
+
+    test "childNodes case ommit type" do
+      @jsd.byID.childNodes(1)
+      assert_equal @jsd.orders.first, "document.getElementById('').childNodes[1];"
+    end
+
     
   end
 end
