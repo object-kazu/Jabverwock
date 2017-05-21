@@ -293,6 +293,47 @@ module Jabverwock
       assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunc',true);"
       assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'ksFunc',true);"      
     end
+
+
+    ### node ###
+    test "first node" do
+      
+      @jsd.byID.firstChild("type")
+      assert_equal @jsd.orders.first, "document.getElementById('').firstChild.nodeType;"
+      
+    end
+    
+    test "first node case symbol" do
+      
+      @jsd.byID.firstChild(:name)
+      assert_equal @jsd.orders.first, "document.getElementById('').firstChild.nodeName;"  
+    end
+
+    test "last node case symbol"do
+      @jsd.byID.lastChild :name
+      assert_equal @jsd.orders.first, "document.getElementById('').lastChild.nodeName;"
+    end
+
+    test "parent node case symbol" do
+      @jsd.byID.parentNode :type
+      assert_equal @jsd.orders.first, "document.getElementById('').parentNode.nodeType;"
+    end
+
+    test "nextSibling" do
+      @jsd.byID.nextSibling
+      assert_equal @jsd.orders.first, "document.getElementById('').nextSibling;"
+    end
+
+    
+    test "previousSibling" do
+      @jsd.byID.previousSibling
+      assert_equal @jsd.orders.first, "document.getElementById('').previousSibling;"
+    end
+    
+    test "childNodes case 1" do
+      @jsd.byID.childNodes(0,:type)
+      assert_equal @jsd.orders.first, "document.getElementById('').childNodes[0].nodeType;"
+    end
     
   end
 end

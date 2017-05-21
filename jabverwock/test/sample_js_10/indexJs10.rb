@@ -8,18 +8,18 @@ module Jabverwock
 
   class << self
     
-        
-    
     def bodier
       body = BODY.new
       
       ### JSFunction ####
       h1 = HEADING.new.attr(:id__id01).contentIs "My First Page"
       title = TITLE.new.attr(:id__demo).contentIs "DOM Tutorial"
+      tf = title.js.doc.byID.element
+      
       pp = P.new.attr(:id__id02)
       
-      body.addChildren [h1,title,pp] 
-
+      body.addChildren h1,title,pp
+      body.js.var.is(:myTitle,tf).is(:adress,"aFunc")
       body
     end
 

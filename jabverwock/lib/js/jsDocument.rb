@@ -246,13 +246,56 @@ module Jabverwock
     end
 
 
+    ### node ###
+    def node(kind,type)
+      k = kind.to_s
+      ans = contentRemoveJSEnd.dot(k)
+      ans << "".dot(typeName(type)) unless type.to_s.empty?
+      @ecs << ans + $JS_CMD_END
+      rec            
+    end
+
+    def parentNode(type)
+      node :parentNode, type
+    end
+    
+    def childNodes(position, type)
+      node "childNodes[#{position}]",type
+    end
+
+    def nextSibling
+      node :nextSibling,  ""
+    end
+
+    def previousSibling
+      node :previousSibling,  ""
+    end
+    
+    
+    def firstChild(type)
+      node :firstChild, type
+    end
+
+    def lastChild(type)
+      node :lastChild, type
+    end
+
+    def typeName(t)
+      v = "node"
+      tArr = %w(Value Type Name)
+      tArr.each do |a|
+        if a.downcase == t.to_s
+          return v << a
+        end
+      end
+    end
+
     ### private methods ###
 
     private
     def recs
       @delegate.recsBy @ecs
-      @ecs = []
-      
+      @ecs = []      
     end
     
     def src (str)

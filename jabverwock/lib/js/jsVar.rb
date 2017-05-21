@@ -22,12 +22,13 @@ module Jabverwock
     
     def initialize(*inits)
       super inits
-      @obj = "function"
+      @obj = "var"
     end
 
-    def var(name,val)
-      v = "var #{name} = #{val}"
+    def is(name,val)
+      v = "#{@obj} #{name} = #{val}"
       @orders << v
+      self
     end
 
     

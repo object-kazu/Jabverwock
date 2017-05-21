@@ -12,6 +12,7 @@ else
   require_relative "./jsFunction"
   require_relative "./jsVar"
 
+
 end
 
 
@@ -23,12 +24,13 @@ module Jabverwock
   # this class is JS main
   class JsObject < JsBase
            
-    attr_accessor :doc, :func
+    attr_accessor :doc, :func, :var
     
     def initialize(*inits)
       super inits
       @doc = JsDocument.new
       @func = JsFunction.new
+      @var = JsVar.new
       
       updateSelector inits
     end
@@ -51,7 +53,7 @@ module Jabverwock
     ######## orders -> jsArray -> jsResult  ###########
     def orders
       l = []
-      l << @orders << @doc.orders << @func.orders
+      l << @orders << @doc.orders << @func.orders << @var.orders
       l.flatten
     end
     
