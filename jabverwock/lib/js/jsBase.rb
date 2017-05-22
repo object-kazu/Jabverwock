@@ -35,6 +35,10 @@ module Jabverwock
       @orders.first
     end
 
+    def recordLast
+      @orders.last
+    end
+    
     def records
       @orders
     end

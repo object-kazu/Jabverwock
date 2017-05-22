@@ -184,20 +184,27 @@ module Jabverwock
       @delegate.orders.first
     end
 
+    def recordLast
+      @delegate.orders.last
+    end
+
     def records
       @delegate.orders
     end
 
     def is_var(name)
       v = JsVar.new
-      @ecs << v.is( name, self.record).record
+      @ecs << v.is( name, self.recordLast).record
+      self.records.pop
       rec
       # if is_var was call, self.record[0] was use at jsVar. For example,
       # self.record[0] = "document.getElementById('');"
       # then,is_var(:test) call and use self.record[0] value and make new sentence, like
       # self.record[1] = "var test = document.getElementById('');"
       # so self.record[0] is no needs after is_var call that remove self.record[0]
-      self.records.shift
+      
+      p ">>> #{self.records}"
+      
       self
     end
     

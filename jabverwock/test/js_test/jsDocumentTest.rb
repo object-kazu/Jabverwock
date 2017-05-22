@@ -400,6 +400,25 @@ module Jabverwock
       assert_equal @jsd.record, "var test = document.getElementById('').childNodes[1];"
     end
 
+
+    test "is_var childNodes case ommit type case 3" do
+      @jsd.byID.childNodes(0)
+      @jsd.byID.childNodes(1).is_var(:test)
+      
+      # p @jsd.records
+      assert_equal @jsd.records[1], "var test = document.getElementById('').childNodes[1];"
+    end
+
+    test "is_var childNodes case ommit type case 4" do
+      
+      @jsd.byID.childNodes(0).is_var(:sample)
+      @jsd.byID.childNodes(1).is_var(:test)
+      
+      # p @jsd.records
+      assert_equal @jsd.records[0], "var sample = document.getElementById('').childNodes[0];"
+      assert_equal @jsd.records[1], "var test = document.getElementById('').childNodes[1];"
+      
+    end
     
   end
 end
