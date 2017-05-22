@@ -383,20 +383,20 @@ module Jabverwock
     end
 
 
-    ### inVar ###
-    test "inVar first test" do
-      @jsd.byID.firstChild(:name).inVar(:test)
+    ### is_var ###
+    test "is_var first test" do
+      @jsd.byID.firstChild(:name).is_var(:test)
       # p @jsd.records
       assert_equal @jsd.record, "var test = document.getElementById('').firstChild.nodeName;"
     end
 
-    test "inVar childNodes case ommit type" do
-      @jsd.byID.childNodes(1).inVar(:test)
+    test "is_var childNodes case ommit type" do
+      @jsd.byID.childNodes(1).is_var(:test)
       assert_equal @jsd.orders.first, "var test = document.getElementById('').childNodes[1];"
     end
     
-    test "inVar childNodes case ommit type case 2" do
-      @jsd.byID.childNodes(1).inVar(:test)
+    test "is_var childNodes case ommit type case 2" do
+      @jsd.byID.childNodes(1).is_var(:test)
       assert_equal @jsd.record, "var test = document.getElementById('').childNodes[1];"
     end
 

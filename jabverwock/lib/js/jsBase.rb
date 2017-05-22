@@ -39,8 +39,6 @@ module Jabverwock
       @orders
     end
 
-    
-    
     def setSelectors(inits)
       inits.each do |s|        
         setSelector KSUtil.strinrgConvertSymbole s

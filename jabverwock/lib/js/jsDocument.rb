@@ -188,15 +188,15 @@ module Jabverwock
       @delegate.orders
     end
 
-    def inVar(name)
+    def is_var(name)
       v = JsVar.new
       @ecs << v.is( name, self.record).record
       rec
-      # if inVar was call, self.record[0] was use at jsVar. For example,
+      # if is_var was call, self.record[0] was use at jsVar. For example,
       # self.record[0] = "document.getElementById('');"
-      # then,inVar(:test) call and use self.record[0] value and make new sentence, like
+      # then,is_var(:test) call and use self.record[0] value and make new sentence, like
       # self.record[1] = "var test = document.getElementById('');"
-      # so self.record[0] is no needs after inVar call that remove self.record[0]
+      # so self.record[0] is no needs after is_var call that remove self.record[0]
       self.records.shift
       self
     end
