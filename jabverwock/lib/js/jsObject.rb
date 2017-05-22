@@ -35,6 +35,7 @@ module Jabverwock
       updateSelector inits
     end
 
+    
     ######## function ###########
     
     

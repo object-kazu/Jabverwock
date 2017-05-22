@@ -3,10 +3,12 @@ if $FOR_GEM
   
   require "global/globalDef"
   require "js/jsBase"
+  require "js/jsVar"
   
 else
   require_relative "../global/globalDef" 
   require_relative "./jsBase"
+  require_relative "./jsVar"
   
 end
 
@@ -44,6 +46,7 @@ module Jabverwock
     end
     
     def selectElement(slect,obj)
+      updateSelectors
       cp =  @obj.dot(slect).inParenth(obj) + $JS_CMD_END
       @element.content = cp
       @element
@@ -91,7 +94,6 @@ module Jabverwock
 
     ### find element ###
     def byID
-      updateSelectors
       selectElement("getElementById", @id)
     end
     
@@ -118,10 +120,10 @@ module Jabverwock
 
     ### evant handler ###
     #    document.getElementById(id).onclick = function(){code}
-    def onclick (code)
-      #under constuct
-      p "#{code}"
-    end
+    # def onclick (code)
+    #   #under constuct
+    #   p "#{code}"
+    # end
 
     ### Finding HTML Objects ###
     # document.anchors	Returns all <a> elements that have a name attribute	1
@@ -178,6 +180,27 @@ module Jabverwock
       @content
     end
 
+    def record
+      @delegate.orders.first
+    end
+
+    def records
+      @delegate.orders
+    end
+
+    def inVar(name)
+      v = JsVar.new
+      @ecs << v.is( name, self.record).record
+      rec
+      # if inVar was call, self.record[0] was use at jsVar. For example,
+      # self.record[0] = "document.getElementById('');"
+      # then,inVar(:test) call and use self.record[0] value and make new sentence, like
+      # self.record[1] = "var test = document.getElementById('');"
+      # so self.record[0] is no needs after inVar call that remove self.record[0]
+      self.records.shift
+      self
+    end
+    
     def export
       @ec
     end
@@ -245,7 +268,6 @@ module Jabverwock
       rec
     end
 
-
     ### node ###
     def node(kind,*type)
       
@@ -255,7 +277,8 @@ module Jabverwock
       ans = contentRemoveJSEnd.dot(k)
       ans << "".dot(typeName(t)) unless t.empty?
       @ecs << ans + $JS_CMD_END
-      rec            
+      rec
+      self
     end
 
     def parentNode(*type)

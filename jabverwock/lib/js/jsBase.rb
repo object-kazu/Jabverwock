@@ -31,6 +31,16 @@ module Jabverwock
       @orders << str
     end
     
+    def record
+      @orders.first
+    end
+
+    def records
+      @orders
+    end
+
+    
+    
     def setSelectors(inits)
       inits.each do |s|        
         setSelector KSUtil.strinrgConvertSymbole s

@@ -302,6 +302,13 @@ module Jabverwock
       assert_equal @jsd.orders.first, "document.getElementById('').firstChild.nodeType;"
       
     end
+
+    test "first node value" do
+      v = @jsd.byID.firstChild("type").record
+      assert_equal v, "document.getElementById('').firstChild.nodeType;"
+      
+    end
+
     
     test "first node case symbol" do
       
@@ -328,6 +335,11 @@ module Jabverwock
     test "last node case symbol"do
       @jsd.byID.lastChild :name
       assert_equal @jsd.orders.first, "document.getElementById('').lastChild.nodeName;"
+    end
+
+    test "last node case symbol value"do
+      v = @jsd.byID.lastChild(:name).record
+      assert_equal v, "document.getElementById('').lastChild.nodeName;"
     end
 
 
@@ -368,6 +380,24 @@ module Jabverwock
     test "childNodes case ommit type" do
       @jsd.byID.childNodes(1)
       assert_equal @jsd.orders.first, "document.getElementById('').childNodes[1];"
+    end
+
+
+    ### inVar ###
+    test "inVar first test" do
+      @jsd.byID.firstChild(:name).inVar(:test)
+      # p @jsd.records
+      assert_equal @jsd.record, "var test = document.getElementById('').firstChild.nodeName;"
+    end
+
+    test "inVar childNodes case ommit type" do
+      @jsd.byID.childNodes(1).inVar(:test)
+      assert_equal @jsd.orders.first, "var test = document.getElementById('').childNodes[1];"
+    end
+    
+    test "inVar childNodes case ommit type case 2" do
+      @jsd.byID.childNodes(1).inVar(:test)
+      assert_equal @jsd.record, "var test = document.getElementById('').childNodes[1];"
     end
 
     

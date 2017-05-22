@@ -53,7 +53,8 @@ module Jabverwock
     # end
 
     test "jsVar case 1" do
-      koko!
+      v = JsVar.new.is :n, "koko"
+      assert_equal v.record, "var n = koko"
     end
 
   end

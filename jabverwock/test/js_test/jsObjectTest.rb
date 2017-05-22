@@ -47,21 +47,22 @@ module Jabverwock
 
     ############## jsFunction ###############
     test "JsFunction " do
-      @jso.func.define "test", "code is dead;", "name", "age"
+      @jso.func.define "test", "name", "age", "code is dead;"
       assert_equal @jso.orders[0], "function test(name, age){
       code is dead;
       }"
     end
-
+    
+    
     test "JsFunction use symbol" do
-      @jso.func.define :test, "code is dead;", :name, :age
+      @jso.func.define :test, :name, :age, "code is dead;"
       assert_equal @jso.orders[0], "function test(name, age){
       code is dead;
       }"
     end
 
     
-    ############## jsDocument ###############
+    # ############## jsDocument ###############
     test "document confirm, correct id setting" do
       @jso.updateSelector :id__koko
       @jso.doc.byID.rec
@@ -79,23 +80,20 @@ module Jabverwock
     test "document confirm, correct id setting case 3" do
       @jso.updateSelector(:id__koko).doc.byID.rec
       
-      a = @jso.doc.orders[0]
-      
+      a = @jso.doc.orders[0]      
       assert_equal(a, "document.getElementById('koko');")
     end
     
     test "document confirm, correct id setting case 4" do
-      @jso.updateSelector(:id__koko).doc.byID.rec
-      
+      @jso.updateSelector(:id__koko).doc.byID.rec      
       assert_equal(@jso.doc.orders.count , 1)
     end
 
-
     test "jsObject extract from jsObject" do
       @jso.updateSelector(:id__koko).doc.byID.rec
-      p @jso.orders
       assert_equal(@jso.orders[0], "document.getElementById('koko');")
     end
+
 
   end
 end

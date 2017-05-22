@@ -25,12 +25,11 @@ module Jabverwock
       @obj = "function"
     end
 
-    def define(name,*args,code)
+    def define(name, *args, code)
       @orders << "#{@obj} #{name.to_s}(#{args.join(", ")}){
-      #{code}\n}"
+      #{code}
+      }"
     end
-
-    
     
   end
 

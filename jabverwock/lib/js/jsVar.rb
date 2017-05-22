@@ -25,6 +25,7 @@ module Jabverwock
       @obj = "var"
     end
 
+    
     def is(name,val)
       v = "#{@obj} #{name} = #{val}"
       @orders << v

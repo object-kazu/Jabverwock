@@ -78,15 +78,7 @@ module Jabverwock
   singleList = KSUtil.singleTags
   
     singleList.each do |list|
-    Object.const_set list, Class.new(JWSingle){
-    
-      # attr_accessor :name
-      # def initialize
-      #   super
-      #   @name = self.class.name.downcase
-      #   @css = CSS.new("#{@name}")
-      # end
-    }
+    Object.const_set list, Class.new(JWSingle){}
   end
 
   
