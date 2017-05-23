@@ -103,21 +103,21 @@ module Jabverwock
     # # # # # ### add and delete element ###
     test "createElement" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.createElement("koko").rec
+      @jsd.createElement("koko")
       assert_equal(@jsd.orders[0], "document.createElement('koko');")
 
     end
     
     test "createElement orders count" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.createElement("koko").rec
+      @jsd.createElement("koko")
       assert_equal(@jsd.orders.count, 1)
 
     end
     
     test "removeChild" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.removeChild("aaa").rec
+      @jsd.removeChild("aaa")
       assert_equal(@jsd.orders[0], "document.removeChild(aaa);")
 
     end
@@ -352,34 +352,40 @@ module Jabverwock
     
     test "parent node case symbol" do
       @jsd.byID.parentNode :type
-      assert_equal @jsd.orders.first, "document.getElementById('').parentNode.nodeType;"
+      # assert_equal @jsd.orders.first, "document.getElementById('').parentNode.nodeType;"
+      assert_equal @jsd.record, "document.getElementById('').parentNode.nodeType;"
     end
 
     test "parentNode ommit type" do
       @jsd.byID.parentNode
-      assert_equal @jsd.orders.first, "document.getElementById('').parentNode;"
+      # assert_equal @jsd.orders.first, "document.getElementById('').parentNode;"
+      assert_equal @jsd.record, "document.getElementById('').parentNode;"
     end
     
     
     test "nextSibling" do
       @jsd.byID.nextSibling
-      assert_equal @jsd.orders.first, "document.getElementById('').nextSibling;"
+      # assert_equal @jsd.orders.first, "document.getElementById('').nextSibling;"
+      assert_equal @jsd.record, "document.getElementById('').nextSibling;"
     end
 
     
     test "previousSibling" do
       @jsd.byID.previousSibling
-      assert_equal @jsd.orders.first, "document.getElementById('').previousSibling;"
+      # assert_equal @jsd.orders.first, "document.getElementById('').previousSibling;"
+      assert_equal @jsd.record, "document.getElementById('').previousSibling;"
     end
     
     test "childNodes case 1" do
       @jsd.byID.childNodes(0,:type)
-      assert_equal @jsd.orders.first, "document.getElementById('').childNodes[0].nodeType;"
+      # assert_equal @jsd.orders.first, "document.getElementById('').childNodes[0].nodeType;"
+      assert_equal @jsd.record, "document.getElementById('').childNodes[0].nodeType;"
     end
 
     test "childNodes case ommit type" do
       @jsd.byID.childNodes(1)
-      assert_equal @jsd.orders.first, "document.getElementById('').childNodes[1];"
+      # assert_equal @jsd.orders.first, "document.getElementById('').childNodes[1];"
+      assert_equal @jsd.record, "document.getElementById('').childNodes[1];"
     end
 
 
@@ -392,7 +398,8 @@ module Jabverwock
 
     test "is_var childNodes case ommit type" do
       @jsd.byID.childNodes(1).is_var(:test)
-      assert_equal @jsd.orders.first, "var test = document.getElementById('').childNodes[1];"
+ #     assert_equal @jsd.orders.first, "var test = document.getElementById('').childNodes[1];"
+      assert_equal @jsd.record, "var test = document.getElementById('').childNodes[1];"
     end
     
     test "is_var childNodes case ommit type case 2" do
@@ -402,8 +409,8 @@ module Jabverwock
 
 
     test "is_var childNodes case ommit type case 3" do
-      @jsd.byID.childNodes(0)
-      @jsd.byID.childNodes(1).is_var(:test)
+      @jsd.byID.childNodes(0)               # ----> records[0]
+      @jsd.byID.childNodes(1).is_var(:test) # ----> records[1]
       
       # p @jsd.records
       assert_equal @jsd.records[1], "var test = document.getElementById('').childNodes[1];"

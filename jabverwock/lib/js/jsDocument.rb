@@ -68,11 +68,11 @@ module Jabverwock
 
     ### add and delete element ###
     def createElement(ele)
-      modifyElement("createElement",ele)
+      modifyElement("createElement",ele).rec
     end
 
     def removeChild(child)
-      treatElement("removeChild",child)
+      treatElement("removeChild",child).rec      
     end
 
     def appendChild(child)
@@ -197,14 +197,13 @@ module Jabverwock
       @ecs << v.is( name, self.recordLast).record
       self.records.pop
       rec
+      
       # if is_var was call, self.record[0] was use at jsVar. For example,
       # self.record[0] = "document.getElementById('');"
       # then,is_var(:test) call and use self.record[0] value and make new sentence, like
       # self.record[1] = "var test = document.getElementById('');"
       # so self.record[0] is no needs after is_var call that remove self.record[0]
-      
-      p ">>> #{self.records}"
-      
+            
       self
     end
     
