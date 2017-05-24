@@ -63,20 +63,20 @@ module Jabverwock
 
       @jwcss.cssWithName("p")
       @jwcss.css.color("red").font_size(10)
-      assert_equal(@jwcss.css.str, "p {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(@jwcss.css.str, "p {\nfont-size: 10;\ncolor: red;\n}")
       
     end
     
     test "jwCss style defualt name is class name "do
       @jwcss.css.color("red").font_size(10)
-      assert_equal(@jwcss.css.str, "jw_css {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(@jwcss.css.str, "jw_css {\nfont-size: 10;\ncolor: red;\n}")
       
     end
     
     test "jwCss style with Property "do
       @jwcss.cssWithName("p")
       @jwcss.css.color("red").font_size(10)
-      assert_equal(@jwcss.css.str, "p {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(@jwcss.css.str, "p {\nfont-size: 10;\ncolor: red;\n}")
       
     end
 
@@ -91,12 +91,12 @@ module Jabverwock
 
     test "isExistCssString" do
       c = CSS.new("p")
-      ans = KString.isExistCssString c.noNameStr
-       assert_false ans
+      ans = KString.isExistCssString c.removeNameFlags
+      assert_false ans
       
     end
 
-     test "isExistCssString case" do
+    test "isExistCssString case" do 
        ### true ### no style
        a = "p {\n\n}"
        ans = KString.isExistCssString a
@@ -123,8 +123,7 @@ module Jabverwock
        ans = KString.isExistCssString a
        assert_true ans
             
-    end
-    
+    end    
     
     test "cssArray add css" do
       
@@ -164,7 +163,7 @@ module Jabverwock
 
       j1.addMember j2
      
-      assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}\np {\nfont-style: bold;\n}")
+      assert_equal(j1.showCssString, "jw_css {\nfont-size: 10;\ncolor: red;\n}\np {\nfont-style: bold;\n}")
       
     end
     
@@ -178,7 +177,7 @@ module Jabverwock
 
       j1.addMember j2
 
-      assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}")
+      assert_equal(j1.showCssString, "jw_css {\nfont-size: 10;\ncolor: red;\n}")
       
     end
 

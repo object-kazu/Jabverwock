@@ -62,7 +62,7 @@ module Jabverwock
     ##### ByID ###########
     test "document.getElementById case 1" do
       img = IMG.new.attr(:id__MyImage, :src, "simple.gif")      
-      img.js.doc.byID.src("landscape.jpg").rec
+      img.js.doc.byID.src("landscape.jpg")
       
       ans = "document.getElementById('MyImage').src=\"landscape.jpg\";"
       assert_equal ans, img.js.orders[0]
@@ -71,7 +71,7 @@ module Jabverwock
     
     test "document.getElementById case 2" do
       img = IMG.new.attr(:id,"MyImage").attr(:src, "simple.gif")
-      img.js.doc.byID.src("landscape.jpg").rec
+      img.js.doc.byID.src("landscape.jpg")
       
       ans = "document.getElementById('MyImage').src=\"landscape.jpg\";"
       assert_equal ans, img.js.orders[0]
@@ -81,17 +81,17 @@ module Jabverwock
     test "document.getElementById case 3" do
       img = IMG.new.attr(:id__MyImage).attr(:src, "simple.gif")
       
-      img.js.doc.byID.src("landscape.jpg").rec
+      img.js.doc.byID.src("landscape.jpg")
       
       ans = "document.getElementById('MyImage').src=\"landscape.jpg\";"
       assert_equal ans, img.js.orders[0]
       
     end
     
-    ##### ByClass ###########
+    # ##### ByClass ###########
     test "document.getElementByClass case 1" do
       img = IMG.new.attr(:cls__MyImage, :src, "simple.gif")      
-      img.js.doc.byClassName.src("landscape.jpg").rec
+      img.js.doc.byClassName.src("landscape.jpg")
       
       ans = "document.getElementByClassName('MyImage').src=\"landscape.jpg\";"
       assert_equal ans, img.js.orders[0]
@@ -100,7 +100,7 @@ module Jabverwock
     
     test "document.getElementByCls case 2" do
       img = IMG.new.attr(:cls,"sample").attr(:src, "simple.gif")
-      img.js.doc.byClassName.src("landscape.jpg").rec
+      img.js.doc.byClassName.src("landscape.jpg")
       
       ans = "document.getElementByClassName('sample').src=\"landscape.jpg\";"
       assert_equal ans, img.js.orders[0]

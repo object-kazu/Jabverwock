@@ -66,14 +66,15 @@ module Jabverwock
     test "document confirm, correct id setting" do
       @jso.updateSelector :id__koko
       @jso.doc.byID.rec
-      a = @jso.doc.orders[0]
+      # a = @jso.doc.orders[0]
+      a = @jso.doc.record
       assert_equal(a, "document.getElementById('koko');")
     end
 
     test "document confirm, correct id setting case 2" do
       jso = JsObject.new("id__koko","cls__opop","name__iii")
       jso.doc.byID.rec
-      a = jso.doc.orders[0]
+      a = jso.doc.record
       assert_equal(a, "document.getElementById('koko');")
     end
     

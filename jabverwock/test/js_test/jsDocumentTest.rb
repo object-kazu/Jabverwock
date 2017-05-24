@@ -302,7 +302,18 @@ module Jabverwock
       assert_equal @jsd.orders.first, "document.getElementById('').firstChild.nodeType;"
       
     end
+    
+    test "first node call twice" do
+      
+      @jsd.byID.firstChild("type")
+      @jsd.byID.firstChild(:type)
+      assert_equal @jsd.orders.first, "document.getElementById('').firstChild.nodeType;"
+      assert_equal @jsd.records[1], "document.getElementById('').firstChild.nodeType;"
+      
+    end
 
+    
+    
     test "first node value" do
       v = @jsd.byID.firstChild("type").record
       assert_equal v, "document.getElementById('').firstChild.nodeType;"

@@ -48,17 +48,26 @@ module Jabverwock
       h = HEAD.new
 
       parent = JW_CSS_JS.new.attr(:id__sample)
-      parent.js.doc.write("parent").rec
+      parent.js.doc.write("parent")
       
       child  = JW_CSS_JS.new.attr(:id__test)
-      child.js.doc.write("child").rec
-      child.js.doc.write("child again").rec
+      child.js.doc.write("child")
+      child.js.doc.write("child again")
       
       h.addMember parent
       h.addMember child
       
       p h.tgStr
     end
+    
+    # test "js doc firstChild and is_var" do
+    #   h1 = HEAD.new().attr(:id__id01).contentIs "My First Page"
+    #   h1.js.doc.byID.firstChild(:value)
+    #   h1.js.doc.byID.firstChild(:value).is_var(:myHead).record
+
+    # end
+
+    
     
     
     

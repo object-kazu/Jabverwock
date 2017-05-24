@@ -35,10 +35,10 @@ module Jabverwock
     end
     
     ############## test ###############
-    test "Heading first test" do
-      a = HEADING.new(2)
-      assert_equal(a.tgStr , "<h2></h2>")
-    end
+    # test "Heading first test" do
+    #   a = HEADING.new(2)
+    #   assert_equal(a.tgStr , "<h2></h2>")
+    # end
     
     test "Heading defualt test" do
       a = HEADING.new()
@@ -56,10 +56,17 @@ module Jabverwock
       a = HEADING.new.contentIs "test"
       # assert_equal para.js.doc.byTagName.element, "document.getElementByTagName('p');"
 
-      ans = a.js.doc.byTagName.style(:color, "red").export
-      assert_equal ans, "document.getElementByTagName('h1').style.color=\"red\";"
+      ans = a.js.doc.byTagName.style(color: "red").record
+      assert_equal ans, "document.getElementByTagName('h1').style.color='red';"
     end
-    
+
+
+    # test "js doc firstChild and is_var" do
+    #   h1 = HEADING.new().attr(:id__id01).contentIs "My First Page"
+    #   h1.js.doc.byID.firstChild(:value)
+    #   h1.js.doc.byID.firstChild(:value).is_var(:myHead).record
+
+    # end
     
   end
 end

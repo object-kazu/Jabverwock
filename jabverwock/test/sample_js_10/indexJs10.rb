@@ -13,17 +13,15 @@ module Jabverwock
       
       ### JSFunction ####
       h1 = HEADING.new.attr(:id__id01).contentIs "My First Page"
-      h1.js.doc.byID.firstChild
-             
+      hv = h1.js.doc.byID.firstChild(:value).record
+      h1.js.doc.byID.firstChild(:value).is_var(:myHead)
       
       title = TITLE.new.attr(:id__demo).contentIs "DOM Tutorial"
-      tf = title.js.doc.byID.firstChild(:value).record
+      title.js.doc.byID.childNodes(0,:value).is_var(:myTitle)
       
       pp = P.new.attr(:id__id02)
-      pp.js.doc.byID.firstChild(:value).isVar(:myP)
-      
-      body.addChildren  title,pp
-      body.js.var.is(:myHead, tf)
+      pp.js.doc.byID.innerHTML(hv)
+      body.addChildren h1, title,pp
       body
     end
 

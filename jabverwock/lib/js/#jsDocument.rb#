@@ -46,21 +46,18 @@ module Jabverwock
     end
     
     def selectElement(slect,obj)
-      #updateSelectors
       cp =  @obj.dot(slect).inParenth(obj) + $JS_CMD_END
       @element.content = cp
       @element
     end
 
     def modifyElement(order, elem)
-      #updateSelectors
       cp =  @obj.dot(order).inParenth(elem) + $JS_CMD_END
       @element.content = cp
       @element
     end
 
     def treatElement (order,elem)
-      #updateSelectors
       cp = @obj.dot(order) + "(" + "#{elem}" + ")"  + $JS_CMD_END
       @element.content = cp
       @element
@@ -98,22 +95,18 @@ module Jabverwock
     end
     
     def byClassName
-      #updateSelectors
       selectElement("getElementByClassName",@cls)
     end
 
     def byTagName
-      #updateSelectors
       selectElement("getElementByTagName", @name)
     end
 
     def querySelectorAll
-      #updateSelectors
       selectElement("querySelectorAll",@query)
     end
     
     def querySelectorAllBy(que)
-      #updateSelectors
       @query = que
       querySelectorAll
     end
@@ -275,12 +268,6 @@ module Jabverwock
       rec
       self
     end
-    
-    def src (str)
-      elementChanging_Equal("src",str)
-      rec
-      self
-    end
 
     ### node ###
     def node(kind,*type)
@@ -329,6 +316,9 @@ module Jabverwock
       @ecs = []      
     end
     
+    def src (str)
+      elementChanging_Equal("src",str)
+    end
 
     def spliteSympbolByUnderBar(sym)
       sym.to_s.split("_").first
@@ -353,9 +343,6 @@ module Jabverwock
     ### change element ###
     def elementChanging_Equal (act,str)
       s = KString.remove_Js_Cmd_End @content
-
-      koko now
-      
       @ec = contentRemoveJSEnd.dot(act) + $EQUAL.inDoubleQuot(str) + $JS_CMD_END
       self
     end

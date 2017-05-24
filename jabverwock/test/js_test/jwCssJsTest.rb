@@ -60,32 +60,29 @@ module Jabverwock
     ##### doc ###########
     
     test "document write case 1" do
-      @jwjs.js.doc.write("a").rec
+      @jwjs.js.doc.write("a")
       assert_equal(@jwjs.js.doc.orders[0], "document.write('a');")
     end
     
     test "document write case 2" do
-      @jwjs.js.doc.write("a").rec
+      @jwjs.js.doc.write("a")
       assert_equal(@jwjs.js.orders[0], "document.write('a');")
     end
     
     test "document write case 2-2" do
       a = @jwjs.js.doc.write("a")
-      a.rec
       assert_equal(@jwjs.js.orders[0], "document.write('a');")
     end
     
     test "document write case 3" do
       a = @jwjs.js.doc.write("a")
-      a.rec
       assert_equal(@jwjs.orders[0], "document.write('a');")
     end
 
     test "document write case 4" do
       @jwjs.js.doc.updateSelector :id__sample
       a = @jwjs.js.doc.write("a")
-      a.rec
-      @jwjs.js.doc.byID.innerHTML("aa").rec
+      @jwjs.js.doc.byID.innerHTML("aa")
       
       assert_equal(@jwjs.orders[1], "document.getElementById('sample').innerHTML=\"aa\";")
     end
@@ -100,14 +97,14 @@ module Jabverwock
 
     test "add jsArray to js.orders case 1" do
       parent = JW_CSS_JS.new.attr(:id__sample)
-      parent.js.doc.write("parent").rec
+      parent.js.doc.write("parent")
       
       assert_equal parent.jsArray.count, 0
     end
     
     test "add jsArray to js.orders case 2" do
       parent = JW_CSS_JS.new.attr(:id__sample)
-      parent.js.doc.write("parent").rec
+      parent.js.doc.write("parent")
 
       # this is expression for test of assembleJS
       # this mean self.js.orders convert to self.jsArray
@@ -121,10 +118,10 @@ module Jabverwock
     
     test "add member " do
       parent = JW_CSS_JS.new.attr(:id__sample)
-      parent.js.doc.write("parent").rec
+      parent.js.doc.write("parent")
       
       child  = JW_CSS_JS.new.attr(:id__test)
-      child.js.doc.write("child").rec
+      child.js.doc.write("child")
           
       parent.addMember child
       
@@ -133,11 +130,11 @@ module Jabverwock
     
     test "add member case 2 " do
       parent = JW_CSS_JS.new.attr(:id__sample)
-      parent.js.doc.write("parent").rec
+      parent.js.doc.write("parent")
       
       child  = JW_CSS_JS.new.attr(:id__test)
-      child.js.doc.write("child").rec
-      child.js.doc.write("child again").rec
+      child.js.doc.write("child")
+      child.js.doc.write("child again")
       
       parent.addMember child
       
@@ -146,40 +143,40 @@ module Jabverwock
     
     test "add member case 3 " do
       parent = JW_CSS_JS.new.attr(:id__sample)
-      parent.js.doc.write("parent").rec
+      parent.js.doc.write("parent")
       
       child  = JW_CSS_JS.new.attr(:id__test)
-      child.js.doc.write("child").rec
-      child.js.doc.write("child again").rec
+      child.js.doc.write("child")
+      child.js.doc.write("child again")
       
       parent.addMember child
       parent.self_JsOrders_add_to_self_jsArray
       assert_equal parent.jsArray.count, 3 # parent, child and child again
     end
 
-    # test "assembleJS, show JS Result" do
-    #   parent = JW_CSS_JS.new.attr(:id__sample)
-    #   parent.js.doc.write("parent").rec
+    test "assembleJS, show JS Result" do
+      parent = JW_CSS_JS.new.attr(:id__sample)
+      parent.js.doc.write("parent")
       
-    #   child  = JW_CSS_JS.new.attr(:id__test)
-    #   child.js.doc.write("child").rec
-    #   child.js.doc.write("child again").rec
+      child  = JW_CSS_JS.new.attr(:id__test)
+      child.js.doc.write("child")
+      child.js.doc.write("child again")
       
-    #   parent.addMember child
-    #   parent.assembleJS
-    #   p parent.showJsResult
+      parent.addMember child
+      parent.assembleJS
+      p parent.showJsResult
 
-    #   p parent.applyJS
+      p parent.applyJS
      
-    # end
+    end
     
     test "assembleHTML test" do
       parent = JW_CSS_JS.new.attr(:id__sample)
-      parent.js.doc.write("parent").rec
+      parent.js.doc.write("parent")
       
       child  = JW_CSS_JS.new.attr(:id__test)
-      child.js.doc.write("child").rec
-      child.js.doc.write("child again").rec
+      child.js.doc.write("child")
+      child.js.doc.write("child again")
       
       parent.addMember child
       parent.assemble

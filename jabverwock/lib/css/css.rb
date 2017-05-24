@@ -147,7 +147,7 @@ module Jabverwock
       end
     end
 
-    def removeNameFlags      
+    def removeNameFlags  # rename noNameStr
       ans = pStr      
       ans.gsub!(/\nuse-(id|cls|namae).*;/, "") || ""      
       ans.gsub!(/name:.*;\n/, "") || ""

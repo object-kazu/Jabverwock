@@ -55,149 +55,149 @@ module Jabverwock
       
     # end
 
-    # test "set css property" do
-    #   h = HEAD.new().contentIs "this is test"
-    #   h.css.font_size = 10
-    #   assert_equal(h.css.str, "head {\nfont-size: 10;\n}")
-    # end
+    test "set css property" do
+      h = HEAD.new().contentIs "this is test"
+      h.css.font_size = 10
+      assert_equal(h.css.str, "head {\nfont-size: 10;\n}")
+    end
     
-    # test "set css property case 2" do
-    #   h = HEAD.new().contentIs "this is test"
-    #   h.css.font_size("10")
-    #   assert_equal(h.css.str, "head {\nfont-size: 10;\n}")
-    # end
+    test "set css property case 2" do
+      h = HEAD.new().contentIs "this is test"
+      h.css.font_size("10")
+      assert_equal(h.css.str, "head {\nfont-size: 10;\n}")
+    end
     
-    # test "add css property not" do
-    #   h = HEAD.new().contentIs "this is test"
-    #   c = CSS.new "head"
-    #   c.font_size = 10
-    #   h.addCss c
-    #   a = h.showCssString
+    test "add css property not" do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
+      a = h.showCssString
       
-    #   assert_equal(a, "head {\nfont-size: 10;\n}")
-    # end
+      assert_equal(a, "head {\nfont-size: 10;\n}")
+    end
     
-    # test "add css property , different name" do
-    #   h = HEAD.new().contentIs "this is test"
-    #   c = CSS.new "p"
-    #   c.font_size = 10
-    #   p c.str
+    test "add css property , different name" do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "p"
+      c.font_size = 10
+      p c.str
       
-    #   h.addCss c
-    #   a = h.showCssString
+      h.addCss c
+      a = h.showCssString
       
-    #   assert_equal(a, "p {\nfont-size: 10;\n}")
-    # end
-
-    
-    # test "add css property" do
-    #   h = HEAD.new().contentIs "this is test"
-    #   c = CSS.new "head"
-    #   c.font_size = 10
-    #   h.addCss c
-
-    #   pressed = h.pressDefault
-      
-    #   assert_true(pressed.include?("<style>\n"))
-    #   assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-    #   assert_true(pressed.include?("</style>"))
-
-    # end
+      assert_equal(a, "p {\nfont-size: 10;\n}")
+    end
 
     
-    # test "add member " do
-    #   h = HEAD.new().contentIs "this is test"
-    #   c = CSS.new "head"
-    #   c.font_size = 10
-    #   h.addCss c
+    test "add css property" do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
 
-    #   body = BODY.new
-    #   body.css.color "red"
-
-    #   h.addMember body
+      pressed = h.pressDefault
       
-    #   pressed = h.pressDefault
-      
-    #   assert_true(pressed.include?("<style>\n"))
-    #   assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-    #   assert_true(pressed.include?("body {\ncolor: red;\n}\n"))
-    #   assert_true(pressed.include?("</style>"))
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("</style>"))
 
-    # end
+    end
+
     
-    #  test "set id, selector id case 1" do
+    test "add member " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
 
-    #   head = HEAD.new.attr(:id, "sample")
-    #   head.css.color "red"
+      body = BODY.new
+      body.css.color "red"
+
+      h.addMember body
       
-    #   pressed = head.pressDefault
+      pressed = h.pressDefault
+      
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?("</style>"))
 
-    #   assert_true(pressed.include?("<style>\n"))
-    #   assert_true(pressed.include?("head #sample {\ncolor: red;\n}\n"))
-    #   assert_true(pressed.include?("</style>"))
+    end
+    
+     test "set id, selector id case 1" do
 
-    # end
+      head = HEAD.new.attr(:id, "sample")
+      head.css.color "red"
+      
+      pressed = head.pressDefault
 
-    # test "set id, selector id case 2" do
-    #   h = HEAD.new().contentIs "this is test"
-    #   c = CSS.new "head"
-    #   c.font_size = 10
-    #   h.addCss c
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head #sample {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?("</style>"))
 
-    #   body = BODY.new.attr(:id, "sample")
-    #   body.css.color "red"
+    end
+
+    test "set id, selector id case 2" do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
+
+      body = BODY.new.attr(:id, "sample")
+      body.css.color "red"
             
-    #   h.addMember body
+      h.addMember body
       
       
-    #   pressed = h.pressDefault
+      pressed = h.pressDefault
 
-    #   assert_true(pressed.include?("<style>\n"))
-    #   assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-    #   assert_true(pressed.include?("body #sample {\ncolor: red;\n}\n"))
-    #   assert_true(pressed.include?("</style>"))
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body #sample {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?("</style>"))
 
-    # end
+    end
 
-    # test "set cls, selector cls " do
-    #   h = HEAD.new().contentIs "this is test"
-    #   c = CSS.new "head"
-    #   c.font_size = 10
-    #   h.addCss c
+    test "set cls, selector cls " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
 
-    #   body = BODY.new.attr(:cls, "sample")
-    #   body.css.color "red"
+      body = BODY.new.attr(:cls, "sample")
+      body.css.color "red"
 
-    #   h.addMember body
+      h.addMember body
             
-    #   pressed = h.pressDefault
+      pressed = h.pressDefault
       
-    #   assert_true(pressed.include?("<style>\n"))
-    #   assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-    #   assert_true(pressed.include?("body .sample {\ncolor: red;\n}\n"))
-    #   assert_true(pressed.include?("</style>"))
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body .sample {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?("</style>"))
 
-    # end
+    end
 
-    # test "set cls. id, selector cls,id " do
-    #   h = HEAD.new().contentIs "this is test"
-    #   c = CSS.new "head"
-    #   c.font_size = 10
-    #   h.addCss c
+    test "set cls. id, selector cls,id " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
 
-    #   body = BODY.new.attr(:cls, "sample").attr(:id, "test")
-    #   body.css.color "red"
+      body = BODY.new.attr(:cls, "sample").attr(:id, "test")
+      body.css.color "red"
 
-    #   h.addMember body
+      h.addMember body
             
-    #   pressed = h.pressDefault
+      pressed = h.pressDefault
       
-    #   assert_true(pressed.include?("<style>\n"))
-    #   assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-    #   assert_true(pressed.include?("body #test .sample {\ncolor: red;\n}\n"))
-    #   assert_true(pressed.include?("</style>"))
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("body #test .sample {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?("</style>"))
 
-    # end
+    end
 
 
     test "check child, set cls. id, selector cls,id " do
@@ -212,8 +212,6 @@ module Jabverwock
       h.addChild body
             
       pressed = h.pressDefault
-
-      byebug
       
       assert_true(pressed.include?("<style>\n"))
       assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
