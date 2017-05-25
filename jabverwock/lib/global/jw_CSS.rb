@@ -53,8 +53,7 @@ module Jabverwock
     end
         
     def cssWithName (name)
-      KString.isString? name
-      @css.name = name
+      @css.name = name.to_s
     end
     
     def cssStringInit

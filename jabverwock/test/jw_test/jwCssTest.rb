@@ -59,6 +59,15 @@ module Jabverwock
       
     end
 
+    test "jwCss style, symbole allow use"do
+
+      @jwcss.cssWithName :p
+      @jwcss.css.color = :red
+      assert_equal(@jwcss.css.str, "p {\ncolor: red;\n}")
+      
+    end
+
+    
     test "jwCss css with chain"do
 
       @jwcss.cssWithName("p")
@@ -66,6 +75,15 @@ module Jabverwock
       assert_equal(@jwcss.css.str, "p {\nfont-size: 10;\ncolor: red;\n}")
       
     end
+
+    test "jwCss css with chain use symbol"do
+
+      @jwcss.cssWithName :p
+      @jwcss.css.color(:red).font_size(10)
+      assert_equal(@jwcss.css.str, "p {\nfont-size: 10;\ncolor: red;\n}")
+      
+    end
+
     
     test "jwCss style defualt name is class name "do
       @jwcss.css.color("red").font_size(10)
@@ -136,7 +154,7 @@ module Jabverwock
     end
 
     test "cssArray add css case 3" do      
-      c = CSS.new("p").font_size("10")
+      c = CSS.new(:p).font_size(10)
       b = CSS.new("b").color("red")
       ca = [c,b]
       @jwcss.cssAssemble(c, ca)
@@ -170,10 +188,10 @@ module Jabverwock
     test "add member,same name" do
       
       j1 = JW_CSS.new
-      j1.css.color("red").font_size(10)
+      j1.css.color(:red).font_size(10)
       
       j2 = JW_CSS.new
-      j2.css.font_style("bold")
+      j2.css.font_style(:bold)
 
       j1.addMember j2
 
