@@ -133,7 +133,7 @@ module Jabverwock
     
     test "innerHTML, no rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID.innerHTML "aaa"
+      a = @jsd.byID.innerHTML "aaa".dQuo
       assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
     end
 
@@ -141,15 +141,15 @@ module Jabverwock
     test "innerHTML, rec case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID
-      a.innerHTML("aaa")
+      a.innerHTML("aaa".dQuo)
       assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
     end
      
     test "innerHTML, rec case 3" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID
-      a.innerHTML("aaa")
-      a.innerHTML("bbb")
+      a.innerHTML("aaa".dQuo)
+      a.innerHTML("bbb".dQuo)
       assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
       assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML=\"bbb\";")
     end
@@ -170,18 +170,17 @@ module Jabverwock
       }
 
     end
-
         
     test "attribute case 1 (rec do not call)" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.attribute "aaa"
+      @jsd.byID.attribute "aaa".dQuo
       assert_equal(@jsd.orders[0], "document.getElementById('koko').attribute=\"aaa\";")
     end
     
     test "attribute, call rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       assert_raise {
-        @jsd.byID.attribute ("aaa").rec
+        @jsd.byID.attribute ("aaa".dQuo).rec
       }
     end
 
@@ -231,15 +230,15 @@ module Jabverwock
     # ### index ###
     test "index" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.index(0).innerHTML("aaa")
+      @jsd.byID.index(0).innerHTML("aaa".dQuo)
       assert_equal(@jsd.orders[0],"document.getElementById('koko')[0].innerHTML=\"aaa\";")
 
     end
     
     test "index case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.byID.index(0).innerHTML("aaa")
-      @jsd.byID.index(1).innerHTML("bbb")
+      @jsd.byID.index(0).innerHTML("aaa".dQuo)
+      @jsd.byID.index(1).innerHTML("bbb".dQuo)
       assert_equal(@jsd.orders[1],"document.getElementById('koko')[1].innerHTML=\"bbb\";")
 
     end

@@ -29,10 +29,18 @@ module StringExtension
       end
       
     end
+    
 
     def modifyDoubleQuo
       $DOUBLE_QUO + self + $DOUBLE_QUO
     end
+
+    def modifySingleQuo
+      $SINGLE_QUO + self + $SINGLE_QUO
+    end
+    
+    alias_method :dQuo, :modifyDoubleQuo
+    alias_method :sQuo, :modifySingleQuo
     
     def variable
       $LABEL_INSERT_START + self + $LABEL_INSERT_END

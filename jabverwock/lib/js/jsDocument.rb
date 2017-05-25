@@ -354,9 +354,7 @@ module Jabverwock
     def elementChanging_Equal (act,str)
       s = KString.remove_Js_Cmd_End @content
 
-      koko now
-      
-      @ec = contentRemoveJSEnd.dot(act) + $EQUAL.inDoubleQuot(str) + $JS_CMD_END
+      @ec = contentRemoveJSEnd.dot(act) + $EQUAL + str + $JS_CMD_END
       self
     end
     
