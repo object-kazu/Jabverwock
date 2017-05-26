@@ -180,7 +180,7 @@ module Jabverwock
     def export # rename 'element' to 'export'
       exp = self.recordLast
 
-      if exp == nil
+      if exp ||= @content
         return @content
       end
       

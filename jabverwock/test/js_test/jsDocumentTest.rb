@@ -48,10 +48,11 @@ module Jabverwock
 
     test "select by id" do
       @jsd.id = "test"
-      assert_equal(@jsd.byID.export, "document.getElementById('test');")
+      ans = @jsd.byID.export
+      assert_equal(ans, "document.getElementById('test');")
     end
     
-    test "select by id, no rec" do
+     test "select by id, no rec" do
       @jsd.id = "test"
       assert_equal(@jsd.orders[0], nil)
     end
