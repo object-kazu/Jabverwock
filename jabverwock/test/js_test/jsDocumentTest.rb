@@ -48,7 +48,7 @@ module Jabverwock
 
     test "select by id" do
       @jsd.id = "test"
-      assert_equal(@jsd.byID.element, "document.getElementById('test');")
+      assert_equal(@jsd.byID.export, "document.getElementById('test');")
     end
     
     test "select by id, no rec" do
@@ -66,8 +66,8 @@ module Jabverwock
    
     test "select by class" do
       @jsd.updateSelector "id__koko", "cls__p"
-      assert_equal(@jsd.byID.element, "document.getElementById('koko');")
-      assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
+      assert_equal(@jsd.byID.export, "document.getElementById('koko');")
+      assert_equal(@jsd.byClassName.export, "document.getElementByClassName('p');")
     end
 
     test "select by class and rec" do
@@ -81,22 +81,22 @@ module Jabverwock
     
     test "select by class case 2" do
       @jsd.updateSelector :id__koko, :cls__p
-      assert_equal(@jsd.byID.element, "document.getElementById('koko');")
-      assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
+      assert_equal(@jsd.byID.export, "document.getElementById('koko');")
+      assert_equal(@jsd.byClassName.export, "document.getElementByClassName('p');")
     end
     
     test "select by TagName" do
       @jsd.updateSelector "id__koko","cls__p","name__popo"
-      assert_equal(@jsd.byID.element, "document.getElementById('koko');")
-      assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
-      assert_equal(@jsd.byTagName.element, "document.getElementByTagName('popo');")
+      assert_equal(@jsd.byID.export, "document.getElementById('koko');")
+      assert_equal(@jsd.byClassName.export, "document.getElementByClassName('p');")
+      assert_equal(@jsd.byTagName.export, "document.getElementByTagName('popo');")
     end
     
     test "select by TagName case 2" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      assert_equal(@jsd.byID.element, "document.getElementById('koko');")
-      assert_equal(@jsd.byClassName.element, "document.getElementByClassName('p');")
-      assert_equal(@jsd.byTagName.element, "document.getElementByTagName('popo');")
+      assert_equal(@jsd.byID.export, "document.getElementById('koko');")
+      assert_equal(@jsd.byClassName.export, "document.getElementByClassName('p');")
+      assert_equal(@jsd.byTagName.export, "document.getElementByTagName('popo');")
     end
     
     
@@ -245,14 +245,14 @@ module Jabverwock
 
     test "index element" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID.index(0).element
+      a = @jsd.byID.index(0).export
       assert_equal(a,"document.getElementById('koko')[0];")
 
     end
     
     test "index element case 2" do  
       @jsd.updateSelector :id__koko
-      a = @jsd.byID.index(0).element
+      a = @jsd.byID.index(0).export
       assert_equal(a,"document.getElementById('koko')[0];")
 
     end

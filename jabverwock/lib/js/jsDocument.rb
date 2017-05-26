@@ -177,8 +177,10 @@ module Jabverwock
       @ecs = []
     end
 
-    def element
-      @content
+    def export # rename element to export
+      exp = self.recordLast
+      removeLastRecord
+      KString.remove_Js_Cmd_End(exp)
     end
 
     def record
@@ -189,10 +191,19 @@ module Jabverwock
       @delegate.orders.last
     end
 
+    def removeLastRecord
+      @delegate.orders.pop
+    end
+    
     def records
       @delegate.orders
     end
 
+    # def export
+    #   @ec
+    # end
+
+    
     def is_var(name)
       v = JsVar.new
       @ecs << v.is( name, self.recordLast).record
@@ -208,9 +219,6 @@ module Jabverwock
       self
     end
     
-    def export
-      @ec
-    end
     
     def rec
       if @ecs.count > 0

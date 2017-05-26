@@ -13,7 +13,7 @@ module Jabverwock
       
       ### JSFunction ####
       h1 = HEADING.new.attr(:id__id01).contentIs "My First Page"
-      hv = h1.js.doc.byID.firstChild(:value).record
+      hv =  h1.js.doc.byID.firstChild(:value).export
       h1.js.doc.byID.firstChild(:value).is_var(:myHead)
       
       title = TITLE.new.attr(:id__demo).contentIs "DOM Tutorial"
