@@ -69,7 +69,7 @@ module Jabverwock
     
     
     def addChildren(*children)
-      children.each do |c| 
+      children.flatten.each do |c| 
         addChild c
       end
     end

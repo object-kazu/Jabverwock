@@ -275,6 +275,23 @@ module Jabverwock
         current.include?("BitTorrent") ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
         "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{folder}/"
       end
+
+      ### file reading
+      def fileReadingToArr (txt, arr)
+        begin
+          File.open(txt) do |file|
+            file.each_line do |labmen|
+              arr << labmen
+            end
+          end
+        # 例外は小さい単位で捕捉する
+        rescue SystemCallError => e
+          puts %Q(class=[#{e.class}] message=[#{e.message}])
+        rescue IOError => e
+          puts %Q(class=[#{e.class}] message=[#{e.message}])
+        end      
+      end
+
       
       def isBool(v)
         !!v === v

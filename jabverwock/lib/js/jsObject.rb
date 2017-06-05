@@ -31,6 +31,8 @@ module Jabverwock
       @doc = JsDocument.new
       @func = JsFunction.new
       @var = JsVar.new
+
+      # @read = JsFileReader.new
       
       updateSelector inits
     end

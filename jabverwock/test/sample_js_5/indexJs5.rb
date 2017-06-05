@@ -25,7 +25,7 @@ module Jabverwock
       # img = IMG.new.attr(:id__MyImage, :src, "simple.gif")
       img = IMG.new.attr(:id,"MyImage").attr(:src, "simple.gif")
       # img = IMG.new.attr(:id__MyImage).attr(:src, "simple.gif")
-      img.js.doc.byID.src("landscape.jpg").rec
+      img.js.doc.byID.src("landscape.jpg")
       
       body.addChild img
       body

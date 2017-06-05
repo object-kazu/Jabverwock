@@ -89,7 +89,7 @@ module Jabverwock
 
     test "when set jwjs class id, js id set at the same time" do
       @jwjs.attr :id__sample
-      a = @jwjs.js.doc.byID.element
+      a = @jwjs.js.doc.byID.export
       assert_equal a, "document.getElementById('sample');"
     end
     

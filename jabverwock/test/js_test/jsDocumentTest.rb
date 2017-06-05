@@ -101,7 +101,7 @@ module Jabverwock
     end
     
     
-    # # # # # ### add and delete element ###
+ #    # # # # # ### add and delete element ###
     test "createElement" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.createElement("koko")
@@ -115,6 +115,86 @@ module Jabverwock
       assert_equal(@jsd.orders.count, 1)
 
     end
+
+    test "createElement orders ,symbol" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.createElement :koko
+      assert_equal(@jsd.orders.first, "document.createElement('koko');")
+
+    end
+
+    test "createElement is_var" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.createElement(:koko).is_var(:mm)
+      assert_equal(@jsd.orders.first, "var mm = document.createElement('koko');")
+    end
+
+    test "createTextNode" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.createElement(:koko).is_var(:mm)
+      @jsd.createTextNode("this is new.".sQuo).is_var(:new)
+      assert_equal(@jsd.orders[1], "var new = document.createTextNode('this is new.');")
+    end
+
+    test "createTextNode and addChild" do
+      @jsd.updateSelector :id__koko, :cls__p,:name__popo
+      @jsd.createElement(:koko).is_var(:mm)
+      @jsd.createTextNode("this is new".sQuo).is_var(:nn)
+      @jsd.appendChild(:mm, :nn)
+      
+      assert_equal(@jsd.orders[0], "var mm = document.createElement('koko');")
+      assert_equal(@jsd.orders[1], "var nn = document.createTextNode('this is new');")      
+      assert_equal(@jsd.orders[2], "mm.appendChild(nn);")
+      
+    end    
+
+    test "var call back" do
+      @jsd.var(:mm) do 
+        @jsd.createElement(:koko)
+      end
+      assert_equal(@jsd.orders[0], "var mm = document.createElement('koko');")
+    end
+    
+    test "var call back case 2" do
+      @jsd.var(:mm) do
+        @jsd.byID.export
+      end
+      assert_equal(@jsd.orders[0], "var mm = document.getElementById('');")
+    end
+    
+    test "var call back case 3" do
+      @jsd.createElement(:p).is_var :para
+      @jsd.createTextNode("this is new".sQuo).is_var :nn
+      assert_equal(@jsd.orders[0], "var para = document.createElement('p');")
+      assert_equal(@jsd.orders[1], "var nn = document.createTextNode('this is new');")      
+    end
+
+ #    ## >> under testing <<
+    
+ #    test "var call back case 4" do
+ #      @jsd.createElement(:p).is_var :para
+ #      @jsd.var(:mm) do
+ #        @jsd.byID.export
+ #      end
+ #      assert_equal(@jsd.orders[0], "var para = document.createElement('p');")
+ #      assert_equal(@jsd.orders[1], "var mm = document.getElementById('');")      
+ #    end
+    
+ #    ## >> under testing <<
+    
+ #    # test "createTextNode, byID and addChild" do
+ #    #   @jsd.updateSelector :id__koko, :cls__p,:name__popo
+ #    #   @jsd.createElement(:koko).is_var(:mm)
+ #    #   @jsd.createTextNode("this is new".sQuo).is_var(:nn)
+ #    #   @jsd.byID.is_var :para
+ #    #   @jsd.appendChild(:mm, :nn)
+      
+ #    #   assert_equal(@jsd.orders[0], "var mm = document.createElement('koko');")
+ #    #   assert_equal(@jsd.orders[1], "var nn = document.createTextNode('this is new');")      
+ #    #   assert_equal(@jsd.orders[2], "mm.appendChild(nn);")
+      
+ #    # end    
+
     
     test "removeChild" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
@@ -181,7 +261,7 @@ module Jabverwock
     test "attribute, call rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       assert_raise {
-        @jsd.byID.attribute ("aaa".dQuo).rec
+        @jsd.byID.attribute ("aaa").rec
       }
     end
 
@@ -251,9 +331,16 @@ module Jabverwock
 
     end
     
-    test "index element case 2" do  
+    test "index element case 2, export" do  
       @jsd.updateSelector :id__koko
       a = @jsd.byID.index(0).export
+      assert_equal(a,"document.getElementById('koko')[0];")
+
+    end
+
+    test "index element case 3, cutout" do  
+      @jsd.updateSelector :id__koko
+      a = @jsd.byID.index(0).cutout
       assert_equal(a,"document.getElementById('koko')[0];")
 
     end
@@ -262,15 +349,15 @@ module Jabverwock
     # ### addEventListener #####
     test "addEventListener case 1" do
       @jsd.byID.addEventListener(click:"myFunction()")
-      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunction()');"
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",myFunction());"
             
     end
 
     test "addEventListener case 2" do
       @jsd.byID.addEventListener(click:"ksFunc",onclick:"muFinc()")
       
-      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'ksFunc');"
-      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"onclick\",'muFinc()');"
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",ksFunc);"
+      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"onclick\",muFinc());"
     end
 
     
@@ -278,20 +365,20 @@ module Jabverwock
     test "addEventListener case same event" do
       @jsd.byID.addEventListener(click:"ksFunc",click_:"muFinc()")
       
-      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'ksFunc');"
-      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'muFinc()');"
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",ksFunc);"
+      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",muFinc());"
     end
 
     test "addEventListenerUseCapture case 1" do
       @jsd.byID.addEventListenerUseCapture(click:"myFunc")
-      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunc',true);"
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",myFunc,true);"
       
     end
 
     test "addEventListenerUseCapture case same event" do
       @jsd.byID.addEventListenerUseCapture(click:"myFunc", click_:"ksFunc")
-      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",'myFunc',true);"
-      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",'ksFunc',true);"      
+      assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",myFunc,true);"
+      assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"click\",ksFunc,true);"      
     end
 
 
@@ -437,6 +524,9 @@ module Jabverwock
       assert_equal @jsd.records[1], "var test = document.getElementById('').childNodes[1];"
       
     end
+
+
+    
     
   end
 end

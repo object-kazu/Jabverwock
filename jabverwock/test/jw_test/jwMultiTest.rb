@@ -108,7 +108,10 @@ module Jabverwock
     test "addchildren" do
       b = BODY.new
       c = HEAD.new
-      @t.addChildren b, c
+      @t.addChildren [b, c]
+      
+      # same result
+      # @t.addChildren b, c
       
       assert_equal(@t.pressDefault,"<jwmulti>\n<body>\n</body>\n<head>\n</head>\n</jwmulti>")  
     end

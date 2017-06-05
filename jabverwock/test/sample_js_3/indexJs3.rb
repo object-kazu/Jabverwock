@@ -15,7 +15,7 @@ module Jabverwock
       title.content = "Hello world"
       head.addChild title
       
-      head.js.doc.write("hello world").rec
+      head.js.doc.write("hello world")
       
       
       head
@@ -26,7 +26,7 @@ module Jabverwock
       body = BODY.new
       para = P.new.contentIs "yes"
       body.addChild para
-      body.js.doc.write("next world").rec
+      body.js.doc.write("next world")
       
       body
     end

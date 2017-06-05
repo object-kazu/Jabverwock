@@ -21,6 +21,7 @@ module Jabverwock
   def self.aList
     l = %w(www:home www:about www:contact)
     arr = []
+    arr << HEADING.new.contentIs("Home Page")
     l.each do |a|
       tdash = a.split(":")
       t = A.new.contentIs(tdash.last).attr(:href, a)
@@ -31,9 +32,11 @@ module Jabverwock
   
   def self.bodier
     body = BODY.new    
-    al = aList
-
-    body.addChildren al
+    
+    aList.each do |a|
+      body.addChild a
+    end
+    # body.addChildren al
     
     body
   end

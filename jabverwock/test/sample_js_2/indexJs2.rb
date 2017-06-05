@@ -15,7 +15,7 @@ module Jabverwock
       title.content = "Hello world"
       head.addChild title
       
-      head.js.doc.write("hello world").rec
+      head.js.doc.write("hello world")
       
       
       head
@@ -24,7 +24,7 @@ module Jabverwock
     
     def bodier
       body = BODY.new
-      body.js.doc.write("next world").rec
+      body.js.doc.write("next world")
       
       body
     end

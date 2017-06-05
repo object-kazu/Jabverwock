@@ -9,7 +9,6 @@ else
   require_relative "../global/globalDef" 
   require_relative "./jsBase"
   require_relative "./jsVar"
-  
 end
 
 
@@ -26,8 +25,22 @@ module Jabverwock
       @obj = "document"
       @query = ""
       @element = Element.new(self)
+     
     end
 
+    def var(name,&block)
+      
+      if block_given?  # ブロック渡しされているかどうかチェック
+        z = block.call
+        if z.is_a? String
+          ans = "var " << name.to_s << " = " << z
+          recBy ans
+          return
+        end
+        z.is_var name
+      end
+    end
+    
     ### delegate  ###
     def rec
       recBy @element.ec
@@ -46,42 +59,42 @@ module Jabverwock
     end
     
     def selectElement(slect,obj)
-      #updateSelectors
       cp =  @obj.dot(slect).inParenth(obj) + $JS_CMD_END
       @element.content = cp
       @element
     end
 
     def modifyElement(order, elem)
-      #updateSelectors
-      cp =  @obj.dot(order).inParenth(elem) + $JS_CMD_END
+      cp =  @obj.dot(order).inParenth(elem.to_s) + $JS_CMD_END
       @element.content = cp
       @element
     end
 
     def treatElement (order,elem)
-      #updateSelectors
       cp = @obj.dot(order) + "(" + "#{elem}" + ")"  + $JS_CMD_END
       @element.content = cp
       @element
     end
 
     ### add and delete element ###
-    def createElement(ele)
-      modifyElement("createElement",ele).rec
+    def createElement(name)
+      modifyElement("createElement",name).rec
+      @element
     end
 
     def removeChild(child)
       treatElement("removeChild",child).rec      
     end
 
-    def appendChild(child)
-      treatElement("appendChild",child)
+    def appendChild(parent,child)
+      cp = parent.to_s + ".appendChild(#{child.to_s})" + $JS_CMD_END
+      @element.content = cp
+      @element.rec
     end
 
-    def replaceChild(child)
-      treatElement("replaceChild",child)
-    end
+    # def replaceChild(child)
+    #   treatElement("replaceChild",child)
+    # end
 
     
     # write function include rec, so do not allow to chain other method
@@ -91,6 +104,11 @@ module Jabverwock
     end    
     
 
+    ### cleate ###
+    def createTextNode(str)
+      treatElement("createTextNode",str).rec
+      @element
+    end
 
     ### find element ###
     def byID      
@@ -98,22 +116,18 @@ module Jabverwock
     end
     
     def byClassName
-      #updateSelectors
       selectElement("getElementByClassName",@cls)
     end
 
     def byTagName
-      #updateSelectors
       selectElement("getElementByTagName", @name)
     end
 
     def querySelectorAll
-      #updateSelectors
       selectElement("querySelectorAll",@query)
     end
     
     def querySelectorAllBy(que)
-      #updateSelectors
       @query = que
       querySelectorAll
     end
@@ -153,11 +167,6 @@ module Jabverwock
     # document.URL	Returns the complete URL of the document
 
 
-    private
-    # def updateSelectors
-      
-    #   #updateSelector(@id,@cls,@name)      
-    # end
     
   end
 
@@ -173,19 +182,34 @@ module Jabverwock
       @delegate = delegate
       @content = ""
       @ec = ""
-
       @ecs = []
     end
 
-    def export # rename 'element' to 'export'
+    # def export
+    #   yield
+    # end
+
+    def cutout # export and remove
       exp = self.recordLast
 
       if exp == nil
         return @content
       end
-      
+            
       removeLastRecord
       KString.remove_Js_Cmd_End(exp)
+    end
+    
+    def export # rename 'element' to 'export'
+      @content
+      # exp = self.recordLast
+
+      # if exp == nil
+      #   return @content
+      # end
+            
+      # removeLastRecord
+      # KString.remove_Js_Cmd_End(exp)
     end
 
     def record
@@ -211,6 +235,7 @@ module Jabverwock
     
     def is_var(name)
       v = JsVar.new
+      
       @ecs << v.is( name, self.recordLast).record
       self.records.pop
       rec
@@ -221,7 +246,6 @@ module Jabverwock
       # self.record[1] = "var test = document.getElementById('');"
       # so self.record[0] is no needs after is_var call that remove self.record[0]
             
-      self
     end
     
     
@@ -271,7 +295,6 @@ module Jabverwock
       rec
     end
 
-
     def setAttribute(**attrStr)
       attrStr.each do |att, str|
         sKey = spliteSympbolByUnderBar att 
@@ -295,6 +318,11 @@ module Jabverwock
       self
     end
 
+    def createTextNode(str)
+      
+      self
+    end
+    
     ### node ###
     def node(kind,*type)
       
@@ -360,13 +388,12 @@ module Jabverwock
     
     def addEventListenerMain(content, event, func, useCaption = false)
       ucp = useCaption ? ",true": ""
-      content.dot("addEventListener") + "(".inDoubleQuot(event) + $COMMA.inSingleQuo(func) + ucp + ")" + $JS_CMD_END
+      content.dot("addEventListener") + "(".inDoubleQuot(event) + $COMMA + func + ucp + ")" + $JS_CMD_END
     end
     
     ### change element ###
     def elementChanging_Equal (act,str)
       s = KString.remove_Js_Cmd_End @content
-
       @ec = contentRemoveJSEnd.dot(act) + $EQUAL + str + $JS_CMD_END
       self
     end
@@ -375,7 +402,7 @@ module Jabverwock
       @ec = contentRemoveJSEnd.dot(act) + "(" + str + ")" + $JS_CMD_END
       self
     end
-
+ 
     def typeName(t)
       v = "node"
       tArr = %w(Value Type Name)
@@ -389,6 +416,7 @@ module Jabverwock
     
   end
 
+  # p a = JsDocument.new
 
   # p a = JsDocument.new("","","")
   # p a.byID

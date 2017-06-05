@@ -33,12 +33,14 @@ module Jabverwock
     c = HEADING.new.contentIs "Hello #{$SA}!"
     
     arr = contents
+    arr.each do |a|
+      body.addChild a
+    end
     
-    body.addChildren arr
     body
   end
   
-  html.addChildren [header,bodies]
+  html.addChildren header, bodies
   folder = "sample1"
   name = "sample9"
   html.testPress(folder, name)

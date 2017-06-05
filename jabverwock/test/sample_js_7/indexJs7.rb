@@ -15,7 +15,7 @@ module Jabverwock
       body = BODY.new
 
       h1 = HEADING.new.attr(:id__test).contentIs "My Heading 1"
-      h1s = h1.js.doc.byID.style(:color,"red").export
+      h1s = h1.js.doc.byID.style(color:"red").cutout
       
       btn = BUTTON.new.attr(:type__button, :onclick, h1s).contentIs "Click Me!"
       

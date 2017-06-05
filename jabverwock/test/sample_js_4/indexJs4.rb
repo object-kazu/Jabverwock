@@ -22,17 +22,17 @@ module Jabverwock
     def bodier
       body = BODY.new
       para = P.new.attr(:id__test).contentIs "yes"
-      para.js.doc.byID.innerHTML("test done").rec
+      para.js.doc.byID.innerHTML("test done")
 
       para2 = P.new.contentIs "yes yes"
-      para2.js.doc.byTagName.innerHTML("test again").rec
+      para2.js.doc.byTagName.innerHTML("test again")
 
       para3 = P.new.attr(:cls__sample).contentIs "yes no"
-      para3.js.doc.byClassName.innerHTML("test forever").rec
+      para3.js.doc.byClassName.innerHTML("test forever")
       
       body.addChild para
-      body.addChild para2
       body.addChild para3
+      body.addChild para2
       
       body
     end

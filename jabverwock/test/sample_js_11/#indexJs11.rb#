@@ -10,18 +10,32 @@ module Jabverwock
     
     def bodier
       body = BODY.new
+      div = DIV.new.attr(:id__div1)
       
       ### JSFunction ####
-      h1 = HEADING.new.attr(:id__id01).contentIs "My First Page"
-      hv =  h1.js.doc.byID.firstChild(:value).cutout
-      h1.js.doc.byID.firstChild(:value).is_var(:myHead)
+      p1 = P.new.attr(:id__p1).contentIs "this is paragraph"
+      p2 = P.new.attr(:id__p2).contentIs "this is another paragraph"
+
       
-      title = TITLE.new.attr(:id__demo).contentIs "DOM Tutorial"
-      title.js.doc.byID.childNodes(0,:value).is_var(:myTitle)
+      # jsDocument add
+      div.js.doc.createElement(:p).is_var :para
+      div.js.doc.createTextNode('This is new.'.sQuo).is_var :node
+      # div.js.doc.appendChild(:para, :node)
       
-      pp = P.new.attr(:id__id02)
-      pp.js.doc.byID.innerHTML(hv)
-      body.addChildren h1, title,pp
+      div.js.doc.byID.is_
+      # div.js.doc.appendChild(:element, :para)
+      
+      # <script>
+	#  var para = document.createElement("p");
+	#  var node = document.createTextNode("This is new.");
+	#  para.appendChild(node);
+
+	#  var element = document.getElementById("div1");
+	#  element.appendChild(para);
+	# </script>
+
+      
+      body.addChild div
       body
     end
 
@@ -37,7 +51,7 @@ module Jabverwock
   doc.addMember html
   
   
-  $SA = "sample_Js_10"
+  $SA = "sample_Js_11"
   $PAGES =  %w(home)
   
   def self.testPATH

@@ -33,11 +33,11 @@ module Jabverwock
     body = BODY.new
     c = HEADING.new.contentIs "Hello #{$SA}!"
     t = iTable
-    body.addChildren [c,t]
+    body.addChildren c,t
     body
   end
   
-  html.addChildren [header,bodies]
+  html.addChildren header,bodies
   folder = "sample1_1"
   name = "sample10"
   html.testPress(folder, name)

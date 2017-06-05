@@ -23,12 +23,12 @@ module Jabverwock
       body = BODY.new
 
       p1 = P.new.attr(:id__sample).contentIs "hello world,again"
-      p1.js.doc.byID.style("color","blue").rec
+      p1.js.doc.byID.style(color:"blue")
       
       p2 = P.new.attr(:id__test).contentIs "The paragraph above was changed by a script."
-      p2.js.doc.byID.style(:color,"red").rec
+      p2.js.doc.byID.style(color:"red")
       
-      body.addChildren [p1,p2]
+      body.addChildren p1,p2
       body
     end
 

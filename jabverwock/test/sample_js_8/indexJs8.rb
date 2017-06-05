@@ -15,7 +15,7 @@ module Jabverwock
       
       ### JSFunction ####
       h1 = HEADING.new.attr(:onclick,"changeText(this)").contentIs "Click on this text!"
-      h1.js.func.define :changeText, "id.innerHTML = \"Ooops!\";" ,:id
+      h1.js.func.define :changeText,:id, "id.innerHTML = \"Ooops!\";"
 
       ### onchange attr ###
       input = INPUT.new.attr(:type__text, :id__frame, :onchange, "upperCase()")

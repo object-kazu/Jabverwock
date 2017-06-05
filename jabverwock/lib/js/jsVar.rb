@@ -19,7 +19,7 @@ module Jabverwock
   #This class express JS Document class
   class JsVar < JsBase
     attr_accessor :result, :query
-    
+         
     def initialize(*inits)
       super inits
       @obj = "var"
@@ -32,10 +32,28 @@ module Jabverwock
       self
     end
 
-    
-    
   end
 
-
   
+  # This class is manage variable in JsDocument
+  #  "var new_01 = document.createElement('p');
+  #  "var new_02 = document.createTextNode('this is new');
+  #  "var new_p01.appendChild(nn);
+  #  varNameList = [new_01, new_02, new_p01]
+  
+  # class Variable < JsBase
+    
+  #   def initialize(*inits)
+  #     super inits
+  #     # @delegate = delegate
+  #     @varNameList = [] # var name list ex) var a, var bb , ...
+      
+  #   end
+
+  #       ### jsDocument ####
+  #   def createElement(elm)
+      
+  #   end
+
+  # end
 end

@@ -37,16 +37,16 @@ module Jabverwock
   html = HTML.new
 
   header = HEAD.new
-  header.js.doc.write("hello!").rec
+  title = TITLE.new.contentIs "hello world"
+  header.addChild title
+  
+  header.js.doc.write("hello!")
+  
   body = BODY.new
-  body.js.doc.write("new world").rec
+  body.js.doc.write("new world")
   
   html.addChild header
   html.addChild body
-  
-  # html.addMember header
-  # html.addMember body
-  
   
   $SA = "sample_Js_1"
   $PAGES =  %w(home)

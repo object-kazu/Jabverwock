@@ -23,7 +23,7 @@ module Jabverwock
     ol = OL.new
     l1 = LI.new.contentIs "item1"
     l2 = LI.new.contentIs "item2"
-    ol.addChildren [l1,l2]
+    ol.addChildren l1,l2
     ol
   end
   

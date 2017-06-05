@@ -43,7 +43,7 @@ module Jabverwock
       @orders
     end
 
-    def setSelectors(inits)
+    def setSelectors(inits)      
       inits.each do |s|        
         setSelector KSUtil.strinrgConvertSymbole s
       end      
@@ -75,6 +75,7 @@ module Jabverwock
     end
     
     def updateSelector(*inits)
+
       setSelectors inits
       self
     end    
