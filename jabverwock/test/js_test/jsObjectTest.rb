@@ -105,11 +105,11 @@ module Jabverwock
     test "jsFileReader, orders" do
       @jso.readIn "./sample.js"
       
-      l0 = "var myCollection = document.getElementsByTagName(\"p\");\n"
-      l1 ="var i;\n"
-      l2 = "for (i = 0; i < myCollection.length; i++) {\n"
-      l3 = "    myCollection[i].style.backgroundColor = \"red\";\n"
-      l4 = "}\n"
+      l0 = "var myCollection = document.getElementsByTagName(\"p\");"
+      l1 ="var i;"
+      l2 = "for (i = 0; i < myCollection.length; i++) {"
+      l3 = "    myCollection[i].style.backgroundColor = \"red\";"
+      l4 = "}"
       arr = [l0,l1,l2,l3,l4]
       
       (0..4).each do |index| 

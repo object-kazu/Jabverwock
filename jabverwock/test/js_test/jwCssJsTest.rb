@@ -192,10 +192,10 @@ module Jabverwock
     #### file read ####
     test "file read" do
       jwCssJs = JW_CSS_JS.new
-      jwCssJs.read "./sample.js"
+      jwCssJs.jsRead "./sample.js"
 
-      assert_equal jwCssJs.orders[0], "var myCollection = document.getElementsByTagName(\"p\");\n"
-      assert_equal jwCssJs.orders.last, "}\n"
+      assert_equal jwCssJs.orders[0], "var myCollection = document.getElementsByTagName(\"p\");"
+      assert_equal jwCssJs.orders.last, "}"
 
     end
     

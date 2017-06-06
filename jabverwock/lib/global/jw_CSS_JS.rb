@@ -41,7 +41,7 @@ module Jabverwock
       @js.doc
     end
 
-    def read(path)
+    def jsRead(path)
       @js.readIn path
     end
     

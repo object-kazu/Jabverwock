@@ -45,7 +45,7 @@ module Jabverwock
     def readIn(path)
       initJsArr
       r = Pathname(path).expand_path.read(:encoding => Encoding::UTF_8)
-      @jsArr = r.split("\n").map{ |l| l << "\n" }
+      @jsArr = r.split("\n")
     end
         
     
