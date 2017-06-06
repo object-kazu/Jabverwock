@@ -96,5 +96,28 @@ module Jabverwock
     end
 
 
+    ########## jsReader ##########
+    test "jsFileReader, readIn, path error check" do
+      @jso.readIn "./sample.js"
+      
+    end
+
+    test "jsFileReader, orders" do
+      @jso.readIn "./sample.js"
+      
+      l0 = "var myCollection = document.getElementsByTagName(\"p\");\n"
+      l1 ="var i;\n"
+      l2 = "for (i = 0; i < myCollection.length; i++) {\n"
+      l3 = "    myCollection[i].style.backgroundColor = \"red\";\n"
+      l4 = "}\n"
+      arr = [l0,l1,l2,l3,l4]
+      
+      (0..4).each do |index| 
+        assert_equal @jso.orders[index], arr[index]
+      end
+
+      
+    end
+
   end
 end

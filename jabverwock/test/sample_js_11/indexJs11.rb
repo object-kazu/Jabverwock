@@ -17,26 +17,16 @@ module Jabverwock
       p2 = P.new.attr(:id__p2).contentIs "this is another paragraph"
 
       
-      # jsDocument add
       div.js.doc.createElement(:p).is_var :para
       div.js.doc.createTextNode('This is new.'.sQuo).is_var :node
-      # div.js.doc.appendChild(:para, :node)
+      div.js.doc.appendChild(:para, :node)
       
-      # div.js.doc.byID.is_var :element
+
       div.js.doc.var(:element) do
         div.js.doc.byID.export
-      end
-      # div.js.doc.appendChild(:element, :para)
+      end        
+      div.js.doc.appendChild(:element, :para)
       
-      # <script>
-	#  var para = document.createElement("p");
-	#  var node = document.createTextNode("This is new.");
-	#  para.appendChild(node);
-
-	#  var element = document.getElementById("div1");
-	#  element.appendChild(para);
-	# </script>
-
       
       body.addChild div
       body

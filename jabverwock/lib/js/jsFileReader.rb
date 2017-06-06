@@ -4,6 +4,7 @@ if $FOR_GEM
   require "js/jsBase"
   require "js/jsFunction"
   require "js/jsVar"
+  require "pathname"
   
 else
   require_relative "../global/globalDef" 
@@ -11,7 +12,7 @@ else
   require_relative "./jsBase"
   require_relative "./jsFunction"
   require_relative "./jsVar"
-
+  require "pathname"
 
 end
 
@@ -24,28 +25,36 @@ module Jabverwock
   # this class is treat js file import to between script tags
   class JsFileReader < JsBase
            
-    attr_accessor :jsArr
+    attr_reader :jsArr
     
     def initialize(*inits)
       super inits
 
-      @jsArr = []
+      initJsArr
     end
 
-    def fileReading(txt)
-      KSUtil.fileReadingToArr txt, @jsArr
+    def initJsArr
+      @jsArr = []
     end
     
-    
-    
+    def read(txt) # file at current dir 
+      initJsArr
+      KSUtil.fileReadingToArr txt, @jsArr
+    end
+
+    def readIn(path)
+      initJsArr
+      r = Pathname(path).expand_path.read(:encoding => Encoding::UTF_8)
+      @jsArr = r.split("\n").map{ |l| l << "\n" }
+    end
+        
     
   end
 
+  # a = JsFileReader.new(:id__test)
+  # p a.readIn "~/Dropbox/.vimrc"
 
-  # a = JsObject.new(:id__test)
-  # p a.doc
-  # p a.doc.byID.element
-  # p a.orders
+  
   
 end
 

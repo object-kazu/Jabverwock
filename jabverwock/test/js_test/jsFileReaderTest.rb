@@ -42,8 +42,15 @@ module Jabverwock
     #   p @jsf
     # end
 
-    
-    
+    test "file read" do
+      @jsf.read "sample.js"
+      p @jsf.jsArr
+    end
+
+    test "file read in path" do
+      p @jsf.readIn "./sample.js"
+      
+    end
     
   end
 end

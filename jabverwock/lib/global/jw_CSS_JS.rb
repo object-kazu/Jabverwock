@@ -35,8 +35,19 @@ module Jabverwock
       @js.setTagName self.class.name.downcase
 
     end
-     
+    
+    ### alias ############
+    def jdoc
+      @js.doc
+    end
+
+    def read(path)
+      @js.readIn path
+    end
+    
+    
     ####### js ###################
+    
     def rec
       @js.rec
     end

@@ -58,6 +58,12 @@ module Jabverwock
     # end
     
     ##### doc ###########
+
+    test "alias of js.doc" do
+      # jdoc == js.doc
+      @jwjs.jdoc.write("a")
+      assert_equal(@jwjs.js.doc.orders[0], "document.write('a');")
+    end
     
     test "document write case 1" do
       @jwjs.js.doc.write("a")
@@ -82,7 +88,7 @@ module Jabverwock
     test "document write case 4" do
       @jwjs.js.doc.updateSelector :id__sample
       a = @jwjs.js.doc.write("a")
-      @jwjs.js.doc.byID.innerHTML("aa")
+      @jwjs.js.doc.byID.innerHTML("aa".dQuo)
       
       assert_equal(@jwjs.orders[1], "document.getElementById('sample').innerHTML=\"aa\";")
     end
@@ -182,5 +188,16 @@ module Jabverwock
       parent.assemble
     end
 
+
+    #### file read ####
+    test "file read" do
+      jwCssJs = JW_CSS_JS.new
+      jwCssJs.read "./sample.js"
+
+      assert_equal jwCssJs.orders[0], "var myCollection = document.getElementsByTagName(\"p\");\n"
+      assert_equal jwCssJs.orders.last, "}\n"
+
+    end
+    
   end
 end

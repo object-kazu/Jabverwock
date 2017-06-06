@@ -4,6 +4,7 @@ if $FOR_GEM
   require "js/jsBase"
   require "js/jsFunction"
   require "js/jsVar"
+  require "js/jsFileReader"
   
 else
   require_relative "../global/globalDef" 
@@ -11,7 +12,7 @@ else
   require_relative "./jsBase"
   require_relative "./jsFunction"
   require_relative "./jsVar"
-
+  require_relative "./jsFileReader"
 
 end
 
@@ -25,21 +26,19 @@ module Jabverwock
   class JsObject < JsBase
            
     attr_accessor :doc, :func, :var
+
     
     def initialize(*inits)
       super inits
-      @doc = JsDocument.new
+      @doc  = JsDocument.new
       @func = JsFunction.new
-      @var = JsVar.new
-
-      # @read = JsFileReader.new
+      @var  = JsVar.new
+      @reader = JsFileReader.new
       
       updateSelector inits
     end
 
-    
-    ######## function ###########
-    
+        
     
     ######## doc ###########
     def updateSelector(*inits)
@@ -53,10 +52,16 @@ module Jabverwock
       @doc.name = name
     end
 
+    ###### file read #######
+    def readIn(path)
+      @reader.readIn path
+    end
+    
     ######## orders -> jsArray -> jsResult  ###########
     def orders
       l = []
       l << @orders << @doc.orders << @func.orders << @var.orders
+      l << @reader.jsArr
       l.flatten
     end
     
