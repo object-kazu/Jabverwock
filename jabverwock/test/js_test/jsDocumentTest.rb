@@ -526,6 +526,12 @@ module Jabverwock
     end
 
 
+    ### insertBefore ####
+    test "insertBefore" do
+     @jsd.insertBefore "aaa", "bbb"
+     assert_equal @jsd.record , "aaa.parentNode.insertBefore(bbb,aaa);"
+    end
+
     
     
   end

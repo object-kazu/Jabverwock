@@ -92,6 +92,26 @@ module Jabverwock
       @element.rec
     end
 
+    def insertBefore(targetNode,newNode)
+      # <body>
+      #  <div id="title1">DOM</div>
+      #  <div id="title3">HTML</div>
+      # </body>
+      
+      # <body>
+      #  <div id="title1">DOM</div>
+      #  <div id="title2">CSS</div>
+      #  <div id="title3">HTML</div>
+      # </body>
+
+      # title3Node.parentNode.insertBefore(newNode,title3Node);
+      ans = newNode + "," + targetNode
+      cp = targetNode << ".parentNode.insertBefore(#{ans})" + $JS_CMD_END
+      @element.content = cp
+      @element.rec
+            
+    end
+    
     # def replaceChild(child)
     #   treatElement("replaceChild",child)
     # end
