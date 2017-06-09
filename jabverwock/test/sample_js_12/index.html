@@ -8,20 +8,26 @@
 	</div>
 
 
-	
 	<script>
 	 var para = document.createElement("p");
 	 var node = document.createTextNode("This is new.");
 	 para.appendChild(node);
 
 	 var element = document.getElementById("div1");
-	 var child = document.getElementById("p1");
-	 element.insertBefore(para, child);
+	 element.parentNode.insertBefore(para, element);
 	 
+	 
+	 var title3Node = document.getElementById('title3');
+	 var newNode = document.createElement('div');
+	 var textNode = document.createTextNode('CSS');
+	 newNode.appendChild(textNode);
+	 newNode.id = 'title2';
+	 title3Node.parentNode.insertBefore(newNode, title3Node);
 	 
 	 /**
 	  * spanエレメント(オブジェクト)追加
 	  */
+		
 	 function displayString_createElement() {
 	     var o = document.createElement("span");
 	     o.setAttribute("id", "js_koneta_01-01");

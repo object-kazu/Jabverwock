@@ -532,6 +532,19 @@ module Jabverwock
      assert_equal @jsd.record , "aaa.parentNode.insertBefore(bbb,aaa);"
     end
 
+
+    ### equal ###
+    test "equal" do
+      @jsd.equal "test.id", "title2".sQuo
+      assert_equal @jsd.record, "test.id = 'title2';"
+    end
+
+    test "equal case symbol can not use" do
+      assert_raise{
+        @jsd.equal :test, "title2"
+      }
+    end
+
     
     
   end

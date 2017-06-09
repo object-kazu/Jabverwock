@@ -40,6 +40,16 @@ module Jabverwock
         z.is_var name
       end
     end
+
+
+    def equal(leftSide, rightSide)
+      ans = leftSide << " = " << rightSide + $JS_CMD_END
+      @element.content = ans
+      @element.rec
+      
+    end
+
+    
     
     ### delegate  ###
     def rec
