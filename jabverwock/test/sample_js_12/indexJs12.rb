@@ -14,12 +14,6 @@ module Jabverwock
       p1 = P.new.attr(:id__p1).contentIs "this is paragraph"
       p2 = P.new.attr(:id__p2).contentIs "this is another paragraph"
 
-      # var para = document.createElement("p");
-      # var node = document.createTextNode("This is new.");
-      # para.appendChild(node);
-
-      # var element = document.getElementById("div1");
-      # element.parentNode.insertBefore(para, element);
 
       #create new node
       div.jdoc.createElement(:p).is_var :para

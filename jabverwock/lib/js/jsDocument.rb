@@ -28,10 +28,11 @@ module Jabverwock
      
     end
 
+    
     def var(name,&block)
       
       if block_given?  # ブロック渡しされているかどうかチェック
-        z = block.call
+        z = block.call self
         if z.is_a? String
           ans = "var " << name.to_s << " = " << z
           recBy ans

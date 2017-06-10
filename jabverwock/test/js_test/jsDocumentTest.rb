@@ -39,9 +39,9 @@ module Jabverwock
 
     ############## test ###############
 
-    # test "jsDocument first test, for print debug " do
-    #   p @jsd
-    # end
+ #    # test "jsDocument first test, for print debug " do
+ #    #   p @jsd
+ #    # end
 
     
     ### find element ###
@@ -162,12 +162,32 @@ module Jabverwock
       assert_equal(@jsd.orders[0], "var mm = document.getElementById('');")
     end
     
+    test "var call back case 2 another expression ver 1" do
+      @jsd.var(:mm) do |this| 
+        this.byID.export
+      end
+      assert_equal(@jsd.orders[0], "var mm = document.getElementById('');")
+    end
+
+    test "call call back case , another expression ver 2"do
+      @jsd.var(:mm) {|t| t.byID.export }      
+      assert_equal(@jsd.orders[0], "var mm = document.getElementById('');")
+    end
+    
     test "var call back case 3" do
       @jsd.createElement(:p).is_var :para
       @jsd.createTextNode("this is new".sQuo).is_var :nn
       assert_equal(@jsd.orders[0], "var para = document.createElement('p');")
       assert_equal(@jsd.orders[1], "var nn = document.createTextNode('this is new');")      
     end
+
+    test "var call back case 3, another expression" do
+      @jsd.var(:para) { |t| t.createElement(:p) }
+      @jsd.var(:nn) { |t| t.createTextNode("this is new".sQuo)  }
+      assert_equal(@jsd.orders[0], "var para = document.createElement('p');")
+      assert_equal(@jsd.orders[1], "var nn = document.createTextNode('this is new');")      
+    end
+    
 
  #    ## >> under testing <<
     
@@ -545,6 +565,21 @@ module Jabverwock
       }
     end
 
+
+   
+    # create new node
+    #   div.jdoc.createElement(:p).is_var :para
+    #   div.jdoc.createTextNode('This is new.'.sQuo).is_var :node
+    #   div.jdoc.appendChild(:para, :node)
+      
+    #   div.js.doc.var(:element) do
+    #     div.js.doc.byID.export
+    #   end
+      
+    #   div.jdoc.insertBefore "element", "para"
+
+    
+   
     
     
   end
