@@ -62,16 +62,16 @@ module Jabverwock
     test "alias of js.doc" do
       # jdoc == js.doc
       @jwjs.jdoc.write("a")
-      assert_equal(@jwjs.js.doc.orders[0], "document.write('a');")
+      assert_equal(@jwjs.js.doc.units[0], "document.write('a');")
     end
     
     test "document write case 1" do
       @jwjs.js.doc.write("a")
-      assert_equal(@jwjs.js.doc.orders[0], "document.write('a');")
+      assert_equal(@jwjs.js.doc.units[0], "document.write('a');")
     end
     
     test "document write case 2" do
-      @jwjs.js.doc.write("a")
+      @jwjs.js.doc.write("a")      
       assert_equal(@jwjs.js.orders[0], "document.write('a');")
     end
     
@@ -79,6 +79,12 @@ module Jabverwock
       a = @jwjs.js.doc.write("a")
       assert_equal(@jwjs.js.orders[0], "document.write('a');")
     end
+
+    test "document write case 2-3, alias" do
+      a = @jwjs.jdoc.write("a")
+      assert_equal(@jwjs.js.orders[0], "document.write('a');")
+    end
+
     
     test "document write case 3" do
       a = @jwjs.js.doc.write("a")
@@ -101,22 +107,21 @@ module Jabverwock
     
     # #### add member ####
 
-    test "add jsArray to js.orders case 1" do
+    test "add jsArray to js.units case 1" do
       parent = JW_CSS_JS.new.attr(:id__sample)
       parent.js.doc.write("parent")
       
       assert_equal parent.jsArray.count, 0
     end
     
-    test "add jsArray to js.orders case 2" do
+    test "add jsArray to js.units case 2" do
       parent = JW_CSS_JS.new.attr(:id__sample)
       parent.js.doc.write("parent")
 
       # this is expression for test of assembleJS
-      # this mean self.js.orders convert to self.jsArray
-      #parent.jsArray.append parent.js.orders
+      # this mean self.js.units convert to self.jsArray
+      # parent.jsArray.append parent.js.units
       parent.self_JsOrders_add_to_self_jsArray
-      
       assert_equal parent.jsArray.count, 1
     end
 
@@ -170,9 +175,9 @@ module Jabverwock
       
       parent.addMember child
       parent.assembleJS
-      p parent.showJsResult
+      # p parent.showJsResult
 
-      p parent.applyJS
+      # p parent.applyJS
      
     end
     
@@ -189,7 +194,7 @@ module Jabverwock
     end
 
 
-    #### file read ####
+    # ## file read ####
     test "file read" do
       jwCssJs = JW_CSS_JS.new
       jwCssJs.jsRead "./sample.js"

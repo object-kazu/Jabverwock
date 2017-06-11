@@ -22,9 +22,15 @@ module Jabverwock
       @id, @cls, @name = "", "",""
 
       @units = []
-            
+      @equality = []
+    
       setSelectors inits
     end
+
+    def orders
+      @units + @equality
+    end
+
     
     # delegate
     def recBy (str)

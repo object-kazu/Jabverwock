@@ -25,12 +25,11 @@ module Jabverwock
       @obj = "document"
       @query = ""
       @element = Element.new(self)
-      @equality = []
     end
 
     
     ## under testing ###
-    def selff(*arg)
+    def selfy(*arg)
       arg.each do |a| 
         eval a        
       end
@@ -59,9 +58,6 @@ module Jabverwock
     end
 
     
-    def orders
-      @units + @equality
-    end
     
     ### delegate  ###
     def rec
@@ -134,8 +130,9 @@ module Jabverwock
       # title3Node.parentNode.insertBefore(newNode,title3Node);
       ans = newNode + "," + targetNode
       cp = targetNode << ".parentNode.insertBefore(#{ans})" + $JS_CMD_END
-      @element.content = cp
-      @element.rec
+      recEqual cp
+      # @element.content = cp
+      # @element.rec
             
     end
     

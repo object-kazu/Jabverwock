@@ -598,7 +598,7 @@ module Jabverwock
     ### insertBefore ####
     test "insertBefore" do
      @jsd.insertBefore "aaa", "bbb"
-     assert_equal @jsd.record , "aaa.parentNode.insertBefore(bbb,aaa);"
+     assert_equal @jsd.orders.first , "aaa.parentNode.insertBefore(bbb,aaa);"
     end
 
 
@@ -616,23 +616,45 @@ module Jabverwock
 
 
    
-    # create new node
-    #   div.jdoc.createElement(:p).is_var :para
-    #   div.jdoc.createTextNode('This is new.'.sQuo).is_var :node
-    #   div.jdoc.appendChild(:para, :node)
-      
-    #   div.js.doc.var(:element) do
-    #     div.js.doc.byID.export
-    #   end
-      
-    #   div.jdoc.insertBefore "element", "para"
 
     
     
     # under testing ########
-    test "selff" do
-      @jsd.selff "createElement(:p)","createTextNode(\"this ss\")"
-      p @jsd.records
+    test "selfy, basical use" do
+      @jsd.selfy "createElement(:p)","createTextNode(\"this ss\")"
+      # p @jsd.records
+
+      assert_equal @jsd.orders.first, "document.createElement('p');"
+      assert_equal @jsd.orders[1], "document.createTextNode(this ss);"
+    end
+
+
+    test "selfy case 2" do
+      # create new node
+      #   div.jdoc.createElement(:p).is_var :para
+      #   div.jdoc.createTextNode('This is new.'.sQuo).is_var :node
+      #   div.jdoc.appendChild(:para, :node)
+      
+      #   div.js.doc.var(:element) do
+      #     div.js.doc.byID.export
+      #   end
+      
+      #   div.jdoc.insertBefore "element", "para"
+      
+      a = "createElement(:p).is_var :para"
+      b = "createTextNode('This is new.'.sQuo).is_var :node"
+      c = "appendChild(:para, :node)"
+      d = "var(:element){ |t|t.byID.export }"
+      e = "insertBefore \"element\", \"para\""
+      
+      @jsd.selfy a,b,c,d,e
+        
+      assert_equal @jsd.orders.first, "var para = document.createElement('p');"
+      assert_equal @jsd.orders[1], "var node = document.createTextNode('This is new.');"
+      assert_equal @jsd.orders[2], "para.appendChild(node);"
+      assert_equal @jsd.orders[3], "var element = document.getElementById('');"
+      assert_equal @jsd.orders[4] , "element.parentNode.insertBefore(para,element);"
+
     end
     
     

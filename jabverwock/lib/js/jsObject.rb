@@ -26,7 +26,6 @@ module Jabverwock
   class JsObject < JsBase
            
     attr_accessor :doc, :func, :var
-
     
     def initialize(*inits)
       super inits
@@ -58,9 +57,10 @@ module Jabverwock
     end
     
     ######## orders -> jsArray -> jsResult  ###########
+    
     def orders
       l = []
-      l << @orders << @doc.orders << @func.orders << @var.orders
+      l << @units << @doc.orders << @func.orders << @var.orders
       l << @reader.jsArr
       l.flatten
     end

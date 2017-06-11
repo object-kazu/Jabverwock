@@ -42,7 +42,7 @@ module Jabverwock
     ############## test ###############
 
     # test "jsObject first test, for print debug " do
-    #   p @jso
+    #   p @jso.orders
     # end
 
     ############## jsFunction ###############
