@@ -28,7 +28,7 @@ module Jabverwock
     
     def is(name,val)
       v = "#{@obj} #{name} = #{val}"
-      @orders << v
+      @units << v
       self
     end
 

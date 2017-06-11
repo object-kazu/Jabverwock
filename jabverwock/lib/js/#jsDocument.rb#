@@ -18,14 +18,14 @@ module Jabverwock
   
   #This class express JS Document class
   class JsDocument < JsBase
-    attr_accessor :result, :query, :equality
+    attr_accessor :result, :query, :equatation
     
     def initialize(*inits)
       super inits
       @obj = "document"
       @query = ""
       @element = Element.new(self)
-      @equality = []
+      @equatation = []
     end
 
     
@@ -60,7 +60,7 @@ module Jabverwock
 
     
     def orders
-      @units + @equality
+      @units + @equatation
     end
     
     ### delegate  ###
@@ -81,7 +81,7 @@ module Jabverwock
     end
 
     def recEqual (str) # keep var statement
-      @equality << str
+      @equatation << str
     end
     
     def selectElement(slect,obj)
@@ -230,7 +230,7 @@ module Jabverwock
       @content = ""
       @ec = ""
       @ecs = []
-      @equality = [] # keep var statement 
+      @equatation = [] # keep var statement 
     end
 
     # def export
@@ -276,8 +276,8 @@ module Jabverwock
       @delegate.units
     end
 
-    def equality
-      @delegate.equality[0]
+    def equatation
+      @delegate.equatation[0]
     end
     
     # def export

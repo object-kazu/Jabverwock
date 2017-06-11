@@ -14,33 +14,33 @@ module Jabverwock
   
   # This class express JS basic class
   class JsBase
-    attr_accessor :id, :cls, :name, :orders
+    attr_accessor :id, :cls, :name, :units
     
     #ex) initialize :id__test, :cls__sample, ":name__koko"
     def initialize(*inits)
       @obj = ""
       @id, @cls, @name = "", "",""
 
-      @orders = []
+      @units = []
             
       setSelectors inits
     end
     
     # delegate
     def recBy (str)
-      @orders << str
+      @units << str
     end
     
     def record
-      @orders.first
+      @units.first
     end
 
     def recordLast
-      @orders.last
+      @units.last
     end
     
     def records
-      @orders
+      @units
     end
 
     def setSelectors(inits)      
@@ -82,7 +82,7 @@ module Jabverwock
   end
 
 
-#   a = JsBase.new()
+# p  a = JsBase.new()
   
 end
 
