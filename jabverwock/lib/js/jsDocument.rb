@@ -135,8 +135,6 @@ module Jabverwock
     def appendChild(parent,child)
       cp = parent.to_s + ".appendChild(#{child.to_s})" + $JS_CMD_END
       recEqual cp
-      # @element.content = cp
-      # @element.rec
     end
 
     def insertBefore(targetNode,newNode)
@@ -151,13 +149,9 @@ module Jabverwock
       #  <div id="title3">HTML</div>
       # </body>
 
-      # title3Node.parentNode.insertBefore(newNode,title3Node);
       ans = newNode + "," + targetNode
       cp = targetNode << ".parentNode.insertBefore(#{ans})" + $JS_CMD_END
       recEqual cp
-      # @element.content = cp
-      # @element.rec
-            
     end
     
     # def replaceChild(child)

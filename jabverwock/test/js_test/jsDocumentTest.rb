@@ -647,21 +647,13 @@ module Jabverwock
 
     end
     
-
-    ### js hash ###
-
-
-    
-    
     ### js orders ###
-    
     
     test "orders" do
       a = "createElement(:p).is_var :para"
       b = "createTextNode('This is new.'.sQuo).is_var :node"
       c = "appendChild(:para, :node)"
       d = "var(:element){ |t|t.byID.export }"
-
       
       @jsd.selfy a,b,c,d
       
