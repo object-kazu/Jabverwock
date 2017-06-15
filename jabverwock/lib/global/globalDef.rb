@@ -26,11 +26,9 @@ module StringExtension
     def inParenth(insert)
       if insert.is_a?(String)
         self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
-      end
-      
+      end      
     end
     
-
     def modifyDoubleQuo
       $DOUBLE_QUO + self + $DOUBLE_QUO
     end
@@ -158,6 +156,7 @@ module Jabverwock
   $LABEL_INSERT_START  = "##LABELSTART##"
   $LABEL_INSERT_END    = "##LABELEND##"
 
+  $JS_UNITS_PREFIX = "js"
   
   ## struct ##########
   $CHILD = "_c_"
@@ -264,6 +263,56 @@ module Jabverwock
 
       
     end
+  end
+  
+  #this module is utility for hash
+  module KSHash
+    FIRST_KEY = "#{$JS_UNITS_PREFIX}1".to_sym
+    class << self
+      
+      def seqHash(val,step)
+        sym = "#{$JS_UNITS_PREFIX}#{step}".to_sym
+        {sym => val}
+      end
+      
+      # hash needs made by seqHash function
+      def firstHashValue(hash)
+        hash[FIRST_KEY]
+      end
+      
+      def lastHashValue(hash)
+        lk = lastHashKey hash
+        hash[lk]
+      end
+
+      def lastHashKey(hash)        
+        lastKey = FIRST_KEY #:a1
+        hash.each_key do |k|
+          lastKey = k if compareKeys(k, lastKey)
+        end
+        lastKey
+      end
+      
+      def compareKeys(a,b)
+        return true if removePrefix(a) > removePrefix(b)
+        false
+      end
+      
+      def removePrefix(k)
+        k.to_s.gsub($JS_UNITS_PREFIX,"").to_i
+      end
+
+      def hashValues(hash)
+        hash.values
+      end
+
+      def removeLastHashValue(hash)
+        lk = lastHashKey hash
+        hash.delete lk
+      end
+      
+    end
+    
   end
   
   # This module is utility, not depend on class instance

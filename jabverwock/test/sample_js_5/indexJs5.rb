@@ -22,10 +22,8 @@ module Jabverwock
     def bodier
       body = BODY.new
 
-      # img = IMG.new.attr(:id__MyImage, :src, "simple.gif")
       img = IMG.new.attr(:id,"MyImage").attr(:src, "simple.gif")
-      # img = IMG.new.attr(:id__MyImage).attr(:src, "simple.gif")
-      img.js.doc.byID.src("landscape.jpg")
+      img.js.doc.byID.src("landscape.jpg".dQuo)
       
       body.addChild img
       body

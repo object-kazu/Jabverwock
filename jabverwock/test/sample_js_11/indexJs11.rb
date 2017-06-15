@@ -16,17 +16,16 @@ module Jabverwock
       p1 = P.new.attr(:id__p1).contentIs "this is paragraph"
       p2 = P.new.attr(:id__p2).contentIs "this is another paragraph"
 
+      div.addChildren p1, p2
       
       div.js.doc.createElement(:p).is_var :para
       div.js.doc.createTextNode('This is new.'.sQuo).is_var :node
       div.js.doc.appendChild(:para, :node)
       
-
       div.js.doc.var(:element) do
         div.js.doc.byID.export
       end        
       div.js.doc.appendChild(:element, :para)
-      
       
       body.addChild div
       body

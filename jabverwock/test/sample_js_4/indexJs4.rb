@@ -19,24 +19,40 @@ module Jabverwock
     end
 
     
+    # def bodier
+    #   body = BODY.new
+    #   para = P.new.attr(:id__test).contentIs "yes"
+    #   para.js.doc.byID.innerHTML("test done".dQuo)
+
+    #   para2 = P.new.contentIs "yes yes"
+    #   para2.js.doc.byTagName.innerHTML("test again".dQuo)
+
+    #   para3 = P.new.attr(:cls__sample).contentIs "yes no"
+    #   para3.js.doc.byClassName.innerHTML("test forever".dQuo)
+      
+    #   body.addChild para
+    #   body.addChild para3
+    #   body.addChild para2
+      
+    #   body
+    # end
+    
+    ## another way
     def bodier
       body = BODY.new
       para = P.new.attr(:id__test).contentIs "yes"
-      para.js.doc.byID.innerHTML("test done")
+      para.jdoc.byID.innerHTML("test done".dQuo)
 
       para2 = P.new.contentIs "yes yes"
-      para2.js.doc.byTagName.innerHTML("test again")
+      para2.jdoc.byTagName.innerHTML("test again".dQuo)
 
       para3 = P.new.attr(:cls__sample).contentIs "yes no"
-      para3.js.doc.byClassName.innerHTML("test forever")
+      para3.jdoc.byClassName.innerHTML("test forever".dQuo)
       
-      body.addChild para
-      body.addChild para3
-      body.addChild para2
+      body.addChildren para, para3, para2
       
       body
     end
-
     
     
   end

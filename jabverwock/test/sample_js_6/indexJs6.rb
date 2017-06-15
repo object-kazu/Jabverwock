@@ -22,7 +22,7 @@ module Jabverwock
     def bodier
       body = BODY.new
 
-      p1 = P.new.attr(:id__sample).contentIs "hello world,again"
+      p1 = P.new.attr(:id__p2).contentIs "hello world,again"
       p1.js.doc.byID.style(color:"blue")
       
       p2 = P.new.attr(:id__test).contentIs "The paragraph above was changed by a script."

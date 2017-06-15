@@ -1,6 +1,5 @@
 if $FOR_GEM
-  require "global/globalDef"
-  
+  require "global/globalDef"  
   
 else
   require_relative "../global/globalDef" 
@@ -21,32 +20,48 @@ module Jabverwock
       @obj = ""
       @id, @cls, @name = "", "",""
 
-      @units = []
-      @equality = []
+      
+      # units and equality keep data like {:js1=> xxx, js2=> xxx}
+      initSeq
+      @units = {}
+      @equality = {}
     
       setSelectors inits
     end
 
+    ## numbering hash index
+    def initSeq
+      @sequence = 1.step
+    end
+    
+    def seqHash(val)
+      KSHash.seqHash val, @sequence.next
+    end
+    
     def orders
-      @units + @equality
+      ord = @equality.update @units
+      ans = ord.sort.flatten.inject([])do |arr,v|
+        arr  << v unless v.is_a? Symbol
+        arr
+      end
     end
 
     
     # delegate
     def recBy (str)
-      @units << str
+      @units.update seqHash(str)
     end
     
     def record
-      @units.first
+      KSHash.firstHashValue @units
     end
 
     def recordLast
-      @units.last
+      KSHash.lastHashValue @units
     end
     
     def records
-      @units
+      KSHash.hashValues @units
     end
 
     def setSelectors(inits)      

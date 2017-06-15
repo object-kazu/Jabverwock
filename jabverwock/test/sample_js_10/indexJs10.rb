@@ -21,7 +21,7 @@ module Jabverwock
       
       pp = P.new.attr(:id__id02)
       pp.js.doc.byID.innerHTML(hv)
-      body.addChildren h1, title,pp
+      body.addChildren h1,title,pp
       body
     end
 

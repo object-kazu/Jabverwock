@@ -26,25 +26,24 @@ module Jabverwock
       
       div.jdoc.insertBefore "element", "para"
       
-      # var title3Node = document.getElementById('div1');
-      # var newNode = document.createElement('div');
-      # var textNode = document.createTextNode('CSS');
-      # newNode.appendChild(textNode);
-      # newNode.id = 'title2';
+      	 # var title3Node = document.getElementById('div1');
+	 # var newNode = document.createElement('div');
+	 # var textNode = document.createTextNode('CSS');
+	 # newNode.appendChild(textNode);
+	 # newNode.id = 'title2';
       # title3Node.parentNode.insertBefore(newNode, title3Node);
       
-      # div.js.doc.var(:title3Node) do
-      #   div.js.doc.byID.export
-      # end        
-      div.jdoc.var(:title3Node){ |t| t.byID.export }
-      
+      div.js.doc.var(:title3Node) do
+        div.js.doc.byID.export
+      end        
+
       a = "createElement(:div).is_var :newNode"
       b = "createTextNode('CSS').is_var :textNode"
       c = "appendChild(:newNode, :textNode)"
       div.jdoc.selfy a,b,c
 
       div.jdoc.equal "newNode.id", "title2".sQuo
-      div.jdoc.insertBefore "title3Node", "newNode"
+      
       
       div.addChildren p1, p2
       body.addChild div
@@ -59,7 +58,7 @@ module Jabverwock
   doc.addMember html
   
   
-  $SA = "sample_Js_12"
+  $SA = "sample_Js_13"
   $PAGES =  %w(home)
   
   def self.testPATH

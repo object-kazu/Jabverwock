@@ -33,10 +33,10 @@ module Jabverwock
     c = HEADING.new.contentIs "Hello #{$SA}!"
     
     arr = contents
-    arr.each do |a|
-      body.addChild a
-    end
-    
+    # arr.each do |a|
+    #   body.addChild a
+    # end
+    body.addChildren arr
     body
   end
   

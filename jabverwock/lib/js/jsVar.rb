@@ -28,7 +28,8 @@ module Jabverwock
     
     def is(name,val)
       v = "#{@obj} #{name} = #{val}"
-      @units << v
+      @units.update seqHash v
+      
       self
     end
 

@@ -11,6 +11,12 @@
 			para.appendChild(node);
 			var element = document.getElementById('div1');
 			element.parentNode.insertBefore(para,element);
+			var title3Node = document.getElementById('div1');
+			var newNode = document.createElement('div');
+			var textNode = document.createTextNode(CSS);
+			newNode.appendChild(textNode);
+			title3Node.parentNode.insertBefore(newNode,title3Node);
+			newNode.id = 'title2';
 		</script>
 		
 	</body>

@@ -1,16 +1,17 @@
+#### TODO
+# 1 var, is_varなどの書式の統一
+# 2 exportが気に入らない
 
-if $FOR_GEM
-  
+
+if $FOR_GEM  
   require "global/globalDef"
   require "js/jsBase"
   require "js/jsVar"
-  
 else
   require_relative "../global/globalDef" 
   require_relative "./jsBase"
   require_relative "./jsVar"
 end
-
 
 module Jabverwock
   using StringExtension
@@ -18,7 +19,7 @@ module Jabverwock
   
   #This class express JS Document class
   class JsDocument < JsBase
-    attr_accessor :result, :query, :equality
+    attr_accessor :result, :query
     
     def initialize(*inits)
       super inits
@@ -26,7 +27,6 @@ module Jabverwock
       @query = ""
       @element = Element.new(self)
     end
-
     
     ## under testing ###
     def selfy(*arg)
@@ -36,7 +36,6 @@ module Jabverwock
     end
     
     def var(name,&block)
-      
       if block_given?  # ブロック渡しされているかどうかチェック
         z = block.call self
         if z.is_a? String
@@ -49,23 +48,20 @@ module Jabverwock
       end
     end
 
-
+    
     def equal(leftSide, rightSide)
       ans = leftSide << " = " << rightSide + $JS_CMD_END
       @element.content = ans
       @element.rec
-      
     end
 
-    
-    
     ### delegate  ###
     def rec
       recBy @element.ec
     end
 
     def recBy (str)
-      @units << str
+      @units.update seqHash(str)
     end    
 
     def recs
@@ -77,8 +73,36 @@ module Jabverwock
     end
 
     def recEqual (str) # keep var statement
-      @equality << str
+      @equality.update seqHash(str)
     end
+
+
+    ### hash ###
+    def lastUnitsHashValue
+      KSHash.lastHashValue @units
+    end
+
+    def removeLastHash
+      KSHash.removeLastHashValue @units
+    end
+
+    def lastEqualityValue
+      KSHash.lastHashValue @equality
+    end
+
+    def equalities
+      KSHash.hashValues @equality
+    end
+
+    def unitList
+      KSHash.hashValues @units
+    end
+
+    def record
+      self.unitList.first
+    end
+    
+    ### element ###
     
     def selectElement(slect,obj)
       cp =  @obj.dot(slect).inParenth(obj) + $JS_CMD_END
@@ -153,6 +177,7 @@ module Jabverwock
       treatElement("createTextNode",str).rec
       @element
     end
+
 
     ### find element ###
     def byID      
@@ -230,10 +255,17 @@ module Jabverwock
       @equality = [] # keep var statement 
     end
 
-    # def export
-    #   yield
-    # end
+    def endElement
 
+      # これがよばれたら、Doc{}
+      # dataを引っ張ってきて、削除して
+      # 最終結果とする
+      # doc.byID => doc{}.update {}
+      # doc.clssName => doc{}.update {}
+      # doc.clssName.innerHTML => doc{}.update {} => doc{}.remove.lastHash
+      
+    end
+    
     def cutout # export and remove
       exp = self.recordLast
 
@@ -247,47 +279,33 @@ module Jabverwock
     
     def export # rename 'element' to 'export'
       @content
-      # exp = self.recordLast
-
-      # if exp == nil
-      #   return @content
-      # end
-            
-      # removeLastRecord
-      # KString.remove_Js_Cmd_End(exp)
     end
 
     def record
-      @delegate.units.first
+      @delegate.record
     end
 
     def recordLast
-      @delegate.units.last
+      @delegate.lastUnitsHashValue
     end
 
+        
     def removeLastRecord
-      @delegate.units.pop
+      @delegate.removeLastHash
     end
     
     def records
-      @delegate.units
+      @delegate.unitList
     end
 
     def equality
       @delegate.equality[0]
     end
     
-    # def export
-    #   @ec
-    # end
-
-    
     def is_var(name)
       v = JsVar.new
-
       @delegate.recEqual v.is( name, self.recordLast).record
-      @delegate.units.pop
-            
+      removeLastRecord
     end
     
     
@@ -453,9 +471,7 @@ module Jabverwock
           return v << a
         end
       end
-    end
-
-    
+    end    
   end
 
   # p a = JsDocument.new

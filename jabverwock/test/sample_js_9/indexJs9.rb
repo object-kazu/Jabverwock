@@ -15,12 +15,13 @@ module Jabverwock
       
       ### JSFunction ####
       h1 = HEADING.new.attr(:id__myBtn).contentIs "Click on this text!"
-      func = "function(){alert(\"hello world\");}"
+      fmain = "alert(\"hello world\");"
+      func = "function(){#{fmain}}"
       h1.js.doc.byID.addEventListener(click:"#{func}")
       
       mf = "myFunc"
       h1.js.doc.byID.addEventListener(click_:"#{mf}")
-      h1.js.func.define mf.to_sym,"#{func}"
+      h1.js.func.define mf.to_sym,fmain
       
       body.addChild h1
 

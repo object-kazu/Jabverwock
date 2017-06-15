@@ -137,5 +137,71 @@ module Jabverwock
       assert_equal para.js.doc.byTagName.export, "document.getElementByTagName('html');"
     end
 
+    #### sequence hash ###
+    test "seqHash init test" do
+      jsb = JsBase.new
+      a = jsb.seqHash "shi"
+      assert_equal a, {:js1 => "shi"}
+    end
+    
+    test "seqHash twice" do
+      jsb = JsBase.new
+      jsb.seqHash "shi"
+      a = jsb.seqHash "gooo"
+      assert_equal a, {:js2 => "gooo"}
+    end
+
+    ### firstHashValue ##
+    test "firstHashValue" do
+      jsb= JsBase.new
+      jsb.recBy "shi"
+      jsb.recBy "Goo"
+      jsb.recBy "DDD"
+      
+      assert_equal jsb.record, "shi"
+    end
+
+    test "recordLast" do
+      jsb= JsBase.new
+      jsb.recBy "shi"
+      jsb.recBy "Goo"
+      jsb.recBy "DDD"
+
+      assert_equal jsb.recordLast, "DDD"
+    end
+
+
+    ### recBy ####
+    
+    test "recBy case 1" do
+      jsb = JsBase.new
+      jsb.recBy "shi"
+      assert_equal jsb.orders[0], "shi"
+      
+      assert_equal jsb.orders, ["shi"]
+    end
+    
+    test "recBy case 2" do
+      jsb = JsBase.new
+      jsb.recBy "shi"
+      jsb.recBy "Goo"
+      assert_equal jsb.orders[0], "shi"
+      assert_equal jsb.orders[1], "Goo"
+
+      assert_equal jsb.orders, ["shi","Goo"]
+    end
+
+    test "recBy case 3" do
+      jsb = JsBase.new
+      jsb.recBy "shi"
+      jsb.recBy "Goo"
+      jsb.recBy "DDD"
+      assert_equal jsb.orders[0], "shi"
+      assert_equal jsb.orders[1], "Goo"
+
+      assert_equal jsb.orders, ["shi","Goo", "DDD"]
+    end
+
+    
   end
 end
