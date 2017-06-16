@@ -590,17 +590,44 @@ module Jabverwock
     end
 
 
-    ### insertBefore ####
+ #    ### insertBefore ####
     test "insertBefore" do
      @jsd.insertBefore "aaa", "bbb"
      assert_equal @jsd.orders.first , "aaa.parentNode.insertBefore(bbb,aaa);"
     end
 
 
-    ### equal ###
-    test "equal" do
+ #    ### equal ###
+    test "equal case 1" do
       @jsd.equal "test.id", "title2".sQuo
       assert_equal @jsd.record, "test.id = 'title2';"
+    end
+    
+    test "equal case 2" do
+      @jsd.equal "test.id", "title1".sQuo
+      @jsd.equal "sample.id", "title2".sQuo
+      
+      @jsd.equal "test.id", "title1".sQuo
+      @jsd.equal "sample.id", "title2".sQuo
+      
+      @jsd.equal "test.id", "title1".sQuo
+      @jsd.equal "sample.id", "title2".sQuo
+      
+      @jsd.equal "test.id", "title1".sQuo
+      @jsd.equal "sample.id", "title2".sQuo
+
+      @jsd.equal "test.id", "title1".sQuo
+      @jsd.equal "sample.id", "title2".sQuo
+      
+      assert_equal @jsd.orders[0], "test.id = 'title1';"
+      assert_equal @jsd.orders[1], "sample.id = 'title2';"
+
+      assert_equal @jsd.orders[2], "test.id = 'title1';"
+      assert_equal @jsd.orders[3], "sample.id = 'title2';"
+      
+      assert_equal @jsd.orders[4], "test.id = 'title1';"
+      assert_equal @jsd.orders[5], "sample.id = 'title2';"
+
     end
 
     test "equal case symbol can not use" do
@@ -647,7 +674,7 @@ module Jabverwock
 
     end
     
-    ### js orders ###
+    # ### js orders ###
     
     test "orders" do
       a = "createElement(:p).is_var :para"

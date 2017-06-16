@@ -45,9 +45,9 @@ module Jabverwock
     #   p @jso.orders
     # end
 
-    ############## jsFunction ###############
+    # ############## jsFunction ###############
     test "JsFunction " do
-      @jso.func.define "test", "name", "age", "code is dead;"
+      @jso.func.define "test", "name", "age", "code is dead;"      
       assert_equal @jso.orders[0], "function test(name, age){
       code is dead;
       }"
@@ -62,7 +62,7 @@ module Jabverwock
     end
 
     
-    # ############## jsDocument ###############
+    # # ############## jsDocument ###############
     test "document confirm, correct id setting" do
       @jso.updateSelector :id__koko
       @jso.doc.byID.rec
@@ -95,6 +95,50 @@ module Jabverwock
       assert_equal(@jso.orders[0], "document.getElementById('koko');")
     end
 
+
+    
+    test "jsObject, check orders" do
+      @jso.doc.createElement(:p).is_var :para
+      @jso.doc.createTextNode('This is new.'.sQuo).is_var :node
+      @jso.doc.appendChild(:para, :node)      
+      @jso.doc.var(:element){|t| t.byID.export}       
+      @jso.doc.insertBefore "element", "para"
+           
+      @jso.doc.var(:title3Node){ |t| t.byID.export }
+      a = "createElement(:div).is_var :newNode"
+      b = "createTextNode('CSS').is_var :textNode"
+      c = "appendChild(:newNode, :textNode)"
+      @jso.doc.selfy a,b,c
+      @jso.doc.equal "newNode.id", "title2".sQuo
+      @jso.doc.insertBefore "title3Node", "newNode"
+
+      a = "var para = document.createElement('p');"
+      b = "var node = document.createTextNode(\'This is new.\');"
+      c = "para.appendChild(node);"
+      d ="var element = document.getElementById('');"
+      e ="element.parentNode.insertBefore(para,element);"
+      
+      f ="var title3Node = document.getElementById('');"
+      g ="var newNode = document.createElement('div');"
+      h ="var textNode = document.createTextNode(CSS);"
+      i ="newNode.appendChild(textNode);"
+      j ="newNode.id = 'title2';"
+      k ="title3Node.parentNode.insertBefore(newNode,title3Node);"
+      
+      assert_equal @jso.orders[0], a
+      assert_equal @jso.orders[1], b
+      assert_equal @jso.orders[2], c
+      assert_equal @jso.orders[3], d
+      assert_equal @jso.orders[4], e
+      
+      assert_equal @jso.orders[5], f
+      assert_equal @jso.orders[6], g
+      assert_equal @jso.orders[7], h
+      assert_equal @jso.orders[8], i
+      assert_equal @jso.orders[9], j
+      assert_equal @jso.orders[10], k
+      
+    end
 
     ########## jsReader ##########
     test "jsFileReader, readIn, path error check" do

@@ -38,12 +38,19 @@ module Jabverwock
       KSHash.seqHash val, @sequence.next
     end
     
+    def removeJSPrefix(sym)
+      str  = sym.to_s
+      str.gsub(/js/,"").to_i
+    end
+    
     def orders
       ord = @equality.update @units
-      ans = ord.sort.flatten.inject([])do |arr,v|
-        arr  << v unless v.is_a? Symbol
+      sortedOrd = ord.sort {|(k1,v1),(k2,v2)| removeJSPrefix(k1) <=> removeJSPrefix(k2)}      
+      ans = sortedOrd.flatten.inject([]) do |arr,v|
+        arr << v unless v.is_a? Symbol
         arr
       end
+      ans
     end
 
     

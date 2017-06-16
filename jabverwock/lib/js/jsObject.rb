@@ -37,8 +37,6 @@ module Jabverwock
       updateSelector inits
     end
 
-        
-    
     ######## doc ###########
     def updateSelector(*inits)
       setSelectors inits.flatten
@@ -60,7 +58,10 @@ module Jabverwock
     
     def orders
       l = []
-      l << @units << @doc.orders << @func.orders << @var.orders
+      l << self.records
+      l << @doc.orders
+      l << @func.orders
+      l << @var.orders
       l << @reader.jsArr
       l.flatten
     end

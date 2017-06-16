@@ -51,8 +51,7 @@ module Jabverwock
     
     def equal(leftSide, rightSide)
       ans = leftSide << " = " << rightSide + $JS_CMD_END
-      @element.content = ans
-      @element.rec
+      recBy ans
     end
 
     ### delegate  ###
@@ -312,7 +311,6 @@ module Jabverwock
       @ec = @content if @ec == ""
       @delegate.recBy @ec
       @ec = ""
-
     end
     
     def index(i)

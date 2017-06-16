@@ -62,12 +62,12 @@ module Jabverwock
     test "alias of js.doc" do
       # jdoc == js.doc
       @jwjs.jdoc.write("a")
-      assert_equal(@jwjs.js.doc.units[0], "document.write('a');")
+      assert_equal(@jwjs.js.doc.orders[0], "document.write('a');")
     end
     
     test "document write case 1" do
       @jwjs.js.doc.write("a")
-      assert_equal(@jwjs.js.doc.units[0], "document.write('a');")
+      assert_equal(@jwjs.js.doc.orders[0], "document.write('a');")
     end
     
     test "document write case 2" do

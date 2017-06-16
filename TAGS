@@ -424,15 +424,13 @@ module JabverwockJabverwock9,0
     def setName(s)setName92,0
     def updateSelector(*inits)updateSelector98,0
 
-jabverwock/lib/js/jsDocument.rb,3269
+jabverwock/lib/js/jsDocument.rb,3251
 module JabverwockJabverwock16,0
   class JsDocument < JsBaseJsDocument21,0
-    attr_accessor :result, :query, :equalityresult22,0
-    attr_accessor :result, :query, :equalityresult=22,0
-    attr_accessor :result, :query, :equalityquery22,0
-    attr_accessor :result, :query, :equalityquery=22,0
-    attr_accessor :result, :query, :equalityequality22,0
-    attr_accessor :result, :query, :equalityequality=22,0
+    attr_accessor :result, :queryresult22,0
+    attr_accessor :result, :queryresult=22,0
+    attr_accessor :result, :queryquery22,0
+    attr_accessor :result, :queryquery=22,0
     def initialize(*inits)initialize24,0
     def selfy(*arg)selfy32,0
     def var(name,&block)var38,0
@@ -444,65 +442,63 @@ module JabverwockJabverwock16,0
     def recEqual (str) # keep var statementrecEqual75,0
     def lastUnitsHashValuelastUnitsHashValue81,0
     def removeLastHashremoveLastHash85,0
-    def selectElement(slect,obj)selectElement91,0
-    def modifyElement(order, elem)modifyElement97,0
-    def treatElement (order,elem)treatElement103,0
-    def createElement(name)createElement110,0
-    def removeChild(child)removeChild115,0
-    def appendChild(parent,child)appendChild119,0
-    def insertBefore(targetNode,newNode)insertBefore126,0
-    def write(str)write154,0
-    def createTextNode(str)createTextNode160,0
-    def byID      byID167,0
-    def byClassNamebyClassName171,0
-    def byTagNamebyTagName175,0
-    def querySelectorAllquerySelectorAll179,0
-    def querySelectorAllBy(que)querySelectorAllBy183,0
-  class ElementElement228,0
-   attr_writer :contentcontent=231,0
-   attr_reader :ec, :ecsec232,0
-   attr_reader :ec, :ecsecs232,0
-    def initialize(delegate)initialize234,0
-    def endElementendElement242,0
-    def cutout # export and removecutout253,0
-    def export # rename 'element' to 'export'export264,0
-    def recordrecord268,0
-    def recordLastrecordLast272,0
-    def removeLastRecordremoveLastRecord277,0
-    def recordsrecords281,0
-    def equalityequality285,0
-    def is_var(name)is_var289,0
-    def recrec296,0
-    def index(i)index308,0
-    def attribute(str)attribute317,0
-    def addEventListener(**event_function_hash)addEventListener326,0
-    def addEventListenerUseCapture(**event_function_hash)addEventListenerUseCapture331,0
-    def innerHTML(str)innerHTML337,0
-    def setAttribute(**attrStr)setAttribute342,0
-    def style (**property_val)style351,0
-    def src (str)src359,0
-    def createTextNode(str)createTextNode365,0
-    def node(kind,*type)node371,0
-    def parentNode(*type)parentNode383,0
-    def childNodes(position, *type)childNodes387,0
-    def nextSiblingnextSibling391,0
-    def previousSiblingpreviousSibling395,0
-    def firstChild(*type)firstChild400,0
-    def lastChild(*type)lastChild404,0
-    def recsrecs412,0
-    def spliteSympbolByUnderBar(sym)spliteSympbolByUnderBar418,0
-    def contentRemoveJSEndcontentRemoveJSEnd422,0
-    def addEventListenerBase(ucp, event_function_hash)addEventListenerBase426,0
-    def addEventListenerMain(content, event, func, useCaption = false)addEventListenerMain433,0
-    def elementChanging_Equal (act,str)elementChanging_Equal439,0
-    def elementChanging (act,str)elementChanging445,0
-    def typeName(t)typeName450,0
-
-jabverwock/lib/js/jsDocumentVar.rb,166
-module JabverwockJabverwock16,0
-  class JsDocumentVar < JsDocumentJsDocumentVar22,0
-    def initialize(*inits)initialize25,0
-    def call (statement)call33,0
+    def lastEqualityValuelastEqualityValue89,0
+    def equalitiesequalities93,0
+    def unitListunitList97,0
+    def recordrecord101,0
+    def selectElement(slect,obj)selectElement107,0
+    def modifyElement(order, elem)modifyElement113,0
+    def treatElement (order,elem)treatElement119,0
+    def createElement(name)createElement126,0
+    def removeChild(child)removeChild131,0
+    def appendChild(parent,child)appendChild135,0
+    def insertBefore(targetNode,newNode)insertBefore140,0
+    def write(str)write164,0
+    def createTextNode(str)createTextNode170,0
+    def byID      byID177,0
+    def byClassNamebyClassName181,0
+    def byTagNamebyTagName185,0
+    def querySelectorAllquerySelectorAll189,0
+    def querySelectorAllBy(que)querySelectorAllBy193,0
+  class ElementElement238,0
+   attr_writer :contentcontent=241,0
+   attr_reader :ec, :ecsec242,0
+   attr_reader :ec, :ecsecs242,0
+    def initialize(delegate)initialize244,0
+    def endElementendElement252,0
+    def cutout # export and removecutout263,0
+    def export # rename 'element' to 'export'export274,0
+    def recordrecord278,0
+    def recordLastrecordLast282,0
+    def removeLastRecordremoveLastRecord287,0
+    def recordsrecords291,0
+    def equalityequality295,0
+    def is_var(name)is_var299,0
+    def recrec306,0
+    def index(i)index317,0
+    def attribute(str)attribute326,0
+    def addEventListener(**event_function_hash)addEventListener335,0
+    def addEventListenerUseCapture(**event_function_hash)addEventListenerUseCapture340,0
+    def innerHTML(str)innerHTML346,0
+    def setAttribute(**attrStr)setAttribute351,0
+    def style (**property_val)style360,0
+    def src (str)src368,0
+    def createTextNode(str)createTextNode374,0
+    def node(kind,*type)node380,0
+    def parentNode(*type)parentNode392,0
+    def childNodes(position, *type)childNodes396,0
+    def nextSiblingnextSibling400,0
+    def previousSiblingpreviousSibling404,0
+    def firstChild(*type)firstChild409,0
+    def lastChild(*type)lastChild413,0
+    def recsrecs421,0
+    def spliteSympbolByUnderBar(sym)spliteSympbolByUnderBar427,0
+    def contentRemoveJSEndcontentRemoveJSEnd431,0
+    def addEventListenerBase(ucp, event_function_hash)addEventListenerBase435,0
+    def addEventListenerMain(content, event, func, useCaption = false)addEventListenerMain442,0
+    def elementChanging_Equal (act,str)elementChanging_Equal448,0
+    def elementChanging (act,str)elementChanging454,0
+    def typeName(t)typeName459,0
 
 jabverwock/lib/js/jsFileReader.rb,276
 module JabverwockJabverwock20,0
@@ -533,10 +529,10 @@ module JabverwockJabverwock20,0
     attr_accessor :doc, :func, :varvar28,0
     attr_accessor :doc, :func, :varvar=28,0
     def initialize(*inits)initialize30,0
-    def updateSelector(*inits)updateSelector43,0
-    def setTagName(name)setTagName49,0
-    def readIn(path)readIn55,0
-    def ordersorders61,0
+    def updateSelector(*inits)updateSelector41,0
+    def setTagName(name)setTagName47,0
+    def readIn(path)readIn53,0
+    def ordersorders59,0
 
 jabverwock/lib/js/jsVar.rb,324
 module JabverwockJabverwock14,0
@@ -770,15 +766,6 @@ module JabverwockJabverwock6,0
     def setupsetup25,0
     def cleanupcleanup31,0
     def teardownteardown36,0
-
-jabverwock/test/js_test/jsDocumentVarTest.rb,254
-module JabverwockJabverwock6,0
-  class JsDocumentVarTest < Test::Unit::TestCaseJsDocumentVarTest10,0
-      def startupstartup13,0
-      def shutdownshutdown18,0
-    def setupsetup24,0
-    def cleanupcleanup30,0
-    def teardownteardown35,0
 
 jabverwock/test/js_test/jsFileReaderTest.rb,252
 module JabverwockJabverwock6,0
@@ -1127,7 +1114,7 @@ module JabverwockJabverwock3,0
 jabverwock/test/sample_js_12/indexJs12.rb,94
 module JabverwockJabverwock3,0
     def bodierbodier10,0
-  def self.testPATHtestPATH65,0
+  def self.testPATHtestPATH62,0
 
 jabverwock/test/sample_js_13/indexJs13.rb,94
 module JabverwockJabverwock3,0

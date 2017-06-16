@@ -49,7 +49,7 @@ module Jabverwock
     test "function no arg" do
       
       @jsf.define "test", "code is dead;"
-      assert_equal @jsf.units[0], "function test(){
+      assert_equal @jsf.orders[0], "function test(){
       code is dead;
       }"
       
@@ -58,7 +58,7 @@ module Jabverwock
     test "function with arg" do
       
       @jsf.define "test", "name" ,"age", "code is dead;"
-      assert_equal @jsf.units[0], "function test(name, age){
+      assert_equal @jsf.orders[0], "function test(name, age){
       code is dead;
       }"
       
@@ -67,7 +67,7 @@ module Jabverwock
     test "function with arg as symbol" do
       
       @jsf.define :test, :name , :age,"code is dead;"
-      assert_equal @jsf.units[0], "function test(name, age){
+      assert_equal @jsf.orders[0], "function test(name, age){
       code is dead;
       }"
       

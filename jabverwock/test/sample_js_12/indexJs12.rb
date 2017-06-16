@@ -33,9 +33,6 @@ module Jabverwock
       # newNode.id = 'title2';
       # title3Node.parentNode.insertBefore(newNode, title3Node);
       
-      # div.js.doc.var(:title3Node) do
-      #   div.js.doc.byID.export
-      # end        
       div.jdoc.var(:title3Node){ |t| t.byID.export }
       
       a = "createElement(:div).is_var :newNode"

@@ -26,9 +26,12 @@ module Jabverwock
     end
 
     def define(name, *args, code)
-      @units << "#{@obj} #{name.to_s}(#{args.join(", ")}){
+      f =  "#{@obj} #{name.to_s}(#{args.join(", ")}){
       #{code}
       }"
+
+      @units.update seqHash(f)
+
     end
     
   end
