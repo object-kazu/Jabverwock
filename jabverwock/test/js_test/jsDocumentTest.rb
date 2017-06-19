@@ -57,7 +57,6 @@ module Jabverwock
       ans = @jsd.byID
       assert_equal(@jsd.orders[0], "document.getElementById('test');")
     end
-
     
      test "select by id, no rec" do
       @jsd.id = "test"

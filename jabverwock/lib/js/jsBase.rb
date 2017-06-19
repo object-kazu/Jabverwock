@@ -69,9 +69,9 @@ module Jabverwock
       KSHash.firstHashValue @units
     end
 
-    def recordLast
-      KSHash.lastHashValue @docHash
-    end
+    # def recordLast
+    #   KSHash.lastHashValue @docHash
+    # end
     
     def records
       KSHash.hashValues @units

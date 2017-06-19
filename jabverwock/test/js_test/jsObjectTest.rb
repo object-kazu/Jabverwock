@@ -101,10 +101,10 @@ module Jabverwock
       @jso.doc.createElement(:p).is_var :para
       @jso.doc.createTextNode('This is new.'.sQuo).is_var :node
       @jso.doc.appendChild(:para, :node)      
-      @jso.doc.var(:element){|t| t.byID.export}       
+      @jso.doc.var(:element){|t| t.byID}       
       @jso.doc.insertBefore "element", "para"
            
-      @jso.doc.var(:title3Node){ |t| t.byID.export }
+      @jso.doc.var(:title3Node){ |t| t.byID }
       a = "createElement(:div).is_var :newNode"
       b = "createTextNode('CSS').is_var :textNode"
       c = "appendChild(:newNode, :textNode)"

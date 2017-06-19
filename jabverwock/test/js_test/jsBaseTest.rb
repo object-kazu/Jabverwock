@@ -167,7 +167,7 @@ module Jabverwock
       jsb.recBy "Goo"
       jsb.recBy "DDD"
 
-      assert_equal jsb.recordLast, "DDD"
+      assert_equal jsb.orders[2], "DDD"
     end
 
 

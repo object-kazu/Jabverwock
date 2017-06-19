@@ -21,7 +21,7 @@ module Jabverwock
       div.jdoc.appendChild(:para, :node)
       
       div.js.doc.var(:element) do
-        div.js.doc.byID.export
+        div.js.doc.byID
       end
       
       div.jdoc.insertBefore "element", "para"
@@ -33,7 +33,7 @@ module Jabverwock
       # newNode.id = 'title2';
       # title3Node.parentNode.insertBefore(newNode, title3Node);
       
-      div.jdoc.var(:title3Node){ |t| t.byID.export }
+      div.jdoc.var(:title3Node){ |t| t.byID}
       
       a = "createElement(:div).is_var :newNode"
       b = "createTextNode('CSS').is_var :textNode"
