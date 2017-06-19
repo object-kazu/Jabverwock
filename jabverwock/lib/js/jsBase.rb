@@ -23,9 +23,10 @@ module Jabverwock
       
       # units and equality keep data like {:js1=> xxx, js2=> xxx}
       initSeq
-      @units = {}
-      @equality = {}
-    
+      @units = {}    # => keep element hash (ex. doc.byID.innerHTML)
+      @equality = {} #=> keep equality hash (ex. var id = test)
+      @docHash = {}  #=> keep jsDocument hash (ex. doc.byID)
+      
       setSelectors inits
     end
 
@@ -42,9 +43,14 @@ module Jabverwock
       str  = sym.to_s
       str.gsub(/js/,"").to_i
     end
+
+    def gatheringOrder
+      prep = @equality.update @units
+      prep.update @docHash
+    end
     
     def orders
-      ord = @equality.update @units
+      ord = gatheringOrder      
       sortedOrd = ord.sort {|(k1,v1),(k2,v2)| removeJSPrefix(k1) <=> removeJSPrefix(k2)}      
       ans = sortedOrd.flatten.inject([]) do |arr,v|
         arr << v unless v.is_a? Symbol
@@ -64,13 +70,17 @@ module Jabverwock
     end
 
     def recordLast
-      KSHash.lastHashValue @units
+      KSHash.lastHashValue @docHash
     end
     
     def records
       KSHash.hashValues @units
     end
 
+    def docRecords
+      KSHash.hashValues @docHash
+    end
+    
     def setSelectors(inits)      
       inits.each do |s|        
         setSelector KSUtil.strinrgConvertSymbole s

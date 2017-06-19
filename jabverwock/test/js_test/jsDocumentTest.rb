@@ -51,6 +51,13 @@ module Jabverwock
       ans = @jsd.byID.export
       assert_equal(ans, "document.getElementById('test');")
     end
+
+    test "select by id case" do
+      @jsd.id = "test"
+      ans = @jsd.byID
+      assert_equal(@jsd.orders[0], "document.getElementById('test');")
+    end
+
     
      test "select by id, no rec" do
       @jsd.id = "test"
@@ -73,8 +80,8 @@ module Jabverwock
 
     test "select by class and rec" do
       @jsd.updateSelector "id__koko", "cls__p"
-      @jsd.byID.rec
-      @jsd.byClassName.rec
+      @jsd.byID
+      @jsd.byClassName
       assert_equal(@jsd.orders[0], "document.getElementById('koko');")
       assert_equal(@jsd.orders[1], "document.getElementByClassName('p');")
     end
@@ -101,27 +108,20 @@ module Jabverwock
     end
     
     
- #    # # # # # ### add and delete element ###
+ # #    # # # # # ### add and delete element ###
     test "createElement" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.createElement("koko")
       assert_equal(@jsd.orders[0], "document.createElement('koko');")
-
+      assert_equal @jsd.orders[1], nil
     end
     
-    test "createElement units count" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.createElement("koko")
-      assert_equal(@jsd.units.count, 1)
-
-    end
 
     test "createElement units ,symbol" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.createElement :koko
-      assert_equal(@jsd.units[:js1], "document.createElement('koko');")
-      
       assert_equal @jsd.orders[0],"document.createElement('koko');" 
+      assert_equal @jsd.orders[1], nil
       
     end
 
@@ -133,7 +133,7 @@ module Jabverwock
     
     test "createElement is_var, equality is available" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.createElement(:koko).is_var(:mm)      
+      @jsd.createElement(:koko).is_var(:mm)
       assert_equal(@jsd.lastEqualityValue, "var mm = document.createElement('koko');")
     end
 
@@ -142,9 +142,11 @@ module Jabverwock
       @jsd.createElement(:koko).is_var(:mm)
       @jsd.createTextNode("this is new.".sQuo).is_var(:new)
       
-      assert_equal(@jsd.units[0], nil)
       assert_equal(@jsd.equalities[0], "var mm = document.createElement('koko');")
       assert_equal(@jsd.equalities[1], "var new = document.createTextNode('this is new.');")
+
+      assert_equal(@jsd.units[0], nil)
+      assert_equal @jsd.docRecords[0], nil
     end
 
     test "createTextNode, show orders" do
@@ -152,9 +154,12 @@ module Jabverwock
       @jsd.createElement(:koko).is_var(:mm)
       @jsd.createTextNode("this is new.".sQuo).is_var(:new)
       
-      assert_equal(@jsd.units[0], nil)
       assert_equal(@jsd.equalities[0], @jsd.orders[0])
       assert_equal(@jsd.equalities[1], @jsd.orders[1])
+      
+      assert_equal @jsd.units[0], nil
+      assert_equal @jsd.docRecords[0], nil
+      
     end
 
     
@@ -186,20 +191,20 @@ module Jabverwock
     
     
     test "var call back case 2" do
-      @jsd.var(:mm) { |t| t.byID.export }
+      @jsd.var(:mm) { |t| t.byID }
 
       assert_equal(@jsd.equalities[0], "var mm = document.getElementById('');")
     end
     
     test "var call back case 2 another expression ver 1" do
       @jsd.var(:mm) do |this| 
-        this.byID.export
+        this.byID
       end
       assert_equal(@jsd.equalities.first, "var mm = document.getElementById('');")
     end
 
     test "call call back case , another expression ver 2"do
-      @jsd.var(:mm) {|t| t.byID.export }      
+      @jsd.var(:mm) {|t| t.byID }      
       assert_equal(@jsd.equalities[0], "var mm = document.getElementById('');")
     end
     
@@ -265,23 +270,30 @@ module Jabverwock
     test "removeChild" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.removeChild("aaa")
-      assert_equal(@jsd.units[:js1], "document.removeChild(aaa);")
+      assert_equal(@jsd.orders[0], "document.removeChild(aaa);")
 
     end
     
     
     test "document write, do not need rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.write("koko")
-      assert_equal(@jsd.units[:js1], "document.write('koko');")
+      
+      @jsd.createElement(:koko).is_var(:mm) #0
+      @jsd.createTextNode("this is new".sQuo).is_var(:nn) #1
+      @jsd.appendChild(:mm, :nn) #2
+      @jsd.write("koko") #3
+      
+      assert_equal(@jsd.orders[3], "document.write('koko');")
+
     end
     
- # #    # # # ### change element ###
+ # # #    # # # ### change element ###
     
     test "innerHTML, no rec" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.innerHTML "aaa".dQuo
       assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
+      assert_equal @jsd.orders[1], nil
     end
 
         
@@ -299,6 +311,7 @@ module Jabverwock
       a.innerHTML("bbb".dQuo)
       assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
       assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML=\"bbb\";")
+      assert_equal @jsd.orders[2], nil
     end
     
     test "innerHTML, rec case 4" do
@@ -404,12 +417,12 @@ module Jabverwock
 
     end
 
-    test "index element case 3, cutout" do  
-      @jsd.updateSelector :id__koko
-      a = @jsd.byID.index(0).cutout
-      assert_equal(a,"document.getElementById('koko')[0];")
+    # test "index element case 3, cutout" do  
+    #   @jsd.updateSelector :id__koko
+    #   a = @jsd.byID.index(0).cutout
+    #   assert_equal(a,"document.getElementById('koko')[0];")
 
-    end
+    # end
 
 
  #    # ### addEventListener #####
@@ -590,7 +603,7 @@ module Jabverwock
     end
 
 
- #    ### insertBefore ####
+ # #    ### insertBefore ####
     test "insertBefore" do
      @jsd.insertBefore "aaa", "bbb"
      assert_equal @jsd.orders.first , "aaa.parentNode.insertBefore(bbb,aaa);"
@@ -661,7 +674,7 @@ module Jabverwock
       a = "createElement(:p).is_var :para"
       b = "createTextNode('This is new.'.sQuo).is_var :node"
       c = "appendChild(:para, :node)"
-      d = "var(:element){ |t|t.byID.export }"
+      d = "var(:element){ |t|t.byID }"
       e = "insertBefore \"element\", \"para\""
       
       @jsd.selfy a,b,c,d,e
@@ -674,13 +687,13 @@ module Jabverwock
 
     end
     
-    # ### js orders ###
+    ### js orders ###
     
     test "orders" do
       a = "createElement(:p).is_var :para"
       b = "createTextNode('This is new.'.sQuo).is_var :node"
       c = "appendChild(:para, :node)"
-      d = "var(:element){ |t|t.byID.export }"
+      d = "var(:element){ |t|t.byID}"
       
       @jsd.selfy a,b,c,d
       
