@@ -1,6 +1,5 @@
 #### TODO
 # 1 var, is_varなどの書式の統一
-# 2 exportが気に入らない
 
 if $FOR_GEM  
   require "global/globalDef"
@@ -42,7 +41,6 @@ module Jabverwock
         if z.is_a? String
           ans = "var " << name.to_s << " = " << z
           recEqual ans
-          #recBy ans
           return
         end
         z.is_var name

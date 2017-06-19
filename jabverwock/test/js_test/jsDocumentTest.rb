@@ -225,7 +225,7 @@ module Jabverwock
     test "var call back case 4" do
       @jsd.createElement(:p).is_var :para
       @jsd.var(:mm) do
-        @jsd.byID.export
+        @jsd.byID
       end
       assert_equal(@jsd.equalities[0], "var para = document.createElement('p');")
       assert_equal(@jsd.equalities[1], "var mm = document.getElementById('');")      
@@ -237,7 +237,7 @@ module Jabverwock
       
       @jsd.createElement(:koko).is_var(:mm)
       @jsd.createTextNode("this is new".sQuo).is_var(:nn)      
-      @jsd.var(:para) { |t| t.byID.export }
+      @jsd.var(:para) { |t| t.byID }
 
       # @jsd.var(:mm){ |t| t.createElement(:koko) }
       # @jsd.var(:nn){ |t| t.createTextNode("this is new".sQuo) }
