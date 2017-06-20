@@ -1,13 +1,13 @@
 if $FOR_GEM  
-  require "global/globalDef"
-  require "js/jsBase"
-  require "js/jsVar"
-  require "js/jsDocument"
+  require 'global/globalDef'
+  require 'js/jsBase'
+  require 'js/jsVar'
+  require 'js/jsDocument'
 else
-  require_relative "../global/globalDef" 
-  require_relative "./jsBase"
-  require_relative "./jsVar"
-  require_relative "./jsDocument"
+  require_relative '../global/globalDef' 
+  require_relative './jsBase'
+  require_relative './jsVar'
+  require_relative './jsDocument'
 end
 
 
@@ -24,8 +24,8 @@ module Jabverwock
    
     def initialize(delegate)
       @delegate = delegate
-      @content = ""
-      @ec = ""
+      @content = ''
+      @ec = ''
       @ecs = []
       @equality = [] # keep var statement 
     end
@@ -97,11 +97,11 @@ module Jabverwock
         return
       end
       
-      @ec = @content if @ec == ""
+      @ec = @content if @ec == ''
       @delegate.recBy @ec
       removeLastDocHash
       
-      @ec = ""
+      @ec = ''
     end
     
     def index(i)
@@ -115,7 +115,7 @@ module Jabverwock
     ### each element ###
 
     def attribute(str)
-      elementChanging_Equal("attribute",str)
+      elementChanging_Equal('attribute',str)
       rec
     end
 
@@ -135,29 +135,29 @@ module Jabverwock
 
         
     def innerHTML(str)
-      elementChanging_Equal("innerHTML",str)
+      elementChanging_Equal('innerHTML',str)
       rec
     end
 
     def setAttribute(**attrStr)
       attrStr.each do |att, str|
         sKey = spliteSympbolByUnderBar att 
-        e = "".inDoubleQuot(sKey) + $COMMA.inDoubleQuot(str)
-        @ecs << contentRemoveJSEnd.dot("setAttribute") + "(" + e + ")" + $JS_CMD_END
+        e = ''.inDoubleQuot(sKey) + $COMMA.inDoubleQuot(str)
+        @ecs << contentRemoveJSEnd.dot('setAttribute') + '(' + e + ')' + $JS_CMD_END
       end
       rec
     end
     
     def style (**property_val)
       property_val.each do |property, val|
-        @ecs << contentRemoveJSEnd.dot("style").dot(property.to_s) +  $EQUAL.inSingleQuo(val) + $JS_CMD_END
+        @ecs << contentRemoveJSEnd.dot('style').dot(property.to_s) +  $EQUAL.inSingleQuo(val) + $JS_CMD_END
       end
       rec
       self
     end
     
     def src (str)
-      elementChanging_Equal("src",str)
+      elementChanging_Equal('src', str)
       rec
       self
     end
@@ -171,10 +171,10 @@ module Jabverwock
     def node(kind,*type)
       
       k = kind.to_s
-      t = type.empty? ? "" : type.first.to_s
+      t = type.empty? ? '' : type.first.to_s
       
       ans = contentRemoveJSEnd.dot(k)
-      ans << "".dot(typeName(t)) unless t.empty?
+      ans << ''.dot(typeName(t)) unless t.empty?
       @ecs << ans + $JS_CMD_END
       rec
       self
@@ -189,14 +189,13 @@ module Jabverwock
     end
 
     def nextSibling
-      node :nextSibling,  ""
+      node :nextSibling, ''
     end
 
     def previousSibling
-      node :previousSibling,  ""
+      node :previousSibling, ''
     end
-    
-    
+
     def firstChild(*type)
       node :firstChild, *type
     end
@@ -205,19 +204,17 @@ module Jabverwock
       node :lastChild, *type
     end
 
-
     ### private methods ###
 
     private
     def recs
       @delegate.recsBy @ecs
       removeLastDocHash
-      @ecs = []      
+      @ecs = []
     end
-    
 
     def spliteSympbolByUnderBar(sym)
-      sym.to_s.split("_").first
+      sym.to_s.split('_').first
     end
 
     def contentRemoveJSEnd
@@ -230,12 +227,12 @@ module Jabverwock
         @ecs << addEventListenerMain(contentRemoveJSEnd, rKey, func, ucp) 
       end
     end
-    
+
     def addEventListenerMain(content, event, func, useCaption = false)
-      ucp = useCaption ? ",true": ""
-      content.dot("addEventListener") + "(".inDoubleQuot(event) + $COMMA + func + ucp + ")" + $JS_CMD_END
+      ucp = useCaption ? ',true': ''
+      content.dot('addEventListener') + '('.inDoubleQuot(event) + $COMMA + func + ucp + ')' + $JS_CMD_END
     end
-    
+
     ### change element ###
     def elementChanging_Equal (act,str)
       s = KString.remove_Js_Cmd_End @content
@@ -244,25 +241,25 @@ module Jabverwock
     end
     
     def elementChanging (act,str)
-      @ec = contentRemoveJSEnd.dot(act) + "(" + str + ")" + $JS_CMD_END
+      @ec = contentRemoveJSEnd.dot(act) + '(' + str + ')' + $JS_CMD_END
       self
     end
- 
+
     def typeName(t)
-      v = "node"
-      tArr = %w(Value Type Name)
+      v = 'node'
+      tArr = %w[Value Type Name]
       tArr.each do |a|
         if a.downcase == t.to_s
           return v << a
         end
       end
-    end    
+    end
   end
 
   # p a = JsDocument.new
 
-  # p a = JsDocument.new("","","")
+  # p a = JsDocument.new('','','')
   # p a.byID
-  # p a.write("adas")
-  
+  # p a.write('adas')
+
 end

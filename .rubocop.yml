@@ -1,0 +1,26 @@
+#変数名をチェックします。
+#デフォルトはsanake caseを正とします。
+
+# VariableName:
+#   EnforcedStyle: camelCase
+
+Style/HashSyntax:
+ EnforcedStyle: ruby19
+    
+Style/IgnoredMethods:
+ -assert_equal
+ -self
+ -assert_raise
+    
+Style/MethodName:
+  EnforcedStyle: camelCase
+  SupportedStyles:
+    - snake_case
+    - camelCase
+    
+EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+
+Metrics/LineLength:
+  Max: 120
