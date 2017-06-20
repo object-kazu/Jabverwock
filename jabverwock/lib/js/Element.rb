@@ -30,16 +30,16 @@ module Jabverwock
       @equality = [] # keep var statement 
     end
     
-    def cutout # export and remove
-      exp = self.recordLast
+    # def cutout # export and remove
+    #   exp = self.recordLast
 
-      if exp == nil
-        return @content
-      end
+    #   if exp == nil
+    #     return @content
+    #   end
             
-      removeLastDocHash
-      KString.remove_Js_Cmd_End(exp)
-    end
+    #   removeLastDocHash
+    #   KString.remove_Js_Cmd_End(exp)
+    # end
     
     # def export # rename 'element' to 'export'
     #   @content

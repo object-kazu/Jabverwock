@@ -69,9 +69,7 @@ module Jabverwock
     def recEqual (str) # keep var statement
       @equality.update seqHash(str)
     end
-
-    
-    
+   
     # @docHash = {}  #=> keep jsDocument hash (ex. doc.byID)
     # @units = {}    # => keep element hash (ex. doc.byID.innerHTML)
     # @equality = {} #=> keep equality hash (ex. var id = test)
@@ -80,11 +78,10 @@ module Jabverwock
     def lastDocHashValue
       KSHash.lastHashValue @docHash
     end
-    
+
     def removeLastDocHash
       KSHash.removeLastHashValue @docHash
     end
-
 
     ### units hash ###
     def lastUnitsHashValue
@@ -94,11 +91,11 @@ module Jabverwock
     def removeLastUnitsHash
       KSHash.removeLastHashValue @units
     end
-    
+
     def unitList
       KSHash.hashValues @units
     end
-    
+
     def record
       self.unitList.first
     end
@@ -107,7 +104,7 @@ module Jabverwock
       lk = KSHash.lastHashKey @docHash
       @docHash[lk] =  str
     end
-    
+
     ### equality hash ###
     def lastEqualityValue
       KSHash.lastHashValue @equality
@@ -118,13 +115,12 @@ module Jabverwock
     end
 
 
-    
     ### element ###
     def connectToElement(cnt)
       @element.content = cnt
       @element
     end
-    
+
     def selectElement(slect,obj)
       cp =  @obj.dot(slect).inParenth(obj) + $JS_CMD_END
       @docHash.update seqHash(cp)
@@ -137,7 +133,7 @@ module Jabverwock
       connectToElement cp
     end
 
-    def treatElement (order,elem)
+    def treatElement (order, elem)
       cp = @obj.dot(order) + "(" + "#{elem}" + ")"  + $JS_CMD_END
       @docHash.update seqHash(cp)
       connectToElement cp
@@ -186,7 +182,6 @@ module Jabverwock
     def write(str)
       modifyElement("write", str).rec
     end    
-    
 
     ### cleate ###
     def createTextNode(str)
@@ -194,12 +189,11 @@ module Jabverwock
       @element
     end
 
-
     ### find element ###
     def byID      
       selectElement("getElementById", @id)
     end
-    
+
     def byClassName
       selectElement("getElementByClassName",@cls)
     end
@@ -243,9 +237,5 @@ module Jabverwock
     # document.strictErrorChecking	Returns if error checking is enforced	3
     # document.title	Returns the <title> element	1
     # document.URL	Returns the complete URL of the document
-
-
-    
   end
-  
 end
