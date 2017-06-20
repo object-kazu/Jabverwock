@@ -41,9 +41,9 @@ module Jabverwock
       KString.remove_Js_Cmd_End(exp)
     end
     
-    def export # rename 'element' to 'export'
-      @content
-    end
+    # def export # rename 'element' to 'export'
+    #   @content
+    # end
 
     def record
       @delegate.record
@@ -108,6 +108,7 @@ module Jabverwock
       s = KString.remove_Js_Cmd_End @content
       @ec = s + "[#{i}];"
       @content = @ec
+      @delegate.rewriteUnitsHashValue @content
       self
     end
     

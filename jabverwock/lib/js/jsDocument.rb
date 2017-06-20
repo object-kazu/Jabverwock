@@ -62,10 +62,6 @@ module Jabverwock
       @units.update seqHash(str)
     end    
 
-    # def recs
-    #   recsBy @element.ecs
-    # end
-
     def recsBy (str)
       str.each{ |s| recBy s }
     end
@@ -107,6 +103,11 @@ module Jabverwock
       self.unitList.first
     end
 
+    def rewriteUnitsHashValue(str)
+      lk = KSHash.lastHashKey @docHash
+      @docHash[lk] =  str
+    end
+    
     ### equality hash ###
     def lastEqualityValue
       KSHash.lastHashValue @equality

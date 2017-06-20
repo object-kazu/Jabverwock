@@ -102,6 +102,11 @@ module Jabverwock
       assert_equal KSHash.hashValues(a),["b","a"]
     end
 
+    test "lastHashKey" do
+      a = {js1: "a", js2: "v", js11: "dd", js3: "ee", js20: "tt", js10: "zz"}
+      assert_equal KSHash.lastHashKey(a), :js20
+    end
+
   end
 
 end

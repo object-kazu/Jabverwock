@@ -48,12 +48,6 @@ module Jabverwock
 
     test "select by id" do
       @jsd.id = "test"
-      ans = @jsd.byID.export
-      assert_equal(ans, "document.getElementById('test');")
-    end
-
-    test "select by id case" do
-      @jsd.id = "test"
       ans = @jsd.byID
       assert_equal(@jsd.orders[0], "document.getElementById('test');")
     end
@@ -66,48 +60,37 @@ module Jabverwock
     
     test "select by id and rec" do
       @jsd.id = "test"
-      @jsd.byID.rec
+      @jsd.byID
       assert_equal(@jsd.orders[0] , "document.getElementById('test');")
+      assert_equal(@jsd.orders[1] , nil)
     end
     
     
-    test "select by class" do
-      @jsd.updateSelector "id__koko", "cls__p"
-      assert_equal(@jsd.byID.export, "document.getElementById('koko');")
-      assert_equal(@jsd.byClassName.export, "document.getElementByClassName('p');")
-    end
-
     test "select by class and rec" do
       @jsd.updateSelector "id__koko", "cls__p"
       @jsd.byID
       @jsd.byClassName
       assert_equal(@jsd.orders[0], "document.getElementById('koko');")
       assert_equal(@jsd.orders[1], "document.getElementByClassName('p');")
+      assert_equal(@jsd.orders[2], nil)
     end
 
     
     test "select by class case 2" do
-      @jsd.updateSelector :id__koko, :cls__p
-      assert_equal(@jsd.byID.export, "document.getElementById('koko');")
-      assert_equal(@jsd.byClassName.export, "document.getElementByClassName('p');")
-    end
-    
-    test "select by TagName" do
-      @jsd.updateSelector "id__koko","cls__p","name__popo"
-      assert_equal(@jsd.byID.export, "document.getElementById('koko');")
-      assert_equal(@jsd.byClassName.export, "document.getElementByClassName('p');")
-      assert_equal(@jsd.byTagName.export, "document.getElementByTagName('popo');")
-    end
-    
-    test "select by TagName case 2" do
-      @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      assert_equal(@jsd.byID.export, "document.getElementById('koko');")
-      assert_equal(@jsd.byClassName.export, "document.getElementByClassName('p');")
-      assert_equal(@jsd.byTagName.export, "document.getElementByTagName('popo');")
+      @jsd.updateSelector :id__koko, :cls__p, :name__popo
+      @jsd.byID
+      @jsd.byClassName
+      @jsd.byTagName
+      assert_equal(@jsd.orders[0], "document.getElementById('koko');")
+      assert_equal(@jsd.orders[1], "document.getElementByClassName('p');")
+      assert_equal(@jsd.orders[2], "document.getElementByTagName('popo');")
+      assert_equal(@jsd.orders[3], nil)
     end
     
     
- # #    # # # # # ### add and delete element ###
+    
+    
+ # # #    # # # # # ### add and delete element ###
     test "createElement" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.createElement("koko")
@@ -360,7 +343,7 @@ module Jabverwock
       assert_equal(@jsd.orders[1], "document.getElementById('koko').setAttribute(\"btn\",\"blue\");")
     end
     
-    test "setAttribute, rec case 3" do
+    test 'setAttribute, rec case 3' do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.byID.setAttribute(btn:"red", btn_:"blue")
       assert_equal(@jsd.orders[0], "document.getElementById('koko').setAttribute(\"btn\",\"red\");")
@@ -404,26 +387,20 @@ module Jabverwock
 
     test "index element" do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID.index(0).export
-      assert_equal(a,"document.getElementById('koko')[0];")
+      @jsd.byID.index(0)
+      assert_equal(@jsd.orders[0],"document.getElementById('koko')[0];")
 
     end
     
-    test "index element case 2, export" do  
+    test "index element case 2, nil check" do  
       @jsd.updateSelector :id__koko
-      a = @jsd.byID.index(0).export
-      assert_equal(a,"document.getElementById('koko')[0];")
+      @jsd.byID.index(0)
+      assert_equal(@jsd.orders[0],"document.getElementById('koko')[0];")      
+      assert_equal @jsd.orders[1], nil
 
     end
-
-    # test "index element case 3, cutout" do  
-    #   @jsd.updateSelector :id__koko
-    #   a = @jsd.byID.index(0).cutout
-    #   assert_equal(a,"document.getElementById('koko')[0];")
-
-    # end
-
-
+    
+    
  #    # ### addEventListener #####
     test "addEventListener case 1" do
       @jsd.byID.addEventListener(click:"myFunction()")
@@ -703,13 +680,8 @@ module Jabverwock
       assert_equal @jsd.orders[1], "var node = document.createTextNode('This is new.');"
       assert_equal @jsd.orders[2], "para.appendChild(node);"
       assert_equal @jsd.orders[3], "var element = document.getElementById('');"
-      assert_equal @jsd.orders[4], "newNode.id = 'title2';"      
+      assert_equal @jsd.orders[4], "newNode.id = 'title2';"
       assert_equal @jsd.orders[5] , "title3Node.parentNode.insertBefore(newNode,title3Node);"
-
-      
     end
-
-    
-    
   end
 end
