@@ -27,23 +27,68 @@ module Jabverwock
       @content = ''
       @ec = ''
       @ecs = []
-      @equality = [] # keep var statement 
+      @equality = [] # keep var statement
+      lastArgNumberInit
     end
     
-    # def cutout # export and remove
-    #   exp = self.recordLast
-
-    #   if exp == nil
-    #     return @content
-    #   end
-            
-    #   removeLastDocHash
-    #   KString.remove_Js_Cmd_End(exp)
-    # end
+    # ### cut and cuts ###
+    def lastArgNumberInit
+      @lastArgNumber = 1
+    end
+    def countLastArgNumber(correction)
+      @lastArgNumber = correction.count
+    end
     
-    # def export # rename 'element' to 'export'
-    #   @content
-    # end
+    # cutout rename cut
+    # ex)
+    #  h1 = HEADING.new.attr(:id__id01).contentIs "My First Page"
+    #  hv =  h1.js.doc.byID.firstChild(:value).cut
+    #  pp = P.new.attr(:id__id02)
+    #  pp.js.doc.byID.innerHTML(hv)
+    #  document.getElementById("id02").innerHTML = document.getElementById("id01").firstChild.nodeValue;
+
+    def cuts
+      ans = []
+      number = @lastArgNumber
+      number.times{ans << cut}
+      lastArgNumberInit
+      ans.reverse
+    end
+    
+    def cut # export and remove
+      
+      if isExistDocHash
+        return cutDocHash
+      end
+
+      if isExistUnitsHash
+        return cutUnitsHash
+      end
+      
+      assert_raise{"error at cut"}      
+    end
+
+    def isExistDocHash
+      self.docHashLast == '' ? false : true
+    end
+
+    def isExistUnitsHash
+      self.unitsHashLast == '' ? false : true
+    end
+    
+    def cutDocHash
+      exp = self.docHashLast      
+      removeLastDocHash
+      lastArgNumberInit
+      KString.remove_Js_Cmd_End(exp)
+    end
+
+    def cutUnitsHash
+      exp = self.unitsHashLast
+      removeLastUnitsHash
+      lastArgNumberInit
+      KString.remove_Js_Cmd_End(exp)
+    end
 
     def record
       @delegate.record
@@ -79,9 +124,8 @@ module Jabverwock
       # nodeが呼ばれた場合、docHashからunitsにデータが移行しているので、
       # units.lastのデータを使用する必要がある
       content = self.docHashLast
-
       
-      if content == nil
+      if content == ''
         content = self.unitsHashLast
         self.removeLastUnitsHash #unitsデータを使用したので削除しておく
       end
@@ -117,6 +161,7 @@ module Jabverwock
     def attribute(str)
       elementChanging_Equal('attribute',str)
       rec
+      self
     end
 
     # arg ex) :click_ or :click_2 and so on == :click
@@ -126,17 +171,22 @@ module Jabverwock
     def addEventListener(**event_function_hash)
       addEventListenerBase false, event_function_hash
       rec
+      countLastArgNumber event_function_hash
+      self
     end
     
     def addEventListenerUseCapture(**event_function_hash)
       addEventListenerBase true, event_function_hash
       rec
+      countLastArgNumber event_function_hash
+      self
     end
 
         
     def innerHTML(str)
       elementChanging_Equal('innerHTML',str)
       rec
+      self
     end
 
     def setAttribute(**attrStr)
@@ -146,6 +196,8 @@ module Jabverwock
         @ecs << contentRemoveJSEnd.dot('setAttribute') + '(' + e + ')' + $JS_CMD_END
       end
       rec
+      countLastArgNumber attrStr
+      self
     end
     
     def style (**property_val)
@@ -153,6 +205,7 @@ module Jabverwock
         @ecs << contentRemoveJSEnd.dot('style').dot(property.to_s) +  $EQUAL.inSingleQuo(val) + $JS_CMD_END
       end
       rec
+      countLastArgNumber property_val
       self
     end
     
@@ -161,18 +214,13 @@ module Jabverwock
       rec
       self
     end
-
-    def createTextNode(str)
-      
-      self
-    end
     
     ### node ###
     def node(kind,*type)
       
       k = kind.to_s
       t = type.empty? ? '' : type.first.to_s
-      
+           
       ans = contentRemoveJSEnd.dot(k)
       ans << ''.dot(typeName(t)) unless t.empty?
       @ecs << ans + $JS_CMD_END

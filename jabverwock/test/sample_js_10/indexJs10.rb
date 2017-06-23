@@ -13,7 +13,7 @@ module Jabverwock
       
       ### JSFunction ####
       h1 = HEADING.new.attr(:id__id01).contentIs "My First Page"
-      hv =  h1.js.doc.byID.firstChild(:value).cutout
+      hv =  h1.js.doc.byID.firstChild(:value).cut
       h1.js.doc.byID.firstChild(:value).is_var(:myHead)
       
       title = TITLE.new.attr(:id__demo).contentIs "DOM Tutorial"

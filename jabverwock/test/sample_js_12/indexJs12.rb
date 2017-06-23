@@ -20,9 +20,10 @@ module Jabverwock
       div.jdoc.createTextNode('This is new.'.sQuo).is_var :node
       div.jdoc.appendChild(:para, :node)
       
-      div.js.doc.var(:element) do
-        div.js.doc.byID
-      end
+      # div.js.doc.var(:element) do
+      #   div.js.doc.byID
+      # end
+      div.jdoc.byID.is_var :element
       
       div.jdoc.insertBefore "element", "para"
       

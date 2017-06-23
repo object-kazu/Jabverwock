@@ -298,19 +298,13 @@ module Jabverwock
     
     test 'innerHTML, rec case 4' do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      a = @jsd.byID.innerHTML('aaa')      
+      a = @jsd.byID.innerHTML('aaa'.dQuo)      
+      a.innerHTML 'bbb'.dQuo
+
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML=\"bbb\";")
+      assert_equal @jsd.orders[2], nil
       
-      # if you want to write a.innerHTML 'bbb',
-      # write following code
-      # a = @jsd.byID
-      # a.innerHTML('aaa')
-      # a.innerHTML('bbb')
-
-      assert_raise{
-        a.innerHTML 'bbb'
-        
-      }
-
     end
         
     test 'attribute case 1 (rec do not call)' do
@@ -548,6 +542,20 @@ module Jabverwock
       assert_equal @jsd.equalities.first, "var test = document.getElementById('').firstChild.nodeName;"
     end
 
+    test 'is_var document.getElementById' do
+      @jsd.byID.is_var(:test)
+      assert_equal @jsd.equalities.first, "var test = document.getElementById('');"
+    end
+    
+    test 'is_var document.getElementById and getElementByName' do
+      @jsd.byID.is_var(:test)
+      @jsd.byClassName.is_var :sample
+      
+      assert_equal @jsd.orders[0], "var test = document.getElementById('');"
+      assert_equal @jsd.orders[1], "var sample = document.getElementByClassName('');"
+      
+    end
+    
     test 'is_var childNodes case ommit type' do
       @jsd.byID.childNodes(1).is_var(:test)
       assert_equal @jsd.equalities.first, "var test = document.getElementById('').childNodes[1];"
@@ -663,6 +671,94 @@ module Jabverwock
 
     end
 
+    # ### cut ###
+    test 'cut, case ByID' do
+      a = @jsd.byID.cut
+      assert_equal a, "document.getElementById('')"
+    end
+
+    test 'cut, case innerHTML' do
+      a = @jsd.byID.innerHTML('aa'.sQuo).cut
+      assert_equal a, "document.getElementById('').innerHTML='aa'"
+    end
+
+
+    test 'cut, case setAttribute' do
+      a = @jsd.byID.setAttribute(btn:'red').cut
+      b = @jsd.byID.setAttribute(btn:'blue').cut
+      assert_equal a, "document.getElementById('').setAttribute(\"btn\",\"red\")"
+      assert_equal b, "document.getElementById('').setAttribute(\"btn\",\"blue\")"
+
+      assert_equal @jsd.orders[0], nil
+      assert_equal @jsd.orders[1], nil
+     
+    end
+
+    test 'cut, case attribute'do
+      a = @jsd.byID.attribute('aaa'.dQuo).cut
+      assert_equal a, "document.getElementById('').attribute=\"aaa\""
+      assert_equal @jsd.orders[0], nil
+    end
+
+    test 'cut, case addEventListener' do
+      a = @jsd.byID.addEventListener(click:'myFunction()').cut
+      assert_equal a, "document.getElementById('').addEventListener(\"click\",myFunction())"
+      
+
+    end
+    
+    test 'cut, case addEventListener case 2' do
+      a = @jsd.byID.addEventListener(click:'myFunc', click_:'ksFunc').cut
+      assert_equal a, "document.getElementById('').addEventListener(\"click\",ksFunc)"
+      
+    end
+
+    test 'cut, case style' do
+      a = @jsd.byID.style(backgroundColor:'red',color:'red').cut
+      assert_equal a, "document.getElementById('').style.color='red'"
+    
+    end
+
+    test 'cut, case child node' do
+      a = @jsd.byID.childNodes(0).cut
+      assert_equal a,  "document.getElementById('').childNodes[0]"
+    end
+    
+    ### cuts ####
+    
+    test 'cuts, case addEventListener' do
+      a = @jsd.byID.addEventListener(click:'myFunc', click_:'ksFunc').cuts
+      assert_equal a[0], "document.getElementById('').addEventListener(\"click\",myFunc)"
+      assert_equal a[1], "document.getElementById('').addEventListener(\"click\",ksFunc)"
+      assert_equal a[2], nil
+      
+    end
+    
+    test 'cuts, case style' do
+      a = @jsd.byID.style(backgroundColor:'red',color:'red').cuts
+      assert_equal(a[0], "document.getElementById('').style.backgroundColor='red'")
+      assert_equal(a[1], "document.getElementById('').style.color='red'")
+
+      # unitsHash dose not exist
+      assert_equal @jsd.orders[0], nil
+      
+    end
+    
+    test 'cuts, case style case other docHash and unitsHash do not influence' do
+      @jsd.byID.style(backgroundColor:'red',color:'red')
+      a = @jsd.byID.style(backgroundColor:'blue',color:'blue').cuts
+      
+      # last arg == 2
+      assert_equal(a[0], "document.getElementById('').style.backgroundColor='blue'")
+      assert_equal(a[1], "document.getElementById('').style.color='blue'")
+      assert_equal a[2], nil
+
+      # unitsHash remain
+      assert_equal @jsd.orders[0], "document.getElementById('').style.backgroundColor='red';"
+      assert_equal @jsd.orders[1], "document.getElementById('').style.color='red';"
+    end
+
+    
     ### js orders ###
     
     test 'orders' do

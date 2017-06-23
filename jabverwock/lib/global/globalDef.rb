@@ -282,7 +282,8 @@ module Jabverwock
       
       def lastHashValue(hash)
         lk = lastHashKey hash
-        hash[lk]
+        ans = hash[lk]
+        ans ||= ''
       end
 
       def lastHashKey(hash)        

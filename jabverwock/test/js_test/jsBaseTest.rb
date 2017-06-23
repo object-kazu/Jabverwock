@@ -128,12 +128,14 @@ module Jabverwock
 
     test 'js.doc.byTagName set by default name' do
       para = P.new
-      assert_equal para.js.doc.byTagName.export, "document.getElementByTagName('p');"
+      para.js.doc.byTagName
+      assert_equal para.jdoc.orders[0], "document.getElementByTagName('p');"
     end
     
     test 'js.doc.byTagName set by default name case 2' do
       para = HTML.new
-      assert_equal para.js.doc.byTagName.export, "document.getElementByTagName('html');"
+      para.js.doc.byTagName
+      assert_equal para.jdoc.orders[0], "document.getElementByTagName('html');"
     end
 
     #### sequence hash ###

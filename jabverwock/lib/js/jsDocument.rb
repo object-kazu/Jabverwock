@@ -1,5 +1,3 @@
-#### TODO
-# 1 var, is_varなどの書式の統一
 
 if $FOR_GEM  
   require "global/globalDef"
@@ -35,6 +33,7 @@ module Jabverwock
       end
     end
     
+    # deprecated
     def var(name,&block)
       if block_given?  # ブロック渡しされているかどうかチェック
         z = block.call self

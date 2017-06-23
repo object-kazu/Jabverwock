@@ -66,54 +66,54 @@ module JabverwockJabverwock136,0
       def seqHash(val,step)seqHash273,0
       def firstHashValue(hash)firstHashValue279,0
       def lastHashValue(hash)lastHashValue283,0
-      def lastHashKey(hash)        lastHashKey288,0
-      def compareKeys(a,b)compareKeys296,0
-      def removePrefix(k)removePrefix301,0
-      def hashValues(hash)hashValues305,0
-      def removeLastHashValue(hash)removeLastHashValue309,0
-  module KSUtilKSUtil319,0
-      def testPATH(folder)testPATH322,0
-      def fileReadingToArr (txt, arr)fileReadingToArr329,0
-      def isBool(v)isBool345,0
-      def strinrgConvertSymbole(s)strinrgConvertSymbole349,0
-      def combineSym(sym, str)combineSym357,0
-      def isDoubleUnderBarSymbol(sym)isDoubleUnderBarSymbol362,0
-      def isDoubleArray (data)isDoubleArray367,0
-      def isBase (i,s)isBase371,0
-      def isID(s)isID375,0
-      def isCls(s)isCls379,0
-      def isName(s)isName383,0
-      def multiTagsmultiTags388,0
-      def tableTagstableTags392,0
-      def singleTagssingleTags396,0
-      def oneTagsoneTags400,0
-      def intoStyleTag (str)intoStyleTag404,0
-      def isOpenTag(tag)isOpenTag412,0
-      def isCloseTag(tag)isCloseTag419,0
-      def isOpenPara(tag)isOpenPara426,0
-      def isClosePara(tag)isClosePara430,0
-  module KStringKString439,0
-      def renameCls (str)renameCls443,0
-      def renameUnderBar (str)renameUnderBar450,0
-      def reader(str) # sentence -> arrreader457,0
-      def insertText(arr,txt)insertText461,0
-      def insertTextLoop (arr)insertTextLoop468,0
-      def insertIndex (arr)insertIndex474,0
-      def check_type(type, instance)check_type478,0
-      def isString? (instance)isString?488,0
-      def isInt?(instance)isInt?492,0
-      def removeLastRET(text)removeLastRET496,0
-      def removeAllRET(arr)removeAllRET501,0
-      def remove_Js_Cmd_End(text)remove_Js_Cmd_End505,0
-      def addSpace(str)addSpace511,0
-      def isStringInArray(arr)isStringInArray519,0
-      def stringArrayConectRET (arr)stringArrayConectRET525,0
-      def reprace(str:, of:, with:)reprace534,0
-      def makeElementArray (element, elementArray)makeElementArray542,0
-      def isExistCssString(str)isExistCssString555,0
-      def addTabEachArray(arr, number)addTabEachArray570,0
-      def isIntegerIndex(range)isIntegerIndex577,0
-      def sliceRange(range)      sliceRange583,0
+      def lastHashKey(hash)        lastHashKey291,0
+      def compareKeys(a,b)compareKeys299,0
+      def removePrefix(k)removePrefix304,0
+      def hashValues(hash)hashValues308,0
+      def removeLastHashValue(hash)removeLastHashValue312,0
+  module KSUtilKSUtil322,0
+      def testPATH(folder)testPATH325,0
+      def fileReadingToArr (txt, arr)fileReadingToArr332,0
+      def isBool(v)isBool348,0
+      def strinrgConvertSymbole(s)strinrgConvertSymbole352,0
+      def combineSym(sym, str)combineSym360,0
+      def isDoubleUnderBarSymbol(sym)isDoubleUnderBarSymbol365,0
+      def isDoubleArray (data)isDoubleArray370,0
+      def isBase (i,s)isBase374,0
+      def isID(s)isID378,0
+      def isCls(s)isCls382,0
+      def isName(s)isName386,0
+      def multiTagsmultiTags391,0
+      def tableTagstableTags395,0
+      def singleTagssingleTags399,0
+      def oneTagsoneTags403,0
+      def intoStyleTag (str)intoStyleTag407,0
+      def isOpenTag(tag)isOpenTag415,0
+      def isCloseTag(tag)isCloseTag422,0
+      def isOpenPara(tag)isOpenPara429,0
+      def isClosePara(tag)isClosePara433,0
+  module KStringKString442,0
+      def renameCls (str)renameCls446,0
+      def renameUnderBar (str)renameUnderBar453,0
+      def reader(str) # sentence -> arrreader460,0
+      def insertText(arr,txt)insertText464,0
+      def insertTextLoop (arr)insertTextLoop471,0
+      def insertIndex (arr)insertIndex477,0
+      def check_type(type, instance)check_type481,0
+      def isString? (instance)isString?491,0
+      def isInt?(instance)isInt?495,0
+      def removeLastRET(text)removeLastRET499,0
+      def removeAllRET(arr)removeAllRET504,0
+      def remove_Js_Cmd_End(text)remove_Js_Cmd_End508,0
+      def addSpace(str)addSpace514,0
+      def isStringInArray(arr)isStringInArray522,0
+      def stringArrayConectRET (arr)stringArrayConectRET528,0
+      def reprace(str:, of:, with:)reprace537,0
+      def makeElementArray (element, elementArray)makeElementArray545,0
+      def isExistCssString(str)isExistCssString558,0
+      def addTabEachArray(arr, number)addTabEachArray573,0
+      def isIntegerIndex(range)isIntegerIndex580,0
+      def sliceRange(range)      sliceRange586,0
 
 jabverwock/lib/global/jw.rb,1979
 module JabverwockJabverwock19,0
@@ -398,47 +398,51 @@ jabverwock/lib/jabverwock/version.rb,65
 module JabverwockJabverwock1,0
   VERSION = "0.1.0"VERSION2,0
 
-jabverwock/lib/js/Element.rb,1803
+jabverwock/lib/js/Element.rb,1965
 module JabverwockJabverwock14,0
   class ElementElement19,0
    attr_writer :contentcontent=22,0
    attr_reader :ec, :ecsec23,0
    attr_reader :ec, :ecsecs23,0
     def initialize(delegate)initialize25,0
-    def cutout # export and removecutout33,0
-    def recordrecord48,0
-    def docHashLastdocHashLast52,0
-    def unitsHashLastunitsHashLast56,0
-    def removeLastDocHashremoveLastDocHash60,0
-    def removeLastUnitsHashremoveLastUnitsHash64,0
-    def recordsrecords68,0
-    def equalityequality72,0
-    def is_var(name)is_var76,0
-    def recrec94,0
-    def index(i)index107,0
-    def attribute(str)attribute117,0
-    def addEventListener(**event_function_hash)addEventListener126,0
-    def addEventListenerUseCapture(**event_function_hash)addEventListenerUseCapture131,0
-    def innerHTML(str)innerHTML137,0
-    def setAttribute(**attrStr)setAttribute142,0
-    def style (**property_val)style151,0
-    def src (str)src159,0
-    def createTextNode(str)createTextNode165,0
-    def node(kind,*type)node171,0
-    def parentNode(*type)parentNode183,0
-    def childNodes(position, *type)childNodes187,0
-    def nextSiblingnextSibling191,0
-    def previousSiblingpreviousSibling195,0
-    def firstChild(*type)firstChild199,0
-    def lastChild(*type)lastChild203,0
-    def recsrecs210,0
-    def spliteSympbolByUnderBar(sym)spliteSympbolByUnderBar216,0
-    def contentRemoveJSEndcontentRemoveJSEnd220,0
-    def addEventListenerBase(ucp, event_function_hash)addEventListenerBase224,0
-    def addEventListenerMain(content, event, func, useCaption = false)addEventListenerMain231,0
-    def elementChanging_Equal (act,str)elementChanging_Equal237,0
-    def elementChanging (act,str)elementChanging243,0
-    def typeName(t)typeName248,0
+    def cut # export and removecut40,0
+    def isExistDocHashisExistDocHash63,0
+    def isExistUnitsHashisExistUnitsHash67,0
+    def cutDocHashcutDocHash71,0
+    def cutUnitsHashcutUnitsHash75,0
+    def recordrecord82,0
+    def docHashLastdocHashLast86,0
+    def unitsHashLastunitsHashLast90,0
+    def removeLastDocHashremoveLastDocHash94,0
+    def removeLastUnitsHashremoveLastUnitsHash98,0
+    def recordsrecords102,0
+    def equalityequality106,0
+    def is_var(name)is_var110,0
+    def recrec128,0
+    def index(i)index141,0
+    def attribute(str)attribute151,0
+    def addEventListener(**event_function_hash)addEventListener160,0
+    def addEventListenerUseCapture(**event_function_hash)addEventListenerUseCapture165,0
+    def innerHTML(str)innerHTML171,0
+    def setAttribute(**attrStr)setAttribute176,0
+    def style (**property_val)style185,0
+    def src (str)src193,0
+    def createTextNode(str)createTextNode199,0
+    def node(kind,*type)node205,0
+    def parentNode(*type)parentNode217,0
+    def childNodes(position, *type)childNodes221,0
+    def nextSiblingnextSibling225,0
+    def previousSiblingpreviousSibling229,0
+    def firstChild(*type)firstChild233,0
+    def lastChild(*type)lastChild237,0
+    def recsrecs244,0
+    def spliteSympbolByUnderBar(sym)spliteSympbolByUnderBar250,0
+    def contentRemoveJSEndcontentRemoveJSEnd254,0
+    def addEventListenerBase(ucp, event_function_hash)addEventListenerBase258,0
+    def addEventListenerMain(content, event, func, useCaption = false)addEventListenerMain265,0
+    def elementChanging_Equal (act,str)elementChanging_Equal271,0
+    def elementChanging (act,str)elementChanging277,0
+    def typeName(t)typeName282,0
 
 jabverwock/lib/js/jsBase.rb,1066
 module JabverwockJabverwock9,0
@@ -469,44 +473,44 @@ module JabverwockJabverwock9,0
     def updateSelector(*inits)updateSelector115,0
 
 jabverwock/lib/js/jsDocument.rb,1673
-module JabverwockJabverwock16,0
-  class JsDocument < JsBaseJsDocument21,0
-    attr_accessor :result, :queryresult22,0
-    attr_accessor :result, :queryresult=22,0
-    attr_accessor :result, :queryquery22,0
-    attr_accessor :result, :queryquery=22,0
-    def initialize(*inits)initialize24,0
-    def selfy(*arg)selfy32,0
-    def var(name,&block)var38,0
-    def equal(leftSide, rightSide)equal51,0
-    def recrec57,0
-    def recBy (str)recBy61,0
-    def recsBy (str)recsBy65,0
-    def recEqual (str) # keep var statementrecEqual69,0
-    def lastDocHashValuelastDocHashValue80,0
-    def removeLastDocHashremoveLastDocHash84,0
-    def lastUnitsHashValuelastUnitsHashValue90,0
-    def removeLastUnitsHashremoveLastUnitsHash94,0
-    def unitListunitList98,0
-    def recordrecord102,0
-    def rewriteUnitsHashValue(str)rewriteUnitsHashValue106,0
-    def lastEqualityValuelastEqualityValue112,0
-    def equalitiesequalities116,0
-    def connectToElement(cnt)connectToElement123,0
-    def selectElement(slect,obj)selectElement128,0
-    def modifyElement(order, elem)modifyElement134,0
-    def treatElement (order,elem)treatElement140,0
-    def createElement(name)createElement147,0
-    def removeChild(child)removeChild153,0
-    def appendChild(parent,child)appendChild157,0
-    def insertBefore(targetNode,newNode)insertBefore162,0
-    def write(str)write186,0
-    def createTextNode(str)createTextNode192,0
-    def byID      byID199,0
-    def byClassNamebyClassName203,0
-    def byTagNamebyTagName207,0
-    def querySelectorAllquerySelectorAll211,0
-    def querySelectorAllBy(que)querySelectorAllBy215,0
+module JabverwockJabverwock14,0
+  class JsDocument < JsBaseJsDocument19,0
+    attr_accessor :result, :queryresult20,0
+    attr_accessor :result, :queryresult=20,0
+    attr_accessor :result, :queryquery20,0
+    attr_accessor :result, :queryquery=20,0
+    def initialize(*inits)initialize22,0
+    def selfy(*arg)selfy30,0
+    def var(name,&block)var36,0
+    def equal(leftSide, rightSide)equal49,0
+    def recrec55,0
+    def recBy (str)recBy59,0
+    def recsBy (str)recsBy63,0
+    def recEqual (str) # keep var statementrecEqual67,0
+    def lastDocHashValuelastDocHashValue76,0
+    def removeLastDocHashremoveLastDocHash80,0
+    def lastUnitsHashValuelastUnitsHashValue85,0
+    def removeLastUnitsHashremoveLastUnitsHash89,0
+    def unitListunitList93,0
+    def recordrecord97,0
+    def rewriteUnitsHashValue(str)rewriteUnitsHashValue101,0
+    def lastEqualityValuelastEqualityValue107,0
+    def equalitiesequalities111,0
+    def connectToElement(cnt)connectToElement117,0
+    def selectElement(slect,obj)selectElement122,0
+    def modifyElement(order, elem)modifyElement128,0
+    def treatElement (order, elem)treatElement134,0
+    def createElement(name)createElement141,0
+    def removeChild(child)removeChild147,0
+    def appendChild(parent,child)appendChild151,0
+    def insertBefore(targetNode,newNode)insertBefore156,0
+    def write(str)write180,0
+    def createTextNode(str)createTextNode185,0
+    def byID      byID191,0
+    def byClassNamebyClassName195,0
+    def byTagNamebyTagName199,0
+    def querySelectorAllquerySelectorAll203,0
+    def querySelectorAllBy(que)querySelectorAllBy207,0
 
 jabverwock/lib/js/jsFileReader.rb,276
 module JabverwockJabverwock20,0
@@ -1122,7 +1126,7 @@ module JabverwockJabverwock3,0
 jabverwock/test/sample_js_12/indexJs12.rb,94
 module JabverwockJabverwock3,0
     def bodierbodier10,0
-  def self.testPATHtestPATH62,0
+  def self.testPATHtestPATH63,0
 
 jabverwock/test/sample_js_13/indexJs13.rb,94
 module JabverwockJabverwock3,0
