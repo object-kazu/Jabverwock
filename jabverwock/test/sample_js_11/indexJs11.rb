@@ -22,7 +22,8 @@ module Jabverwock
       div.js.doc.createTextNode('This is new.'.sQuo).is_var :node
       div.js.doc.appendChild(:para, :node)
       
-      div.jdoc.var(:element){ |t| t.byID }
+      div.jdoc.byID.is_var :element
+      # div.jdoc.var(:element){ |t| t.byID }
       # div.js.doc.var(:element) do
       #   div.js.doc.byID
       # end        

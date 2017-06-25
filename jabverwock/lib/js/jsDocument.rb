@@ -28,10 +28,9 @@ module Jabverwock
     
     ## under testing ###
     def selfy(*arg)
-      arg.each do |a| 
-        eval a        
-      end
+      yield self
     end
+
     
     # deprecated
     def var(name,&block)

@@ -634,42 +634,6 @@ module Jabverwock
      end
 
 
-    test 'selfy, basical use' do
-      @jsd.selfy 'createElement(:p)',"createTextNode('this ss')"
-      # p @jsd.records
-
-      assert_equal @jsd.orders.first, "document.createElement('p');"
-      assert_equal @jsd.orders[1], "document.createTextNode(this ss);"
-    end
-
-
-    test 'selfy case 2' do
-      # create new node
-      #   div.jdoc.createElement(:p).is_var :para
-      #   div.jdoc.createTextNode('This is new.'.sQuo).is_var :node
-      #   div.jdoc.appendChild(:para, :node)
-      
-      #   div.js.doc.var(:element) do
-      #     div.js.doc.byID.export
-      #   end
-      
-      #   div.jdoc.insertBefore 'element', 'para'
-      
-      a = 'createElement(:p).is_var :para'
-      b = "createTextNode('This is new.'.sQuo).is_var :node"
-      c = "appendChild(:para, :node)"
-      d = 'var(:element){ |t|t.byID }'
-      e = "insertBefore 'element', 'para'"
-
-      @jsd.selfy a, b, c, d, e
-
-      assert_equal @jsd.orders.first, "var para = document.createElement('p');"
-      assert_equal @jsd.orders[1], "var node = document.createTextNode('This is new.');"
-      assert_equal @jsd.orders[2], "para.appendChild(node);"
-      assert_equal @jsd.orders[3], "var element = document.getElementById('');"
-      assert_equal @jsd.orders[4], 'element.parentNode.insertBefore(para,element);'
-
-    end
 
     # ### cut ###
     test 'cut, case ByID' do
@@ -759,16 +723,27 @@ module Jabverwock
     end
 
     
-    ### js orders ###
+    ### selfy ###
+    test 'selfy, basical use' do
+      @jsd.selfy{ |t|
+        t.createElement :p
+        t.createTextNode 'this ss'
+      }
+
+      assert_equal @jsd.orders.first, "document.createElement('p');"
+      assert_equal @jsd.orders[1], "document.createTextNode(this ss);"
+    end
+
     
-    test 'orders' do
-      a = 'createElement(:p).is_var :para'
-      b = "createTextNode('This is new.'.sQuo).is_var :node"
-      c = 'appendChild(:para, :node)'
-      d = 'var(:element){ |t|t.byID}'
+    test 'orders check' do
 
-      @jsd.selfy a, b, c, d
-
+      @jsd.selfy{ |t|
+        t.createElement(:p).is_var :para
+        t.createTextNode('This is new.'.sQuo).is_var :node
+        t.appendChild(:para, :node)
+        t.byID.is_var :element
+      }
+      
       @jsd.equal 'newNode.id', 'title2'.sQuo
       @jsd.insertBefore 'title3Node', 'newNode'
 
@@ -779,5 +754,6 @@ module Jabverwock
       assert_equal @jsd.orders[4], "newNode.id = 'title2';"
       assert_equal @jsd.orders[5], 'title3Node.parentNode.insertBefore(newNode,title3Node);'
     end
+
   end
 end
