@@ -14,35 +14,23 @@ module Jabverwock
       p1 = P.new.attr(:id__p1).contentIs "this is paragraph"
       p2 = P.new.attr(:id__p2).contentIs "this is another paragraph"
 
+      ### JSFunction ####
+      # h1 = HEADING.new.attr(:id__myBtn).contentIs "Click on this text!"
+      # fmain = "alert(\"hello world\");"
+      # func = "function(){#{fmain}}"
+      # h1.js.doc.byID.addEventListener(click:"#{func}")
+      
+      # mf = "myFunc"
+      # h1.js.doc.byID.addEventListener(click_:"#{mf}")
+      # h1.js.func.define mf.to_sym,fmain
+      
+      ### out put ###
+      # function myFunc(){
+      #       alert("hello world");
+      #       }
 
-      #create new node
-      div.jdoc.createElement(:p).is_var :para
-      div.jdoc.createTextNode('This is new.'.sQuo).is_var :node
-      div.jdoc.appendChild(:para, :node)
       
-      div.js.doc.var(:element) do
-        div.js.doc.byID.export
-      end
-      
-      div.jdoc.insertBefore "element", "para"
-      
-      	 # var title3Node = document.getElementById('div1');
-	 # var newNode = document.createElement('div');
-	 # var textNode = document.createTextNode('CSS');
-	 # newNode.appendChild(textNode);
-	 # newNode.id = 'title2';
-      # title3Node.parentNode.insertBefore(newNode, title3Node);
-      
-      div.js.doc.var(:title3Node) do
-        div.js.doc.byID.export
-      end        
-
-      a = "createElement(:div).is_var :newNode"
-      b = "createTextNode('CSS').is_var :textNode"
-      c = "appendChild(:newNode, :textNode)"
-      div.jdoc.selfy a,b,c
-
-      div.jdoc.equal "newNode.id", "title2".sQuo
+      div.jdoc.
       
       
       div.addChildren p1, p2
