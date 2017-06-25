@@ -17,17 +17,21 @@ module Jabverwock
       p2 = P.new.attr(:id__p2).contentIs "this is another paragraph"
 
       div.addChildren p1, p2
+
+      div.jdoc.selfy{ |t|
+        t.createElement(:p).is_var :para
+        t.createTextNode('This is new.'.sQuo).is_var :node
+        t.appendChild(:para, :node)
+        t.byID.is_var :element
+        t.appendChild(:element, :para)
+      }
       
-      div.js.doc.createElement(:p).is_var :para
-      div.js.doc.createTextNode('This is new.'.sQuo).is_var :node
-      div.js.doc.appendChild(:para, :node)
+      # div.js.doc.createElement(:p).is_var :para
+      # div.js.doc.createTextNode('This is new.'.sQuo).is_var :node
+      # div.js.doc.appendChild(:para, :node)
       
-      div.jdoc.byID.is_var :element
-      # div.jdoc.var(:element){ |t| t.byID }
-      # div.js.doc.var(:element) do
-      #   div.js.doc.byID
-      # end        
-      div.js.doc.appendChild(:element, :para)
+      # div.jdoc.byID.is_var :element
+      # div.js.doc.appendChild(:element, :para)
       
       body.addChild div
       body

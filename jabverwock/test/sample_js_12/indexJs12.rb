@@ -19,31 +19,18 @@ module Jabverwock
       div.jdoc.createElement(:p).is_var :para
       div.jdoc.createTextNode('This is new.'.sQuo).is_var :node
       div.jdoc.appendChild(:para, :node)
-      
-      # div.js.doc.var(:element) do
-      #   div.js.doc.byID
-      # end
       div.jdoc.byID.is_var :element
-      
       div.jdoc.insertBefore "element", "para"
-      
-      # var title3Node = document.getElementById('div1');
-      # var newNode = document.createElement('div');
-      # var textNode = document.createTextNode('CSS');
-      # newNode.appendChild(textNode);
-      # newNode.id = 'title2';
-      # title3Node.parentNode.insertBefore(newNode, title3Node);
-      
       div.jdoc.var(:title3Node){ |t| t.byID}
       
-      a = "createElement(:div).is_var :newNode"
-      b = "createTextNode('CSS').is_var :textNode"
-      c = "appendChild(:newNode, :textNode)"
-      div.jdoc.selfy a,b,c
+      div.jdoc.selfy { |t|
+        t.createElement(:div).is_var :newNode
+        t.createTextNode('CSS').is_var :textNode
+        t.appendChild(:newNode, :textNode)
+        t.equal "newNode.id", "title2".sQuo
+        t.insertBefore "title3Node", "newNode"
+      }
 
-      div.jdoc.equal "newNode.id", "title2".sQuo
-      div.jdoc.insertBefore "title3Node", "newNode"
-      
       div.addChildren p1, p2
       body.addChild div
       body
