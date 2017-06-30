@@ -30,6 +30,15 @@ module Jabverwock
       @equality = [] # keep var statement
       lastArgNumberInit
     end
+
+    # def cutOrders
+
+    #   ans = @delegate.orders
+    #   @delegate.clearHash
+    #   # @delegate.printHash      
+    #   ans
+    # end
+
     
     # ### cut and cuts ###
     def lastArgNumberInit

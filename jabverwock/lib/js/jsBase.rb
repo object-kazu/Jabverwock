@@ -26,6 +26,7 @@ module Jabverwock
       @units = {}    # => keep element hash (ex. doc.byID.innerHTML)
       @equality = {} #=> keep equality hash (ex. var id = test)
       @docHash = {}  #=> keep jsDocument hash (ex. doc.byID)
+      @varHash = {}  # => keep var function hash (ex. @jsd.var(:name){ |t| ... })
       
       setSelectors inits
     end
@@ -48,6 +49,25 @@ module Jabverwock
       prep = @equality.update @units
       prep.update @docHash
     end
+    
+    # ## for debug
+    def printHash
+      p "units : #{@units}"
+      p "docHash: #{@docHash}"
+      p "equality: #{@equality}"
+    end
+    
+
+    # ## remove hash ##
+    # def clearHash
+
+    #   printHash
+    #   @equality = {}
+    #   @units = {}
+    #   @docHash = {}
+    # end
+    
+    ## orders ###
     
     def orders
       ord = gatheringOrder      

@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <body>
-
-	<div id="div1">
-	    <p id="p1">This is a paragraph.</p>
-	    <p id="p2">This is another paragraph.</p>
-	</div>
-
-	<script>
-	 
 	 /**
 	  * spanエレメント(オブジェクト)追加
 	  */
@@ -40,7 +29,3 @@
 	     o = document.getElementById("js_koneta_01-01");
 	     document.getElementById("js_koneta_01").removeChild(o);
 	 }
-	</script>
-
-    </body>
-</html>

@@ -11,30 +11,30 @@ module Jabverwock
     class << self
       # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる
       def startup
-        p :_startup
+#        p :_startup
       
       end
 
       # テスト群の実行後に呼ばれる
       def shutdown
-        p :_shutdown
+ #       p :_shutdown
       end
     end
 
     # 毎回テスト実行前に呼ばれる
     def setup
-      p :setup
+  #    p :setup
       @jsd = JsDocument.new
     end
 
     # テストがpassedになっている場合に，テスト実行後に呼ばれる．テスト後の状態確認とかに使える
     def cleanup
-      p :cleanup
+   #   p :cleanup
     end
 
     # 毎回テスト実行後に呼ばれる
     def teardown
-      p :treadown
+    #  p :treadown
     end
 
     ############## test ###############
@@ -156,62 +156,20 @@ module Jabverwock
       assert_equal(@jsd.equalities[2], 'mm.appendChild(nn);')
       
     end    
-
-    test 'var call back' do
-      @jsd.var(:mm) do 
-        @jsd.createElement(:koko)
-      end
-      assert_equal(@jsd.equalities.first, "var mm = document.createElement('koko');")
-    end
-
-    test 'var call back, another expression' do
-      @jsd.var(:mm) { |t| t.createElement(:koko) }
-      
-      assert_equal(@jsd.equalities.first, "var mm = document.createElement('koko');")
-      assert_equal(@jsd.orders.first, "var mm = document.createElement('koko');")
-    end
     
     
-    test 'var call back case 2' do
-      @jsd.var(:mm) { |t| t.byID }
+    test 'var with element' do
+      @jsd.byID.is_var :mm
 
       assert_equal(@jsd.equalities[0], "var mm = document.getElementById('');")
     end
     
-    test 'var call back case 2 another expression ver 1' do
-      @jsd.var(:mm) do |this| 
-        this.byID
-      end
-      assert_equal(@jsd.equalities.first, "var mm = document.getElementById('');")
-    end
-
-    test 'call call back case , another expression ver 2'do
-      @jsd.var(:mm) {|t| t.byID }      
-      assert_equal(@jsd.equalities[0], "var mm = document.getElementById('');")
-    end
     
-    test 'var call back case 3' do
+    test 'var wich case 2' do
       @jsd.createElement(:p).is_var :para
       @jsd.createTextNode('this is new'.sQuo).is_var :nn
       assert_equal(@jsd.equalities[0], "var para = document.createElement('p');")
       assert_equal(@jsd.equalities[1], "var nn = document.createTextNode('this is new');")      
-    end
-
-    test 'var call back case 3, another expression' do
-      @jsd.var(:para) { |t| t.createElement(:p) }
-      @jsd.var(:nn) { |t| t.createTextNode('this is new'.sQuo)  }
-      assert_equal(@jsd.equalities[0], "var para = document.createElement('p');")
-      assert_equal(@jsd.equalities[1], "var nn = document.createTextNode('this is new');")      
-    end
-    
-    
-    test 'var call back case 4' do
-      @jsd.createElement(:p).is_var :para
-      @jsd.var(:mm) do
-        @jsd.byID
-      end
-      assert_equal(@jsd.equalities[0], "var para = document.createElement('p');")
-      assert_equal(@jsd.equalities[1], "var mm = document.getElementById('');")      
     end
 
 
@@ -219,12 +177,8 @@ module Jabverwock
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       
       @jsd.createElement(:koko).is_var(:mm)
-      @jsd.createTextNode('this is new'.sQuo).is_var(:nn)      
-      @jsd.var(:para) { |t| t.byID }
-
-      # @jsd.var(:mm){ |t| t.createElement(:koko) }
-      # @jsd.var(:nn){ |t| t.createTextNode('this is new'.sQuo) }
-      # @jsd.var(:para) { |t| t.byID }
+      @jsd.createTextNode('this is new'.sQuo).is_var(:nn)
+      @jsd.byID.is_var :para
       
       assert_equal(@jsd.equalities[0], "var mm = document.createElement('koko');")            
       assert_equal(@jsd.equalities[1], "var nn = document.createTextNode('this is new');")            
@@ -240,7 +194,7 @@ module Jabverwock
       @jsd.createTextNode('this is new'.sQuo).is_var(:nn)  # => equalities 1
       @jsd.appendChild :mm, :nn                            # => equalities 2
       
-      @jsd.var(:para) { |t| t.byID }                       # => equalities 3
+      @jsd.byID.is_var :aa                       # => equalities 3
       
       
       assert_equal(@jsd.equalities[1], "var nn = document.createTextNode('this is new');")      
@@ -755,5 +709,43 @@ module Jabverwock
       assert_equal @jsd.orders[5], 'title3Node.parentNode.insertBefore(newNode,title3Node);'
     end
 
+    # ### var ###
+    
+    #     var o = document.createElement("span");
+    #     o.setAttribute("id", "js_koneta_01-01");
+    #     o.innerHTML     = "JavaScript万歳！";
+    #     o.style.cssText = "font-weight: bold;"
+    #        	     + "font-size: 12pt"
+    #        	     + "color: #00ff00";
+    #     document.getElementById("js_koneta_01").appendChild(o);
+    # }
+
+    
+    # test 'var test basic' do
+    #   @jsd.var(:name){ |t|
+    #     t.byID
+    #     t.byTagName
+    #   }
+
+    #   assert_equal @jsd.orders[0], "name = document.getElementById('');"
+    #   assert_equal @jsd.orders[1], "name = document.getElementByTagName('');"      
+    #     p @jsd.orders
+    # end
+
+
+    
+    # test 'var test advance' do
+    #   @jsd.createElement('p').is_var :pp
+    #   @jsd.var(:name){ |t|
+    #     t.byID.innerHTML('ddd')
+    #     t.byTagName
+    #   }
+    #   assert_equal @jsd.orders[0], "var pp = document.createElement('p');"
+    #   assert_equal @jsd.orders[2], "name = document.getElementById('').innerHTML=ddd;"
+    #   assert_equal @jsd.orders[1], "name = document.getElementByTagName('');"      
+
+    #   p @jsd.orders
+    # end
+    
   end
 end

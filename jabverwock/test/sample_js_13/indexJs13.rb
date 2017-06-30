@@ -14,25 +14,8 @@ module Jabverwock
       p1 = P.new.attr(:id__p1).contentIs "this is paragraph"
       p2 = P.new.attr(:id__p2).contentIs "this is another paragraph"
 
-      ### JSFunction ####
-      # h1 = HEADING.new.attr(:id__myBtn).contentIs "Click on this text!"
-      # fmain = "alert(\"hello world\");"
-      # func = "function(){#{fmain}}"
-      # h1.js.doc.byID.addEventListener(click:"#{func}")
-      
-      # mf = "myFunc"
-      # h1.js.doc.byID.addEventListener(click_:"#{mf}")
-      # h1.js.func.define mf.to_sym,fmain
-      
-      ### out put ###
-      # function myFunc(){
-      #       alert("hello world");
-      #       }
-
-      
-      div.jdoc.
-      
-      
+      div.jsRead './sample.js'
+              
       div.addChildren p1, p2
       body.addChild div
       body

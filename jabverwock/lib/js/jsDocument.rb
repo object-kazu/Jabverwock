@@ -24,26 +24,53 @@ module Jabverwock
       @obj = "document"
       @query = ""
       @element = Element.new(self)
+
     end
-    
-    ## under testing ###
-    def selfy(*arg)
+
+    def selfy
       yield self
     end
 
     
-    # deprecated
-    def var(name,&block)
-      if block_given?  # ブロック渡しされているかどうかチェック
-        z = block.call self
-        if z.is_a? String
-          ans = "var " << name.to_s << " = " << z
-          recEqual ans
-          return
-        end
-        z.is_var name
-      end
-    end
+    ## change function of var    
+    ## callback var, it is deprecated
+    # def var(name,&block)
+
+    #   if block_given?
+    #     z = block.call self
+        
+    #     # p ">>> units:"
+    #     # p unitList
+
+    #     # p ">>> docHash:"
+    #     # p docHashList
+
+    #     zet = docHashList + unitList
+    #     zet.each{ |t|
+    #       ans = name.to_s << " = " << t
+    #       recEqual ans
+    #     }
+
+    #     @docHash = {}
+    #     @units = {}
+        
+    #     # zz = z.cutOrders
+    #     # zz.each{ |t|
+    #     #   ans = name.to_s << " = " << t
+    #     #   recEqual ans
+    #     # }        
+    #   end
+    #   # z.is_var name
+    #   # if block_given?  # ブロック渡しされているかどうかチェック
+    #   #   z = block.call self
+    #   #   if z.is_a? String
+    #   #     ans = "var " << name.to_s << " = " << z
+    #   #     recEqual ans
+    #   #     return
+    #   #   end
+    #   #   z.is_var name
+    #   # end
+    # end
 
     
     def equal(leftSide, rightSide)
@@ -92,6 +119,10 @@ module Jabverwock
 
     def unitList
       KSHash.hashValues @units
+    end
+
+    def docHashList
+      KSHash.hashValues @docHash      
     end
 
     def record

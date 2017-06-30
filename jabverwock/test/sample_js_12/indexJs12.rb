@@ -21,7 +21,7 @@ module Jabverwock
       div.jdoc.appendChild(:para, :node)
       div.jdoc.byID.is_var :element
       div.jdoc.insertBefore "element", "para"
-      div.jdoc.var(:title3Node){ |t| t.byID}
+      div.jdoc.byID.is_var :title3Node
       
       div.jdoc.selfy { |t|
         t.createElement(:div).is_var :newNode

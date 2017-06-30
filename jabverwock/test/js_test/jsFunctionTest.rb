@@ -2,6 +2,7 @@ require 'test/unit'
 
 require '../../lib/global/globalDef'  
 require '../../lib/js/jsFunction'
+require '../../lib/js/jsDocument'
 
 module Jabverwock
   using StringExtension
@@ -73,20 +74,6 @@ module Jabverwock
       
     end
 
-
-    # /**
-    #  * spanエレメント(オブジェクト)追加
-    #  */
-    
-    # function displayString_createElement() {
-    #     var o = document.createElement("span");
-    #     o.setAttribute("id", "js_koneta_01-01");
-    #     o.innerHTML     = "JavaScript万歳！";
-    #     o.style.cssText = "font-weight: bold;"
-    #        	     + "font-size: 12pt"
-    #        	     + "color: #00ff00";
-    #     document.getElementById("js_koneta_01").appendChild(o);
-    # }
 
     
     

@@ -3,10 +3,12 @@ if $FOR_GEM
   
   require "global/globalDef"
   require "js/jsBase"
+  require "js/jsDocument"
   
 else
   require_relative "../global/globalDef" 
   require_relative "./jsBase"
+  require_relative "./jsDocument"
   
 end
 
@@ -15,6 +17,8 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
   using SymbolExtension
+
+  
   
   #This class express JS Document class
   class JsFunction < JsBase
@@ -32,22 +36,8 @@ module Jabverwock
 
       @units.update seqHash(f)
     end
-
     
-    # /**
-    #  * spanエレメント(オブジェクト)追加
-    #  */
     
-    # function displayString_createElement() {
-    #     var o = document.createElement("span");
-    #     o.setAttribute("id", "js_koneta_01-01");
-    #     o.innerHTML     = "JavaScript万歳！";
-    #     o.style.cssText = "font-weight: bold;"
-    #        	     + "font-size: 12pt"
-    #        	     + "color: #00ff00";
-    #     document.getElementById("js_koneta_01").appendChild(o);
-    # }
-
   end
 
 
