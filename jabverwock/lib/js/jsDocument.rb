@@ -175,11 +175,12 @@ module Jabverwock
       connectToElement cp
     end
 
-    def removeChild(child)
-      treatElement("removeChild",child).rec      
+    def removeChild(parent, child)
+      cp = parent.to_s + ".removeChild(#{child.to_s})" + $JS_CMD_END
+      recEqual cp
     end
 
-    def appendChild(parent,child)
+    def appendChild(parent, child)
       cp = parent.to_s + ".appendChild(#{child.to_s})" + $JS_CMD_END
       recEqual cp
     end
