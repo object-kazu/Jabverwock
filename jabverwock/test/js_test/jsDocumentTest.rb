@@ -3,6 +3,7 @@ require 'test/unit'
 require '../../lib/global/globalDef'  
 require '../../lib/js/jsDocument'
 
+
 module Jabverwock
   using StringExtension
   using ArrayExtension

@@ -3,12 +3,12 @@ if $FOR_GEM
   require "global/globalDef"
   require "js/jsBase"
   require "js/jsVar"
-  require "js/Element"
+  require "js/element/Element"
 else
   require_relative "../global/globalDef" 
   require_relative "./jsBase"
   require_relative "./jsVar"
-  require_relative "./Element"
+  require_relative "./element/Element"
 end
 
 module Jabverwock

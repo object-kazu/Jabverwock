@@ -80,7 +80,7 @@
   </head>
   <body>
     <div id="header">
-      <h1>Reek Output - <span class="total-warnings">2 total warnings</span></h1>
+      <h1>Reek Output - <span class="total-warnings">7 total warnings</span></h1>
     </div>
     <div id="reek-smells">
       <div class="box">
@@ -88,8 +88,28 @@
           
           <div class="list-item">
             <div class="content">
+              <div class="heading"><strong>Jabverwock::CssUtil#hasSymbolArrTargetSymbol</strong> is controlled by argument 'sym' (ControlParameter)</div>
+              <small class="text-muted pull-right">Line [243]</small>
+              <p>
+              <small>global/globalDef.rb</small>
+              </p>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="content">
+              <div class="heading"><strong>Jabverwock::KSUtil#fileReadingToArr</strong> refers to 'e' more than self (maybe move it to another class?) (FeatureEnvy)</div>
+              <small class="text-muted pull-right">Line [339, 339, 341, 341]</small>
+              <p>
+              <small>global/globalDef.rb</small>
+              </p>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="content">
               <div class="heading"><strong>Jabverwock::KString#check_type</strong> refers to 'instance' more than self (maybe move it to another class?) (FeatureEnvy)</div>
-              <small class="text-muted pull-right">Line [276, 277]</small>
+              <small class="text-muted pull-right">Line [483, 484]</small>
               <p>
               <small>global/globalDef.rb</small>
               </p>
@@ -99,7 +119,37 @@
           <div class="list-item">
             <div class="content">
               <div class="heading"><strong>Jabverwock::KString#stringArrayConectRET</strong> refers to 'arr' more than self (maybe move it to another class?) (FeatureEnvy)</div>
-              <small class="text-muted pull-right">Line [320, 323]</small>
+              <small class="text-muted pull-right">Line [527, 530]</small>
+              <p>
+              <small>global/globalDef.rb</small>
+              </p>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="content">
+              <div class="heading"><strong>Jabverwock::KSUtil#fileReadingToArr</strong> contains iterators nested 2 deep (NestedIterators)</div>
+              <small class="text-muted pull-right">Line [333]</small>
+              <p>
+              <small>global/globalDef.rb</small>
+              </p>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="content">
+              <div class="heading"><strong>Jabverwock::CssUtil#useCore</strong> has approx 6 statements (TooManyStatements)</div>
+              <small class="text-muted pull-right">Line [186]</small>
+              <p>
+              <small>global/globalDef.rb</small>
+              </p>
+            </div>
+          </div>
+          
+          <div class="list-item">
+            <div class="content">
+              <div class="heading"><strong>Jabverwock::KSUtil#fileReadingToArr</strong> has approx 7 statements (TooManyStatements)</div>
+              <small class="text-muted pull-right">Line [330]</small>
               <p>
               <small>global/globalDef.rb</small>
               </p>
