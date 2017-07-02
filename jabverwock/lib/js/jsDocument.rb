@@ -168,21 +168,28 @@ module Jabverwock
       connectToElement cp
     end
 
-    ### add and delete element ###
+    ### child treatment ###
     def createElement(name)
       cp =  @obj.dot("createElement").inParenth(name.to_s) + $JS_CMD_END
       @docHash.update seqHash(cp)
       connectToElement cp
     end
 
+    def childTreatment(treat, parent, child)
+      parent.to_s + ".#{treat}Child(#{child.to_s})" + $JS_CMD_END      
+    end
+    
     def removeChild(parent, child)
-      cp = parent.to_s + ".removeChild(#{child.to_s})" + $JS_CMD_END
-      recEqual cp
+      recEqual childTreatment 'remove', parent, child
     end
 
     def appendChild(parent, child)
-      cp = parent.to_s + ".appendChild(#{child.to_s})" + $JS_CMD_END
-      recEqual cp
+      recEqual childTreatment 'append', parent, child
+    end
+    
+    def replaceChild(parent, from, to)
+      r = "#{parent}.replaceChild(#{from}, #{to})"
+      recEqual r
     end
 
     def insertBefore(targetNode,newNode)
@@ -202,9 +209,6 @@ module Jabverwock
       recEqual cp
     end
     
-    # def replaceChild(child)
-    #   treatElement("replaceChild",child)
-    # end
 
     
     # write function include rec, so do not allow to chain other method

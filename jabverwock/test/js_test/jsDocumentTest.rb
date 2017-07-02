@@ -206,11 +206,16 @@ module Jabverwock
     
     test 'removeChild' do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
-      @jsd.removeChild('aaa')
-      assert_equal(@jsd.orders[0], 'document.removeChild(aaa);')
+      @jsd.removeChild(:para, 'aaa')
+      assert_equal(@jsd.orders[0], 'para.removeChild(aaa);')
 
     end
-    
+
+
+    test 'replaceChild' do
+      @jsd.replaceChild :para, :a, :b
+      assert_equal @jsd.orders[0], 'para.replaceChild(a, b)'
+    end
     
     test 'document write, do not need rec' do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
