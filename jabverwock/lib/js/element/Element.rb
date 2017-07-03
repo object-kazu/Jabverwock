@@ -11,6 +11,7 @@ else
 end
 
 
+
 module Jabverwock
   using StringExtension
   using ArrayExtension
@@ -135,8 +136,6 @@ module Jabverwock
     end
 
     
-
-
   end
 
   # p a = Element.new(self)

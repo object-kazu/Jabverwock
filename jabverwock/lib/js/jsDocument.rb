@@ -11,6 +11,11 @@ else
   require_relative "./element/Element"
 end
 
+module JabverwockElement
+
+  
+end
+
 module Jabverwock
   using StringExtension
   using ArrayExtension
