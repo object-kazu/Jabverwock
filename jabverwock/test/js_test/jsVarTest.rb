@@ -11,7 +11,6 @@ require "../../lib/global/jwMulti"
 require "../../lib/global/jwOneTag"
 require "../../lib/global/jwTable"
 
-require '../../lib/js/jsVariable'
 
 module Jabverwock
   using StringExtension
@@ -57,12 +56,6 @@ module Jabverwock
     test "jsVar case 1" do
       v = JsVar.new.is :n, "koko"
       assert_equal v.record, "var n = koko"
-    end
-
-    test 'test' do
-      v = JsVariable.new
-      puts v.innerHTML = 'aaa'
-      # v.test{ v.byID }
     end
     
   end
