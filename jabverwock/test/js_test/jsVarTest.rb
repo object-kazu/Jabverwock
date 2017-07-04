@@ -57,6 +57,34 @@ module Jabverwock
       v = JsVar.new.is :n, "koko"
       assert_equal v.record, "var n = koko"
     end
+
+    test 'collection case 1' do
+      v = JsVar.new
+      v.collection :myC,1,"innerHTML"
+      assert_equal v.record, "myC[1].innerHTML"
+      
+    end
+
+    test 'collection case2' do
+      v = JsVar.new
+      v.collection :myC,1
+      assert_equal v.record, "myC[1]"
+      
+    end
     
+    test 'collection case 3' do
+      v = JsVar.new
+      v.collection :myC
+      assert_equal v.record, "myC"
+      
+    end
+
+    test 'collection length' do
+      v = JsVar.new
+      v.collectionLength :myC
+      assert_equal v.record, 'myC.length'
+    end
+    
+
   end
 end

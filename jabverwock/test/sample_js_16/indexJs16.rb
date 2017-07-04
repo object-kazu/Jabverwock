@@ -13,19 +13,13 @@ module Jabverwock
       
       p1 = P.new.attr(:id__p1).contentIs "this is paragraph"
       p2 = P.new.attr(:id__p2).contentIs "this is another paragraph"
-
-      div.jdoc.selfy { |t|
-        t.createElement(:p).is_var :para
-        t.createTextNode('This is new.'.sQuo).is_var :node
-        t.appendChild :para, :node
-
-        t.byID.is_var :parent
-      }
-
-      p1.jdoc.byID.is_var :child
-      p1.jdoc.replaceChild :parent, :para, :child
-
       
+      
+      div.jdoc.byTagName.is_var :myCollection
+      v = div.js.var.collection(:myCollection, 0, 'innerHTML').cut
+      b = "The innerHTML of the second paragraph is:".dQuo.plus "#{v}"
+      div.jdoc.byID.innerHTML b
+
       div.addChildren p1, p2
       body.addChild div
       body

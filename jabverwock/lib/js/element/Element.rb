@@ -115,6 +115,7 @@ module Jabverwock
       node :lastChild, *type
     end
 
+    
     ### private methods ###
 
     private

@@ -28,11 +28,23 @@ module StringExtension
         self + "(" + $SINGLE_QUO + insert + $SINGLE_QUO + ")"     
       end      
     end
+
     
+    # "xxx".plus "aaa"
+    # => "xxx" + "aaa"
+    def plus(item)
+      self + " + " + item
+    end
+
+    
+    # "xxx".dQuo
+    # => "xxx"
     def modifyDoubleQuo
       $DOUBLE_QUO + self + $DOUBLE_QUO
     end
-
+    
+    # "xxx".sQuo
+    # => 'xxx'
     def modifySingleQuo
       $SINGLE_QUO + self + $SINGLE_QUO
     end

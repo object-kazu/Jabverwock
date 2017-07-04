@@ -32,9 +32,42 @@ module Jabverwock
       self
     end
 
-  end
+    ### collection ###
+    def cut
+      exp = KSHash.lastHashValue @units
+      KSHash.removeLastHashValue @units
+      KString.remove_Js_Cmd_End(exp)
+    end
 
-  
+
+    
+    def collectionLength(name)
+      l = "#{name.to_s}.length"
+      @units.update seqHash l
+      self
+    end
+    
+    def collection(name, index = -1, *exp)
+
+      if index == -1
+        c ="#{name.to_s}"
+        @units.update seqHash c
+        return self
+      end
+      
+      if exp.count == 0
+        c ="#{name.to_s}[#{index}]"
+        @units.update seqHash c
+        return self
+      end
+      
+      c ="#{name.to_s}[#{index}].#{exp.first}"
+      @units.update seqHash c
+      self
+    end
+
+  end
+    
   # This class is manage variable in JsDocument
   #  "var new_01 = document.createElement('p');
   #  "var new_02 = document.createTextNode('this is new');

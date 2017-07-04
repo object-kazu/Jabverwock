@@ -57,15 +57,6 @@ module Jabverwock
       p "equality: #{@equality}"
     end
     
-
-    # ## remove hash ##
-    # def clearHash
-
-    #   printHash
-    #   @equality = {}
-    #   @units = {}
-    #   @docHash = {}
-    # end
     
     ## orders ###
     
