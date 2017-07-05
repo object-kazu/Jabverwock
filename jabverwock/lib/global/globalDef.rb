@@ -78,8 +78,8 @@ module StringExtension
     def colSpan(val)
       self + $COL_SPAN + "#{val}"
     end
-    
-  end
+
+  end   
 end
 
 # ## Symbol extension ############
@@ -185,6 +185,18 @@ module Jabverwock
   $ID_ELEM_ID = "id::"
   $ID_ELEM_CLS = "cls::"
 
+  module Color
+    class << self
+      
+      
+      def rgb(red, green, blue)
+        "rgb(#{red}, #{green}, #{blue})"
+      end
+
+    end
+
+  end
+  
   #This class is utility for css.rb
   module CssUtil
     class << self

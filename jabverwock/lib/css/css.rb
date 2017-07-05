@@ -11,7 +11,9 @@ else
   
 end
 
+
 module Jabverwock
+  
   using StringExtension
   using ArrayExtension
   using SymbolExtension
@@ -152,6 +154,7 @@ module Jabverwock
       ans.gsub!(/\nuse-(id|cls|namae).*;/, "") || ""      
       ans.gsub!(/name:.*;\n/, "") || ""
     end
+
     
   end
   
