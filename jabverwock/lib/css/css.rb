@@ -29,7 +29,8 @@ module Jabverwock
     self.define_attributes [:color, :background, :background_attachment, :background_color,
                             :background_image, :background_position, :background_position_x,
                             :background_position_y,:background_repeat, :background_origin, :background_size]
-
+    self.define_attributes [:border, :border_top, :border_bottom, :border_left, :border_right]
+    
     self.define_attributes [:width, :height, :position]
     
     attr_reader :use_id, :use_cls, :use_namae
