@@ -1,6 +1,6 @@
 module Jabverwock
   
-  #http://masayuki14.hatenablog.com/entry/2016/04/28/122359
+  # http://masayuki14.hatenablog.com/entry/2016/04/28/122359
   
   #Css attribute managee
   class CssAttrTemplate
@@ -17,7 +17,7 @@ module Jabverwock
         attributes.each_with_index do |attr, index|
           attr_accessor attr # attrへのアクセッサ
           @index_to_attr[index] = attr # indexと項目名の対応
-
+          
           # method chain
           # ex) method_a(1).method_b(2)
           define_method "#{attr}"do |v|

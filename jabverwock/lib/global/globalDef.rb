@@ -185,6 +185,85 @@ module Jabverwock
   $ID_ELEM_ID = "id::"
   $ID_ELEM_CLS = "cls::"
 
+  module ORIGIN
+    class << self
+      def BORDER
+        "border-box"
+      end
+      def PADDING
+        "padding-box"
+      end
+      def CONTENT
+        "content-box"
+      end
+    end
+  end
+  
+  module ATTATCHMENT
+    class << self
+      def SCROLL
+        "scroll"
+      end
+      def FIXED
+        "fixed"
+      end
+      def LOCAL
+        "local"
+      end
+      
+    end
+  end
+  
+  module REPEAT
+    class << self
+
+      def repeatTemp(r)
+        @result ||= ""
+        @result << r + $SPC
+        self        
+      end
+      
+      def Yes()
+        repeatTemp "repeat"
+      end
+
+      def No()
+        repeatTemp "no-repeat"
+      end
+
+      def X()
+        repeatTemp "repeat-x"
+      end
+      
+      def Y()
+        repeatTemp "repeat-y"
+      end
+
+      def SPC()
+        repeatTemp "space"
+      end
+
+      def ROUND()
+        repeatTemp "round"
+      end
+      
+      def val()
+        @result ||= ""
+        ans = @result.rstrip
+        @result = ""
+        ans
+      end
+    end
+  end
+  
+  module URL
+    class << self
+      def url(str)
+        "url(#{str})"
+      end
+    end
+  end
+  
   module Color
     class << self
       
