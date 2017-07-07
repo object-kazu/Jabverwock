@@ -1,13 +1,11 @@
 if $FOR_GEM
   require "global/globalDef"
   require "css/propertyTemplete"
-  # require "css/CssUtil"
     
 else
 
   require "../../lib/global/globalDef"
   require_relative "propertyTemplete"
-  # require_relative "CssUtil"
   
 end
 
