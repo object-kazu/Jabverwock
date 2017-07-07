@@ -1,8 +1,8 @@
-# JabverwockRuby
-Jabverwock ruby version
+# Jabverwock
+Experiment; Integrate HTML, CSS, Javascript
 
 ## What is the Jabverwock?
-Jaberwock is open source project to make web page useing Ruby.
+Jaberwock is open source project to make web page using Ruby.
 
 That mean "Do not use HTML, CSS, JS (if possible)".
 
