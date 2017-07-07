@@ -29,7 +29,18 @@ module Jabverwock
     self.define_attributes [:color, :background, :background_attachment, :background_color,
                             :background_image, :background_position, :background_position_x,
                             :background_position_y,:background_repeat, :background_origin, :background_size]
-    self.define_attributes [:border, :border_top, :border_bottom, :border_left, :border_right]
+    
+    self.define_attributes [:border,
+                            :border_top, :border_bottom, :border_left, :border_right,
+                            :border_width,
+                            :border_top_width,:border_bottom_width, :border_left_width,:border_right_width,
+                            :border_style,
+                            :border_top_style, :border_bottom_style, :border_left_style, :border_right_style,
+                            :border_color,
+                            :border_top_color, :border_bottom_color, :border_left_color, :border_right_color
+                           ]
+
+    
     
     self.define_attributes [:width, :height, :position]
     

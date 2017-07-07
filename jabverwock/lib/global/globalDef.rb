@@ -185,32 +185,49 @@ module Jabverwock
   $ID_ELEM_ID = "id::"
   $ID_ELEM_CLS = "cls::"
 
+  
+  module STYLE
+    class << self
+      styles = %w(none hidden dotted dashed solid double groove ridge inset outset)
+      styles.each do |s| 
+        define_method s.upcase do 
+          "#{s}"
+        end
+      end
+      
+    end
+    # 値	説明
+    # none	線を表示せず、線幅は0になります。他のセルの線と重なる場合は、他のセル線が優先されます。
+    # hidden	線を表示せず、線幅は0になります。他のセルの線と重なる場合は、hidden が優先されます。
+    # dotted	点線で表示します。
+    # dashed	破線で表示します。
+    # solid	実線で表示します。
+    # double	二重線で表示します。
+    # groove	線が窪んで見えるような線で表示します。
+    # ridge	線が突起して見えるような線で表示します。
+    # inset	領域全体が窪んで見えるような線で表示します。
+    # outset	領域全体が突起して見えるような線で表示します。
+  end
+  
   module ORIGIN
     class << self
-      def BORDER
-        "border-box"
-      end
-      def PADDING
-        "padding-box"
-      end
-      def CONTENT
-        "content-box"
+      origin = %w(border padding content)
+      origin.each do |o|
+        define_method o.upcase do
+          "#{o}-box"
+        end
       end
     end
   end
   
   module ATTATCHMENT
     class << self
-      def SCROLL
-        "scroll"
+      atta = %w(scroll fixed local)
+      atta.each do |a| 
+        define_method a.upcase do
+          "#{a}"
+        end
       end
-      def FIXED
-        "fixed"
-      end
-      def LOCAL
-        "local"
-      end
-      
     end
   end
   

@@ -58,9 +58,41 @@ module Jabverwock
     test "property border" do
       @css.name = "head"
       @css.border = "10px solid"
-      assert_equal(@css.str, "head {\nborder: 10px solid;\n}")
+      @css.border_left = "1px solid"
+      assert_equal(@css.str, "head {\nborder-left: 1px solid;\nborder: 10px solid;\n}")
     end
 
+    test 'property border width' do
+      @css.name = "head"
+      @css.border_width = "1px solid"
+      assert_equal(@css.str, "head {\nborder-width: 1px solid;\n}")      
+    end
+
+    test 'property border top-width' do
+      @css.name = 'head'
+      @css.border_top_width = '2px'
+      assert_equal(@css.str, "head {\nborder-top-width: 2px;\n}")      
+    end
+
+
+    test 'property border style' do
+      @css.name = 'head'
+      @css.border_style = STYLE.NONE
+      assert_equal @css.str, "head {\nborder-style: none;\n}"
+    end
+    
+    test 'property border style case 2' do
+      @css.name = 'head'
+      @css.border_style = STYLE.DOTTED
+      assert_equal @css.str, "head {\nborder-style: dotted;\n}"
+    end
+
+    test 'property border color' do
+      @css.name = 'head'
+      @css.border_color = "red blue red green"
+      assert_equal @css.str, "head {\nborder-color: red blue red green;\n}"
+    end
+    
     
     
   end
