@@ -40,6 +40,9 @@ module Jabverwock
                             :border_top_color, :border_bottom_color, :border_left_color, :border_right_color
                            ]
 
+    self.define_attributes [:margin,
+                            :margin_top, :margin_bottom, :margin_left, :margin_right
+                           ]
     
     
     self.define_attributes [:width, :height, :position]
