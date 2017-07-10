@@ -42,6 +42,10 @@ module Jabverwock
                             :margin_top, :margin_bottom, :margin_left, :margin_right
                            ]
     
+    self.define_attributes [:padding,
+                            :padding_top, :padding_bottom, :padding_left, :padding_right                            
+                           ]
+    
     
     self.define_attributes [:width, :height, :position]
     

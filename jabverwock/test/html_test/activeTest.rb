@@ -1,15 +1,8 @@
 require 'test/unit' 
 
-# require "global/globalDef"
-# require "global/jwTable"
-# require "global/jwSingle"
-# require "global/jwMulti"
-
 #gem uninstall version
 require "../../lib/global/globalDef"
 require "../../lib/global/jwTable"
-#require "../../lib/global/jwSingle"
-#require "../../lib/global/jwMulti"
 
 
 module Jabverwock

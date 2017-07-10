@@ -182,7 +182,7 @@ module Jabverwock
     ### change element ###
     def elementChanging_Equal (act,str)
       s = KString.remove_Js_Cmd_End @content
-      @ec = contentRemoveJSEnd.dot(act) + $EQUAL + str + $JS_CMD_END
+      @ec = contentRemoveJSEnd.dot(act) + $SPC + $EQUAL + $SPC + + str + $JS_CMD_END
       self
     end
     
