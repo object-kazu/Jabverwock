@@ -15,6 +15,31 @@ Add this line to your application's Gemfile:
 gem 'jabverwock'
 ```
 
+## How to use
+
+### Press command
+
+- press command is that html ( css, js ) generate from ruby.
+
+
+```ruby
+
+
+```
+
+### HTML
+---
+ ```ruby
+ html = html.new
+ html.pressConfig(name: n, dist: testPATH)
+ html.pressDefalt
+ ```
+> \<HTML>
+> 
+> \</HTML>
+
+
+
 ## License
 Jabverwock is distributed under MIT license.
 

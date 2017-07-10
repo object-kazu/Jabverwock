@@ -116,7 +116,7 @@ module Jabverwock
       tabbing.readLine @resultString
       
       File.open(pathName, "w") do |f| 
-        f.puts tabbing.tabbedTxt #@resultString
+        f.puts tabbing.tabbedTxt
       end
       
     end

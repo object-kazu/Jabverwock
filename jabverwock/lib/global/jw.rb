@@ -194,18 +194,31 @@ module Jabverwock
       @pressVal.initResutString      
       @pressVal.removeAllLabel
     end
-    
-    def press
-      @pressVal.core
-      p "Press Done!"
-      pressFingerPrint
-    end
 
     
+    
     def pressDefault
-      prepPress
-      press
+      @pressVal.core
+      p "Press Done!"
+      pressFingerPrint      
     end
+
+    def press
+      prepPress
+      pressDefault
+    end
+    
+    # def press
+    #   @pressVal.core
+    #   p "Press Done!"
+    #   pressFingerPrint
+    # end
+
+    
+    # def pressDefault
+    #   prepPress
+    #   press
+    # end
         
     
     def pressInsert(insertData)
@@ -214,7 +227,7 @@ module Jabverwock
       end
       
       @pressVal.withInsert(insertData)
-      press
+      pressDefault
       pressFingerPrint
     end
         
@@ -224,7 +237,7 @@ module Jabverwock
       end
       
       @pressVal.withInsertEach(insertData)
-      press
+      pressDefault
       pressFingerPrint
     end
     
@@ -235,7 +248,7 @@ module Jabverwock
       n = name + "Pressed" + ".html"
       pressConfig(name: n, dist: _dir_)
       prepPress
-      press
+      pressDefault
     end
     
   end
