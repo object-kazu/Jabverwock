@@ -440,6 +440,17 @@ module Jabverwock
   module KSUtil
     class << self
       
+      def myPATH
+        current = ENV['PWD']
+        switch = false
+        if current.include?("BitTorrent")
+          switch = true
+        end
+        dirname = File.basename(Dir.getwd)
+        switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
+        "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{dirname}/"
+      end
+
       def testPATH(folder)
         current = ENV['PWD']
         current.include?("BitTorrent") ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""

@@ -12,16 +12,8 @@ module Jabverwock
   using ArrayExtension
   using SymbolExtension
   
-#  // export html & css
-# let EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
-# let EXPORT_TEST_File = "result.html"
-
-# // export js
-# let EXPORT_TEST_JS_Dir = "/Users/shimizukazuyuki/Desktop/index/"
-# let EXPORT_TEST_JS_File = "result.js"
-
-  $EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
-  $EXPORT_TEST_File = "resultRuby.txt"
+  # $EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
+  # $EXPORT_TEST_File = "resultRuby.txt"
   
   # This class is making HTML, CSS, JS code
   class Press
@@ -37,8 +29,8 @@ module Jabverwock
       @templeteString = "" #// Labelによる書き換え前のStringを保持
       @resultString = "" # // Labelによる書き換え後の最終String
 
-      @exportPath = $EXPORT_TEST_Dir
-      @exportFile = $EXPORT_TEST_File
+      @exportPath = "" #$EXPORT_TEST_Dir
+      @exportFile = "" #$EXPORT_TEST_File
       
     end
 
@@ -111,6 +103,13 @@ module Jabverwock
     def core
       pathName = @exportPath + @exportFile
 
+      if pathName == ""
+        current = ENV['PWD']
+        pathName = current + "pressed"
+        p 'path is incorrect, pressed txt is saved at following directory,'
+        p pathName
+      end
+      
       #tabbing
       tabbing = Tabbing.new
       tabbing.readLine @resultString
@@ -118,7 +117,6 @@ module Jabverwock
       File.open(pathName, "w") do |f| 
         f.puts tabbing.tabbedTxt
       end
-      
     end
 
     #### css ####

@@ -194,33 +194,22 @@ module Jabverwock
       @pressVal.initResutString      
       @pressVal.removeAllLabel
     end
-
     
-    
+    # # pressDefault rename press
     def pressDefault
       @pressVal.core
       p "Press Done!"
       pressFingerPrint      
     end
 
+    # # press rename pressDefault
     def press
       prepPress
       pressDefault
     end
-    
-    # def press
-    #   @pressVal.core
-    #   p "Press Done!"
-    #   pressFingerPrint
-    # end
 
     
-    # def pressDefault
-    #   prepPress
-    #   press
-    # end
         
-    
     def pressInsert(insertData)
       if @pressVal.isResultStringEmpty
         prepPress

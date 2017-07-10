@@ -6,23 +6,7 @@ module Jabverwock
   using SymbolExtension
   
 
-  html= HTML.new
-  head = HEAD.new
-  
-  title = TITLE.new
-  title.content = "This is my first page"
-  head.addChild title
-  
-  body = BODY.new
-  c = P.new.contentIs "Hello world!" 
-  body.addChild c
-
-  html.addChild head
-  html.addChild body
-  
   doc = DOCTYPE.new
-  doc.addMember html
-  
 
   $PAGES =  %w(home)
   
@@ -43,9 +27,7 @@ module Jabverwock
       pp = "index"
     end
     n = pp + "Pressed" + ".html"
-    doc.pressConfig(name: n, dist: testPATH)
-   
-#    doc.pressInsert("a".varIs"#{pp}")
+    doc.pressConfig(name: n, dist: KSUtil.myPATH)   
     doc.press
   end
 
