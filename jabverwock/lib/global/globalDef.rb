@@ -451,11 +451,11 @@ module Jabverwock
         "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{dirname}/"
       end
 
-      def testPATH(folder)
-        current = ENV['PWD']
-        current.include?("BitTorrent") ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
-        "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{folder}/"
-      end
+      # def testPATH(folder)
+      #   current = ENV['PWD']
+      #   current.include?("BitTorrent") ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
+      #   "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{folder}/"
+      # end
 
       ### file reading
       def fileReadingToArr (txt, arr)

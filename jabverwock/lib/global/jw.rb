@@ -208,6 +208,10 @@ module Jabverwock
       pressDefault
     end
 
+    def pressTo(name:,dist:)
+      pressConfig(name: name, dist: dist)
+      press 
+    end
     
         
     def pressInsert(insertData)
@@ -232,13 +236,13 @@ module Jabverwock
     
     # press for testing
         
-    def testPress(folder,name)
-      _dir_ = KSUtil.testPATH folder
-      n = name + "Pressed" + ".html"
-      pressConfig(name: n, dist: _dir_)
-      prepPress
-      pressDefault
-    end
+    # def testPress(folder,name)
+    #   _dir_ = KSUtil.testPATH folder
+    #   n = name + "Pressed" + ".html"
+    #   pressConfig(name: n, dist: _dir_)
+    #   prepPress
+    #   pressDefault
+    # end
     
   end
 
