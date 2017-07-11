@@ -29,7 +29,7 @@ file name is `n` and file path is `~/path`
  doc.press
  ```
 > [result]
->> <!DOCTYPE html>
+>>     <!DOCTYPE html>
 
 ### => press
 
@@ -51,9 +51,10 @@ pressTo cmd is more simple.
 	+ dist: path of file	
 
  ```ruby
-	doc = DOCTYPE.new
- 	doc.pressTo(name: n, dist: ~/path)
+	doc.pressTo(name: n, dist: ~/path)
  ```
+ 
+ <br>
 
 ---
 ### Then, Hello world
@@ -65,7 +66,7 @@ Tag make by new cmd (e.g. HTML tag).
  ```
  
 <br>
-show 'Hello world'
+Say 'Hello world'
 	
 	
 ```ruby
@@ -91,17 +92,17 @@ doc.pressTo(name: 'indexPressed.html', dist: myPATH)
 ```
 
 >[result]
+>>```html
+>>		<!DOCTYPE html>
+>>		<html>
+>>	  	<head>
+>>				<title>This is my first page</title>
+>>	  	</head>
+>>	  	<body>
+>>				<p>Hello world!</p> 
+>>	  	</body>
+>>		</html>
 >>```
-	<!DOCTYPE html>
-	<html>
-	  <head>
-			<title>This is my first page</title>
-	  </head>
-	  <body>
-				<p>Hello world!</p> 
-	  </body>
-	</html>
-```
 
 ### => content
 content cmd express content of the tag.
@@ -116,9 +117,9 @@ or
 	  
  ```
 >[result]
+>>```html
+>>	<p>Hwllow world!</p>
 >>```
-	<p>Hwllow world!</p>
-```
 
 ### => addChild (addChildren)
 addChild cmd express structure of HTML.
@@ -141,6 +142,7 @@ addMember cmd express structure of HTML.
 	html.addMember head
  ```
 >[result]
+
 >>```
 	<html>
 	</html>
@@ -148,70 +150,7 @@ addMember cmd express structure of HTML.
 	</head>
 ```
 
----
-### HTML tags
-#### code blocking
-HTML tag make by ruby so that easy to organize html (,css, js) code.
 
- ```ruby
- 
-  [exp.1]
-  
-  html= HTML.new
-  head = HEAD.new
-  
-  title = TITLE.new
-  title.content = "This is my first page"
-  head.addChild title
-  
-  body = BODY.new
-  c = HEADING.new.contentIs "Hello world" 
-  body.addChild c
-
-  html.addChild head
-  html.addChild body
-  
-  
-------------------------------------------------------
-  
-  [exp.2]
-  
-  def self.header
-    head = HEAD.new
-    
-    title = TITLE.new
-    title.content = "This is my first page"
-    head.addChild title
-    head
-  end
-  
-  def self.bodies
-    body = BODY.new
-    c = HEADING.new.contentIs "Hello world" 
-    body.addChild c
-    body
-  end
-
-  html= HTML.new
-  html.addChildren header, bodies
- ```
->[result] exp.1 and exp.2 express same html.
->>```
-<html>
-	<head>
-		<title>This is my first page</title>
-  </head>
-  <body>
-		<h1>Hello world</h1>
-  </body>
-</html>
-```
-
-
-#### Headiing
-
-
----
 ## License
 Jabverwock is distributed under MIT license.
 
