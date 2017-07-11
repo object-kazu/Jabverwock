@@ -451,6 +451,15 @@ module Jabverwock
         "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{dirname}/"
       end
 
+      def myDiff
+        dif = `diff -b index.html indexPressed.html`
+        if dif != ""
+          p dif
+          return
+        end
+        p 'no difference!'
+      end
+      
       # def testPATH(folder)
       #   current = ENV['PWD']
       #   current.include?("BitTorrent") ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""

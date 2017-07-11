@@ -246,7 +246,6 @@ module Jabverwock
     
   end
 
-  private
   
   #p a = JW.new
 

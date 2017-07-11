@@ -25,5 +25,8 @@ module Jabverwock
       
   doc.pressTo(name: 'indexPressed.html', dist: KSUtil.myPATH)
   
+  # # show diff
+  KSUtil.myDiff
+  
 
 end
