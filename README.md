@@ -128,12 +128,12 @@ addChild cmd express structure of HTML.
 	html.addChild head
  ```
 >[result]
+>>```html
+>>	<html>
+>>		<head>
+>>		</head>
+>>	</html>
 >>```
-	<html>
-		<head>
-		</head>
-	</html>
-```
 
 
 ### => addMember (addMembers)
@@ -142,13 +142,12 @@ addMember cmd express structure of HTML.
 	html.addMember head
  ```
 >[result]
-
+>>```html
+>>	<html>
+>>	</html>
+>>	<head>
+>>	</head>
 >>```
-	<html>
-	</html>
-	<head>
-	</head>
-```
 
 
 ## License
