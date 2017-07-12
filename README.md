@@ -149,6 +149,8 @@ addMember cmd express structure of HTML.
 >>	</head>
 >>```
 
+## Usage
+More detailed usage instructions are provided in the [Wiki](https://github.com/object-kazu/Jabverwock/wiki).
 
 ## License
 Jabverwock is distributed under MIT license.
