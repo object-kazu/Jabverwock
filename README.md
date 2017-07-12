@@ -93,15 +93,15 @@ doc.pressTo(name: 'indexPressed.html', dist: myPATH)
 
 >[result]
 >>```html
->>		<!DOCTYPE html>
->>		<html>
->>	  	<head>
->>				<title>This is my first page</title>
->>	  	</head>
->>	  	<body>
->>				<p>Hello world!</p> 
->>	  	</body>
->>		</html>
+>>	<!DOCTYPE html>
+>>	<html>
+>>		<head>
+>>			<title>This is my first page</title>
+>>		</head>
+>>		<body>
+>>			<p>Hello world!</p> 
+>>		</body>
+>>	</html>
 >>```
 
 ### => content
