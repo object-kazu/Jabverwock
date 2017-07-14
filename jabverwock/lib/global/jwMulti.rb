@@ -103,14 +103,6 @@ module Jabverwock
     end
 
     def childAssemble
-      # tem = []
-
-      # @childStringArray.each do |t|
-      #   tem << KString.addTab(t)
-      # end
-      # tem.each do |a|
-      #   @templeteString << a + $RET
-      # end
       @childStringArray.each do |a|
         @templeteString << a << $RET       
       end
@@ -122,19 +114,6 @@ module Jabverwock
   
   multiList.each do |list|
     Object.const_set list, Class.new(JWMulti){    
-#      attr_accessor :name
-
-      # def initialize
-
-      #   @name = self.class.name.downcase
-
-      #   if @name == "li_multi"
-      #     @name = "li"
-      #   end
-        
-      #   @css = CSS.new("#{@name}")
-
-      # end
     }
   end
 
