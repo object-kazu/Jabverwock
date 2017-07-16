@@ -8,12 +8,15 @@ module Jabverwock
   html= HTML.new  
   body = BODY.new
   
-  br = BR.new
-  p1 = P.new.contentIs "this is " << br.tgStr << "br class"
-  p2 = P.new.contentIs "this is #{$BR}br string"
-  p3 = P.new.contentIs("this is last").withBreak
+  i1 = IMG.new.attr(:src ,"aaa")
+  a1 = A.new.contentIs("test a is done #{i1.tgStr} ?").withBreak
+
+  i2 = IMG.new.attr :src__bbb
+
+  i3 = IMG.new.attr(:id__test, :src__ccc)
   
-  body.addChildren p1, p2, p3
+  body.addChildren [a1, i2, i3]
+  # body.addChildren a1, i2, i3
   html.addChild body
       
   html.pressTo(name: 'indexPressed.html', dist: KSUtil.myPATH)

@@ -21,7 +21,7 @@ module Jabverwock
   def self.contents
     i1 = IMG.new.attr(:src ,"aaa")
     a1 = A.new.contentIs("test a is done #{i1.tgStr} ?").withBreak
-
+    
     i2 = IMG.new.attr(:src ,"bbb")
     a2 = A.new.contentIs("test b is done #{i2.tgStr} !").withBreak
 

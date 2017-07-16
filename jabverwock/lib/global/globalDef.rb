@@ -110,6 +110,7 @@ end
 
 # ## Array extension ############
 module ArrayExtension
+
   
   refine Array do
     
