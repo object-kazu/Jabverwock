@@ -54,14 +54,14 @@ module Jabverwock
     
     test "br basically" do
       @br.content = "this is test"
-      assert_equal(@br.pressDefault, "this is test<br>")
+      assert_equal(@br.tgStr, "this is test<br>")
     end
 
     test "class br with p tag" do
       @br.content = "this is test"
       pp = P.new
       pp.content = @br.tgStr
-      assert_equal(pp.pressDefault,"<p>this is test<br></p>")
+      assert_equal(pp.tgStr,"<p>this is test<br></p>")
       
     end
 
@@ -69,11 +69,10 @@ module Jabverwock
     test "add br tag after other tag" do
       pp = P.new.contentIs "test"
       pp.addMember(@br)
-      assert_equal(pp.pressDefault, "<p>test</p>\n<br>\n")
+      assert_equal(pp.tgStr, "<p>test</p>\n<br>\n")
       
     end
     
-
     
     ### Constant BR test
     test "new test BR" do
