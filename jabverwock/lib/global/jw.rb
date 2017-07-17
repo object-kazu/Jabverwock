@@ -180,29 +180,13 @@ module Jabverwock
 
     end
 
+    # ## press ##
+    
     def pressConfig(name:, dist:)
       @pressVal.exportFile = name
       @pressVal.exportPath = dist
     end
-
-    def pressFingerPrint
-      @pressVal.resultString # 確認用の戻り値
-    end
     
-    def prepPress
-      assemble      
-      @pressVal.initResutString      
-      @pressVal.removeAllLabel
-    end
-    
-    # # pressDefault rename press
-    def pressDefault
-      @pressVal.core
-      p "Press Done!"
-      pressFingerPrint      
-    end
-
-    # # press rename pressDefault
     def press
       prepPress
       pressDefault
@@ -213,37 +197,33 @@ module Jabverwock
       press 
     end
     
-        
-    def pressInsert(insertData)
-      if @pressVal.isResultStringEmpty
-        prepPress
-      end
-      
-      @pressVal.withInsert(insertData)
-      pressDefault
-      pressFingerPrint
-    end
-        
-    def pressInsertEach(*insertData)
+    def pressInsert(*insertData)
       if @pressVal.isResultStringEmpty
         prepPress
       end
       
       @pressVal.withInsertEach(insertData)
       pressDefault
-      pressFingerPrint
+      pressFingerPrint      
     end
     
-    # press for testing
-        
-    # def testPress(folder,name)
-    #   _dir_ = KSUtil.testPATH folder
-    #   n = name + "Pressed" + ".html"
-    #   pressConfig(name: n, dist: _dir_)
-    #   prepPress
-    #   pressDefault
-    # end
+    private
+    def pressDefault
+      @pressVal.core
+      p "Press Done!"
+      pressFingerPrint      
+    end
     
+    def pressFingerPrint
+      @pressVal.resultString # 確認用の戻り値
+    end
+    
+    def prepPress
+      assemble      
+      @pressVal.initResutString      
+      @pressVal.removeAllLabel
+    end
+        
   end
 
   

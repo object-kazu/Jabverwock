@@ -44,25 +44,25 @@ module Jabverwock
     end
 
     test "press" do
-      assert_equal(@d.pressDefault, "<!DOCTYPE html>")
+      assert_equal(@d.tgStr, "<!DOCTYPE html>")
     end
 
     test "add member string" do
       @d.addMemberString "my first task"
-      ans = @d.pressDefault
+      ans = @d.tgStr
       assert_equal(ans, "<!DOCTYPE html>\nmy first task\n")
     end
 
     test "add member" do
       a = A.new
       @d.addMember a
-      ans = @d.pressDefault
+      ans = @d.tgStr
       assert_equal(ans, "<!DOCTYPE html>\n<a></a>\n")
     end
     
     test "set doctype" do
       @d.doctype = "HTML PUBLIC"
-      ans = @d.pressDefault
+      ans = @d.tgStr
       assert_equal(ans, "<!DOCTYPE HTML PUBLIC>")
       
     end
