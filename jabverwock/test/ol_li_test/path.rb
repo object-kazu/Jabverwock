@@ -7,6 +7,3 @@ require "../../lib/global/jwTable"
 require "../../lib/global/jw_CSS"
 require "../../lib/global/jw_CSS_JS"
 require "../../lib/global/press"
-require "../../lib/global/structDescript"
-
-require '../../lib/css/css'
