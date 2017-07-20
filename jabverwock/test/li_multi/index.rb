@@ -8,16 +8,6 @@ module Jabverwock
 
   html= HTML.new
 
-  def self.header
-    head = HEAD.new
-    
-    title = TITLE.new
-    title.content = "This is my first page"
-    head.addChild title
-
-    head
-  end
-
   def self.itemList (item)
     arr = []
     unless item.is_a? Array
@@ -55,13 +45,10 @@ module Jabverwock
   
   def self.bodier
     body = BODY.new
-    ol = orderList
-    body.addChild ol
+    body.addChild orderList
     body
   end
   
-  
-  html.addChild header
   html.addChild bodier
   
   html.pressTo(name: 'indexPressed.html', dist: KSUtil.myPATH)
