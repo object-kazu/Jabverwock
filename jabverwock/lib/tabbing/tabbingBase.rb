@@ -91,7 +91,6 @@ module Jabverwock
     
     ######## HTML tag ######
     
-
     def isMultiOpenTag(tag)    
       return true if KSUtil.isOpenTag(tag) && !KSUtil.isCloseTag(tag) && isMultiTag(tag)
       false

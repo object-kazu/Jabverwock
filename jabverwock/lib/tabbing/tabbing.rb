@@ -40,6 +40,12 @@ module Jabverwock
       #css replace
       #js replace
       
+      ## <li_mult>i rename to <li> after tabbing.
+      # if @name == "li_multi"
+      #   @name = "li"
+      # end
+
+      
       
       cssStatement = cssTabbing
       jsStatement = jsTabbing
@@ -48,7 +54,8 @@ module Jabverwock
       
       replaceStyleTagConstantTo cssStatement
       replaceScriptConstantTo jsStatement
-      
+
+      replace_li_multi
     end
 
     def htmlLoop
@@ -65,7 +72,9 @@ module Jabverwock
           shiftMain
         end
       end    
-      
+    end
+    def replace_li_multi
+      @result.gsub!(/li_multi/, "li")
     end
     
     ######## css treatment  ######
@@ -93,8 +102,7 @@ module Jabverwock
     end
 
     def cssTabbing
-      TabbingCSS.new.tabbedArrFrom extractStyle
-      
+      TabbingCSS.new.tabbedArrFrom extractStyle      
     end
     
     def insertStyleTagConstant(index)

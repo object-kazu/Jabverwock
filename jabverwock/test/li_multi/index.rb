@@ -63,27 +63,10 @@ module Jabverwock
   
   html.addChild header
   html.addChild bodier
-
-
-  $SA = "sample2"
-
   
-  def self.testPATH
-    current = ENV['PWD']
-    switch = false
-    if current.include?("BitTorrent")
-      switch = true
-    end
-    switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
-    "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{$SA}/"
-  end
+  html.pressTo(name: 'indexPressed.html', dist: KSUtil.myPATH)
   
-
-  n = $SA + "Pressed" + ".html"
-  html.pressConfig(name: n, dist: testPATH)
-  html.pressDefault
-  
-
-  
+  # # show diff
+  KSUtil.myDiff
   
 end

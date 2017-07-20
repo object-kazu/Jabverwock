@@ -27,6 +27,7 @@ module Jabverwock
     def initialize
       super
       @childStringArray = []
+      
       @css = CSS.new("#{@name}")
     end
 
