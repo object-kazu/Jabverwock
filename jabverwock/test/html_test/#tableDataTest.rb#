@@ -105,28 +105,28 @@ end
     
     
 
-#     func test_add_data () {
-#         let t = TABLE()
-#         t.setCaption(cap: "test")
-#         let hl = ["name", "address", "tel"]
-#         t.setHeadList(header: hl)
+    # func test_add_data () {
+    #     let t = TABLE()
+    #     t.setCaption(cap: "test")
+    #     let hl = ["name", "address", "tel"]
+    #     t.setHeadList(header: hl)
         
-#         //add data
+    #     //add data
         
-#         let data = ["line1", "shi", "tokyo", "03000000"]
-#         t.setData(d: [data])
+    #     let data = ["line1", "shi", "tokyo", "03000000"]
+    #     t.setData(d: [data])
         
-#         t.press()
+    #     t.press()
         
-#         /* answer
-#          <table>
-#          <captiom>test</caption>
-#          <tr><th></th><th>name</th><th>address</th><th>tel</th></tr>
-#          <tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>
-#          </table>
-#          */
+    #     /* answer
+    #      <table>
+    #      <captiom>test</caption>
+    #      <tr><th></th><th>name</th><th>address</th><th>tel</th></tr>
+    #      <tr><td>line1</td><td>shi</td><td>tokyo</td><td>03000000</td></tr>
+    #      </table>
+    #      */
         
-#     }
+    # }
 #     func test_add_data2 () {
 #         let t = TABLE()
 #         t.setCaption(cap: "test")

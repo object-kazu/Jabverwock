@@ -29,8 +29,8 @@ module Jabverwock
   # this class express table
   class JWTable < JWMulti
 
-    attr_accessor  :headerList
-    attr_reader :rows
+    # attr_accessor  :headerList
+    attr_reader :rows, :headerList
     
     def initialize
       super
@@ -47,6 +47,10 @@ module Jabverwock
     def caption(str)
       @caption = str
       self
+    end
+
+    def headerList(str)
+      @headerList = str
     end
     
     def addCaption
@@ -90,7 +94,7 @@ module Jabverwock
     def addTableDataList(arr)
       addGeneral arr, "addTableData"      
     end
-
+    
     def addRows (*arr)
        addGeneral arr, "addRowEach"
     end
