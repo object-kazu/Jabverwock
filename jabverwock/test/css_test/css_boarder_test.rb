@@ -59,7 +59,7 @@ module Jabverwock
       @css.name = "head"
       @css.border = "10px solid"
       @css.border_left = "1px solid"
-      assert_equal(@css.str, "head {\nborder-left: 1px solid;\nborder: 10px solid;\n}")
+      assert_equal(@css.str, "head {\nborder: 10px solid;\nborder-left: 1px solid;\n}")
     end
 
     test 'property border width' do

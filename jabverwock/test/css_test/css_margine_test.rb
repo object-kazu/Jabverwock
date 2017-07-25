@@ -53,7 +53,7 @@ module Jabverwock
       @css.name = "head"
       @css.margin = "10px"
       @css.margin_left = "1px"
-      assert_equal(@css.str, "head {\nmargin-left: 1px;\nmargin: 10px;\n}")
+      assert_equal(@css.str, "head {\nmargin: 10px;\nmargin-left: 1px;\n}")
     end
     
     

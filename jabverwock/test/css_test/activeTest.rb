@@ -96,7 +96,7 @@ module Jabverwock
       c.font_size = 10
       h.addCss c
 
-      pressed = h.pressDefault
+      pressed = h.tgStr
       
       assert_true(pressed.include?("<style>\n"))
       assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
@@ -116,7 +116,7 @@ module Jabverwock
 
       h.addMember body
       
-      pressed = h.pressDefault
+      pressed = h.tgStr
       
       assert_true(pressed.include?("<style>\n"))
       assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
@@ -130,7 +130,7 @@ module Jabverwock
       head = HEAD.new.attr(:id, "sample")
       head.css.color "red"
       
-      pressed = head.pressDefault
+      pressed = head.tgStr
 
       assert_true(pressed.include?("<style>\n"))
       assert_true(pressed.include?("head #sample {\ncolor: red;\n}\n"))
@@ -150,7 +150,7 @@ module Jabverwock
       h.addMember body
       
       
-      pressed = h.pressDefault
+      pressed = h.tgStr
 
       assert_true(pressed.include?("<style>\n"))
       assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
@@ -170,7 +170,7 @@ module Jabverwock
 
       h.addMember body
             
-      pressed = h.pressDefault
+      pressed = h.tgStr
       
       assert_true(pressed.include?("<style>\n"))
       assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
@@ -190,7 +190,7 @@ module Jabverwock
 
       h.addMember body
             
-      pressed = h.pressDefault
+      pressed = h.tgStr
       
       assert_true(pressed.include?("<style>\n"))
       assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
@@ -211,7 +211,7 @@ module Jabverwock
 
       h.addChild body
             
-      pressed = h.pressDefault
+      pressed = h.tgStr
       
       assert_true(pressed.include?("<style>\n"))
       assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))

@@ -175,7 +175,7 @@ module Jabverwock
   $CHILD = "_c_"
   $MEMBER = "_m_"
   $ENDMARK = "_e_"
-
+  $CHILD_SELECTOR = "__child_selector__"
   
   ## Table ####################
   $BR      = "<br>"
@@ -284,8 +284,6 @@ module Jabverwock
   
   module Color
     class << self
-      
-      
       def rgb(red, green, blue)
         "rgb(#{red}, #{green}, #{blue})"
       end
@@ -297,6 +295,7 @@ module Jabverwock
   #This class is utility for css.rb
   module CssUtil
     class << self
+      
       def nameWithDividStr(sel, divi)
         sel.inject("") do |name, s|
           next name << s if name == ""

@@ -106,7 +106,9 @@ module Jabverwock
       return useSelectorTreat :name, :id, :cls  if flattenedSelector.empty?
       
       arr = CssUtil.dividBySpace @name
-      ans = CssUtil.useCore flattenedSelector, arr                  
+
+      # when addChildren use $CHILD_SELECTOR, replace $SPC
+      ans = CssUtil.useCore flattenedSelector, replaceCHILD_SELECTOR(arr)  
       ans.join(" ")
     end
     
@@ -119,9 +121,10 @@ module Jabverwock
       addBaseic ",", *sel
       self
     end
-
+    
+    
     def addChildren(*sel)
-      addBaseic " ", *sel
+      addBaseic $CHILD_SELECTOR, *sel
       self
     end
 
@@ -147,6 +150,7 @@ module Jabverwock
       @cssResultString += makeNameByFlags + $SPC + "{" + $RET + removeNameFlags
       # 接尾句
       @cssResultString += $RET + "}"
+      
     end
 
     def makeNameByFlags
@@ -154,7 +158,6 @@ module Jabverwock
       arr << :id if @use_id
       arr << :cls if @use_cls
       arr << :name if @use_namae
-
       useSelectorTreat arr
     end
     
@@ -171,6 +174,13 @@ module Jabverwock
       ans.gsub!(/name:.*;\n/, "") || ""
     end
 
+    private
+    
+    def replaceCHILD_SELECTOR(arr)
+      arr.inject([]) do |array, a|
+        array << a.gsub(/#{$CHILD_SELECTOR}/, " ")
+      end
+    end
     
   end
   
