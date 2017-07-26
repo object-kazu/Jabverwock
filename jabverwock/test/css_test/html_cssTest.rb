@@ -221,6 +221,28 @@ module Jabverwock
       assert_true(pressed.include?("</style>"))
 
     end
+    
+    test "useSelectorTreat " do
+      h = HEAD.new().contentIs "this is test"
+      c = CSS.new "head"
+      c.font_size = 10
+      h.addCss c
+
+      body = BODY.new.attr(:cls, "sample").attr(:id, "test")
+      body.css.use :id
+      body.css.color "red"
+
+      h.addMember body
+            
+      pressed = h.tgStr
+
+      
+      assert_true(pressed.include?("<style>\n"))
+      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
+      assert_true(pressed.include?("#test {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?("</style>"))
+
+    end
 
 
     test "check addChild, set cls. id, selector cls,id " do

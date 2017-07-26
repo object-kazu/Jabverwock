@@ -86,6 +86,15 @@ module Jabverwock
     end
     
     def use(*flags)
+        # @name => p id:#test cls:.sample
+      # @treatName => p #test .sample
+      # use(:id) -> #test
+      # use(:cls) -> .sample
+      # use(:name) -> p
+      # use(:id, :name) -> p #test
+
+    
+      
       return if flags.empty?
       @use_id = true if CssUtil.hasSymbolArrTargetSymbol :id, flags
       @use_cls = true if CssUtil.hasSymbolArrTargetSymbol :cls, flags
@@ -93,25 +102,7 @@ module Jabverwock
       self
     end
     
-    def useSelectorTreat(*selector)
-      # @name => p id:#test cls:.sample
-      # @treatName => p #test .sample
-      # use(:id) -> #test
-      # use(:cls) -> .sample
-      # use(:name) -> p
-      # use(:id, :name) -> p #test
-
-      
-      flattenedSelector = selector.flatten
-      return useSelectorTreat :name, :id, :cls  if flattenedSelector.empty?
-      
-      arr = CssUtil.dividBySpace @name
-
-      # when addChildren use $CHILD_SELECTOR, replace $SPC
-      ans = CssUtil.useCore flattenedSelector, replaceCHILD_SELECTOR(arr)  
-      ans.join(" ")
-    end
-    
+     
     def dpName
       # cation, dup is deep copy of name only
       self.dup
@@ -181,6 +172,19 @@ module Jabverwock
         array << a.gsub(/#{$CHILD_SELECTOR}/, " ")
       end
     end
+
+    def useSelectorTreat(*selector)
+      
+      flattenedSelector = selector.flatten
+      return useSelectorTreat :name, :id, :cls  if flattenedSelector.empty?
+      
+      arr = CssUtil.dividBySpace @name
+
+      # when addChildren use $CHILD_SELECTOR, replace $SPC
+      ans = CssUtil.useCore flattenedSelector, replaceCHILD_SELECTOR(arr)  
+      ans.join(" ")
+    end
+    
     
   end
   
