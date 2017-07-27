@@ -11,13 +11,11 @@ module Jabverwock
   end
   
   def self.bodier
-    body = BODY.new.attr(:id__ex1, :cls__ex2,)
-    body.css.use :id
-    body.css.color = "red"
-
-    header = HEADING.new(1).attr(:id__head1, :cls__head2,)
-    header.css.color "blue"
-    body.addChild header
+    body = BODY.new
+    div = DIV.new
+    div.css.name = "div.sample h2 ~ p"
+    div.css.color "red"
+    body.addChild div
     body
   end
   

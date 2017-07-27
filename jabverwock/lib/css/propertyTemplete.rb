@@ -32,7 +32,7 @@ module Jabverwock
     EmptyStr = ""
     
     def initialize(name)
-      nameWithSelectors name
+      # nameWithSelectors name
 
       
       self.class.index_to_attr.each_with_index do |value, index|
@@ -54,18 +54,18 @@ module Jabverwock
         p c.name# => "ss"
     
     MEMO_NAME
-    def nameWithSelectors(name)
-      @name = name.to_s
+    # def nameWithSelectors(name)
+    #   @name = name.to_s
       
-      if @name.include?("id__")
-        @name = "##{@name.split("id__").last}"
-      end
+    #   if @name.include?("id__")
+    #     @name = "##{@name.split("id__").last}"
+    #   end
 
-      if @name.include?("cls__")
-        @name = ".#{@name.split("cls__").last}"
-      end
+    #   if @name.include?("cls__")
+    #     @name = ".#{@name.split("cls__").last}"
+    #   end
       
-    end
+    # end
     
     # エクスポート
     def pStr # vars + vals

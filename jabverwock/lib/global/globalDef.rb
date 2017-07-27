@@ -175,7 +175,7 @@ module Jabverwock
   $CHILD = "_c_"
   $MEMBER = "_m_"
   $ENDMARK = "_e_"
-  $CHILD_SELECTOR = "__child_selector__"
+  # $CHILD_SELECTOR = "__child_selector__"
   
   ## Table ####################
   $BR      = "<br>"
@@ -305,7 +305,8 @@ module Jabverwock
 
       def useCore(sel, arr)
         ans = []
-        sel.each do |s|
+        se
+        l.each do |s|
           next ans <<  idElm(arr) if includeID s,arr
           next ans <<  clsElm(arr) if includeCls s,arr          
           next ans.unshift useCoreWithName(arr) if s == :name

@@ -24,8 +24,7 @@ module Jabverwock
   end
   
   html= HTML.new.attr(:id__example2)
-  
-  c = CSS.new(:id__example1).color "blue"
+  c = CSS.new("#example1").color "blue"
   html.addCss c
   
   html.addChildren header, bodier

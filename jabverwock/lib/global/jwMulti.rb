@@ -53,7 +53,7 @@ module Jabverwock
       end
 
       if child.css ||= CSS.new("#{@name}")
-        child.updateCssName
+        # child.updateCssName
         @cssArray << child.css
       end
     end

@@ -90,35 +90,34 @@ module Jabverwock
     end
 
     def cssAssembleInit(css, cssArray)      
-      css.updateCssName activeID, activeCls
+      # css.updateCssName activeID, activeCls
       KString.makeElementArray(css, cssArray)
     end
 
-    def activeID
-      ids = ""      
-      if isExistID
-        ids = "#{selectorID}"        
-      end
-      ids
-    end
+    # def activeID
+    #   ids = ""      
+    #   if isExistID
+    #     ids = "#{selectorID}"        
+    #   end
+    #   ids
+    # end
     
-    def activeCls
-      cls = ""
-      if isExistCls
-        cls = "#{selectorCls}"
-      end
-      cls
-    end
+    # def activeCls
+    #   cls = ""
+    #   if isExistCls
+    #     cls = "#{selectorCls}"
+    #   end
+    #   cls
+    # end
     
     
     def cssAssembleCore(css)
       @nameList << css.name        
       @cssString << css.str << $RET
-      css.useFlagsInit
+      # css.useFlagsInit
     end
     
-    def cssAssembleLoop(arr)
-      
+    def cssAssembleLoop(arr)      
       arr.each do |cs|
 
         #  スタイルがない（｛｝のみ）なら標示しない        
@@ -157,9 +156,9 @@ module Jabverwock
       cssAssemble @css, @cssArray
     end
 
-    def updateCssName
-      @css.updateCssName activeID, activeCls
-    end
+    # def updateCssName
+    #   @css.updateCssName activeID, activeCls
+    # end
     
     ####### add member ############
     
@@ -182,7 +181,7 @@ module Jabverwock
         @cssArray.append member.cssArray
       end
       
-      member.updateCssName
+      # member.updateCssName
       @cssArray.append member.css
     end
     

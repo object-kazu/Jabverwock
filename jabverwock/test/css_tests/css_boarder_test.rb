@@ -53,8 +53,7 @@ module Jabverwock
     #   #p @css
       
     # end
-    
-  
+      
     test "property border" do
       @css.name = "head"
       @css.border = "10px solid"

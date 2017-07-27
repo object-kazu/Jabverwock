@@ -120,24 +120,24 @@ module Jabverwock
     end
 
      ################ ID ################
-    def selectorID
-      "#" + @tagManager.tagAttribute.id
-    end
+    # def selectorID
+    #   "#" + @tagManager.tagAttribute.id
+    # end
 
-    def isExistID
-      return false if @tagManager.tagAttribute.id.empty?
-      true
-    end
+    # def isExistID
+    #   return false if @tagManager.tagAttribute.id.empty?
+    #   true
+    # end
     
-     ################ cls  ################
-    def selectorCls
-      "." + @tagManager.tagAttribute.cls
-    end
+    #  ################ cls  ################
+    # def selectorCls
+    #   "." + @tagManager.tagAttribute.cls
+    # end
 
-    def isExistCls
-      return false if @tagManager.tagAttribute.cls.empty?
-      true
-    end
+    # def isExistCls
+    #   return false if @tagManager.tagAttribute.cls.empty?
+    #   true
+    # end
     
     
     def makeResult

@@ -125,100 +125,22 @@ module Jabverwock
 
     end
     
-     test "set id, selector id case 1" do
+     test "css name override" do
 
-      head = HEAD.new.attr(:id, "sample")
-      head.css.color "red"
+       head = HEAD.new.attr(:id, "sample")
+       c = CSS.new ".head"
+       c.color "red"
+       head.addCss c
+         
       
       pressed = head.tgStr
 
       assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("head #sample {\ncolor: red;\n}\n"))
+      assert_true(pressed.include?(".head {\ncolor: red;\n}\n"))
       assert_true(pressed.include?("</style>"))
 
     end
 
-    test "set id, selector id case 2" do
-      h = HEAD.new().contentIs "this is test"
-      c = CSS.new "head"
-      c.font_size = 10
-      h.addCss c
-
-      body = BODY.new.attr(:id, "sample")
-      body.css.color "red"
-            
-      h.addMember body
-      
-      
-      pressed = h.tgStr
-
-      assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-      assert_true(pressed.include?("body #sample {\ncolor: red;\n}\n"))
-      assert_true(pressed.include?("</style>"))
-
-    end
-
-    test "set cls, selector cls " do
-      h = HEAD.new().contentIs "this is test"
-      c = CSS.new "head"
-      c.font_size = 10
-      h.addCss c
-
-      body = BODY.new.attr(:cls, "sample")
-      body.css.color "red"
-
-      h.addMember body
-            
-      pressed = h.tgStr
-      
-      assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-      assert_true(pressed.include?("body .sample {\ncolor: red;\n}\n"))
-      assert_true(pressed.include?("</style>"))
-
-    end
-
-    test "set cls. id, selector cls,id " do
-      h = HEAD.new().contentIs "this is test"
-      c = CSS.new "head"
-      c.font_size = 10
-      h.addCss c
-
-      body = BODY.new.attr(:cls, "sample").attr(:id, "test")
-      body.css.color "red"
-
-      h.addMember body
-            
-      pressed = h.tgStr
-      
-      assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-      assert_true(pressed.include?("body #test .sample {\ncolor: red;\n}\n"))
-      assert_true(pressed.include?("</style>"))
-
-    end
-
-
-    test "check child, set cls. id, selector cls,id " do
-      h = HEAD.new().contentIs "this is test"
-      c = CSS.new "head"
-      c.font_size = 10
-      h.addCss c
-
-      body = BODY.new.attr(:cls, "sample").attr(:id, "test")
-      body.css.color "red"
-
-      h.addChild body
-            
-      pressed = h.tgStr
-      
-      assert_true(pressed.include?("<style>\n"))
-      assert_true(pressed.include?("head {\nfont-size: 10;\n}\n"))
-      assert_true(pressed.include?("body #test .sample {\ncolor: red;\n}\n"))
-      assert_true(pressed.include?("</style>"))
-
-    end
 
     
   end
