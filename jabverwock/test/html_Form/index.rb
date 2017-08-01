@@ -128,19 +128,19 @@ module Jabverwock
   css_nav_ul = CSS.new "#nav ul"
   css_nav_ul.list_style_type :none
   
-  css_nav_ul_li = CSS.new "#nav ul li"
+  css_nav_ul_li = CSS.new css_nav_ul.addChildrenName "li"
   css_nav_ul_li.border("1px solid red").display(:inline).padding("3px")
   
-  css_alink = CSS.new "#nav ul li a:link"
+  css_alink = CSS.new css_nav_ul_li.addChildrenName "a:link" 
   css_alink.text_decoration(:none)
 
-  css_avist = CSS.new "#nav ul li a:visited"
+  css_avist = CSS.new css_nav_ul_li.addChildrenName "a:visited"
   css_avist.text_decoration(:none).color(:blue)
 
-  css_hover = CSS.new "#nav ul li a:hover"
+  css_hover = CSS.new css_nav_ul_li.addChildrenName "a:hover"
   css_hover.text_decoration(:none).font_weight(:bold)
 
-  css_active = CSS.new "#nav ul li a:active"
+  css_active = CSS.new css_nav_ul_li.addChildrenName "a:active"
   css_active.text_decoration(:none).color(:white)
   
   
