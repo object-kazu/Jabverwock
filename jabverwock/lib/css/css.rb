@@ -48,65 +48,32 @@ module Jabverwock
     
     self.define_attributes [:padding,
                             :padding_top, :padding_bottom, :padding_left, :padding_right]
+
+    self.define_attributes [:text_decoration
+                           ]
+  
+    self.define_attributes [:list_style_type,
+                           ]
     
+    self.define_attributes [:display
+                           ]
+
     
     self.define_attributes [:width, :height, :position]
     
-    # attr_reader :use_id, :use_cls, :use_namae
     
     def initialize(name)
       super
 
       @name = name.to_s
-      
-      # @use_id = false
-      # @use_cls = false
-      # @use_namae = false
-      
+          
     end
 
     def initialize_copy(obj)
       @name = obj.name.dup
     end
-
-    # def updateCssName(id,cls)
-    #   updateCssNameWithID id
-    #   updateCssNameWithCls cls
-    # end
-
-    # def updateCssNameWithID(id)
-    #   unless id.empty?
-    #     @name << $SPC << $ID_ELEM_ID << id
-    #   end
-    # end
     
-    # def updateCssNameWithCls(cls)
-    #   unless cls.empty?
-    #     @name << $SPC << $ID_ELEM_CLS << cls
-    #   end  
-    # end
-
-    # def useFlagsInit
-    #   @use_id, @use_cls, @use_namae = false, false, false      
-    # end
-    
-    # def use(*flags)
-    #    # @name => p id:#test cls:.sample
-    #   # @treatName => p #test .sample
-    #   # use(:id) -> #test
-    #   # use(:cls) -> .sample
-    #   # use(:name) -> p
-    #   # use(:id, :name) -> p #test
-    
-      
-    #   return if flags.empty?
-    #   @use_id = true if CssUtil.hasSymbolArrTargetSymbol :id, flags
-    #   @use_cls = true if CssUtil.hasSymbolArrTargetSymbol :cls, flags
-    #   @use_namae = true if CssUtil.hasSymbolArrTargetSymbol :name, flags
-    #   self
-    # end
-    
-     
+    # # name copy
     def dpName
       # cation, dup is deep copy of name only
       self.dup.name
@@ -114,20 +81,21 @@ module Jabverwock
     
     def addChildrenName(*sel)
       ## head p { ... }
+      n = dpName
       sel.each do |s| 
-        @name << $SPC << s
+        n << $SPC << s
       end
-      self
+      n
     end
     
     def addMembersName(*sel)
-      ## head,p { ... }
+      ## head, p { ... }
+      n = dpName
       sel.each do |s|
-        @name << ", " << s
+        n << ", " << s
       end
-      self
+      n
     end
-            
     
     def str      
       nameErrorCheck
@@ -139,13 +107,6 @@ module Jabverwock
       
     end
 
-    # def makeNameByFlags
-    #   arr = []
-    #   arr << :id if @use_id
-    #   arr << :cls if @use_cls
-    #   arr << :name if @use_namae
-    #   useSelectorTreat arr
-    # end
     
     def nameErrorCheck
       if @name.empty?
@@ -155,32 +116,11 @@ module Jabverwock
     end
 
     def removeNameFlags  # rename noNameStr
-      ans = pStr      
+      ans = pStr
+
       ans.gsub!(/\nuse-(id|cls|namae).*;/, "") || ""      
       ans.gsub!(/name:.*;\n/, "") || ""
-    end
-
-    private
-    
-    # def replaceCHILD_SELECTOR(arr)
-    #   arr.inject([]) do |array, a|
-    #     array << a.gsub(/#{$CHILD_SELECTOR}/, " ")
-    #   end
-    # end
-
-    # def useSelectorTreat(*selector)
-      
-    #   flattenedSelector = selector.flatten
-    #   return useSelectorTreat :name, :id, :cls  if flattenedSelector.empty?
-      
-    #   arr = CssUtil.dividBySpace @name
-
-    #   # when addChildren use $CHILD_SELECTOR, replace $SPC
-    #   ans = CssUtil.useCore flattenedSelector, replaceCHILD_SELECTOR(arr)  
-    #   ans.join(" ")
-    # end
-    
-    
+    end    
   end
   
   # a = CSS.new("s")

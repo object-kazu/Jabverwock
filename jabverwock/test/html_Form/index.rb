@@ -4,7 +4,8 @@ module Jabverwock
   using StringExtension
   using ArrayExtension
   using SymbolExtension
-  
+
+
   
   def self.header
     head = HEAD.new
@@ -119,36 +120,40 @@ module Jabverwock
     body
   end
 
-  
-  
   html = HTML.new
+
+  css_nav = CSS.new "#nav"
+  css_nav.border("1px solid black").background_color("green").height("50px").width("200px").margin("0px Auto")
+
+  css_nav_ul = CSS.new "#nav ul"
+  css_nav_ul.list_style_type :none
+  
+  css_nav_ul_li = CSS.new "#nav ul li"
+  css_nav_ul_li.border("1px solid red").display(:inline).padding("3px")
+  
+  css_alink = CSS.new "#nav ul li a:link"
+  css_alink.text_decoration(:none)
+
+  css_avist = CSS.new "#nav ul li a:visited"
+  css_avist.text_decoration(:none).color(:blue)
+
+  css_hover = CSS.new "#nav ul li a:hover"
+  css_hover.text_decoration(:none).font_weight(:bold)
+
+  css_active = CSS.new "#nav ul li a:active"
+  css_active.text_decoration(:none).color(:white)
+  
+  
+  html.addCss css_nav, css_nav_ul, css_nav_ul_li, css_alink, css_avist, css_hover, css_active
+  
   html.addChild header
   html.addChild bodier
   
+  html.pressTo(name: 'indexPressed.html', dist: KSUtil.myPATH)
+  
+  # # show diff
+  KSUtil.myDiff
   
   
-  $SA = "sample7"
-  $PAGES =  %w(home)
-  
-  def self.testPATH
-    current = ENV['PWD']
-    switch = false
-    if current.include?("BitTorrent")
-      switch = true
-    end
-    switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
-    "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{$SA}/"
-  end
-  
-  
-  $PAGES.each do |pp|
-    if pp == "home"
-      pp = "index"
-    end
-    n = pp + "Pressed" + ".html"
-    html.pressConfig(name: n, dist: testPATH)
-    html.pressInsert("a".varIs"#{pp}")
-
-  end
 
 end
