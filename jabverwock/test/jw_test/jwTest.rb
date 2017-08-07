@@ -73,8 +73,7 @@ module Jabverwock
 
     test "assemble" do      
       @tm.name = "test"
-      ans = @tm.pressDefault
-      assert_equal(ans, "<test>\n</test>")
+      assert_equal(@tm.tgStr, "<test>\n</test>")
     end
 
     test "assemble, bad Arg" do
@@ -88,77 +87,58 @@ module Jabverwock
     test "set cls" do
       @tm.name ="p"
       @tm.attr(:cls,"test")
-      
-      ans = @tm.pressDefault
-      assert_equal(ans, "<p class=\"test\">\n</p>")
+      assert_equal(@tm.tgStr, "<p class=\"test\">\n</p>")
     end
  
-
     test "set cls, bad Arg" do
       assert_raise(){
         @tm.setCls= 1
       }
     end
 
-    test"get cls " do
-      @tm.name = "test"
-      @tm.attr(:cls,"sample")
-      assert_equal(@tm.selectorCls, ".sample")
-    end
-
-    
     
     test"get id and clss " do
       @tm.name = "test"
       @tm.attr(:cls,"sample").attr(:id,"dada")
-      assert_equal(@tm.selectorID, "#dada")
-      ans = @tm.pressDefault
-      assert_equal ans, "<test class=\"sample\" id=\"dada\">\n</test>"      
+      assert_equal @tm.tgStr, "<test class=\"sample\" id=\"dada\">\n</test>"      
     end
     
     test"get id and clss case 2 " do
       @tm.name = "test"
       @tm.attrSymbol :cls__sample
       @tm.attrSymbol :id__data
-
-      ans = @tm.pressDefault
-      assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
+      assert_equal @tm.tgStr, "<test class=\"sample\" id=\"data\">\n</test>"      
     end
     
     test"get id and clss case 3-1 " do
       @tm.name = "test"
       @tm.attr(:cls__sample)
-      ans = @tm.pressDefault
-      assert_equal ans, "<test class=\"sample\">\n</test>"      
+      assert_equal @tm.tgStr, "<test class=\"sample\">\n</test>"      
     end
     
     test"get id and clss case 3-2 " do
       @tm.name = "test"
       @tm.attr(:cls__sample,:id__data)
-      ans = @tm.pressDefault
-      assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
+      assert_equal @tm.tgStr, "<test class=\"sample\" id=\"data\">\n</test>"      
     end
     
     test"get id and clss case 4 " do
       @tm.name = "test"
       @tm.attr(:cls__sample,:id__data, :name, "test")
-      ans = @tm.pressDefault
-      assert_equal ans, "<test class=\"sample\" id=\"data\" name=\"test\">\n</test>"      
+      assert_equal @tm.tgStr, "<test class=\"sample\" id=\"data\" name=\"test\">\n</test>"      
     end
     
     test"get id and clss error case " do
       @tm.name = "test"
       @tm.attr(:cls__sample,:id__data, :name) # ignore :name
-      ans = @tm.pressDefault
-      assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
+      assert_equal @tm.tgStr, "<test class=\"sample\" id=\"data\">\n</test>"      
 
     end
     
     test"get id and clss error case 2 " do
       @tm.name = "test"
       @tm.attr(:cls__sample,:id__data, "name") #ignore "name"
-      ans = @tm.pressDefault
-      assert_equal ans, "<test class=\"sample\" id=\"data\">\n</test>"      
+      assert_equal @tm.tgStr, "<test class=\"sample\" id=\"data\">\n</test>"      
 
     end
     
@@ -166,8 +146,7 @@ module Jabverwock
       
       @tm.name = "p"
       @tm.attr(:lang,"en")
-      ans = @tm.pressDefault
-      assert_equal(ans, "<p lang=\"en\">\n</p>")
+      assert_equal(@tm.tgStr, "<p lang=\"en\">\n</p>")
     end
     
 
@@ -175,41 +154,11 @@ module Jabverwock
       
       @tm.name = "p"
       @tm.attr(:id, "sample")
-      ans = @tm.pressDefault
-      assert_equal(ans, "<p id=\"sample\">\n</p>")
-    end
-
-    test "id check, true" do
-      @tm.name = "p"
-      @tm.attr(:id, "sample")
-      assert_true(@tm.isExistID)
-    end
-    
-    test "id check, false" do
-      @tm.name = "p"
-      assert_false(@tm.isExistID)
-    end
-
-    test "cls check, true" do
-      @tm.name = "p"
-      @tm.attr(:cls, "sample")
-      assert_true(@tm.isExistCls)
-    end
-    
-    test "cls check, false" do
-      @tm.name = "p"
-      assert_false(@tm.isExistCls)
-    end
-
-    test "id, cls" do
-      j = JW.new.attr(:id, "sample").attr(:cls, "ppp")
-      assert_true j.isExistID
-      assert_true j.isExistCls
+      assert_equal(@tm.tgStr, "<p id=\"sample\">\n</p>")
     end
 
     test "attr bind with  __ " do
       j = JW.new.attr(:id__sample)
-      assert_true j.isExistID
       assert_equal j.tgStr, "<jw id=\"sample\">\n</jw>"
     end
     
@@ -231,18 +180,14 @@ module Jabverwock
     test "set cls use symble" do
       @tm.name ="p"
       @tm.attr(:cls__test)
-      
-      ans = @tm.pressDefault
-      assert_equal(ans, "<p class=\"test\">\n</p>")
+      assert_equal(@tm.tgStr, "<p class=\"test\">\n</p>")
       
     end
     
     test "set cls use not symble" do
       @tm.name ="p"
-      @tm.attr("cla")
-      
-      ans = @tm.pressDefault
-      assert_equal(ans, "<p>\n</p>")
+      @tm.attr("cla")      
+      assert_equal(@tm.tgStr, "<p>\n</p>")
       
     end
 
@@ -251,8 +196,7 @@ module Jabverwock
       @tm.name = "p"
       arr = [:id__test, :cls__sample]
       @tm.attrWithSymbolsArray arr
-      ans = @tm.pressDefault
-      assert_equal ans, "<p id=\"test\" class=\"sample\">\n</p>"
+      assert_equal @tm.tgStr, "<p id=\"test\" class=\"sample\">\n</p>"
      
     end
 

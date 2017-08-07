@@ -73,14 +73,14 @@ module Jabverwock
 
     test "body check before add child" do
       b = BODY.new
-      assert_equal(b.pressDefault, "<body>\n</body>")
+      assert_equal(b.tgStr, "<body>\n</body>")
     end
 
     test "body addchildString string" do
       b = BODY.new
       bc = "dd"
       b.addChildString bc
-      assert_equal(b.pressDefault, "<body>\ndd\n</body>")      
+      assert_equal(b.tgStr, "<body>\ndd\n</body>")      
     end
     
     test "body addChildStrings" do
@@ -90,19 +90,19 @@ module Jabverwock
       b.addChildString bc
       b.addChildString bc
       
-      assert_equal(b.pressDefault, "<body>\ndd\ndd\ndd\n</body>")            
+      assert_equal(b.tgStr, "<body>\ndd\ndd\ndd\n</body>")            
     end
 
     test "head confirm, because script tag add after treatment" do
       a = HEAD.new
-      assert_equal a.pressDefault, "<head>\n</head>"
+      assert_equal a.tgStr, "<head>\n</head>"
     end
     
     test "addchild, multi class check, pass" do
       a = HEAD.new
       @t.addChild a
     
-      assert_equal(@t.pressDefault, "<jwmulti>\n<head>\n</head>\n</jwmulti>")
+      assert_equal(@t.tgStr, "<jwmulti>\n<head>\n</head>\n</jwmulti>")
     end
     
     test "addchildren" do
@@ -113,7 +113,7 @@ module Jabverwock
       # same result
       # @t.addChildren b, c
       
-      assert_equal(@t.pressDefault,"<jwmulti>\n<body>\n</body>\n<head>\n</head>\n</jwmulti>")  
+      assert_equal(@t.tgStr,"<jwmulti>\n<body>\n</body>\n<head>\n</head>\n</jwmulti>")  
     end
     
   end

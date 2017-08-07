@@ -127,35 +127,53 @@ module Jabverwock
     
     test "dup and addChildren" do
       c = CSS.new :head
-      c2 = CSS.new c.dpName
-      ccc = c2.addChildrenName "p"
+      c2 = CSS.new c.addChildrenName "p"
 
       assert_equal(c.name, "head")
-      assert_equal(ccc.name, "head p")
+      assert_equal(c2.name, "head p")
     end
 
     test "dup and addMembers" do
       c = CSS.new :head
-      c2 = CSS.new c.dpName
-      ccc = c2.addMembersName "p"
+      c2 = CSS.new c.addMembersName "p"
 
       assert_equal(c.name, "head")
-      assert_equal(ccc.name, "head, p")
+      assert_equal(c2.name, "head, p")
     end
 
     test "dpName and css property" do
       c = CSS.new(:head).color "red"
-      c2 = CSS.new c.dpName
-      c2.addChildrenName("p").color("yellow")
+      c2 = CSS.new c.addChildrenName "p"
+      c2.color("yellow")
 
       assert_equal(c.str, "head {\ncolor: red;\n}")
       assert_equal(c2.str, "head p {\ncolor: yellow;\n}")
     end
 
-
-       
+    # #css symbole name
+    test 'symbol Name id' do
+      c = CSS.new(:id__test).color "red"
+      assert_equal(c.str, "#test {\ncolor: red;\n}")
       
-     
+    end
+    
+    test 'symbol Name class' do
+      c = CSS.new(:cls__test).color "red"
+      assert_equal(c.str, ".test {\ncolor: red;\n}")
+      
+    end
+      
+    test 'symbol Name just symbol ' do
+      c = CSS.new(:a__test).color "red"
+      assert_equal(c.str, "atest {\ncolor: red;\n}")
+    end
+
+    test 'symbol Name property' do
+      c = CSS.new("").color "red"
+      c.name = :id__test
+      assert_equal(c.str, "#test {\ncolor: red;\n}")
+    end
+    
   end
 
 end

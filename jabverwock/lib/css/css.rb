@@ -64,13 +64,64 @@ module Jabverwock
     
     def initialize(name)
       super
-
-      @name = name.to_s
-          
+      nameTreatment name
     end
 
     def initialize_copy(obj)
       @name = obj.name.dup
+    end
+    
+    # name treatment
+    def nameTreatment(name)
+      @name = ""
+      if name.is_a? String
+        @name = name
+        return
+      end
+
+      if name.is_a? Symbol
+        symbolName name        
+        return
+      end
+
+      @name = name.to_s
+      
+    end
+
+    def symbolName(name)
+      if KSUtil.isDoubleUnderBarSymbol name
+        names = name.divid
+        
+        if KSUtil.isID names[0]
+          idSymbol names[1]
+          return
+        end
+        
+        if KSUtil.isCls names[0]
+          classSymbol names[1]
+          return
+        end
+        
+        # remove "_ _"        
+        @name = removeDoubleUnderBar name
+        return
+      end
+      @name = name.to_s
+    end
+
+    # goto private
+    def idSymbol(sym)
+      @name ||= ""
+      @name << "#" << sym
+    end
+
+    def classSymbol(sym)
+      @name ||= ""
+      @name << "." << sym
+    end
+
+    def removeDoubleUnderBar(sym)
+      sym.to_s.gsub(/__/,"")
     end
     
     # # name copy
@@ -96,9 +147,10 @@ module Jabverwock
       end
       n
     end
-    
+        
     def str      
       nameErrorCheck
+      nameTreatment @name
       @cssResultString = ""
       # 接頭句
       @cssResultString += @name + $SPC + "{" + $RET + removeNameFlags
@@ -122,7 +174,9 @@ module Jabverwock
       ans.gsub!(/name:.*;\n/, "") || ""
     end    
   end
-  
+
+    
+    
   # a = CSS.new("s")
   # p a.font_size(10)
   # # p a.name

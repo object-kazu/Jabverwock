@@ -50,20 +50,20 @@ module Jabverwock
 
     # end
         
-    test "content add" do
-      @t.name="j"
-      @t.content = "test"
-      ans = @t.pressDefault
-      ans2 = @t.pressVal.showTempleteString
+    # test "content add" do
+    #   @t.name="j"
+    #   @t.content = "test"
+    #   ans = @t.pressDefault
+    #   ans2 = @t.pressVal.showTempleteString
       
-      assert_equal(ans, "<j>test")
-      assert_equal(ans, ans2)
-    end
+    #   assert_equal(ans, "<j>test")
+    #   assert_equal(ans, ans2)
+    # end
 
-    test "add contentIs" do
-      a = INPUT.new.contentIs "this is test"
-      assert_equal(a.pressDefault, "<input>this is test")
-    end
+    # test "add contentIs" do
+    #   a = INPUT.new.contentIs "this is test"
+    #   assert_equal(a.pressDefault, "<input>this is test")
+    # end
     
         
     

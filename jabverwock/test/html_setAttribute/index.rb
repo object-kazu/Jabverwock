@@ -12,7 +12,7 @@ module Jabverwock
   a1 = A.new.contentIs("test a is done #{i1.tgStr} ?").withBreak
 
   i2 = IMG.new.attr :src__bbb
-
+  
   i3 = IMG.new.attr(:id__test, :src__ccc)
   
   body.addChildren [a1, i2, i3]

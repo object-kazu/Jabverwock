@@ -49,12 +49,12 @@ module Jabverwock
 
     end
     
-    test "Style tag" do
-      a = STYLE.new.contentIs "test"
-      p a.tgStr
+    # test "Style tag" do
+    #   a = STYLE.new.contentIs "test"
+    #   p a.tgStr
 
-      assert_equal(a.tgStr , "<style>\ntest\n</style>")
-    end
+    #   assert_equal(a.tgStr , "<style>\ntest\n</style>")
+    # end
 
     test "add css style tag case 1-1" do
       j1 = JW_CSS.new

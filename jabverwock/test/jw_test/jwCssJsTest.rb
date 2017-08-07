@@ -2,6 +2,7 @@ require 'test/unit'
 require '../../lib/global/globalDef'  
 require '../../lib/css/css'
 require "../../lib/global/jw_CSS"
+require "../../lib/global/jw_CSS_JS"
 require "../../lib/global/jwMulti"
 
 module Jabverwock
@@ -9,7 +10,8 @@ module Jabverwock
   using ArrayExtension
   using SymbolExtension
   
-  class JWCssTest < Test::Unit::TestCase
+  
+  class JWCssJsTest < Test::Unit::TestCase
     class << self
       # テスト群の実行前に呼ばれる．変な初期化トリックがいらなくなる
       def startup
@@ -59,34 +61,19 @@ module Jabverwock
       
     end
 
-    test "jwCss style, symbole allow use"do
-
-      @jwcss.cssWithName :p
-      @jwcss.css.color = :red
-      assert_equal(@jwcss.css.str, "p {\ncolor: red;\n}")
-      
-    end
-
-    
     test "jwCss css with chain"do
 
       @jwcss.cssWithName("p")
       @jwcss.css.color("red").font_size(10)
+      # assert_equal(@jwcss.css.str, "p {\ncolor: red;\nfont-size: 10;\n}")
       assert_equal(@jwcss.css.str, "p {\nfont-size: 10;\ncolor: red;\n}")
+
       
     end
-
-    test "jwCss css with chain use symbol"do
-
-      @jwcss.cssWithName :p
-      @jwcss.css.color(:red).font_size(10)
-      assert_equal(@jwcss.css.str, "p {\nfont-size: 10;\ncolor: red;\n}")
-      
-    end
-
     
     test "jwCss style defualt name is class name "do
       @jwcss.css.color("red").font_size(10)
+      # assert_equal(@jwcss.css.str, "jw_css {\ncolor: red;\nfont-size: 10;\n}")
       assert_equal(@jwcss.css.str, "jw_css {\nfont-size: 10;\ncolor: red;\n}")
       
     end
@@ -95,6 +82,7 @@ module Jabverwock
       @jwcss.cssWithName("p")
       @jwcss.css.color("red").font_size(10)
       assert_equal(@jwcss.css.str, "p {\nfont-size: 10;\ncolor: red;\n}")
+      # assert_equal(@jwcss.css.str, "p {\ncolor: red;\nfont-size: 10;\n}")
       
     end
 
@@ -114,7 +102,8 @@ module Jabverwock
       
     end
 
-    test "isExistCssString case" do 
+
+     test "isExistCssString case" do
        ### true ### no style
        a = "p {\n\n}"
        ans = KString.isExistCssString a
@@ -140,8 +129,9 @@ module Jabverwock
        a = "p {\nfont-size: 10;\n}"
        ans = KString.isExistCssString a
        assert_true ans
-            
-    end    
+           
+    end
+
     
     test "cssArray add css" do
       
@@ -154,7 +144,7 @@ module Jabverwock
     end
 
     test "cssArray add css case 3" do      
-      c = CSS.new(:p).font_size(10)
+      c = CSS.new("p").font_size("10")
       b = CSS.new("b").color("red")
       ca = [c,b]
       @jwcss.cssAssemble(c, ca)
@@ -181,6 +171,7 @@ module Jabverwock
 
       j1.addMember j2
      
+      # assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}\np {\nfont-style: bold;\n}")
       assert_equal(j1.showCssString, "jw_css {\nfont-size: 10;\ncolor: red;\n}\np {\nfont-style: bold;\n}")
       
     end
@@ -188,13 +179,14 @@ module Jabverwock
     test "add member,same name" do
       
       j1 = JW_CSS.new
-      j1.css.color(:red).font_size(10)
+      j1.css.color("red").font_size(10)
       
       j2 = JW_CSS.new
-      j2.css.font_style(:bold)
+      j2.css.font_style("bold")
 
       j1.addMember j2
 
+      # assert_equal(j1.showCssString, "jw_css {\ncolor: red;\nfont-size: 10;\n}")
       assert_equal(j1.showCssString, "jw_css {\nfont-size: 10;\ncolor: red;\n}")
       
     end
@@ -223,10 +215,10 @@ module Jabverwock
     test "add css, caution!, because jw class and css class sometimes has different name" do
       j1 = JW_CSS.new
       
-      c = CSS.new "t"
-      c.font_size(10)
+      cc = CSS.new "t"
+      cc.font_size(10)
       
-      j1.addCss c
+      j1.addCss cc
 
       assert_equal(j1.showCssString, "t {\nfont-size: 10;\n}")
     end
@@ -253,8 +245,7 @@ module Jabverwock
       c.font_size(10)
       
       j.addCss c
-      ans = j.pressDefault
-      assert_true(ans.include?("style"))
+      assert_true(j.tgStr.include?("style"))
       
     end
 
@@ -267,8 +258,7 @@ module Jabverwock
       h.addCss c
       
       j.addMember h
-      ans = j.pressDefault
-      assert_true(ans.include?("style"))
+      assert_true(j.tgStr.include?("style"))
       
     end
     
@@ -278,9 +268,7 @@ module Jabverwock
       h = HEAD.new.contentIs "headsss"
       h.css.font_size 10
       j.addMember h
-      
-      ans = j.pressDefault
-      assert_true(ans.include?("style"))
+      assert_true(j.tgStr.include?("style"))
       
     end
     
@@ -293,12 +281,39 @@ module Jabverwock
       c.font_size(10)
       
       j.addCss c      
-      ans = j.pressDefault
-      assert_false(ans.include?("style"))
-      
+      assert_false(j.tgStr.include?("style"))
     end
 
     
+    
+    test "isExistScriptTagAtTempleteString, script tag exist " do
+      j = JW_CSS_JS.new
+      text = "<script></script>"
+      j.templeteString = text
+      assert_true j.isExistScriptTagAtTempleteString
+    end
+    
+    test "isExistScriptTagAtTempleteString, script content not exist " do
+      j = JW_CSS_JS.new
+      text = "<script></script>"
+      j.templeteString = text
+      assert_false j.isExistScriptContentAtTempleteString
+    end
+    
+    test "isExistScriptTagAtTempleteString, script content not exist case 2" do
+      j = JW_CSS_JS.new
+      j.assemble
+      
+      assert_false j.isExistScriptContentAtTempleteString
+    end
+    
+    test "isExistScriptTagAtTempleteString, script content exist " do
+      j = JW_CSS_JS.new
+      j.js.doc.write("test")
+      j.assemble
+      
+      assert_true j.isExistScriptContentAtTempleteString
+    end
 
     
   end

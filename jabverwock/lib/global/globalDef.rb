@@ -482,7 +482,6 @@ module Jabverwock
           puts %Q(class=[#{e.class}] message=[#{e.message}])
         end      
       end
-
       
       def isBool(v)
         !!v === v

@@ -154,8 +154,6 @@ module Jabverwock
       t = Tabbing.new
       t.readLine l
       
-      byebug
-      
       assert_equal t.tabbedTxt, "\t<li>\n\t</li>"
     end
 
