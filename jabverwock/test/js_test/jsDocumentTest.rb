@@ -3,6 +3,7 @@ require 'test/unit'
 require '../../lib/global/globalDef'  
 require '../../lib/js/jsDocument'
 
+# require 'opal'
 
 module Jabverwock
   using StringExtension
@@ -186,8 +187,7 @@ module Jabverwock
       assert_equal(@jsd.equalities[2], "var para = document.getElementById('koko');")                   
       
     end    
-    
-    
+        
     test 'good expression, createTextNode, byID and addChild' do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       
@@ -234,7 +234,7 @@ module Jabverwock
     test 'innerHTML, no rec' do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID.innerHTML 'aaa'.dQuo
-      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML = \"aaa\";")
       assert_equal @jsd.orders[1], nil
     end
 
@@ -243,7 +243,7 @@ module Jabverwock
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       a = @jsd.byID
       a.innerHTML('aaa'.dQuo)
-      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML = \"aaa\";")
     end
      
     test 'innerHTML, rec case 3' do
@@ -251,8 +251,8 @@ module Jabverwock
       a = @jsd.byID
       a.innerHTML('aaa'.dQuo)
       a.innerHTML('bbb'.dQuo)
-      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
-      assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML=\"bbb\";")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML = \"aaa\";")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML = \"bbb\";")
       assert_equal @jsd.orders[2], nil
     end
     
@@ -261,8 +261,8 @@ module Jabverwock
       a = @jsd.byID.innerHTML('aaa'.dQuo)      
       a.innerHTML 'bbb'.dQuo
 
-      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML=\"aaa\";")
-      assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML=\"bbb\";")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').innerHTML = \"aaa\";")
+      assert_equal(@jsd.orders[1], "document.getElementById('koko').innerHTML = \"bbb\";")
       assert_equal @jsd.orders[2], nil
       
     end
@@ -270,7 +270,7 @@ module Jabverwock
     test 'attribute case 1 (rec do not call)' do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.byID.attribute 'aaa'.dQuo
-      assert_equal(@jsd.orders[0], "document.getElementById('koko').attribute=\"aaa\";")
+      assert_equal(@jsd.orders[0], "document.getElementById('koko').attribute = \"aaa\";")
     end
     
     test 'attribute, call rec' do
@@ -327,7 +327,7 @@ module Jabverwock
     test 'index' do
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.byID.index(0).innerHTML('aaa'.dQuo)
-      assert_equal(@jsd.orders[0],"document.getElementById('koko')[0].innerHTML=\"aaa\";")
+      assert_equal(@jsd.orders[0],"document.getElementById('koko')[0].innerHTML = \"aaa\";")
 
     end
     
@@ -335,7 +335,7 @@ module Jabverwock
       @jsd.updateSelector :id__koko, :cls__p,:name__popo
       @jsd.byID.index(0).innerHTML('aaa'.dQuo)
       @jsd.byID.index(1).innerHTML('bbb'.dQuo)
-      assert_equal(@jsd.orders[1],"document.getElementById('koko')[1].innerHTML=\"bbb\";")
+      assert_equal(@jsd.orders[1],"document.getElementById('koko')[1].innerHTML = \"bbb\";")
 
     end
 
@@ -368,7 +368,6 @@ module Jabverwock
       assert_equal @jsd.orders.first, "document.getElementById('').addEventListener(\"click\",ksFunc);"
       assert_equal @jsd.orders.last, "document.getElementById('').addEventListener(\"onclick\",muFinc());"
     end
-
     
     
     test 'addEventListener case same event' do
@@ -407,15 +406,12 @@ module Jabverwock
       assert_equal @jsd.records[1], "document.getElementById('').firstChild.nodeType;"
       
     end
-
-    
     
     test 'first node value' do
       v = @jsd.byID.firstChild('type').record
       assert_equal v, "document.getElementById('').firstChild.nodeType;"
       
     end
-
     
     test 'first node case symbol' do
       
@@ -436,8 +432,6 @@ module Jabverwock
       assert_equal @jsd.orders.first, "document.getElementById('').firstChild;"
       
     end
-
-    
     
     test 'last node case symbol'do
       @jsd.byID.lastChild :name
@@ -449,13 +443,10 @@ module Jabverwock
       assert_equal v, "document.getElementById('').lastChild.nodeName;"
     end
 
-
     test 'last node case ommit type' do
       @jsd.byID.lastChild
       assert_equal @jsd.orders.first, "document.getElementById('').lastChild;"
     end
-
-    
     
     test 'parent node case symbol' do
       @jsd.byID.parentNode :type
@@ -495,7 +486,6 @@ module Jabverwock
       assert_equal @jsd.record, "document.getElementById('').childNodes[1];"
     end
 
-
  #    ### is_var ###
     test 'is_var first test' do
       @jsd.byID.firstChild(:name).is_var(:test)
@@ -525,7 +515,6 @@ module Jabverwock
       @jsd.byID.childNodes(1).is_var(:test)
       assert_equal @jsd.equalities.first, "var test = document.getElementById('').childNodes[1];"
     end
-
 
     test 'is_var childNodes case ommit type case 3' do
       @jsd.byID.childNodes(0)               # ----> record
@@ -593,8 +582,6 @@ module Jabverwock
       }
      end
 
-
-
     # ### cut ###
     test 'cut, case ByID' do
       a = @jsd.byID.cut
@@ -603,9 +590,8 @@ module Jabverwock
 
     test 'cut, case innerHTML' do
       a = @jsd.byID.innerHTML('aa'.sQuo).cut
-      assert_equal a, "document.getElementById('').innerHTML='aa'"
+      assert_equal a, "document.getElementById('').innerHTML = 'aa'"
     end
-
 
     test 'cut, case setAttribute' do
       a = @jsd.byID.setAttribute(btn:'red').cut
@@ -620,15 +606,13 @@ module Jabverwock
 
     test 'cut, case attribute'do
       a = @jsd.byID.attribute('aaa'.dQuo).cut
-      assert_equal a, "document.getElementById('').attribute=\"aaa\""
+      assert_equal a, "document.getElementById('').attribute = \"aaa\""
       assert_equal @jsd.orders[0], nil
     end
 
     test 'cut, case addEventListener' do
       a = @jsd.byID.addEventListener(click:'myFunction()').cut
       assert_equal a, "document.getElementById('').addEventListener(\"click\",myFunction())"
-      
-
     end
     
     test 'cut, case addEventListener case 2' do
@@ -715,43 +699,5 @@ module Jabverwock
       assert_equal @jsd.orders[5], 'title3Node.parentNode.insertBefore(newNode,title3Node);'
     end
 
-    # ### var ###
-    
-    #     var o = document.createElement("span");
-    #     o.setAttribute("id", "js_koneta_01-01");
-    #     o.innerHTML     = "JavaScript万歳！";
-    #     o.style.cssText = "font-weight: bold;"
-    #        	     + "font-size: 12pt"
-    #        	     + "color: #00ff00";
-    #     document.getElementById("js_koneta_01").appendChild(o);
-    # }
-
-    
-    # test 'var test basic' do
-    #   @jsd.var(:name){ |t|
-    #     t.byID
-    #     t.byTagName
-    #   }
-
-    #   assert_equal @jsd.orders[0], "name = document.getElementById('');"
-    #   assert_equal @jsd.orders[1], "name = document.getElementByTagName('');"      
-    #     p @jsd.orders
-    # end
-
-
-    
-    # test 'var test advance' do
-    #   @jsd.createElement('p').is_var :pp
-    #   @jsd.var(:name){ |t|
-    #     t.byID.innerHTML('ddd')
-    #     t.byTagName
-    #   }
-    #   assert_equal @jsd.orders[0], "var pp = document.createElement('p');"
-    #   assert_equal @jsd.orders[2], "name = document.getElementById('').innerHTML=ddd;"
-    #   assert_equal @jsd.orders[1], "name = document.getElementByTagName('');"      
-
-    #   p @jsd.orders
-    # end
-    
   end
 end

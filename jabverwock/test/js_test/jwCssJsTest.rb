@@ -96,7 +96,7 @@ module Jabverwock
       a = @jwjs.js.doc.write("a")
       @jwjs.js.doc.byID.innerHTML("aa".dQuo)
       
-      assert_equal(@jwjs.orders[1], "document.getElementById('sample').innerHTML=\"aa\";")
+      assert_equal(@jwjs.orders[1], "document.getElementById('sample').innerHTML = \"aa\";")
     end
 
     test "when set jwjs class id, js id set at the same time" do

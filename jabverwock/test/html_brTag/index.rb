@@ -16,7 +16,7 @@ module Jabverwock
   body.addChildren p1, p2, p3
   html.addChild body
       
-  html.pressTo(name: 'indexPressed.html', dist: KSUtil.myPATH)
+  html.pressTo(name: 'indexPressed.html', dist: KSUtil.myPATH) 
   
   # # show diff
   KSUtil.myDiff
