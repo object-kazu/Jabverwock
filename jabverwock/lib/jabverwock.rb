@@ -1,4 +1,4 @@
-$FOR_GEM = false
+$FOR_GEM = true #false
 
 require "jabverwock/version"
 
@@ -13,7 +13,10 @@ if $FOR_GEM
   require 'global/jw_CSS'
   require 'global/jw_CSS_JS'
   require 'global/press'
-    
+  
+  #trial
+  require 'opal'
+  
 else
 
   require 'global/globalDef'
@@ -25,7 +28,9 @@ else
   require 'global/jw_CSS'
   require 'global/jw_CSS_JS'
   require 'global/press'
-
+  
+  #trial
+  require 'opal'
 end
 
 
