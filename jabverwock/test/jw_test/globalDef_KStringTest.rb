@@ -257,8 +257,6 @@ module Jabverwock
       ans = KString.addTabEachArray l, 3
       assert_equal ans, "a\t\t\tb"
     end
-
-
     
     
   end

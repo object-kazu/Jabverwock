@@ -1,20 +1,24 @@
+require "global/globalDef"
+require "global/tagManager"
+require "global/press"
+require "global/structDescript"
 
 
-if $FOR_GEM
-  require "global/globalDef"
-  require "global/tagManager"
-  require "global/press"
-  require "global/structDescript"
+# if $FOR_GEM
+#   require "global/globalDef"
+#   require "global/tagManager"
+#   require "global/press"
+#   require "global/structDescript"
 
-else
+# else
 
-  #test
-  require_relative "globalDef" 
-  require_relative "tagManager"  
-  require_relative "press"
-  require_relative "structDescript"
+#   #test
+#   require_relative "globalDef" 
+#   require_relative "tagManager"  
+#   require_relative "press"
+#   require_relative "structDescript"
 
-end
+# end
 
 
 module Jabverwock
