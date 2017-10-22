@@ -1,23 +1,9 @@
-if $FOR_GEM
-  require "global/globalDef"
+require "global/globalDef"
   
-  require "global/jw_CSS_JS"
-  require "global/jwMulti"
-  require "global/jwSingle"
-  require "css/css"
-  
-  
-else
-
-#gem uninstall version
-  require "../../lib/global/globalDef"
-  require "../../lib/global/jwTable"
-  require "../../lib/global/jwSingle"
-  require "../../lib/global/jwMulti"
-  require "../../lib/global/jw_CSS_JS"
-  
-end
-
+require "global/jw_CSS_JS"
+require "global/jwMulti"
+require "global/jwSingle"
+require "css/css"
 
 
 

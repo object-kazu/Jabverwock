@@ -1,13 +1,17 @@
-if $FOR_GEM
-  require "global/globalDef"
-  require "css/propertyTemplete"
-    
-else
+require "global/globalDef"
+require "css/propertyTemplete"
 
-  require "../../lib/global/globalDef"
-  require_relative "propertyTemplete"
+
+# if $FOR_GEM
+#   require "global/globalDef"
+#   require "css/propertyTemplete"
+    
+# else
+
+#   require "../../lib/global/globalDef"
+#   require_relative "propertyTemplete"
   
-end
+# end
 
 
 module Jabverwock

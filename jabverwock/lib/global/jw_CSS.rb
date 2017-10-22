@@ -1,16 +1,6 @@
-if $FOR_GEM
-  require "global/globalDef"
-  require "global/jw"
-  require "css/css"
-  
-else
-  # test
-  require '../../lib/global/globalDef'  
-  require '../../lib/global/jw'  
-  require '../../lib/css/css'  
-  
-end
-
+require "global/globalDef"
+require "global/jw"
+require "css/css"
 
 module Jabverwock
   using StringExtension

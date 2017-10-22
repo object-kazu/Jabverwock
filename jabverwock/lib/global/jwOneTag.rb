@@ -1,15 +1,5 @@
-if $FOR_GEM
-  require "global/jw_CSS_JS"
-  require "global/jwSingle"
-    
-else
-  #gem uninstall version
-  require '../../lib/global/jw_CSS_JS'  
-  require '../../lib/global/jwSingle'  
-
-end
-
-
+require "global/jw_CSS_JS"
+require "global/jwSingle"
 
 module Jabverwock
   using StringExtension

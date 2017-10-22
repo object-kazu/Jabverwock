@@ -1,11 +1,4 @@
-if $FOR_GEM
-  require "tabbing/tabbing"
-else
-
-  #test
-  require_relative "../tabbing/tabbing"
-end
-
+require "tabbing/tabbing"
 
 module Jabverwock
   using StringExtension

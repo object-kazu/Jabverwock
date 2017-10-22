@@ -1,18 +1,6 @@
-
-if $FOR_GEM
-  require "global/globalDef"
-  require "global/tagManager"
-  require "global/press"
-
-else
-
-  #test
-  require_relative "globalDef" 
-  require_relative "tagManager"  
-  require_relative "press"
-
-end
-
+require "global/globalDef"
+require "global/tagManager"
+require "global/press"
 
 module Jabverwock
   using StringExtension

@@ -3,24 +3,6 @@ require "global/tagManager"
 require "global/press"
 require "global/structDescript"
 
-
-# if $FOR_GEM
-#   require "global/globalDef"
-#   require "global/tagManager"
-#   require "global/press"
-#   require "global/structDescript"
-
-# else
-
-#   #test
-#   require_relative "globalDef" 
-#   require_relative "tagManager"  
-#   require_relative "press"
-#   require_relative "structDescript"
-
-# end
-
-
 module Jabverwock
   using StringExtension
   using ArrayExtension
@@ -232,6 +214,6 @@ module Jabverwock
   end
 
   
-  #p a = JW.new
+  p a = JW.new
 
 end

@@ -1,16 +1,5 @@
-if $FOR_GEM
-  
-  require "global/globalDef"
-  require "global/tagAttributeTempelete"
-  
-else
-  
-  require_relative "globalDef"
-  require_relative "tagAttributeTempelete"
-
-end
-
-
+require "global/globalDef"
+require "global/tagAttributeTempelete"
 
 
 module Jabverwock
