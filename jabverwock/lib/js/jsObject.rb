@@ -1,20 +1,27 @@
-if $FOR_GEM
-  require "global/globalDef"
-  require "js/jsDocument"
-  require "js/jsBase"
-  require "js/jsFunction"
-  require "js/jsVar"
-  require "js/jsFileReader"
-  
-else
-  require_relative "../global/globalDef" 
-  require_relative "./jsDocument"
-  require_relative "./jsBase"
-  require_relative "./jsFunction"
-  require_relative "./jsVar"
-  require_relative "./jsFileReader"
+require "global/globalDef"
+require "js/jsDocument"
+require "js/jsBase"
+require "js/jsFunction"
+require "js/jsVar"
+require "js/jsFileReader"
 
-end
+# if $FOR_GEM
+#   require "global/globalDef"
+#   require "js/jsDocument"
+#   require "js/jsBase"
+#   require "js/jsFunction"
+#   require "js/jsVar"
+#   require "js/jsFileReader"
+  
+# else
+#   require_relative "../global/globalDef" 
+#   require_relative "./jsDocument"
+#   require_relative "./jsBase"
+#   require_relative "./jsFunction"
+#   require_relative "./jsVar"
+#   require_relative "./jsFileReader"
+
+# end
 
 
 module Jabverwock

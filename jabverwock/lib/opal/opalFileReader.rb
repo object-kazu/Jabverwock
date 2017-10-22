@@ -55,9 +55,9 @@ module Jabverwock
     
   end
 
-  a = OpalFileReader.new
-  a.readIn("/Users/shimizukazuyuki/ActiveProject/opalTest/hellow.rb")
-  p a.opalFileName
+  # a = OpalFileReader.new
+  # a.readIn("/Users/shimizukazuyuki/ActiveProject/opalTest/hellow.rb")
+  # p a.opalFileName
 
   
   

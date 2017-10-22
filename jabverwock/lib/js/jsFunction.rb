@@ -1,25 +1,13 @@
-
-if $FOR_GEM
-  
-  require "global/globalDef"
-  require "js/jsBase"
-  require "js/jsDocument"
-  
-else
-  require_relative "../global/globalDef" 
-  require_relative "./jsBase"
-  require_relative "./jsDocument"
-  
-end
-
+require "global/globalDef"
+require "js/jsBase"
+require "js/jsDocument"
 
 module Jabverwock
   using StringExtension
   using ArrayExtension
   using SymbolExtension
 
-  
-  
+ 
   #This class express JS Document class
   class JsFunction < JsBase
     attr_accessor :result, :query
@@ -36,10 +24,10 @@ module Jabverwock
 
       @units.update seqHash(f)
     end
-    
-    
+       
   end
 
+  # p a = JsFunction.new
 
   
 end

@@ -1,20 +1,24 @@
+require "global/globalDef"
+require "js/jsBase"
+require "js/jsVar"
+require "js/element/Element"
 
-if $FOR_GEM  
-  require "global/globalDef"
-  require "js/jsBase"
-  require "js/jsVar"
-  require "js/element/Element"
-else
-  require_relative "../global/globalDef" 
-  require_relative "./jsBase"
-  require_relative "./jsVar"
-  require_relative "./element/Element"
-end
+# if $FOR_GEM  
+#   require "global/globalDef"
+#   require "js/jsBase"
+#   require "js/jsVar"
+#   require "js/element/Element"
+# else
+#   require_relative "../global/globalDef" 
+#   require_relative "./jsBase"
+#   require_relative "./jsVar"
+#   require_relative "./element/Element"
+# end
 
-module JabverwockElement
+# module JabverwockElement
 
   
-end
+# end
 
 module Jabverwock
   using StringExtension
@@ -235,4 +239,7 @@ module Jabverwock
     # document.title	Returns the <title> element	1
     # document.URL	Returns the complete URL of the document
   end
+
+  # p a = JsDocument.new
+  
 end

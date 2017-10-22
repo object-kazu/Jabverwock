@@ -1,8 +1,11 @@
-if $FOR_GEM  
-  require 'global/globalDef'
-else
-  require_relative '../../global/globalDef' 
-end
+require 'global/globalDef'
+
+
+# if $FOR_GEM  
+#   require 'global/globalDef'
+# else
+#   require_relative '../../global/globalDef' 
+# end
 
 
 module Jabverwock

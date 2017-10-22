@@ -218,8 +218,8 @@ module Jabverwock
   end
 
   
-  #  a = JW_CSS.new
-  #  p a
+   # a = JW_CSS.new
+   # p a
   # # a.css.name = "pp"
   # # a.css.color = "red"
   # #a.name = "test"

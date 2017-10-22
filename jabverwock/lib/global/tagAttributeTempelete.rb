@@ -86,7 +86,6 @@ module Jabverwock
   
   # p a = Test.new
   # a.add_id("fs").add_cls("ww")
-
   # p a.cls
   
   

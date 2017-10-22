@@ -1,12 +1,16 @@
-if $FOR_GEM
-  require "global/globalDef"
+require "global/globalDef"
+
+
+# if $FOR_GEM
+#   require "global/globalDef"
   
-else
+  
+# else
 
-  #test
-  require_relative "../global/globalDef" 
+#   #test
+#   require_relative "../global/globalDef" 
 
-end
+# end
 
 
 # add tab arrange to html, css, js file.

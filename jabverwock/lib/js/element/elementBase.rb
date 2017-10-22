@@ -1,14 +1,18 @@
-if $FOR_GEM  
-  require 'global/globalDef'
-  require 'js/jsVar'
-  require 'js/element/elementUtil'
+require 'global/globalDef'
+require 'js/jsVar'
+require 'js/element/elementUtil'
+
+# if $FOR_GEM  
+#   require 'global/globalDef'
+#   require 'js/jsVar'
+#   require 'js/element/elementUtil'
   
-else
-  require_relative '../.././global/globalDef' 
-  require_relative '../jsVar'
-  require_relative '../element/elementUtil'
+# else
+#   require_relative '../.././global/globalDef' 
+#   require_relative '../jsVar'
+#   require_relative '../element/elementUtil'
   
-end
+# end
 
 
 module Jabverwock

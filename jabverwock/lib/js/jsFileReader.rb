@@ -1,20 +1,27 @@
-if $FOR_GEM
-  require "global/globalDef"
-  require "js/jsDocument"
-  require "js/jsBase"
-  require "js/jsFunction"
-  require "js/jsVar"
-  require "pathname"
-  
-else
-  require_relative "../global/globalDef" 
-  require_relative "./jsDocument"
-  require_relative "./jsBase"
-  require_relative "./jsFunction"
-  require_relative "./jsVar"
-  require "pathname"
+require "global/globalDef"
+require "js/jsDocument"
+require "js/jsBase"
+require "js/jsFunction"
+require "js/jsVar"
+require "pathname"
 
-end
+# if $FOR_GEM
+#   require "global/globalDef"
+#   require "js/jsDocument"
+#   require "js/jsBase"
+#   require "js/jsFunction"
+#   require "js/jsVar"
+#   require "pathname"
+  
+# else
+#   require_relative "../global/globalDef" 
+#   require_relative "./jsDocument"
+#   require_relative "./jsBase"
+#   require_relative "./jsFunction"
+#   require_relative "./jsVar"
+#   require "pathname"
+
+# end
 
 
 module Jabverwock
@@ -51,8 +58,8 @@ module Jabverwock
     
   end
 
-  # a = JsFileReader.new(:id__test)
-  # p a.readIn "~/Dropbox/.vimrc"
+  a = JsFileReader.new(:id__test)
+  p a.readIn "~/Dropbox/.vimrc"
 
   
   

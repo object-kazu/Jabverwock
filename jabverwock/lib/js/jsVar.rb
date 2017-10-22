@@ -1,14 +1,16 @@
+require "global/globalDef"
+require "js/jsBase"
 
-if $FOR_GEM
+# if $FOR_GEM
   
-  require "global/globalDef"
-  require "js/jsBase"
+#   require "global/globalDef"
+#   require "js/jsBase"
   
-else
-  require_relative "../global/globalDef" 
-  require_relative "./jsBase"
+# else
+#   require_relative "../global/globalDef" 
+#   require_relative "./jsBase"
   
-end
+# end
 
 
 module Jabverwock

@@ -1,14 +1,18 @@
-if $FOR_GEM  
-  require 'global/globalDef'
-  require 'js/element/elementUtil'
-  require 'js/element/elementBase'
+require 'global/globalDef'
+require 'js/element/elementUtil'
+require 'js/element/elementBase'
+
+# if $FOR_GEM  
+#   require 'global/globalDef'
+#   require 'js/element/elementUtil'
+#   require 'js/element/elementBase'
   
-else
-  require_relative '../.././global/globalDef' 
-  require_relative '../element/elementUtil'
-  require_relative '../element/elementBase'
+# else
+#   require_relative '../.././global/globalDef' 
+#   require_relative '../element/elementUtil'
+#   require_relative '../element/elementBase'
   
-end
+# end
 
 
 
@@ -141,8 +145,5 @@ module Jabverwock
 
   # p a = Element.new(self)
 
-  # p a = JsDocument.new('','','')
-  # p a.byID
-  # p a.write('adas')
 
 end

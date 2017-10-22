@@ -1,14 +1,17 @@
-if $FOR_GEM
-  require "global/globalDef"
-  require 'tabbing/tabbingBase'
+require "global/globalDef"
+require 'tabbing/tabbingBase'
 
-else
+# if $FOR_GEM
+#   require "global/globalDef"
+#   require 'tabbing/tabbingBase'
 
-  #test
-  require_relative "../global/globalDef" 
-  require_relative "tabbingBase" 
+# else
 
-end
+#   #test
+#   require_relative "../global/globalDef" 
+#   require_relative "tabbingBase" 
+
+# end
 
 
 module Jabverwock

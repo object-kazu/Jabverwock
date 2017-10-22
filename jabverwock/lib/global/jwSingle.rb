@@ -74,7 +74,7 @@ module Jabverwock
 
   
   
-  # a = A.new
+  # p a = A.new
   # a.assemble
   # p a.templeteString
 

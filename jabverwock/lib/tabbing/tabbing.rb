@@ -1,18 +1,23 @@
-if $FOR_GEM
-  require "global/globalDef"
-  require 'tabbing/tabbingBase'
-  require 'tabbing/tabbingCSS'
-  require 'tabbing/tabbingJS'
+require "global/globalDef"
+require 'tabbing/tabbingBase'
+require 'tabbing/tabbingCSS'
+require 'tabbing/tabbingJS'
+  
+#   if $FOR_GEM
+#   require "global/globalDef"
+#   require 'tabbing/tabbingBase'
+#   require 'tabbing/tabbingCSS'
+#   require 'tabbing/tabbingJS'
 
-else
+# else
 
-  #test
-  require_relative "../global/globalDef" 
-  require_relative "tabbingJS" 
-  require_relative "tabbingCSS" 
-  require_relative "tabbingBase" 
+#   #test
+#   require_relative "../global/globalDef" 
+#   require_relative "tabbingJS" 
+#   require_relative "tabbingCSS" 
+#   require_relative "tabbingBase" 
 
-end
+# end
 
 module Jabverwock
   using StringExtension

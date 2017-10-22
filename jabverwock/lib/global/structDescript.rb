@@ -1,6 +1,7 @@
 require "global/globalDef"
 require "global/tagManager"
 require "global/press"
+require "global/jw"
 
 module Jabverwock
   using StringExtension
@@ -160,7 +161,7 @@ module Jabverwock
   end
 
   
-  #p a = JW.new
+  # p a = JW.new
   
 end
 
