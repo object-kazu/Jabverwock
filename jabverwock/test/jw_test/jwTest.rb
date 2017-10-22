@@ -1,6 +1,6 @@
 require 'test/unit' 
-require '../../lib/global/globalDef'  
-require '../../lib/global/jw'  
+require_relative '../../lib/global/globalDef'  
+require_relative '../../lib/global/jw'  
 
 module Jabverwock
   using StringExtension

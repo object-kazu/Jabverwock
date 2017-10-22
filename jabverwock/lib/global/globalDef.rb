@@ -581,6 +581,10 @@ module Jabverwock
     # 型チェック
     class << self
 
+      def testPrint
+        p "test done"
+      end
+      
       def renameCls (str)
         if str == "cls"
           return "class"

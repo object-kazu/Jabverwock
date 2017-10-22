@@ -58,8 +58,8 @@ module Jabverwock
     
   end
 
-  a = JsFileReader.new(:id__test)
-  p a.readIn "~/Dropbox/.vimrc"
+  # a = JsFileReader.new(:id__test)
+  # p a.readIn "~/Dropbox/.vimrc"
 
   
   

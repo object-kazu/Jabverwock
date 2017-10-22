@@ -213,7 +213,5 @@ module Jabverwock
         
   end
 
-  
-  # p a = JW.new
 
 end
