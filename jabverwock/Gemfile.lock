@@ -3,6 +3,8 @@ PATH
   specs:
     jabverwock (0.1.0)
       opal (>= 0.10.5)
+      paggio
+      systemu
       test-unit
 
 GEM

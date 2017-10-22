@@ -31,6 +31,8 @@ Gem::Specification.new do |spec|
 
   #tryal!
   spec.add_dependency 'opal', '>= 0.10.5'
+  spec.add_dependency "paggio"
+  spec.add_dependency "systemu"
   
   spec.add_development_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "rake", "~> 10.0"
