@@ -50,190 +50,181 @@ module Jabverwock
                                
     end
 
+
+    it "removeLastRET" do
+      tm = "dadfafadfa\nfdfafadfa\n"
+      tm = KString.removeLastRET(tm)
+      expect(tm).to eq "dadfafadfa\nfdfafadfa"
+
+    end
+
+    it "removeLastRET not RET" do
+      tm = "dadfafadfa\nfdfafadfa_"
+      tm = KString.removeLastRET(tm)
+      expect(tm).to eq "dadfafadfa\nfdfafadfa_"
+
+    end
+    
+    it "removeLastRET String extension" do
+      tm = "dadfafadfa\nfdfafadfa\n"
+      tm = tm.removeLastRET
+      expect(tm).to eq "dadfafadfa\nfdfafadfa"
+    end
+
+    it "removeLastRET String extension with out LastRET" do
+      tm = "dadfafadfa\nfdfafadfaA"
+      tm = tm.removeLastRET
+      expect(tm).to eq "dadfafadfa\nfdfafadfaA"
+    end
+
+
+    it "addSpace" do
+      tm = "a"
+      tm = KString.addSpace(tm)
+      expect(tm).to eq " a"
+    end
+
+    it "addSpace).to eq erro raise" do
+      tm = 1
+      expect {tm = KString.addSpace(tm) }.to raise_error(StandardError)
+
+    end
+    
+    it "stringArrayConectRET" do
+      arr = ["aaa", "bbb", "ccc"]
+      res = KString.stringArrayConectRET(arr)
+      expect(res).to eq  "aaa\nbbb\nccc\n"
+    end
+
+    it "stringArrayConectRET, raise error" do
+      arr = ["aaa", 1, "ccc"]
+      expect {KString.stringArrayConectRET(arr)}.to raise_error(StandardError)
+    end
+
+    it "reprace str of with" do
+      target = "this is test"
+      target = KString.reprace(str: target, of:"this", with: "that")
+      expect(target).to eq "that is test"
+    end
+    
+    it "reprace str of with case 2" do
+      target = "this is test"
+      expect( KString.reprace(str: target, of:"this", with: "that")).to eq "that is test"
+    end
+
+    
+    it "reprace str of with , incorrct argu" do
+      target = "this is test"
+      expect {
+        target = KString.reprace(str: target, of:"this", with: 1)
+      }.to raise_error(StandardError)
+    end
+
+
+    
+    it "a variable and data pair is true " do
+      a = "a".varIs("aa")
+      expect(a.is_a?(Hash)).to eq true
+    end
+
+
+    it "a variable and data pair is false" do
+      a = "a"
+      expect(a.is_a?(Hash)).to eq false
+      
+    end
+
+    it "confirm variable pair " do
+      a = "a".varIs("aa")
+      expect(a[:label]).to eq "a"
+      expect(a[:data]).to eq "aa"
+    end
+
+
+    it "isExistCssString case" do
+      ### true ### no style
+      a = "p {\n\n}"
+      ans = KString.isExistCssString a
+      expect( ans).to eq false
+      
+      a = "p"
+      ans = KString.isExistCssString a
+      expect( ans).to eq false
+      
+      a = "jw_css {\n" + "\n" + "}"
+      ans = KString.isExistCssString a
+      expect( ans).to eq false
+      
+      ### false ### with style
+      a = "p {aaa}"
+      ans = KString.isExistCssString a
+      expect( ans).to eq true
+      
+      a = "p {aa}"
+      ans = KString.isExistCssString a
+      expect( ans).to eq true
+
+      
+      a = "p {\n\tfont-size: 10;\n}"
+      ans = KString.isExistCssString a
+      expect( ans).to eq true
+      
+    end
+
+    it "reader" do
+      a = "a\nb"
+      ans = KString.reader a
+      expect(ans).to eq ["a\n","b"]
+       
+    end
+
+
+    it "insertIndex" do
+      a = ["a", "b", "<\/body>"]
+      ans = KString.insertIndex a
+      expect(ans).to eq 2
+      
+    end
+
+    it "insert Target befor </body>" do
+      a = ["a", "b", "<\/body>"]
+      index = KString.insertIndex a
+      a.insert index,"!!"
+      expect(a).to eq  ["a", "b","!!", "<\/body>"]
+      
+    end
+
+    it "insertTextLoop" do
+      a = %w(a b </body>)
+      ans = KString.insertTextLoop a
+      expect(ans).to eq "a\nb\n</body>\n"
+      
+    end
+    
+    it "insertText befor </body>" do
+      a = ["a", "b", "<\/body>"]
+      ans = KString.insertText a, "!!"
+      expect(ans).to eq "a\nb\n!!\n<\/body>\n"
+    end
+
+
+    it "removeAllRET" do
+      a = ["a\n", "b\n", "c"]
+      b = KString.removeAllRET a
+      expect(b).to eq ["a", "b", "c"]
+    end
+
+    
+    it "addTabEachArray" do
+      l = ["a", "b"]
+      ans = KString.addTabEachArray l, 3
+      expect(ans).to eq "a\t\t\tb"
+    end
+
+    
     
   end
 end
 
    
 
-    # test "removeLastRET" do
-    #   tm = "dadfafadfa\nfdfafadfa\n"
-    #   tm = KString.removeLastRET(tm)
-    #   assert_equal(tm, "dadfafadfa\nfdfafadfa")
-
-    # end
-
-    # test "removeLastRET not RET" do
-    #   tm = "dadfafadfa\nfdfafadfa_"
-    #   tm = KString.removeLastRET(tm)
-    #   assert_equal(tm, "dadfafadfa\nfdfafadfa_")
-
-    # end
-    
-    # test "removeLastRET String extension" do
-    #   tm = "dadfafadfa\nfdfafadfa\n"
-    #   tm = tm.removeLastRET
-    #   assert_equal(tm, "dadfafadfa\nfdfafadfa")
-    # end
-
-    # test "removeLastRET String extension with out LastRET" do
-    #   tm = "dadfafadfa\nfdfafadfaA"
-    #   tm = tm.removeLastRET
-    #   assert_equal(tm, "dadfafadfa\nfdfafadfaA")
-    # end
-
-
-    # test "addSpace" do
-    #   tm = "a"
-    #   tm = KString.addSpace(tm)
-    #   assert_equal(tm," a")
-    # end
-
-    # test "addSpace, erro raise" do
-    #   tm = 1
-    #   assert_raise(){
-    #     tm = KString.addSpace(tm)        
-    #   }
-
-    # end
-    
-    # test "stringArrayConectRET" do
-    #   arr = ["aaa", "bbb", "ccc"]
-    #   res = KString.stringArrayConectRET(arr)
-    #   assert_equal(res, "aaa\nbbb\nccc\n")
-    # end
-
-    # test "stringArrayConectRET, raise error" do
-    #   arr = ["aaa", 1, "ccc"]
-    #   assert_raise(){
-    #     res = KString.stringArrayConectRET(arr)        
-    #   }
-    # end
-
-    # test "reprace str of with" do
-    #   target = "this is test"
-    #   target = KString.reprace(str: target, of:"this", with: "that")
-    #   assert_equal(target, "that is test")
-    # end
-    
-    # test "reprace str of with case 2" do
-    #   target = "this is test"
-    #   assert_equal( KString.reprace(str: target, of:"this", with: "that"), "that is test")
-    # end
-
-    
-    # test "reprace str of with , incorrct argu" do
-    #   target = "this is test"
-    #   assert_raise(){
-    #     target = KString.reprace(str: target, of:"this", with: 1)
-    #   }
-    # end
-
-
-    
-    # test "a variable and data pair is true " do
-    #   a = "a".varIs("aa")
-    #   assert_true(a.is_a?(Hash))
-    # end
-
-
-    # test "a variable and data pair is false" do
-    #   a = "a"
-    #   assert_false(a.is_a?(Hash))
-      
-    # end
-
-    # test "confirm variable pair " do
-    #   a = "a".varIs("aa")
-    #   assert_equal(a[:label], "a")
-    #   assert_equal(a[:data], "aa")
-    # end
-
-
-    # test "isExistCssString case" do
-    #   ### true ### no style
-    #   a = "p {\n\n}"
-    #   ans = KString.isExistCssString a
-    #   assert_false ans
-      
-    #   a = "p"
-    #   ans = KString.isExistCssString a
-    #   assert_false ans
-      
-    #   a = "jw_css {\n" + "\n" + "}"
-    #   ans = KString.isExistCssString a
-    #   assert_false ans
-      
-    #   ### false ### with style
-    #   a = "p {aaa}"
-    #   ans = KString.isExistCssString a
-    #   assert_true ans
-      
-    #   a = "p {aa}"
-    #   ans = KString.isExistCssString a
-    #   assert_true ans
-      
-    #   a = "p {\n\tfont-size: 10;\n}"
-    #   ans = KString.isExistCssString a
-    #   assert_true ans
-      
-    # end
-
-    # test "reader" do
-    #   a = "a\nb"
-    #   ans = KString.reader a
-    #   assert_equal ans, ["a\n","b"]
-       
-    # end
-
-
-    # test "insertIndex" do
-    #   a = ["a", "b", "<\/body>"]
-    #   ans = KString.insertIndex a
-    #   assert_equal ans, 2
-      
-    # end
-
-    # test "insert Target befor </body>" do
-    #   a = ["a", "b", "<\/body>"]
-    #   index = KString.insertIndex a
-    #   a.insert index,"!!"
-    #   assert_equal a,  ["a", "b","!!", "<\/body>"]
-      
-    # end
-
-    # test "insertTextLoop" do
-    #   a = %w(a b </body>)
-    #   ans = KString.insertTextLoop a
-    #   assert_equal ans, "a\nb\n</body>\n"
-      
-    # end
-    
-    # test "insertText befor </body>" do
-    #   a = ["a", "b", "<\/body>"]
-    #   ans = KString.insertText a, "!!"
-    #   assert_equal ans, "a\nb\n!!\n<\/body>\n"
-    # end
-
-
-    # test "removeAllRET" do
-    #   a = ["a\n", "b\n", "c"]
-    #   b = KString.removeAllRET a
-    #   assert_equal b, ["a", "b", "c"]
-    # end
-
-    # test "isExistCssString case 1" do
-    #   test = "head {\nfont-size: 10;\n}"
-    # end
-    
-    # test "isExistCssString case 2" do
-
-    #   test = "head#sample {\ncolor: red;\n}"
-    # end
-
-    
-    # test "addTabEachArray" do
-    #   l = ["a", "b"]
-    #   ans = KString.addTabEachArray l, 3
-    #   assert_equal ans, "a\t\t\tb"
-    # end
