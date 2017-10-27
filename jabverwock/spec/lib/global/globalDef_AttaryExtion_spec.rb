@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../lib/paths'
+require_relative '../../lib/paths'
 
 
 using ArrayExtension
