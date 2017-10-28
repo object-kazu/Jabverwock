@@ -44,25 +44,25 @@ module Jabverwock
       assert_equal(s.name , "input")
     end
 
-    # test "JWOneTag first test" do
+    # it "JWOneTag first test" do
     #   ans = @t.pressDefault
-    #   assert_equal(ans, "<jwonetag>")
+    #   expect(ans).to eq "<jwonetag>"
 
     # end
         
-    # test "content add" do
+    # it "content add" do
     #   @t.name="j"
     #   @t.content = "test"
     #   ans = @t.pressDefault
     #   ans2 = @t.pressVal.showTempleteString
       
-    #   assert_equal(ans, "<j>test")
-    #   assert_equal(ans, ans2)
+    #   expect(ans).to eq "<j>test"
+    #   expect(ans).to eq ans2
     # end
 
-    # test "add contentIs" do
+    # it "add contentIs" do
     #   a = INPUT.new.contentIs "this is test"
-    #   assert_equal(a.pressDefault, "<input>this is test")
+    #   expect(a.pressDefault).to eq "<input>this is test"
     # end
     
         
