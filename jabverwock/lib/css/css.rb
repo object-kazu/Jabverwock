@@ -17,8 +17,10 @@ module Jabverwock
                             :font_size_adjust, :font_stretch]
 
     self.define_attributes [:color, :background, :background_attachment, :background_color,
-                            :background_image, :background_position, :background_position_x,
-                            :background_position_y,:background_repeat, :background_origin, :background_size]
+                            :background_image, :background_position_x,
+                            :background_position_y]
+    
+    self.define_attributes [:background_repeat, :background_origin, :background_size, :background_position]
     
     self.define_attributes [:border,
                             :border_top, :border_bottom, :border_left, :border_right]
