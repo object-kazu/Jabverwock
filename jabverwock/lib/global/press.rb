@@ -95,7 +95,7 @@ module Jabverwock
     #  // templeteString -> resultString -> export
     def core
       pathName = @exportPath + @exportFile
-
+      
       if pathName == ""
         current = ENV['PWD']
         pathName = current + "pressed"

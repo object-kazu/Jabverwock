@@ -440,20 +440,18 @@ module Jabverwock
   # This module is utility, not depend on class instance
   module KSUtil
     class << self
-      
+
+      def pathForTest(currentFilePath)
+         File.dirname(currentFilePath) + "/"      
+      end
+            
       def myPATH
-        current = ENV['PWD']
-        switch = false
-        if current.include?("BitTorrent")
-          switch = true
-        end
-        dirname = File.basename(Dir.getwd)
-        switch ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
-        "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{dirname}/"
+        pathForTest "test"
       end
 
-      def myDiff
-        dif = `diff -b index.html indexPressed.html`
+      def myDiff(currentFilePath)
+        path = pathForTest currentFilePath      
+        dif = `diff -b "#{path}index.html" "#{path}indexPressed.html"`
         if dif != ""
           p dif
           return
@@ -461,11 +459,6 @@ module Jabverwock
         p 'no difference!'
       end
       
-      # def testPATH(folder)
-      #   current = ENV['PWD']
-      #   current.include?("BitTorrent") ? vPath1 = "/BitTorrent Sync" :  vPath1 = ""
-      #   "/Users/shimizukazuyuki#{vPath1}/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/test/#{folder}/"
-      # end
 
       ### file reading
       def fileReadingToArr (txt, arr)
