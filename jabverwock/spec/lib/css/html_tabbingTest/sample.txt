@@ -1,0 +1,10 @@
+<html>
+<head>
+<title>This is my first page</title>
+</head>
+<body>
+<h1 id="example1">this text is red</h1>
+<p >Hello world! sample</p>
+<input type=checkbox name="shumi" value="PC">パソコン
+</body>
+</html>

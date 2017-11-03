@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>This is my first page</title>
+<script>
+document.write("test")
+</script>
+</head>
+<body>
+<p >Hello world! sample</p>
+</body>
+</html>
