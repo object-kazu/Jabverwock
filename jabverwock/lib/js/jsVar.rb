@@ -1,17 +1,6 @@
 require "global/globalDef"
 require "js/jsBase"
 
-# if $FOR_GEM
-  
-#   require "global/globalDef"
-#   require "js/jsBase"
-  
-# else
-#   require_relative "../global/globalDef" 
-#   require_relative "./jsBase"
-  
-# end
-
 
 module Jabverwock
   using StringExtension

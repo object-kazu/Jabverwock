@@ -19,7 +19,8 @@ require 'js/element/elementBase'
 module Jabverwock
   using StringExtension
   using ArrayExtension
-    
+  using SymbolExtension
+  
   # This class express element
   class Element < ElementBase
         

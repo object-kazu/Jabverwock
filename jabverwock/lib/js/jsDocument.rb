@@ -23,6 +23,7 @@ require "js/element/Element"
 module Jabverwock
   using StringExtension
   using ArrayExtension
+  using SymbolExtension
   
   #This class express JS Document class
   class JsDocument < JsBase

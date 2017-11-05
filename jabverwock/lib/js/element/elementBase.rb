@@ -18,7 +18,8 @@ require 'js/element/elementUtil'
 module Jabverwock
   using StringExtension
   using ArrayExtension
-    
+  using SymbolExtension
+  
   # This class express element
   class ElementBase
     

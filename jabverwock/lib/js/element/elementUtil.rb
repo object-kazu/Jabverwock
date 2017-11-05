@@ -11,7 +11,8 @@ require 'global/globalDef'
 module Jabverwock
   using StringExtension
   using ArrayExtension
-    
+  using SymbolExtension
+  
   # This class express element utility
   class ElementUtil
     def addEventListenerMain(content, event, func, useCaption)
