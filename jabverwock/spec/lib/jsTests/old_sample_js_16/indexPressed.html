@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div id="div1">
+			<p id="p1">this is paragraph</p>
+			<p id="p2">this is another paragraph</p>
+		</div>
+		<script>
+			var myCollection = document.getElementByTagName('div');
+			document.getElementById('div1').innerHTML="The innerHTML of the second paragraph is:" + myCollection[0].innerHTML;
+		</script>
+		
+	</body>
+</html>
