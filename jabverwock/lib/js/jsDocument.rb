@@ -156,7 +156,7 @@ module Jabverwock
     end
     
     def replaceChild(parent, from, to)
-      r = "#{parent}.replaceChild(#{from}, #{to})"
+      r = "#{parent}.replaceChild(#{from}, #{to})" + $JS_CMD_END
       recEqual r
     end
 
