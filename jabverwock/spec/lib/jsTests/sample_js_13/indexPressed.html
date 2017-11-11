@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div id="div1">
+			<p id="p1">This is a paragraph.</p>
+			<p id="p2">This is another paragraph.</p>
+		</div>
+		<script>
+			var myCollection = document.getElementsByTagName("p");
+			var i;
+			for (i = 0; i < myCollection.length; i++) {
+			    myCollection[i].style.backgroundColor = "red";
+			}
+		</script>
+		
+	</body>
+</html>

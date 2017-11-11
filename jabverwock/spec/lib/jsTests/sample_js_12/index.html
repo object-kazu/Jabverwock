@@ -9,20 +9,17 @@
 
 
 	<script>
-	 var para = document.createElement("p");
-	 var node = document.createTextNode("This is new.");
+	 var para = document.createElement('p');
+	 var node = document.createTextNode('This is new.');
 	 para.appendChild(node);
-
-	 var element = document.getElementById("div1");
-	 element.parentNode.insertBefore(para, element);
-	 
-	 
+	 var element = document.getElementById('div1');
+	 element.parentNode.insertBefore(para,element);
 	 var title3Node = document.getElementById('div1');
 	 var newNode = document.createElement('div');
 	 var textNode = document.createTextNode('CSS');
 	 newNode.appendChild(textNode);
 	 newNode.id = 'title2';
-	 title3Node.parentNode.insertBefore(newNode, title3Node);
+	 title3Node.parentNode.insertBefore(newNode,title3Node);
 	 
 	
 	</script>
