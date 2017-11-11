@@ -8,7 +8,7 @@ module Jabverwock
   using SymbolExtension
   
   # this class is single line html, like HEADING tag
-  class JWSingle < JW_CSS_JS
+  class JWSingle < JW_CSS_OPAL_JS
     attr_accessor :content
     
     def initialize

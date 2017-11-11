@@ -10,7 +10,7 @@ module Jabverwock
   using SymbolExtension
   
   #This class express multi line html tag, like head, body etc.
-  class JWMulti < JW_CSS_JS
+  class JWMulti < JW_CSS_OPAL_JS
     attr_accessor :childStringArray
     
     def initialize
