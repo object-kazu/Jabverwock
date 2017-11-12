@@ -1,4 +1,4 @@
-require "global/jw_CSS_JS"
+# require "global/jw_CSS_JS"
 require "global/jwSingle"
 
 module Jabverwock

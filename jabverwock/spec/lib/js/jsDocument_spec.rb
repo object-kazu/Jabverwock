@@ -176,7 +176,7 @@ module Jabverwock
 
     it 'replaceChild' do
       jsd.replaceChild :para, :a, :b
-      expect(jsd.orders[0]).to eq 'para.replaceChild(a, b)'
+      expect(jsd.orders[0]).to eq 'para.replaceChild(a, b);'
     end
     
     it 'document write, do not need rec' do

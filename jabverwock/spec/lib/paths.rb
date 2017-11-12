@@ -8,5 +8,4 @@ require_relative "../../lib/global/jwSingle"
 require_relative "../../lib/global/jwMulti"
 require_relative "../../lib/global/jwOneTag"
 require_relative "../../lib/global/jwTable"
-
 require_relative "../../lib/global/jw_CSS_opal_JS"

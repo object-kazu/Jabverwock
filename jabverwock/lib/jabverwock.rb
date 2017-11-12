@@ -8,7 +8,7 @@ require 'global/jwSingle'
 require 'global/jwTable'
 require 'global/jw_CSS'
 require 'global/jw_CSS_JS'
-require 'global/jw_CSS_Opal_JS'
+require 'global/jw_CSS_opal_JS'
 require 'global/press'
 require 'opal'
 

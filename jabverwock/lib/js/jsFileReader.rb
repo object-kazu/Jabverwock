@@ -5,25 +5,6 @@ require "js/jsFunction"
 require "js/jsVar"
 require "pathname"
 
-# if $FOR_GEM
-#   require "global/globalDef"
-#   require "js/jsDocument"
-#   require "js/jsBase"
-#   require "js/jsFunction"
-#   require "js/jsVar"
-#   require "pathname"
-  
-# else
-#   require_relative "../global/globalDef" 
-#   require_relative "./jsDocument"
-#   require_relative "./jsBase"
-#   require_relative "./jsFunction"
-#   require_relative "./jsVar"
-#   require "pathname"
-
-# end
-
-
 module Jabverwock
   using StringExtension
   using ArrayExtension
@@ -56,12 +37,6 @@ module Jabverwock
     end
         
     
-  end
-
-  # a = JsFileReader.new(:id__test)
-  # p a.readIn "~/Dropbox/.vimrc"
-
-  
-  
+  end  
 end
 

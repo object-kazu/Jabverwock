@@ -5,18 +5,17 @@ using StringExtension
 
 module Jabverwock
 
-
   RSpec.describe 'FileReader test' do
     subject(:jsf){JsFileReader.new}
     
     it "file read" do
-      @jsf.read "sample.js"
-      p @jsf.jsArr
+      jsf.read "sample.js"
+      p jsf.jsArr
     end
 
     it "file read in path" do
-      p @jsf.readIn "./sample.js"
-      
+      p jsf.readIn "/Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/spec/lib/js/sample.js"
+   
     end
     
 

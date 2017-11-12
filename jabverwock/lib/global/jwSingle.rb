@@ -1,5 +1,5 @@
 require "global/globalDef"
-require "global/jw_CSS_JS"
+require "global/jw_CSS_OPAL_JS"
 require "css/css"
 
 module Jabverwock
