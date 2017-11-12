@@ -29,7 +29,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  #tryal!
   spec.add_dependency 'opal', '>= 0.10.5'
   spec.add_dependency "paggio"
   spec.add_dependency "systemu"
