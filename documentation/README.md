@@ -15,10 +15,10 @@ HTML.new
 
 
 
-- [HTML](./documentation/HTML.md)
-- [Tag Attribute](./TagAttribute)
-- [Variable](Variable)
-- [Press](Press)
+- [HTML](HTML.md)
+- [Tag Attribute](TagAttribute.md)
+- [Variable](Variable.md)
+- [Press](Press.md)
 
 
 ### => press
