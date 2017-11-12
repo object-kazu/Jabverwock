@@ -58,7 +58,7 @@ at command prompt
 ```  
 
 ## Usage and Documentation
-All documentation can be found in the [Documentation folder](./Documentation).
+All documentation can be found in the [documentation folder](./documentation).
 
 ## License
 Jabverwock is distributed under MIT license.
