@@ -57,8 +57,8 @@ at command prompt
 <!DOCTYPE html>
 ```  
 
-## Usœage and Documentation
-More detailed usage instructions are provided in the [Wiki](https://github.com/object-kazu/Jabverwock/wiki).
+## Usage and Documentation
+All documentation can be found in the [Documentation folder](./Documentation).
 
 ## License
 Jabverwock is distributed under MIT license.
