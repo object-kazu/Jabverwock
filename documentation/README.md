@@ -15,8 +15,8 @@ HTML.new
 
 
 
-- [HTML](HTML)
-- [Tag Attribute](TagAttribute)
+- [HTML](./documentation/HTML.md)
+- [Tag Attribute](./TagAttribute)
 - [Variable](Variable)
 - [Press](Press)
 
