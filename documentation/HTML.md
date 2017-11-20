@@ -4,7 +4,7 @@ JabberWock class name is eqaul to HTML tag name.
 *(following examples need to add press cmd)*
 
 ---
-#### example
+#### overview
 ``` ruby
 # smaple.rb
 
@@ -12,7 +12,10 @@ doc = DOCTYPE.new
 doc.pressTo (name: result, dist: ~/path)
 
 ```
-
+  
+> $ ruby sample.rb
+  
+  
 ```html
 <- ~/path/result.html ->
 
@@ -29,7 +32,8 @@ In other tags, level is ignored.
 **level** :  int (1 ~ 6), heading level.
 
 ---
-#### example
+> example  
+
 ```ruby
 #sample.rb
 
@@ -52,7 +56,8 @@ add content to tag.
 
 
 ---
-#### example
+> example  
+
 ```ruby
 # sample.rb
 
@@ -78,7 +83,8 @@ pp = P.new.contentIs "Hello world!"
 
 
 ---
-#### example
+> example  
+
 ```ruby
 #sample.rb
 head = HEAD.new
@@ -100,7 +106,8 @@ html.addChild head
 **elem** : array, adding some elements.
 
 ---
-#### example
+> example 1 
+
 ```ruby
 #sample.rb
 
@@ -112,28 +119,21 @@ html.addChildren head, body
 
 ```html
 <- ~/path/result.html ->
-
-
+	<html>
+		<head>
+		</head>
+		<body>
+		</body>
+	</html>
 ```
-
+  
+---
+> example 2
 
 ```ruby
+#sample.rb
 
-```
->[result]
->>```html
->>	<html>
->>		<head>
->>		</head>
->>		<body>
->>		</body>
->>	</html>
->>```
-
-
-
- ```ruby
-  $PAGES =  %w(home about contact)
+ $PAGES =  %w(home about contact)
 
   def self.header
     head = HEAD.new
@@ -167,40 +167,58 @@ html.addChildren head, body
   html= HTML.new
   html.addChildren header, bodier
 
- ```
->[result]
->>```
->><html>
->>   <head>
->>     <title>This is my first page</title>
->>   </head>
->>   <body>
->>     <h1>This is addChildren test</h1>
->>     <a href="www:home">Home</a>
->>     <a href="www:about">About</a>
->>     <a href="www:contact">Contact</a>	
->>    </body>
->></html>
->>```
+
+```
+
+```html
+<- ~/path/result.html ->
+
+<html>
+   <head>
+     <title>This is my first page</title>
+   </head>
+   <body>
+     <h1>This is addChildren test</h1>
+     <a href="www:home">Home</a>
+     <a href="www:about">About</a>
+     <a href="www:contact">Contact</a>	
+    </body>
+</html>
+
+```
+
+
 
 ### addMember (elem)
-*__elem__* : element, add it as member.
+**elem** : element, add it as member.
+
+
+---
+> example  
 
 ```ruby
+#sample.rb
    html.addMember head
 ```
->[result]
->>```html
->>	<html>
->>	</html>
->>	<head>
->>	</head>
->>```
+
+```html
+<- ~/path/result.html ->
+	<html>
+	</html>
+	<head>
+	</head>
+
+```
 
 ## addMembers (*elem)
-*__elem__* : adding some elements.
+**elem** : adding some elements.
+
+
+---
+> example  
 
 ```ruby
+#sample.rb
 head = HEAD.new
 body = BODY.new
 html.addMembers head, body
@@ -208,36 +226,48 @@ html.addMembers head, body
 or
 
 html.addMembers [head, body]
+
 ```
->[result]
->>```html
->>	<html>
->>	</html>
->>	<head>
->>	</head>
->>	<body>
->>	</body>
->>```
+
+```html
+<- ~/path/result.html ->
+	<html>
+	</html>
+	<head>
+	</head>
+	<body>
+	</body>
+
+```
 
 ### tgStr
 HTML tag class can export as string.
 you want to write case of tag in tag.
 
- ```ruby
+---
+> example 1  
+
+```ruby
+#sample.rb
 bold = B.new.contentIs "test"
 
 pp = P.new.contentIs "This is #{bold.tgStr}"
 body.addChild pp
- ```
->[result]
->>```
->><p>This is <b>test</b></p>
->>```
 
-another case, 
+```
 
- ```ruby
-  
+```html
+<- ~/path/result.html ->
+<p>This is <b>test</b></p>
+
+```
+
+---
+> example 2  
+
+```ruby
+#sample.rb
+
   a = A.new.contentIs("test").attr(:href,"www://")
   pp = P.new.contentIs "What is this? #{a.tgStr}"
 
@@ -247,15 +277,19 @@ another case,
   html= HTML.new  
   html.addChild body
 
- ```
->[result]
->>```
->><html>
->>	<body>
->>		<p>What is this? <a href="www://">test</a></p>
->>	</body>
->></html>
->>```
+```
+
+```html
+<- ~/path/result.html ->
+
+<html>
+	<body>
+		<p>What is this? <a href="www://">test</a></p>
+	</body>
+</html>
+
+
+```
 
 
 ## class
@@ -263,7 +297,12 @@ another case,
 `<h1> ~ <h6>`  
 heading tag can use argument for the level.
 
+---
+> example  
+
 ```ruby
+#sample.rb
+
 html= HTML.new
 
 body = BODY.new
@@ -272,53 +311,88 @@ h2 = HEADING.new(2).contentIs "See you again"
 
 body.addChildren h1,h2
 html.addChild body
+
 ```
->[result]
->>```html
->><html>
->>    <body>
->>	<h1>Hello world!</h1>
->>	<h2>See you again</h2>
->>    </body>
->></html>
->>```
+
+```html
+<- ~/path/result.html ->
+
+<html>
+    <body>
+		<h1>Hello world!</h1>
+		<h2>See you again</h2>
+    </body>
+</html>
+
+
+```
+
 
 ### Break
 `<br>`  
 you can insert break tag by two way.  
 one is use Class (tgStr), another is string (Global constant, $BR).
 
- ```ruby
+
+---
+> example 1  
+
+```ruby
+#sample.rb
+
 br = BR.new
 p1 = P.new.contentIs "this is " << br.tgStr << "br class"
 p2 = P.new.contentIs "this is #{$BR}br string"
 
 body.addChildren p1, p2
- ```
->[result]
->>```html
->><p>this is <br>br class</p>
->><p>this is <br>br string</p>
->>```
+
+```
+
+```html
+<- ~/path/result.html ->
+
+<p>this is <br>br class</p>
+<p>this is <br>br string</p>
+
+
+```
 
 br tag sometimes need for end of tag.  
 withBreak method is useful.
 
- ```ruby
-p3 = P.new.contentIs("this is last").withBreak
- ```
->[result]
->>```
->><p>this is last</p><br>
->>```
 
+---
+> example  
+
+```ruby
+#sample.rb
+
+p3 = P.new.contentIs("this is last").withBreak
+
+```
+
+```html
+<- ~/path/result.html ->
+
+<p>this is last</p><br>
+
+```
 
 br tag also has content.  
 
+---
+> example  
+
 ```ruby
+#sample.rb
+
 br = BR.new.contentIs "this is test"
- ```
->[result]
->>```
->> this is test<br>
->>```
+
+```
+
+```html
+<- ~/path/result.html ->
+
+this is test<br>
+
+```
