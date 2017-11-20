@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jabverwock (0.1.0)
+    jabverwock (0.1.1)
       opal (>= 0.10.5)
       paggio
       systemu
@@ -19,7 +19,7 @@ GEM
       sprockets (~> 3.1)
       tilt (>= 1.4)
     paggio (0.2.6)
-    power_assert (1.0.2)
+    power_assert (1.1.0)
     rack (2.0.3)
     rake (10.5.0)
     rspec (3.6.0)

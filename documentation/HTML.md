@@ -1,65 +1,123 @@
-HTML tags express by class.
+# HTML tags express by class.
 
-# method
-## new (level)
-Making tag ( = make instance)  
-Level is only need in the case of Heading tag (default = 1).  
-In other case, level is ignored.  
+JabberWock class name is eqaul to HTML tag name.
+*(following examples need to add press cmd)*
 
-*__level__* :  int (1 ~ 6), heading level
-```ruby
-HTML.new
+---
+#### example
+``` ruby
+# smaple.rb
+
+doc = DOCTYPE.new
+doc.pressTo (name: result, dist: ~/path)
+
 ```
->[result]
->>```
->><html>
->></html>
->>```
 
-## content (str)
-add content to tag.  
-*__str__* : string, tag content
+```html
+<- ~/path/result.html ->
+
+<!DOCTYPE html>
+
+```
+
+## method
+### new (level=1)
+Making tag ( = make instance).  
+Level is only need in the case of Heading tag.  
+In other tags, level is ignored.  
+
+**level** :  int (1 ~ 6), heading level.
+
+---
+#### example
 ```ruby
-   pp = P.new
-   pp.content = "Hello world!"
+#sample.rb
+
+html = HTML.new
+
+```
+
+```html
+<- ~/path/result.html ->
+
+<html>
+</html>
+
+```
+
+
+### content (str)
+add content to tag.  
+**str** : string, tag content
+
+
+---
+#### example
+```ruby
+# sample.rb
+
+pp = P.new
+pp.content = "Hello world!"
 
 or
 
-   pp = P.new.contentIs "Hello world!"
+pp = P.new.contentIs "Hello world!"
 
-off course, same.
-    hi = "Hello world!"
-    pp = P.new.contentIs hi
 
 ```
->[result]
->>```html
->>	<p>Hwllow world!</p>
->>```
 
-## addChild (elem)
-*__elem__* : element, add child element.
+```html
+<- ~/path/result.html ->
 
+<p>Hello world!</p>
+
+```
+
+### addChild (elem)
+**elem** : element, add child element.
+
+
+---
+#### example
 ```ruby
+#sample.rb
 head = HEAD.new
 html.addChild head
+
 ```
->[result]
->>```html
->>	<html>
->>		<head>
->>		</head>
->>	</html>
->>```
+
+```html
+<- ~/path/result.html ->
+<html>
+	<head>
+	</head>
+</html>
+
+```
 
 
-## addChildren (*elem)
-*__*elem__* : array, adding some elements.
+### addChildren (*elem)
+**elem** : array, adding some elements.
 
+---
+#### example
 ```ruby
+#sample.rb
+
 head = HEAD.new
 body = BODY.new
 html.addChildren head, body
+
+```
+
+```html
+<- ~/path/result.html ->
+
+
+```
+
+
+```ruby
 
 ```
 >[result]
@@ -125,7 +183,7 @@ html.addChildren head, body
 >></html>
 >>```
 
-## addMember (elem)
+### addMember (elem)
 *__elem__* : element, add it as member.
 
 ```ruby
@@ -161,7 +219,7 @@ html.addMembers [head, body]
 >>	</body>
 >>```
 
-## tgStr
+### tgStr
 HTML tag class can export as string.
 you want to write case of tag in tag.
 
@@ -200,8 +258,8 @@ another case,
 >>```
 
 
-# Class
-## Heading
+## class
+### Heading
 `<h1> ~ <h6>`  
 heading tag can use argument for the level.
 
@@ -225,7 +283,7 @@ html.addChild body
 >></html>
 >>```
 
-## Break
+### Break
 `<br>`  
 you can insert break tag by two way.  
 one is use Class (tgStr), another is string (Global constant, $BR).

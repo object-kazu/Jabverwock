@@ -49,8 +49,6 @@ export file name is `n` and file path is `~/path`
 at command prompt  
 `$ ruby test.rb`
 
-
-
 ```html:n.html
 <!-- ~/path/n.html -->
 

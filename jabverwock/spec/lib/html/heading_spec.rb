@@ -13,7 +13,11 @@ module Jabverwock
       expect(a.tgStr).to eq "<h1></h1>"
     end
     
-
+   it "Heading level 2 test" do
+      a = HEADING.new(2)
+      expect(a.tgStr).to eq "<h2></h2>"
+    end
+ 
     it "Heading add content" do
       a = HEADING.new().contentIs "test"
       expect(a.tgStr ).to eq "<h1>test</h1>"
