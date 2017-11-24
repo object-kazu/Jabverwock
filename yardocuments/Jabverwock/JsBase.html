@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Jabverwock::JsBase
+  
+    &mdash; Documentation by YARD 0.9.11
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Jabverwock::JsBase";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (J)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Jabverwock.html" title="Jabverwock (module)">Jabverwock</a></span></span>
+     &raquo; 
+    <span class="title">JsBase</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Jabverwock::JsBase
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Jabverwock::JsBase</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/js/jsBase.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>This class express JS basic class</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="JsDocument.html" title="Jabverwock::JsDocument (class)">JsDocument</a></span>, <span class='object_link'><a href="JsFileReader.html" title="Jabverwock::JsFileReader (class)">JsFileReader</a></span>, <span class='object_link'><a href="JsFunction.html" title="Jabverwock::JsFunction (class)">JsFunction</a></span>, <span class='object_link'><a href="JsObject.html" title="Jabverwock::JsObject (class)">JsObject</a></span>, <span class='object_link'><a href="JsVar.html" title="Jabverwock::JsVar (class)">JsVar</a></span></p>
+</div>
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cls-instance_method" title="#cls (instance method)">#<strong>cls</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute cls.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#id-instance_method" title="#id (instance method)">#<strong>id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute id.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#units-instance_method" title="#units (instance method)">#<strong>units</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute units.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#docRecords-instance_method" title="#docRecords (instance method)">#<strong>docRecords</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gatheringOrder-instance_method" title="#gatheringOrder (instance method)">#<strong>gatheringOrder</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(*inits)  &#x21d2; JsBase </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>ex) initialize :id__test, :cls__sample, “:name__koko”.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initSeq-instance_method" title="#initSeq (instance method)">#<strong>initSeq</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>numbering hash index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#orders-instance_method" title="#orders (instance method)">#<strong>orders</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>orders ###.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#printHash-instance_method" title="#printHash (instance method)">#<strong>printHash</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>## for debug.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#recBy-instance_method" title="#recBy (instance method)">#<strong>recBy</strong>(str)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>delegate.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#record-instance_method" title="#record (instance method)">#<strong>record</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#records-instance_method" title="#records (instance method)">#<strong>records</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>def recordLast   KSHash.lastHashValue @docHash end.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#removeJSPrefix-instance_method" title="#removeJSPrefix (instance method)">#<strong>removeJSPrefix</strong>(sym)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#seqHash-instance_method" title="#seqHash (instance method)">#<strong>seqHash</strong>(val)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setCls-instance_method" title="#setCls (instance method)">#<strong>setCls</strong>(s)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setID-instance_method" title="#setID (instance method)">#<strong>setID</strong>(s)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setName-instance_method" title="#setName (instance method)">#<strong>setName</strong>(s)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setSelector-instance_method" title="#setSelector (instance method)">#<strong>setSelector</strong>(s)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setSelectors-instance_method" title="#setSelectors (instance method)">#<strong>setSelectors</strong>(inits)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#updateSelector-instance_method" title="#updateSelector (instance method)">#<strong>updateSelector</strong>(*inits)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(*inits)  &#x21d2; <tt><span class='object_link'><a href="" title="Jabverwock::JsBase (class)">JsBase</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>ex) initialize :id__test, :cls__sample, “:name__koko”</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_inits'>inits</span><span class='rparen'>)</span>
+  <span class='ivar'>@obj</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@id</span><span class='comma'>,</span> <span class='ivar'>@cls</span><span class='comma'>,</span> <span class='ivar'>@name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+
+  
+  <span class='comment'># units and equality keep data like {:js1=&gt; xxx, js2=&gt; xxx}
+</span>  <span class='id identifier rubyid_initSeq'>initSeq</span>
+  <span class='ivar'>@units</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>    <span class='comment'># =&gt; keep element hash (ex. doc.byID.innerHTML)
+</span>  <span class='ivar'>@equality</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='comment'>#=&gt; keep equality hash (ex. var id = test)
+</span>  <span class='ivar'>@docHash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>  <span class='comment'>#=&gt; keep jsDocument hash (ex. doc.byID)
+</span>  <span class='ivar'>@varHash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>  <span class='comment'># =&gt; keep var function hash (ex. @jsd.var(:name){ |t| ... })
+</span>  
+  <span class='id identifier rubyid_setSelectors'>setSelectors</span> <span class='id identifier rubyid_inits'>inits</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="cls=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="cls-instance_method">
+  
+    #<strong>cls</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute cls</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cls'>cls</span>
+  <span class='ivar'>@cls</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="id=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="id-instance_method">
+  
+    #<strong>id</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute id</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_id'>id</span>
+  <span class='ivar'>@id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    #<strong>name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="units=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="units-instance_method">
+  
+    #<strong>units</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute units</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_units'>units</span>
+  <span class='ivar'>@units</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="docRecords-instance_method">
+  
+    #<strong>docRecords</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_docRecords'>docRecords</span>
+  <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashValues'><span class='object_link'><a href="KSHash.html#hashValues-class_method" title="Jabverwock::KSHash.hashValues (method)">hashValues</a></span></span> <span class='ivar'>@docHash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gatheringOrder-instance_method">
+  
+    #<strong>gatheringOrder</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gatheringOrder'>gatheringOrder</span>
+  <span class='id identifier rubyid_prep'>prep</span> <span class='op'>=</span> <span class='ivar'>@equality</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='ivar'>@units</span>
+  <span class='id identifier rubyid_prep'>prep</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='ivar'>@docHash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="initSeq-instance_method">
+  
+    #<strong>initSeq</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>numbering hash index</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initSeq'>initSeq</span>
+  <span class='ivar'>@sequence</span> <span class='op'>=</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_step'>step</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="orders-instance_method">
+  
+    #<strong>orders</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>orders ###</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_orders'>orders</span>
+  <span class='id identifier rubyid_ord'>ord</span> <span class='op'>=</span> <span class='id identifier rubyid_gatheringOrder'>gatheringOrder</span>      
+  <span class='id identifier rubyid_sortedOrd'>sortedOrd</span> <span class='op'>=</span> <span class='id identifier rubyid_ord'>ord</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='lparen'>(</span><span class='id identifier rubyid_k1'>k1</span><span class='comma'>,</span><span class='id identifier rubyid_v1'>v1</span><span class='rparen'>)</span><span class='comma'>,</span><span class='lparen'>(</span><span class='id identifier rubyid_k2'>k2</span><span class='comma'>,</span><span class='id identifier rubyid_v2'>v2</span><span class='rparen'>)</span><span class='op'>|</span> <span class='id identifier rubyid_removeJSPrefix'>removeJSPrefix</span><span class='lparen'>(</span><span class='id identifier rubyid_k1'>k1</span><span class='rparen'>)</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_removeJSPrefix'>removeJSPrefix</span><span class='lparen'>(</span><span class='id identifier rubyid_k2'>k2</span><span class='rparen'>)</span><span class='rbrace'>}</span>      
+  <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='id identifier rubyid_sortedOrd'>sortedOrd</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arr'>arr</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='id identifier rubyid_arr'>arr</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span> <span class='kw'>unless</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+    <span class='id identifier rubyid_arr'>arr</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_ans'>ans</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="printHash-instance_method">
+  
+    #<strong>printHash</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>## for debug</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_printHash'>printHash</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>units : </span><span class='embexpr_beg'>#{</span><span class='ivar'>@units</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_p'>p</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>docHash: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@docHash</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_p'>p</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>equality: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@equality</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="recBy-instance_method">
+  
+    #<strong>recBy</strong>(str)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>delegate</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_recBy'>recBy</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='ivar'>@units</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='id identifier rubyid_seqHash'>seqHash</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="record-instance_method">
+  
+    #<strong>record</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_record'>record</span>
+  <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_firstHashValue'><span class='object_link'><a href="KSHash.html#firstHashValue-class_method" title="Jabverwock::KSHash.firstHashValue (method)">firstHashValue</a></span></span> <span class='ivar'>@units</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="records-instance_method">
+  
+    #<strong>records</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>def recordLast</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lastHashValue'><span class='object_link'><a href="KSHash.html#lastHashValue-class_method" title="Jabverwock::KSHash.lastHashValue (method)">lastHashValue</a></span></span> <span class='ivar'>@docHash</span>
+</code></pre>
+
+<p>end</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_records'>records</span>
+  <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashValues'><span class='object_link'><a href="KSHash.html#hashValues-class_method" title="Jabverwock::KSHash.hashValues (method)">hashValues</a></span></span> <span class='ivar'>@units</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="removeJSPrefix-instance_method">
+  
+    #<strong>removeJSPrefix</strong>(sym)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_removeJSPrefix'>removeJSPrefix</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_str'>str</span>  <span class='op'>=</span> <span class='id identifier rubyid_sym'>sym</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>js</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="seqHash-instance_method">
+  
+    #<strong>seqHash</strong>(val)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 42</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_seqHash'>seqHash</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_seqHash'><span class='object_link'><a href="KSHash.html#seqHash-class_method" title="Jabverwock::KSHash.seqHash (method)">seqHash</a></span></span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='ivar'>@sequence</span><span class='period'>.</span><span class='id identifier rubyid_next'>next</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setCls-instance_method">
+  
+    #<strong>setCls</strong>(s)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setCls'>setCls</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isCls'><span class='object_link'><a href="KSUtil.html#isCls-class_method" title="Jabverwock::KSUtil.isCls (method)">isCls</a></span></span> <span class='id identifier rubyid_s'>s</span>
+    <span class='ivar'>@cls</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_divid'>divid</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setID-instance_method">
+  
+    #<strong>setID</strong>(s)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setID'>setID</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isID'><span class='object_link'><a href="KSUtil.html#isID-class_method" title="Jabverwock::KSUtil.isID (method)">isID</a></span></span> <span class='id identifier rubyid_s'>s</span>
+    <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_divid'>divid</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setName-instance_method">
+  
+    #<strong>setName</strong>(s)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123
+124
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 123</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setName'>setName</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isName'><span class='object_link'><a href="KSUtil.html#isName-class_method" title="Jabverwock::KSUtil.isName (method)">isName</a></span></span> <span class='id identifier rubyid_s'>s</span>
+    <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_divid'>divid</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setSelector-instance_method">
+  
+    #<strong>setSelector</strong>(s)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setSelector'>setSelector</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+  <span class='id identifier rubyid_setID'>setID</span> <span class='id identifier rubyid_s'>s</span>
+  <span class='id identifier rubyid_setCls'>setCls</span> <span class='id identifier rubyid_s'>s</span>
+  <span class='id identifier rubyid_setName'>setName</span> <span class='id identifier rubyid_s'>s</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setSelectors-instance_method">
+  
+    #<strong>setSelectors</strong>(inits)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setSelectors'>setSelectors</span><span class='lparen'>(</span><span class='id identifier rubyid_inits'>inits</span><span class='rparen'>)</span>      
+  <span class='id identifier rubyid_inits'>inits</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span>        
+    <span class='id identifier rubyid_setSelector'>setSelector</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_strinrgConvertSymbole'><span class='object_link'><a href="KSUtil.html#strinrgConvertSymbole-class_method" title="Jabverwock::KSUtil.strinrgConvertSymbole (method)">strinrgConvertSymbole</a></span></span> <span class='id identifier rubyid_s'>s</span>
+  <span class='kw'>end</span>      
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="updateSelector-instance_method">
+  
+    #<strong>updateSelector</strong>(*inits)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129
+130
+131
+132
+133</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_updateSelector'>updateSelector</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_inits'>inits</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_setSelectors'>setSelectors</span> <span class='id identifier rubyid_inits'>inits</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 24 20:31:19 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.11 (ruby-2.4.0).
+</div>
+
+    </div>
+  </body>
+</html>
