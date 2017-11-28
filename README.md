@@ -55,8 +55,11 @@ at command prompt
 <!DOCTYPE html>
 ```  
 
-## Usage and Documentation
-All documentation can be found in the [documentation folder](./documentation).
+## Usage
+examples are found in the [Usage folders](./Usage).
+
+## Documentation
+All documentations can be found in the [documentation folder](./Documents).
 
 ## License
 Jabverwock is distributed under MIT license.
