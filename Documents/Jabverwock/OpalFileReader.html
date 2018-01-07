@@ -6,7 +6,7 @@
 <title>
   Class: Jabverwock::OpalFileReader
   
-    &mdash; Documentation by YARD 0.9.11
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -94,7 +94,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/opal/opalFileReader.rb</dd>
+    <dd>jabverwock/lib/opal/opalFileReader.rb</dd>
   </dl>
   
 </div>
@@ -401,7 +401,7 @@ script tag for opal file</p>
 17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@opalPath</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -451,7 +451,7 @@ script tag for opal file</p>
 10</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_opalFileName'>opalFileName</span>
   <span class='ivar'>@opalFileName</span>
@@ -514,7 +514,7 @@ script tag for opal file</p>
 9</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_opalPath='>opalPath=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@opalPath</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -552,7 +552,7 @@ script tag for opal file</p>
 40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extractFile'>extractFile</span> <span class='id identifier rubyid_path'>path</span>
   <span class='id identifier rubyid_extractFilePath'>extractFilePath</span> <span class='id identifier rubyid_path'>path</span>
@@ -584,7 +584,7 @@ script tag for opal file</p>
 31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extractFileName'>extractFileName</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>error, select ruby code</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_isRubyCode'>isRubyCode</span> <span class='id identifier rubyid_path'>path</span>
@@ -615,7 +615,7 @@ script tag for opal file</p>
 35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extractFilePath'>extractFilePath</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
   <span class='ivar'>@opalFilePath</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
@@ -646,7 +646,7 @@ script tag for opal file</p>
 26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isRubyCode'>isRubyCode</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ex'>ex</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
@@ -686,7 +686,7 @@ script tag for opal file</p>
 53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_readIn'>readIn</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_extractFile'>extractFile</span> <span class='id identifier rubyid_path'>path</span>
@@ -725,7 +725,7 @@ script tag for opal file</p>
 21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/opal/opalFileReader.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/opal/opalFileReader.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_readOpal'>readOpal</span>
   <span class='id identifier rubyid_readIn'>readIn</span> <span class='ivar'>@opalPath</span>
@@ -740,9 +740,9 @@ script tag for opal file</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 24 20:31:20 2017 by
+  Generated on Sun Jan  7 12:18:12 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.4.0).
+  0.9.12 (ruby-2.4.0).
 </div>
 
     </div>

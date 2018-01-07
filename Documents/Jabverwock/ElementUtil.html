@@ -6,7 +6,7 @@
 <title>
   Class: Jabverwock::ElementUtil
   
-    &mdash; Documentation by YARD 0.9.11
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -94,7 +94,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/js/element/elementUtil.rb</dd>
+    <dd>jabverwock/lib/js/element/elementUtil.rb</dd>
   </dl>
   
 </div>
@@ -220,7 +220,7 @@
 20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/element/elementUtil.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/element/elementUtil.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addEventListenerMain'>addEventListenerMain</span><span class='lparen'>(</span><span class='id identifier rubyid_content'>content</span><span class='comma'>,</span> <span class='id identifier rubyid_event'>event</span><span class='comma'>,</span> <span class='id identifier rubyid_func'>func</span><span class='comma'>,</span> <span class='id identifier rubyid_useCaption'>useCaption</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_content'>content</span><span class='period'>.</span><span class='id identifier rubyid_dot'>dot</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>addEventListener</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>(</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_inDoubleQuot'>inDoubleQuot</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='gvar'>$COMMA</span> <span class='op'>+</span> <span class='id identifier rubyid_func'>func</span> <span class='op'>+</span> <span class='id identifier rubyid_useCaption'>useCaption</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>)</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='gvar'>$JS_CMD_END</span>
@@ -250,7 +250,7 @@
 24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/element/elementUtil.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/element/elementUtil.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spliteSympbolByUnderBar'>spliteSympbolByUnderBar</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_sym'>sym</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
@@ -286,7 +286,7 @@
 34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/element/elementUtil.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/element/elementUtil.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_typeName'>typeName</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>node</span><span class='tstring_end'>&#39;</span></span>
@@ -307,9 +307,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 24 20:31:19 2017 by
+  Generated on Sun Jan  7 12:18:12 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.4.0).
+  0.9.12 (ruby-2.4.0).
 </div>
 
     </div>

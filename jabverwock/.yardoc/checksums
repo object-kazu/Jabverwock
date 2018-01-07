@@ -1,6 +1,6 @@
 lib/css/css.rb e870d02e3f3c11f76c4105a85188dbfa25a55690
 lib/css/propertyTemplete.rb aa07ffa5400cadc3718d0e2b3670a77b15e1e10d
-lib/global/globalDef.rb b79d01291187b4d2fe61396d777317db85580d8e
+lib/global/globalDef.rb 2630ea29e6ff1bf0d8a630bed4e2ff4a647884b3
 lib/global/jw.rb d33fb668c3bce25024f1f654c941de72f7aec958
 lib/global/jwMulti.rb 6b62fed90f121d5dee62b68b30b2f51ee44c9fae
 lib/global/jwOneTag.rb 7c3c6fffbf776a6dcf880212711e35daa7dd5e5a

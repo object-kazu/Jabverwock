@@ -6,7 +6,7 @@
 <title>
   Class: Jabverwock::JsVar
   
-    &mdash; Documentation by YARD 0.9.11
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -96,7 +96,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/js/jsVar.rb</dd>
+    <dd>jabverwock/lib/js/jsVar.rb</dd>
   </dl>
   
 </div>
@@ -356,7 +356,7 @@
 17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsVar.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsVar.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_inits'>inits</span><span class='rparen'>)</span>
   <span class='kw'>super</span> <span class='id identifier rubyid_inits'>inits</span>
@@ -405,7 +405,7 @@
 14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsVar.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsVar.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_query'>query</span>
   <span class='ivar'>@query</span>
@@ -448,7 +448,7 @@
 14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsVar.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsVar.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_result'>result</span>
   <span class='ivar'>@result</span>
@@ -500,7 +500,7 @@
 58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsVar.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsVar.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_collection'>collection</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_exp'>exp</span><span class='rparen'>)</span>
 
@@ -547,7 +547,7 @@
 39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsVar.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsVar.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_collectionLength'>collectionLength</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_l'>l</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>.length</span><span class='tstring_end'>&quot;</span></span>
@@ -592,7 +592,7 @@
 31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsVar.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsVar.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cut'>cut</span>
   <span class='id identifier rubyid_exp'>exp</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lastHashValue'><span class='object_link'><a href="KSHash.html#lastHashValue-class_method" title="Jabverwock::KSHash.lastHashValue (method)">lastHashValue</a></span></span> <span class='ivar'>@units</span>
@@ -626,7 +626,7 @@
 24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsVar.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsVar.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is'>is</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@obj</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> = </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_val'>val</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -643,9 +643,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 24 20:31:20 2017 by
+  Generated on Sun Jan  7 12:18:12 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.4.0).
+  0.9.12 (ruby-2.4.0).
 </div>
 
     </div>

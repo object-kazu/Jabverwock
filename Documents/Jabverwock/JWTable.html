@@ -6,7 +6,7 @@
 <title>
   Class: Jabverwock::JWTable
   
-    &mdash; Documentation by YARD 0.9.11
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -104,7 +104,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/global/jwTable.rb</dd>
+    <dd>jabverwock/lib/global/jwTable.rb</dd>
   </dl>
   
 </div>
@@ -663,7 +663,7 @@
 31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='kw'>super</span>
@@ -719,7 +719,7 @@
 21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_headerList'>headerList</span>
   <span class='ivar'>@headerList</span>
@@ -762,7 +762,7 @@
 21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rows'>rows</span>
   <span class='ivar'>@rows</span>
@@ -803,7 +803,7 @@
 48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addCaption'>addCaption</span>
   <span class='kw'>unless</span> <span class='ivar'>@caption</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -844,7 +844,7 @@
 97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addGeneral'>addGeneral</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='comma'>,</span> <span class='id identifier rubyid_function'>function</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_arr'>arr</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
@@ -881,7 +881,7 @@
 115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addRowEach'>addRowEach</span> <span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='ivar'>@rows</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_arr'>arr</span>
@@ -911,7 +911,7 @@
 86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addRows'>addRows</span> <span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
    <span class='id identifier rubyid_addGeneral'>addGeneral</span> <span class='id identifier rubyid_arr'>arr</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>addRowEach</span><span class='tstring_end'>&quot;</span></span>
@@ -955,7 +955,7 @@
 105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addTableData'>addTableData</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -999,7 +999,7 @@
 82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addTableDataList'>addTableDataList</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_addGeneral'>addGeneral</span> <span class='id identifier rubyid_arr'>arr</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>addTableData</span><span class='tstring_end'>&quot;</span></span>      
@@ -1035,7 +1035,7 @@
 59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addTableHeader'>addTableHeader</span>
   <span class='kw'>if</span> <span class='ivar'>@headerList</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -1089,7 +1089,7 @@
 127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assembleHTML'>assembleHTML</span>
   <span class='id identifier rubyid_nameCheck'>nameCheck</span>
@@ -1127,7 +1127,7 @@
 36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_caption'>caption</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='ivar'>@caption</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span>
@@ -1160,7 +1160,7 @@
 111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dataString'>dataString</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ds'>ds</span><span class='comma'>,</span> <span class='id identifier rubyid_hl'>hl</span><span class='op'>|</span>
@@ -1198,7 +1198,7 @@
 76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dataTreatment'>dataTreatment</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isDoubleArray'><span class='object_link'><a href="KSUtil.html#isDoubleArray-class_method" title="Jabverwock::KSUtil.isDoubleArray (method)">isDoubleArray</a></span></span> <span class='ivar'>@rows</span>
@@ -1238,7 +1238,7 @@
 141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insertScript'>insertScript</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_isExistBodyTagAtTempleteString'>isExistBodyTagAtTempleteString</span>
@@ -1274,7 +1274,7 @@
 133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_nameCheck'>nameCheck</span>
   <span class='kw'>if</span> <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1309,7 +1309,7 @@
 66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwTable.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tableHeaderListTreat'>tableHeaderListTreat</span>
   <span class='ivar'>@headerList</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_str'>str</span><span class='comma'>,</span><span class='id identifier rubyid_hl'>hl</span><span class='op'>|</span>
@@ -1327,9 +1327,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 24 20:31:18 2017 by
+  Generated on Sun Jan  7 12:18:11 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.4.0).
+  0.9.12 (ruby-2.4.0).
 </div>
 
     </div>

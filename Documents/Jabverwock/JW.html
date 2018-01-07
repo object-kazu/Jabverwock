@@ -6,7 +6,7 @@
 <title>
   Class: Jabverwock::JW
   
-    &mdash; Documentation by YARD 0.9.11
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -94,7 +94,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/global/jw.rb</dd>
+    <dd>jabverwock/lib/global/jw.rb</dd>
   </dl>
   
 </div>
@@ -695,7 +695,7 @@
 28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@name</span>           <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -752,7 +752,7 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_aData'>aData</span>
   <span class='ivar'>@aData</span>
@@ -795,7 +795,7 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -838,7 +838,7 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pressVal'>pressVal</span>
   <span class='ivar'>@pressVal</span>
@@ -881,7 +881,7 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tagManager'>tagManager</span>
   <span class='ivar'>@tagManager</span>
@@ -924,7 +924,7 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_templeteString'>templeteString</span>
   <span class='ivar'>@templeteString</span>
@@ -966,7 +966,7 @@
 168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 161</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assemble'>assemble</span>
   <span class='id identifier rubyid_tag'>tag</span>
@@ -1019,7 +1019,7 @@
 59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attr'>attr</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
@@ -1072,7 +1072,7 @@
 68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attrSymbol'>attrSymbol</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
@@ -1112,7 +1112,7 @@
 37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attrWithSymbolsArray'>attrWithSymbolsArray</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
@@ -1147,7 +1147,7 @@
 107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isSingleTag'>isSingleTag</span><span class='lparen'>(</span><span class='id identifier rubyid_isSingle'>isSingle</span><span class='rparen'>)</span>
   <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_isSingleTag'>isSingleTag</span> <span class='op'>=</span> <span class='id identifier rubyid_isSingle'>isSingle</span>  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isBool'><span class='object_link'><a href="KSUtil.html#isBool-class_method" title="Jabverwock::KSUtil.isBool (method)">isBool</a></span></span> <span class='id identifier rubyid_isSingle'>isSingle</span>
@@ -1179,7 +1179,7 @@
 74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jsAttrForSymboleStringData'>jsAttrForSymboleStringData</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='comment'>#override at jwCssJs class
@@ -1215,7 +1215,7 @@
 136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_makeResult'>makeResult</span>
   <span class='ivar'>@templeteString</span> <span class='op'>+=</span> <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_tempOpenString'>tempOpenString</span> <span class='op'>+</span> <span class='gvar'>$RET</span>
@@ -1251,7 +1251,7 @@
 152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_makeTag'>makeTag</span>
   <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_withBreak'>withBreak</span> <span class='op'>=</span> <span class='ivar'>@isWithBreak</span>
@@ -1289,7 +1289,7 @@
 146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_memberAssemble'>memberAssemble</span>
   <span class='kw'>if</span> <span class='ivar'>@memberStringArray</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -1326,7 +1326,7 @@
 180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 177</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_press'>press</span>
   <span class='id identifier rubyid_prepPress'>prepPress</span>
@@ -1369,7 +1369,7 @@
 175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pressConfig'>pressConfig</span><span class='lparen'>(</span><span class='label'>name:</span><span class='comma'>,</span> <span class='label'>dist:</span><span class='rparen'>)</span>
   <span class='ivar'>@pressVal</span><span class='period'>.</span><span class='id identifier rubyid_exportFile'>exportFile</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
@@ -1406,7 +1406,7 @@
 195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 187</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pressInsert'>pressInsert</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_insertData'>insertData</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@pressVal</span><span class='period'>.</span><span class='id identifier rubyid_isResultStringEmpty'>isResultStringEmpty</span>
@@ -1443,7 +1443,7 @@
 185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pressTo'>pressTo</span><span class='lparen'>(</span><span class='label'>name:</span><span class='comma'>,</span><span class='label'>dist:</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pressConfig'>pressConfig</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>dist:</span> <span class='id identifier rubyid_dist'>dist</span><span class='rparen'>)</span>
@@ -1477,7 +1477,7 @@
 159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tag'>tag</span>
   <span class='kw'>if</span> <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1511,7 +1511,7 @@
 103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tgStr'>tgStr</span>
   <span class='id identifier rubyid_assemble'>assemble</span>
@@ -1543,7 +1543,7 @@
 79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_withBreak'>withBreak</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@isWithBreak</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -1559,9 +1559,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 24 20:31:17 2017 by
+  Generated on Sun Jan  7 12:18:10 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.4.0).
+  0.9.12 (ruby-2.4.0).
 </div>
 
     </div>

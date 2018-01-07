@@ -6,7 +6,7 @@
 <title>
   Class: Jabverwock::JsBase
   
-    &mdash; Documentation by YARD 0.9.11
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -94,7 +94,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/js/jsBase.rb</dd>
+    <dd>jabverwock/lib/js/jsBase.rb</dd>
   </dl>
   
 </div>
@@ -678,7 +678,7 @@
 35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_inits'>inits</span><span class='rparen'>)</span>
   <span class='ivar'>@obj</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -737,7 +737,7 @@
 21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cls'>cls</span>
   <span class='ivar'>@cls</span>
@@ -780,7 +780,7 @@
 21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_id'>id</span>
   <span class='ivar'>@id</span>
@@ -823,7 +823,7 @@
 21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -866,7 +866,7 @@
 21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_units'>units</span>
   <span class='ivar'>@units</span>
@@ -903,7 +903,7 @@
 96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_docRecords'>docRecords</span>
   <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashValues'><span class='object_link'><a href="KSHash.html#hashValues-class_method" title="Jabverwock::KSHash.hashValues (method)">hashValues</a></span></span> <span class='ivar'>@docHash</span>
@@ -934,7 +934,7 @@
 54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gatheringOrder'>gatheringOrder</span>
   <span class='id identifier rubyid_prep'>prep</span> <span class='op'>=</span> <span class='ivar'>@equality</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='ivar'>@units</span>
@@ -976,7 +976,7 @@
 40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initSeq'>initSeq</span>
   <span class='ivar'>@sequence</span> <span class='op'>=</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_step'>step</span>
@@ -1023,7 +1023,7 @@
 74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_orders'>orders</span>
   <span class='id identifier rubyid_ord'>ord</span> <span class='op'>=</span> <span class='id identifier rubyid_gatheringOrder'>gatheringOrder</span>      
@@ -1072,7 +1072,7 @@
 61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_printHash'>printHash</span>
   <span class='id identifier rubyid_p'>p</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>units : </span><span class='embexpr_beg'>#{</span><span class='ivar'>@units</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -1115,7 +1115,7 @@
 80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recBy'>recBy</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='ivar'>@units</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span> <span class='id identifier rubyid_seqHash'>seqHash</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
@@ -1145,7 +1145,7 @@
 84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_record'>record</span>
   <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_firstHashValue'><span class='object_link'><a href="KSHash.html#firstHashValue-class_method" title="Jabverwock::KSHash.firstHashValue (method)">firstHashValue</a></span></span> <span class='ivar'>@units</span>
@@ -1191,7 +1191,7 @@
 92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_records'>records</span>
   <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashValues'><span class='object_link'><a href="KSHash.html#hashValues-class_method" title="Jabverwock::KSHash.hashValues (method)">hashValues</a></span></span> <span class='ivar'>@units</span>
@@ -1222,7 +1222,7 @@
 49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_removeJSPrefix'>removeJSPrefix</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_str'>str</span>  <span class='op'>=</span> <span class='id identifier rubyid_sym'>sym</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -1253,7 +1253,7 @@
 44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_seqHash'>seqHash</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="KSHash.html" title="Jabverwock::KSHash (module)">KSHash</a></span></span><span class='period'>.</span><span class='id identifier rubyid_seqHash'><span class='object_link'><a href="KSHash.html#seqHash-class_method" title="Jabverwock::KSHash.seqHash (method)">seqHash</a></span></span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='ivar'>@sequence</span><span class='period'>.</span><span class='id identifier rubyid_next'>next</span>
@@ -1285,7 +1285,7 @@
 121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setCls'>setCls</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isCls'><span class='object_link'><a href="KSUtil.html#isCls-class_method" title="Jabverwock::KSUtil.isCls (method)">isCls</a></span></span> <span class='id identifier rubyid_s'>s</span>
@@ -1319,7 +1319,7 @@
 115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setID'>setID</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isID'><span class='object_link'><a href="KSUtil.html#isID-class_method" title="Jabverwock::KSUtil.isID (method)">isID</a></span></span> <span class='id identifier rubyid_s'>s</span>
@@ -1353,7 +1353,7 @@
 127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setName'>setName</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isName'><span class='object_link'><a href="KSUtil.html#isName-class_method" title="Jabverwock::KSUtil.isName (method)">isName</a></span></span> <span class='id identifier rubyid_s'>s</span>
@@ -1388,7 +1388,7 @@
 109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setSelector'>setSelector</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
@@ -1423,7 +1423,7 @@
 102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setSelectors'>setSelectors</span><span class='lparen'>(</span><span class='id identifier rubyid_inits'>inits</span><span class='rparen'>)</span>      
   <span class='id identifier rubyid_inits'>inits</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span>        
@@ -1457,7 +1457,7 @@
 133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/js/jsBase.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/js/jsBase.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_updateSelector'>updateSelector</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_inits'>inits</span><span class='rparen'>)</span>
 
@@ -1474,9 +1474,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 24 20:31:19 2017 by
+  Generated on Sun Jan  7 12:18:12 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.4.0).
+  0.9.12 (ruby-2.4.0).
 </div>
 
     </div>

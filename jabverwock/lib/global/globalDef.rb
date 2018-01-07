@@ -1,8 +1,15 @@
 
-# ## String extension ############
+# String extensions
 module StringExtension
   
+  
   refine String do
+    
+    
+    # Combine strings by dot(.).
+    #
+    # @example
+    # "sample".dot("is_test") => "sample.is_test"
     def dot(str)
       self + "." + str
     end
@@ -86,20 +93,32 @@ end
 
 module SymbolExtension
   refine Symbol do
+    
+    # To make string as variable
+    # @example
+    #   :abc.variable  => "$LABEL_INSERT_STARTabc$LABEL_INSERT_END"
     def variable
       $LABEL_INSERT_START + self.to_s + $LABEL_INSERT_END
     end  
     
+    # to meke array
+    # @example
+    # :id__test.varIs "sample" => {:label => "id__test", :data => "sample"}
     def varIs(val)
       {:label => self.to_s, :data => val}
     end
-
+    
+    # @return [string] divid by "__"
+    # @example
+    #     :id__test.divid => "test"
     def divid
       sim = self.to_s
       elem = sim.split "__"
       elem
     end
-
+    
+    # :id__test  => true
+    # :id_test  => false
     def hasDoubleUnderBar?
       ans = self.to_s
       return true if ans.include? "__"
@@ -114,32 +133,26 @@ module ArrayExtension
   
   refine Array do
     
+    # @example
+    # a = [1,2,3]
+    # b = [4,5,6]
+    # a.append b # => [1, 2, 3, 4, 5, 6]
     def append(element)      
       self << element
       self.flatten!
     end
 
+    
+    # @example
+    # a = [1,2,3]
+    # b = [4,5,6]
+    # a.appends [11,22], [33,55] # => [1, 2, 3, [4, 5, 6]]
+    # p a # => [1, 2, 3, 11, 22, 33, 55]
     def appends (*element)
       element.each do |a| 
         self.append a
       end
     end
-
-    # def appendArray(arr)
-    #   self.concat arr
-    # end
-
-    # a = [1,2,3,4]
-    # b = [4,5,6]
-    # p a.append 4 # => [1, 2, 3, 4]
-   
-    
-
-    # c = []
-    # p a.append c
-    #p a.append b # => [1, 2, 3, 4, [4, 5, 6]]
-
-    #p a.appendArray b # => [1, 2, 3, 4, 4, 5, 6]
     
   end
 end
@@ -175,7 +188,6 @@ module Jabverwock
   $CHILD = "_c_"
   $MEMBER = "_m_"
   $ENDMARK = "_e_"
-  # $CHILD_SELECTOR = "__child_selector__"
   
   ## Table ####################
   $BR      = "<br>"
@@ -186,7 +198,20 @@ module Jabverwock
   $ID_ELEM_ID = "id::"
   $ID_ELEM_CLS = "cls::"
 
-  
+  # CSS style list
+  #   css.border_style = STYLE.NONE
+  #   => "head {\nborder-style: none;\n}"
+  #
+  # none	線を表示せず、線幅は0になります。他のセルの線と重なる場合は、他のセル線が優先されます。  
+  # hidden	線を表示せず、線幅は0になります。他のセルの線と重なる場合は、hidden が優先されます。   
+  # dotted	点線で表示します。  
+  # dashed	破線で表示します。  
+  # solid	実線で表示します。  
+  # double	二重線で表示します。  
+  # groove	線が窪んで見えるような線で表示します。  
+  # ridge	線が突起して見えるような線で表示します。  
+  # inset	領域全体が窪んで見えるような線で表示します。  
+  # outset	領域全体が突起して見えるような線で表示します。  
   module STYLE
     class << self
       styles = %w(none hidden dotted dashed solid double groove ridge inset outset)
@@ -195,19 +220,7 @@ module Jabverwock
           "#{s}"
         end
       end
-      
     end
-    # 値	説明
-    # none	線を表示せず、線幅は0になります。他のセルの線と重なる場合は、他のセル線が優先されます。
-    # hidden	線を表示せず、線幅は0になります。他のセルの線と重なる場合は、hidden が優先されます。
-    # dotted	点線で表示します。
-    # dashed	破線で表示します。
-    # solid	実線で表示します。
-    # double	二重線で表示します。
-    # groove	線が窪んで見えるような線で表示します。
-    # ridge	線が突起して見えるような線で表示します。
-    # inset	領域全体が窪んで見えるような線で表示します。
-    # outset	領域全体が突起して見えるような線で表示します。
   end
   
   module ORIGIN

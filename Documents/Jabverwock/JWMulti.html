@@ -6,7 +6,7 @@
 <title>
   Class: Jabverwock::JWMulti
   
-    &mdash; Documentation by YARD 0.9.11
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -102,7 +102,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/global/jwMulti.rb</dd>
+    <dd>jabverwock/lib/global/jwMulti.rb</dd>
   </dl>
   
 </div>
@@ -496,7 +496,7 @@
 19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='kw'>super</span>
@@ -546,7 +546,7 @@
 15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_childStringArray'>childStringArray</span>
   <span class='ivar'>@childStringArray</span>
@@ -596,7 +596,7 @@
 36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChild'>addChild</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'><span class='object_link'><a href="JW.html" title="Jabverwock::JW (class)">JW</a></span></span>
@@ -646,7 +646,7 @@
 47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildCSS'>addChildCSS</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_cssArray'>cssArray</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -684,7 +684,7 @@
 52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildHTML'>addChildHTML</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_assembleHTML'>assembleHTML</span>
@@ -717,7 +717,7 @@
 59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildren'>addChildren</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_children'>children</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> 
@@ -750,7 +750,7 @@
 69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildString'>addChildString</span><span class='lparen'>(</span><span class='id identifier rubyid_childString'>childString</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="KString.html" title="Jabverwock::KString (module)">KString</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isString?'><span class='object_link'><a href="KString.html#isString%3F-class_method" title="Jabverwock::KString.isString? (method)">isString?</a></span></span> <span class='id identifier rubyid_childString'>childString</span>      
@@ -783,7 +783,7 @@
 75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildStrings'>addChildStrings</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_children'>children</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span>
@@ -817,7 +817,7 @@
 93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_childAssemble'>childAssemble</span>
   <span class='ivar'>@childStringArray</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span>
@@ -850,7 +850,7 @@
 64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_contentIs'>contentIs</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_addChildString'>addChildString</span> <span class='id identifier rubyid_str'>str</span>
@@ -889,7 +889,7 @@
 87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jwMulti.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_makeResult'>makeResult</span>
   <span class='ivar'>@templeteString</span> <span class='op'>+=</span> <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_tempOpenString'>tempOpenString</span> <span class='op'>+</span> <span class='gvar'>$RET</span>
@@ -912,9 +912,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 24 20:31:17 2017 by
+  Generated on Sun Jan  7 12:18:10 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.4.0).
+  0.9.12 (ruby-2.4.0).
 </div>
 
     </div>

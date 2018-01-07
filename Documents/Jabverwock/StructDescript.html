@@ -6,7 +6,7 @@
 <title>
   Class: Jabverwock::StructDescript
   
-    &mdash; Documentation by YARD 0.9.11
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -94,7 +94,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/global/structDescript.rb</dd>
+    <dd>jabverwock/lib/global/structDescript.rb</dd>
   </dl>
   
 </div>
@@ -590,7 +590,7 @@
 20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@parArr</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='comment'>#親を覚えておく
@@ -640,7 +640,7 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parArr'>parArr</span>
   <span class='ivar'>@parArr</span>
@@ -683,7 +683,7 @@
 16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parIndex'>parIndex</span>
   <span class='ivar'>@parIndex</span>
@@ -724,7 +724,7 @@
 160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChild'>addChild</span><span class='lparen'>(</span><span class='id identifier rubyid_par'>par</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_chi'>chi</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -762,7 +762,7 @@
 152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 146</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addMember'>addMember</span><span class='lparen'>(</span><span class='id identifier rubyid_par'>par</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_mem'>mem</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -797,7 +797,7 @@
 42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_arraying'>arraying</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>{</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='gvar'>$CHILD</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>,</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='gvar'>$MEMBER</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>}</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='gvar'>$ENDMARK</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -844,7 +844,7 @@
 81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_coden'>coden</span><span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='comma'>,</span> <span class='id identifier rubyid_c'>c</span><span class='comma'>,</span> <span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>      
   <span class='kw'>if</span> <span class='id identifier rubyid_isElement'>isElement</span> <span class='id identifier rubyid_l'>l</span>
@@ -904,7 +904,7 @@
 99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_codenElemnt'>codenElemnt</span> <span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='comma'>,</span><span class='id identifier rubyid_c'>c</span><span class='comma'>,</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
   <span class='comment'># &quot;a&quot;  &quot;,&quot;  &quot;b&quot; 
@@ -960,7 +960,7 @@
 123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_codenEndMark'>codenEndMark</span><span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='comma'>,</span><span class='id identifier rubyid_c'>c</span><span class='comma'>,</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
   <span class='comment'># &quot;}&quot;  &quot;,&quot;  &quot;a&quot;
@@ -1005,7 +1005,7 @@
 106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_endMarkCoden'>endMarkCoden</span> <span class='lparen'>(</span><span class='id identifier rubyid_lastCode'>lastCode</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_lastCode'>lastCode</span> <span class='op'>==</span> <span class='gvar'>$ENDMARK</span> <span class='comment'>#ex) a, }, }
@@ -1040,7 +1040,7 @@
 32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expr'>expr</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_structing'>structing</span> <span class='id identifier rubyid_str'>str</span>
@@ -1075,7 +1075,7 @@
 49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isElement'>isElement</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_str'>str</span> <span class='op'>==</span> <span class='gvar'>$CHILD</span>
@@ -1109,7 +1109,7 @@
 37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prep'>prep</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\t</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1148,7 +1148,7 @@
 61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_readCoden'>readCoden</span> <span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ele'>ele</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
@@ -1186,7 +1186,7 @@
 136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recordPar'>recordPar</span> <span class='lparen'>(</span><span class='id identifier rubyid_par'>par</span><span class='rparen'>)</span>
   <span class='ivar'>@parArr</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_par'>par</span>      
@@ -1216,7 +1216,7 @@
 140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recordResult'>recordResult</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='ivar'>@resultString</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@resultString</span>
@@ -1250,7 +1250,7 @@
 132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_showPar'>showPar</span> <span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pi'>pi</span> <span class='op'>=</span> <span class='ivar'>@parArr</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>-</span> <span class='id identifier rubyid_index'>index</span>
@@ -1284,7 +1284,7 @@
 144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_showResult'>showResult</span>
   <span class='ivar'>@resultString</span>
@@ -1316,7 +1316,7 @@
 26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/structDescript.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/structDescript.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_structing'>structing</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='id identifier rubyid_prep'>prep</span> <span class='id identifier rubyid_str'>str</span>
@@ -1333,9 +1333,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 24 20:31:19 2017 by
+  Generated on Sun Jan  7 12:18:12 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.11 (ruby-2.4.0).
+  0.9.12 (ruby-2.4.0).
 </div>
 
     </div>

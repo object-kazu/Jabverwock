@@ -23,7 +23,7 @@ RSpec.describe 'global?' do
 
   end
   
-  it 'append vals' do
+  it 'appends vals' do
       a = [2,3,4]
       a.appends [5,6]
       expect(a).to eq [2,3,4,5,6]
