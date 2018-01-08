@@ -198,20 +198,10 @@ module Jabverwock
   $ID_ELEM_ID = "id::"
   $ID_ELEM_CLS = "cls::"
 
-  # CSS style list
-  #   css.border_style = STYLE.NONE
-  #   => "head {\nborder-style: none;\n}"
-  #
-  # none	線を表示せず、線幅は0になります。他のセルの線と重なる場合は、他のセル線が優先されます。  
-  # hidden	線を表示せず、線幅は0になります。他のセルの線と重なる場合は、hidden が優先されます。   
-  # dotted	点線で表示します。  
-  # dashed	破線で表示します。  
-  # solid	実線で表示します。  
-  # double	二重線で表示します。  
-  # groove	線が窪んで見えるような線で表示します。  
-  # ridge	線が突起して見えるような線で表示します。  
-  # inset	領域全体が窪んで見えるような線で表示します。  
-  # outset	領域全体が突起して見えるような線で表示します。  
+  # CSS border style list
+  # @return [String] border style
+  # @example  css.border_style = STYLE.NONE
+  #   "css {\nborder-style: none;\n}"
   module STYLE
     class << self
       styles = %w(none hidden dotted dashed solid double groove ridge inset outset)
@@ -223,6 +213,11 @@ module Jabverwock
     end
   end
   
+  
+  # CSS origin property list
+  # @example
+  #    css.background_origin = ORIGIN.BORDER
+  #    =>  "{\nbackground-origin: border-box;\n}"
   module ORIGIN
     class << self
       origin = %w(border padding content)
@@ -234,6 +229,7 @@ module Jabverwock
     end
   end
   
+  # CSS attachment property list
   module ATTATCHMENT
     class << self
       atta = %w(scroll fixed local)
@@ -245,6 +241,7 @@ module Jabverwock
     end
   end
   
+  # CSS repeat property list
   module REPEAT
     class << self
 
@@ -287,20 +284,27 @@ module Jabverwock
     end
   end
   
+  # express url property
   module URL
     class << self
+      
+      # @return [String]
+      # @example css.background_image = URL.url 'paper.gif'.dQuo
+      #   "css {\nbackground-image: url(\"paper.gif\");\n}"
       def url(str)
         "url(#{str})"
       end
     end
   end
   
+  # express color property
   module Color
     class << self
+      
+      
       def rgb(red, green, blue)
         "rgb(#{red}, #{green}, #{blue})"
       end
-
     end
 
   end
