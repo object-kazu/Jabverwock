@@ -1,0 +1,111 @@
+"Press Done!"
+"8c8\n< \t #example1 .sample{\n---\n> \t\t\t#example1 .sample {\n"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"8c8\n< \t #example1, .sample{\n---\n> \t\t\t#example1, .sample {\n"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"6c6\n< \t     width : 200px;\n---\n> \t\t\t\twidth: 200px;\n8d7\n< \t     border: 1px solid black;\n10c9,10\n< \t     margin: 0px auto;\n---\n> \t\t\t\tborder: 1px solid black;\n> \t\t\t\tmargin: 0px Auto;\n12d11\n< \n16,18c15,16\n< \n< \t #nav ul li{\n< \t     border : 1px solid red;\n---\n> \t\t\t#nav ul li {\n> \t\t\t\tborder: 1px solid red;\n20c18\n< \t     padding :3px;\n---\n> \t\t\t\tpadding: 3px;\n22,23c20\n< \n< \t #nav ul li a:link{\n---\n> \t\t\t#nav ul li a:link {\n26a24\n> \t\t\t\tcolor: blue;\n28d25\n< \t     color : blue;\n35d31\n< \t     text-decoration: none;\n36a33\n> \t\t\t\ttext-decoration: none;\n38d34\n< \t \n49d44\n< \n58d52\n< \n76,79c70\n< \t\t\t<td>\n< \t\t\t    <input type=\"radio\" name=\"seibetsu\" value=\"male\" checked>male\n< \t\t\t    <input type=\"radio\" name=\"seibetsu\" value=\"female\">female\n< \t\t\t</td>\n---\n> \t\t\t\t\t\t<td><input type=\"radio\" name=\"seibetu\" value=\"male\">male<input type=\"radio\" name=\"seibetu\" value=\"feMale\">female</td>\n83,87c74\n< \t\t\t<td>\n< \t\t\t    <input type=\"checkbox\" name=\"shumi\" value=\"PC\">pc\n< \t\t\t    <input type=\"checkbox\" name=\"shumi\" value=\"SP\">sports\n< \t\t\t    <input type=\"checkbox\" name=\"shumi\" value=\"RD\">reading\n< \t\t\t</td>\n---\n> \t\t\t\t\t\t<td><input type=\"checkbox\" name=\"shumi\" value=\"PC\">pc<input type=\"checkbox\" name=\"shumi\" value=\"SP\">sports<input type=\"checkbox\" name=\"shumi\" value=\"RD\">reading</td>\n91,94c78\n< \t\t\t<td>\n< \t\t\t    <input type=\"submit\" value=\"Send\">\n< \t\t\t    <input type=\"reset\" value=\"Cancel\">\n< \t\t\t</td>\n---\n> \t\t\t\t\t\t<td><input type=\"submit\" value=\"Send\"><input type=\"reset\" value=\"Cancel\"></td>\n"
+"Press Done!"
+"1d0\n< <!DOCTYPE html>\n"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"Press Done!"
+"no difference!"
+
+An error occurred while loading ./spec/lib/css/html_pressTo_test/index_spec.rb.
+Failure/Error: require "./path"
+
+LoadError:
+  cannot load such file -- ./path
+# ./spec/lib/css/html_pressTo_test/index_spec.rb:1:in `require'
+# ./spec/lib/css/html_pressTo_test/index_spec.rb:1:in `<top (required)>'
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"no difference!"
+"Press Done!"
+"9a10\n> \t\t\n"
+"Press Done!"
+"4d3\n< \n8d6\n< \t\n13d10\n<  \n"
+"Press Done!"
+"4d3\n< \n9d7\n< \n14d11\n< \n"
+"Press Done!"
+"4d3\n< \n9,10d7\n< \n< \n23,24d19\n< \t \n< \t\n"
+
+An error occurred while loading ./spec/lib/jsTests/sample_js_13/indexJs13_spec.rb.
+Failure/Error: r = Pathname(path).expand_path.read(:encoding => Encoding::UTF_8)
+
+Errno::ENOENT:
+  No such file or directory @ rb_sysopen - /Users/shimizukazuyuki/ActiveProject/JabberWockProjects/JabverwockRuby/jabverwock/spec/lib/jsTests/sample_js_13/sample.js
+# ./lib/js/jsFileReader.rb:35:in `read'
+# ./lib/js/jsFileReader.rb:35:in `read'
+# ./lib/js/jsFileReader.rb:35:in `readIn'
+# ./lib/js/jsObject.rb:61:in `readIn'
+# ./lib/global/jw_CSS_JS.rb:34:in `jsRead'
+# ./spec/lib/jsTests/sample_js_13/indexJs13_spec.rb:23:in `bodier'
+# ./spec/lib/jsTests/sample_js_13/indexJs13_spec.rb:31:in `block in <module:Jabverwock>'
+# ./spec/lib/jsTests/sample_js_13/indexJs13_spec.rb:12:in `<module:Jabverwock>'
+# ./spec/lib/jsTests/sample_js_13/indexJs13_spec.rb:9:in `<top (required)>'
+"Press Done!"
+"4d3\n< \n9d7\n< \n11d8\n< \n15d11\n< \t \n"
+"Press Done!"
+"4d3\n< \n9d7\n< \n11d8\n< \n15d11\n< \n19d14\n< \t \n"
+"Press Done!"
+"5d4\n< \n7d5\n< \n9d6\n< \n"
+"Press Done!"
+"9a10\n> \t\t\n"
+"Press Done!"
+"13d12\n<     \n"
+"Press Done!"
+"9d8\n< \t\n14d12\n< \n18d15\n<     \n"
+"Press Done!"
+"12d11\n<     \n14d12\n< \n"
+"Press Done!"
+"5d4\n<     \n7d5\n< \n10d7\n< \n"
+"Press Done!"
+"3d2\n< \n6d4\n< \n"
+"Press Done!"
+"3d2\n< \n6d4\n< \t\n"
+"Press Done!"
+"3d2\n< \n5d3\n< \t\n"
+
+
+Finished in 0.0004 seconds (files took 0.81345 seconds to load)
+0 examples, 0 failures, 2 errors occurred outside of examples
+

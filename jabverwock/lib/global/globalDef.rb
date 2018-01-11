@@ -199,7 +199,10 @@ module Jabverwock
   $ID_ELEM_CLS = "cls::"
 
   # CSS border style list
-  # @return [String] border style
+  #
+  # none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset
+  #
+  # @return [String] border style  
   # @example  css.border_style = STYLE.NONE
   #   "css {\nborder-style: none;\n}"
   module STYLE
@@ -215,6 +218,9 @@ module Jabverwock
   
   
   # CSS origin property list
+  #
+  # border, padding, content
+  # @return [String] property style
   # @example
   #    css.background_origin = ORIGIN.BORDER
   #    =>  "{\nbackground-origin: border-box;\n}"
@@ -230,6 +236,9 @@ module Jabverwock
   end
   
   # CSS attachment property list
+  #
+  # scroll, fixed, local
+  # @return [String] attachment property
   module ATTATCHMENT
     class << self
       atta = %w(scroll fixed local)
@@ -251,30 +260,37 @@ module Jabverwock
         self        
       end
       
+      # @return [String]
       def Yes()
         repeatTemp "repeat"
       end
-
+      
+      # @return [String]
       def No()
         repeatTemp "no-repeat"
       end
-
+      
+      # @return [String]
       def X()
         repeatTemp "repeat-x"
       end
       
+      # @return [String]
       def Y()
         repeatTemp "repeat-y"
       end
 
+      # @return [String]
       def SPC()
         repeatTemp "space"
       end
-
+      
+      # @return [String]
       def ROUND()
         repeatTemp "round"
       end
       
+      # @return [String]
       def val()
         @result ||= ""
         ans = @result.rstrip
@@ -301,7 +317,11 @@ module Jabverwock
   module Color
     class << self
       
-      
+      # rgb color
+      # @param [String] red value
+      # @param [String] green value
+      # @param [String] blue value
+      # @return [String] 
       def rgb(red, green, blue)
         "rgb(#{red}, #{green}, #{blue})"
       end
@@ -309,95 +329,97 @@ module Jabverwock
 
   end
   
-  #This class is utility for css.rb
+  #This is utilities for css.rb
   module CssUtil
     class << self
       
-      def nameWithDividStr(sel, divi)
-        sel.inject("") do |name, s|
-          next name << s if name == ""
-          name << divi << s        
-        end
-      end
-
-      def useCore(sel, arr)
-        ans = []
-        se
-        l.each do |s|
-          next ans <<  idElm(arr) if includeID s,arr
-          next ans <<  clsElm(arr) if includeCls s,arr          
-          next ans.unshift useCoreWithName(arr) if s == :name
-        end
-        ans
-      end
-
-      def useCoreWithName(arr)
-        ans = []
-        arr.each do |v|
-          ans.unshift v unless include_ID_ELEM_ID(v) || include_ID_ELEM_CLS(v)        
-        end
-        ans
-      end
+      # koko now 
+      # def nameWithDividStr(sel, divi)
+      #   sel.inject("") do |name, s|
+      #     next name << s if name == ""
+      #     name << divi << s        
+      #   end
+      # end
       
-      def include_ID_ELEM_ID(val)
-        val.include?($ID_ELEM_ID) ? true : false
-      end
-
-      def include_ID_ELEM_CLS(val)
-        val.include?($ID_ELEM_CLS) ? true : false
-      end
       
-      def includeID(elm, arr)
-        KSUtil.isID(elm.to_s) && symbolInclude(:id,arr) ? true:false
-      end
+      # def useCore(sel, arr)
+      #   ans = []
+      #   se
+      #   l.each do |s|
+      #     next ans <<  idElm(arr) if includeID s,arr
+      #     next ans <<  clsElm(arr) if includeCls s,arr          
+      #     next ans.unshift useCoreWithName(arr) if s == :name
+      #   end
+      #   ans
+      # end
 
-      def includeCls(elm,arr)
-        KSUtil.isCls(elm.to_s) && symbolInclude(:cls, arr) ? true : false
-      end
+      # def useCoreWithName(arr)
+      #   ans = []
+      #   arr.each do |v|
+      #     ans.unshift v unless include_ID_ELEM_ID(v) || include_ID_ELEM_CLS(v)        
+      #   end
+      #   ans
+      # end
       
-      def dividBySpace(str)
-        str.split
-      end
+      # def include_ID_ELEM_ID(val)
+      #   val.include?($ID_ELEM_ID) ? true : false
+      # end
 
-      def idElm(arr)
-        index = findIDIndex arr
-        removeIDIndex arr[index]
-      end
-
-      def clsElm(arr)
-        index = findClsIndex arr
-        removeClsIndex arr[index]
-      end
-
-      def symbolInclude(sym, arr)
-        arr.each do |a|
-          return true if a.include? sym.to_s
-        end
-        false
-      end
-
-      def hasSymbolArrTargetSymbol(sym,symArr)
-        symArr.each do |s|
-          return true if s == sym
-        end
-        false
-      end
+      # def include_ID_ELEM_CLS(val)
+      #   val.include?($ID_ELEM_CLS) ? true : false
+      # end
       
-      def findIDIndex(arr)      
-        arr.index{ |f| f =~ /^#{$ID_ELEM_ID}/ }
-      end
+      # def includeID(elm, arr)
+      #   KSUtil.isID(elm.to_s) && symbolInclude(:id,arr) ? true:false
+      # end
 
-      def findClsIndex(arr)
-        arr.index{ |f| f =~ /^#{$ID_ELEM_CLS}/ }
-      end
-
-      def removeIDIndex(str)
-        str.split($ID_ELEM_ID).last
-      end
+      # def includeCls(elm,arr)
+      #   KSUtil.isCls(elm.to_s) && symbolInclude(:cls, arr) ? true : false
+      # end
       
-      def removeClsIndex(str)
-        str.split($ID_ELEM_CLS).last
-      end
+      # def dividBySpace(str)
+      #   str.split
+      # end
+
+      # def idElm(arr)
+      #   index = findIDIndex arr
+      #   removeIDIndex arr[index]
+      # end
+
+      # def clsElm(arr)
+      #   index = findClsIndex arr
+      #   removeClsIndex arr[index]
+      # end
+
+      # def symbolInclude(sym, arr)
+      #   arr.each do |a|
+      #     return true if a.include? sym.to_s
+      #   end
+      #   false
+      # end
+
+      # def hasSymbolArrTargetSymbol(sym,symArr)
+      #   symArr.each do |s|
+      #     return true if s == sym
+      #   end
+      #   false
+      # end
+      
+      # def findIDIndex(arr)      
+      #   arr.index{ |f| f =~ /^#{$ID_ELEM_ID}/ }
+      # end
+
+      # def findClsIndex(arr)
+      #   arr.index{ |f| f =~ /^#{$ID_ELEM_CLS}/ }
+      # end
+
+      # def removeIDIndex(str)
+      #   str.split($ID_ELEM_ID).last
+      # end
+      
+      # def removeClsIndex(str)
+      #   str.split($ID_ELEM_CLS).last
+      # end
 
       
     end
@@ -405,13 +427,24 @@ module Jabverwock
   
   #this module is utility for hash
   module KSHash
+
+    # FIRST_KEY is keyword and symbol eqal to ":js1"
     FIRST_KEY = "#{$JS_UNITS_PREFIX}1".to_sym
+    
     class << self
       
+      # make hash with js keyword
+      #
+      # @param [String] val hash value 
+      # @param [Int] step make symbol like js1:
+      # @return [Hash]
+      # @example 
+      #    seqHash "test", 1 => {:js1 => "test"}
       def seqHash(val,step)
         sym = "#{$JS_UNITS_PREFIX}#{step}".to_sym
         {sym => val}
       end
+      
       
       # hash needs made by seqHash function
       def firstHashValue(hash)
