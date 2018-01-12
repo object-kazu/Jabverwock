@@ -6,18 +6,18 @@ using StringExtension
 using SymbolExtension
 
 module Jabverwock
-  RSpec.describe 'CssUtil' do
-    it 'hasSymbolArrTargetSymbol case true' do
-      a = %i(a b c)
-      expect(CssUtil.hasSymbolArrTargetSymbol(:a, a)).to eq true
-    end
+  # RSpec.describe 'CssUtil' do
+  #   it 'hasSymbolArrTargetSymbol case true' do
+  #     a = %i(a b c)
+  #     expect(CssUtil.hasSymbolArrTargetSymbol(:a, a)).to eq true
+  #   end
 
-    it 'hasSymbolArrTargetSymbol case false' do
-      a = %i(a b c)
-      expect(CssUtil.hasSymbolArrTargetSymbol(:ab, a)).to eq false
-    end
+  #   it 'hasSymbolArrTargetSymbol case false' do
+  #     a = %i(a b c)
+  #     expect(CssUtil.hasSymbolArrTargetSymbol(:ab, a)).to eq false
+  #   end
     
-  end
+  # end
   
   RSpec.describe 'String extension' do
     it 'first key' do

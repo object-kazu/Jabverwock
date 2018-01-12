@@ -425,7 +425,10 @@ module Jabverwock
     end
   end
   
-  #this module is utility for hash
+  # This module provide utility for hash
+  # Hash needs made by seqHash function in jabverwock
+  # make hash with js keyword
+  
   module KSHash
 
     # FIRST_KEY is keyword and symbol eqal to ":js1"
@@ -433,7 +436,6 @@ module Jabverwock
     
     class << self
       
-      # make hash with js keyword
       #
       # @param [String] val hash value 
       # @param [Int] step make symbol like js1:
@@ -444,19 +446,23 @@ module Jabverwock
         sym = "#{$JS_UNITS_PREFIX}#{step}".to_sym
         {sym => val}
       end
-      
-      
-      # hash needs made by seqHash function
+                  
+      # @param [Hash] hash target hash
+      # @return [String] value of hash[0]
       def firstHashValue(hash)
         hash[FIRST_KEY]
       end
       
+      # @param [Hash] hash target hash
+      # @return [String] value of last hash
       def lastHashValue(hash)
         lk = lastHashKey hash
         ans = hash[lk]
         ans ||= ''
       end
-
+      
+      # @param [Hash] hash target hash
+      # @return [String] key of last hash
       def lastHashKey(hash)        
         lastKey = FIRST_KEY #:a1
         hash.each_key do |k|
@@ -465,11 +471,20 @@ module Jabverwock
         lastKey
       end
       
+      # @param [Symbol] a symbol made by seqHash function
+      # @param [Symbol] b symbol made by seqHash function
+      # @return [Bool] whether a is bigger key
+      # @example hash key used by seqHash function is like :js1
+      #  compareKeys :js2, :js1 => true
       def compareKeys(a,b)
         return true if removePrefix(a) > removePrefix(b)
         false
       end
       
+      # @param [Symbol] k symbol
+      # @return [Int]
+      # @example remove string = $JS_UNITS_PREFIX
+      #   $JS_UNITS_PREFIX + "1" => 1
       def removePrefix(k)
         k.to_s.gsub($JS_UNITS_PREFIX,"").to_i
       end
