@@ -619,16 +619,16 @@
       <pre class="lines">
 
 
-714
-715
-716
-717
-718
-719
-720</pre>
+770
+771
+772
+773
+774
+775
+776</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 714</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 770</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addSpace'>addSpace</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_isString?'>isString?</span> <span class='id identifier rubyid_str'>str</span>
@@ -657,15 +657,15 @@
       <pre class="lines">
 
 
-773
-774
-775
-776
-777
-778</pre>
+829
+830
+831
+832
+833
+834</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 773</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 829</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addTabEachArray'>addTabEachArray</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='comma'>,</span> <span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>    
@@ -693,18 +693,18 @@
       <pre class="lines">
 
 
-681
-682
-683
-684
-685
-686
-687
-688
-689</pre>
+737
+738
+739
+740
+741
+742
+743
+744
+745</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 681</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 737</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_type'>check_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
   <span class='comment'># pass check -&gt; true
@@ -735,12 +735,12 @@
       <pre class="lines">
 
 
-677
-678
-679</pre>
+733
+734
+735</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 677</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 733</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insertIndex'>insertIndex</span> <span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='id identifier rubyid_i'>i</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;\/body&gt;</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span>
@@ -765,15 +765,15 @@
       <pre class="lines">
 
 
-664
-665
-666
-667
-668
-669</pre>
+720
+721
+722
+723
+724
+725</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 664</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 720</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insertText'>insertText</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='comma'>,</span><span class='id identifier rubyid_txt'>txt</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='id identifier rubyid_insertIndex'>insertIndex</span> <span class='id identifier rubyid_arr'>arr</span>
@@ -801,14 +801,14 @@
       <pre class="lines">
 
 
-671
-672
-673
-674
-675</pre>
+727
+728
+729
+730
+731</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 671</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 727</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insertTextLoop'>insertTextLoop</span> <span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
@@ -835,23 +835,23 @@
       <pre class="lines">
 
 
-758
-759
-760
-761
-762
-763
-764
-765
-766
-767
-768
-769
-770
-771</pre>
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 758</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 814</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isExistCssString'>isExistCssString</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
  
@@ -909,12 +909,12 @@
       <pre class="lines">
 
 
-695
-696
-697</pre>
+751
+752
+753</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 695</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 751</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isInt?'>isInt?</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_check_type'>check_type</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='comma'>,</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
@@ -939,14 +939,14 @@
       <pre class="lines">
 
 
-780
-781
-782
-783
-784</pre>
+836
+837
+838
+839
+840</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 780</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 836</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isIntegerIndex'>isIntegerIndex</span><span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_range'>range</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Integer</span>
@@ -995,12 +995,12 @@
       <pre class="lines">
 
 
-691
-692
-693</pre>
+747
+748
+749</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 691</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 747</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isString?'>isString?</span> <span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_check_type'>check_type</span><span class='lparen'>(</span><span class='const'>String</span><span class='comma'>,</span> <span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
@@ -1025,14 +1025,14 @@
       <pre class="lines">
 
 
-722
-723
-724
-725
-726</pre>
+778
+779
+780
+781
+782</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 722</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 778</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isStringInArray'>isStringInArray</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span>
@@ -1059,21 +1059,21 @@
       <pre class="lines">
 
 
-745
-746
-747
-748
-749
-750
-751
-752
-753
-754
-755
-756</pre>
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 745</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 801</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_makeElementArray'>makeElementArray</span> <span class='lparen'>(</span><span class='id identifier rubyid_element'>element</span><span class='comma'>,</span> <span class='id identifier rubyid_elementArray'>elementArray</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_tempArray'>tempArray</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1118,12 +1118,12 @@
       <pre class="lines">
 
 
-660
-661
-662</pre>
+716
+717
+718</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 660</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 716</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reader'>reader</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span> <span class='comment'># sentence -&gt; arr
 </span>  <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_lines'>lines</span>
@@ -1148,13 +1148,13 @@
       <pre class="lines">
 
 
-708
-709
-710
-711</pre>
+764
+765
+766
+767</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 708</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 764</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_Js_Cmd_End'>remove_Js_Cmd_End</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_isString?'>isString?</span> <span class='id identifier rubyid_text'>text</span>
@@ -1180,12 +1180,12 @@
       <pre class="lines">
 
 
-704
-705
-706</pre>
+760
+761
+762</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 704</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 760</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_removeAllRET'>removeAllRET</span><span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span> <span class='rbrace'>}</span>
@@ -1210,13 +1210,13 @@
       <pre class="lines">
 
 
-699
-700
-701
-702</pre>
+755
+756
+757
+758</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 699</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 755</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_removeLastRET'>removeLastRET</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_isString?'>isString?</span> <span class='id identifier rubyid_text'>text</span>
@@ -1242,15 +1242,15 @@
       <pre class="lines">
 
 
-646
-647
-648
-649
-650
-651</pre>
+702
+703
+704
+705
+706
+707</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 646</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 702</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_renameCls'>renameCls</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_str'>str</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cls</span><span class='tstring_end'>&quot;</span></span>
@@ -1278,15 +1278,15 @@
       <pre class="lines">
 
 
-653
-654
-655
-656
-657
-658</pre>
+709
+710
+711
+712
+713
+714</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 653</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 709</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_renameUnderBar'>renameUnderBar</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -1314,16 +1314,16 @@
       <pre class="lines">
 
 
-737
-738
-739
-740
-741
-742
-743</pre>
+793
+794
+795
+796
+797
+798
+799</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 737</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 793</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reprace'>reprace</span><span class='lparen'>(</span><span class='label'>str:</span><span class='comma'>,</span> <span class='label'>of:</span><span class='comma'>,</span> <span class='label'>with:</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_isString?'>isString?</span> <span class='id identifier rubyid_str'>str</span>
@@ -1352,12 +1352,12 @@
       <pre class="lines">
 
 
-786
-787
-788</pre>
+842
+843
+844</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 786</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 842</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sliceRange'>sliceRange</span><span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='rparen'>)</span>      
   <span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span><span class='op'>..</span><span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span>
@@ -1382,17 +1382,17 @@
       <pre class="lines">
 
 
-728
-729
-730
-731
-732
-733
-734
-735</pre>
+784
+785
+786
+787
+788
+789
+790
+791</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 728</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 784</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stringArrayConectRET'>stringArrayConectRET</span> <span class='lparen'>(</span><span class='id identifier rubyid_arr'>arr</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_arr'>arr</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1422,12 +1422,12 @@
       <pre class="lines">
 
 
-642
-643
-644</pre>
+698
+699
+700</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 642</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/globalDef.rb', line 698</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_testPrint'>testPrint</span>
   <span class='id identifier rubyid_p'>p</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test done</span><span class='tstring_end'>&quot;</span></span>
@@ -1442,7 +1442,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan 12 19:30:53 2018 by
+  Generated on Sun Jan 14 14:08:32 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.4.0).
 </div>

@@ -505,15 +505,22 @@ module Jabverwock
   # This module is utility, not depend on class instance
   module KSUtil
     class << self
-
+      
+      # For debugging, can remove?
       def pathForTest(currentFilePath)
          File.dirname(currentFilePath) + "/"      
       end
-            
+      
+      # For debugging, can remove?
       def myPATH
         pathForTest "test"
       end
-
+      
+      # For Test
+      # diff form index.html and indexPressed.html
+      # index.html and indexPressed.html should be same folder
+      # @param [String] currentFilePath path of files
+      # @return diff result
       def myDiff(currentFilePath)
         path = pathForTest currentFilePath      
         dif = `diff -b "#{path}index.html" "#{path}indexPressed.html"`
@@ -525,7 +532,10 @@ module Jabverwock
       end
       
 
-      ### file reading
+      # file reading, array make from each line
+      # @param [String] txt
+      # @param [Array] arr
+      # @return [Array]
       def fileReadingToArr (txt, arr)
         begin
           File.open(txt) do |file|
@@ -541,10 +551,14 @@ module Jabverwock
         end      
       end
       
+      # @param [Anything] v value
+      # @return [Bool]
       def isBool(v)
         !!v === v
       end
       
+      # @param [String] s
+      # @return [Symbol]
       def strinrgConvertSymbole(s)
         if s.is_a? String
           s = s.to_sym
@@ -552,62 +566,98 @@ module Jabverwock
         s
       end
       
-      # attr(:id, "test") -> attr(:id__test) -> treat attr
+      # @param [Symbol] sym
+      # @param [String] str
+      # @example
+      #  attr(:id, "test") => attr(:id__test)
       def combineSym(sym, str)
         ans = sym.to_s << "__" << str
         ans.to_sym
       end
-
+      
+      # @param [Anything] sym
+      # @return [Bool] whether symbol has "__" double underbar
+      # @example
+      #   :id__test => true
       def isDoubleUnderBarSymbol(sym)
         return nil unless sym.is_a? Symbol
         sym.hasDoubleUnderBar?
       end
 
+      
+      # @param [Anything] data
+      # @return [Bool] whether array
       def isDoubleArray (data)
         data[0].is_a?(Array)
       end
-
+      
+      # @return [Bool]
       def isBase (i,s)
         s.to_s.include?(i) ? true : false            
       end
-
+      
+      # @param [Anything] s
+      # @return [Bool] whether inclued "id" as string
       def isID(s)
         isBase "id", s
       end
 
+      # @param [Anything] s
+      # @return [Bool] whether inclued "cls" as string
       def isCls(s)
         isBase "cls", s
       end
 
+      # @param [Anything] s
+      # @return [Bool] whether inclued "name" as string
       def isName(s)
         isBase "name", s      
       end
 
-      
+      # define multi line tag
+      # @return [Array] array of multi tags
+      # @example
+      #   <HTML> \n </HTML>
       def multiTags
           %w(BLOCKQUOTE BODY DIV DL FOOTER FORM HTML HEAD PRE SCRIPT STYLE SELECT OL UL LI_multi)
       end
-
+      
+      # define table tag
+      # @return [Array] array of table tags
+      # @example
+      #   <Table> \n </Table>
       def tableTags
         %w(TR TABLE)
       end
       
+      # define single tag
+      # @return [Array] array of single tags
+      # @example
+      #   <P> </P>      
       def singleTags
         %w(P A B HR BR BUTTON I EM STRONG DT DD LIST_ITEM TITLE OPTION LI TD)
       end
-
+      
+      # define one tag
+      # @return [Array] array of one tags
+      # @example
+      #   <DOCTYPE>
       def oneTags
         %w(DOCTYPE IMG INPUT META LINK)
       end
       
+      # string insert to style tags
+      # @param [String] str
+      # @return [String]
+      # @example
+      #   intoStyleTag "test"
+      #   => "<style>\n test\n </style>\n"
       def intoStyleTag (str)
-        "<style>\n" << "#{str}\n" << "</style>\n"
-        
-        # tabbedEachLine = addTabEachLine str
-        # styTag   = "<style>\n" << "#{tabbedEachLine}\n" << "\t</style>\n"
-        # addTabEachLine styTag
+        "<style>\n" << "#{str}\n" << "</style>\n"        
       end
       
+      # @param [String] tag
+      # @return [Bool] whether tag is "<"
       def isOpenTag(tag)
         tag.match(/^(\t)*<(\w+)/) do |d|
           return true
@@ -615,6 +665,8 @@ module Jabverwock
         false
       end
       
+      # @param [String] tag
+      # @return [Bool] whether tag is ">"
       def isCloseTag(tag)
         tag.match(/<\/(\w+)/) do
           return true
@@ -622,10 +674,14 @@ module Jabverwock
         false
       end
       
+      # @param [String] tag
+      # @return [Bool] whether tag is "{"
       def isOpenPara(tag)
         tag.include? "{"
       end
-
+      
+      # @param [String] tag
+      # @return [Bool] whether tag is "}"
       def isClosePara(tag)
         tag.include? "}"
       end

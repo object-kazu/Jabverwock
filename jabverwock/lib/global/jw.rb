@@ -8,7 +8,7 @@ module Jabverwock
   using ArrayExtension
   using SymbolExtension
   
-  # this class is base html class 
+  # This class is base html class 
   class JW
 
     attr_accessor :name, :aData, :templeteString, :pressVal, :tagManager
@@ -26,7 +26,12 @@ module Jabverwock
       @tagManager     = TagManager.new
       @isWithBreak    = false
     end
-
+    
+    # add Array<Symbol> to @attrSymbol
+    # @param [Array<Symbol>] tag tag is should be symbol array
+    # @return [Array<Symbol>] 
+    # @example
+    #  attrWithSymbolsArray [:id, :cls]
     def attrWithSymbolsArray(tag)
       return unless tag.is_a? Array
       tag.each do |t|
@@ -35,7 +40,17 @@ module Jabverwock
       end
       self
     end
-
+    
+    # make pair with tag and value  
+    # val is not enough, if tag is symbol combine with value used '__'
+    # @example
+    #  (:id , test) == (:id__test)
+    # @param [Symbol] tag 
+    # @param [String] val val is not enough
+    # @return [Void]
+    # @example
+    #  JW.new.attr(:font_size, 10) => "<jw font-size="10">\n</jw>"
+    #  JW.new.attr(:font_size__10) => "<jw font-size="10">\n</jw>"
     def attr(tag, *val)
       return unless tag.is_a? Symbol
 
@@ -58,6 +73,8 @@ module Jabverwock
       self
     end
 
+    
+    
     def attrSymbol(tag)
       unless tag.is_a? Symbol
         p "tag class is #{tag}"

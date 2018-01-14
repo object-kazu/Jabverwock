@@ -102,7 +102,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>this class is base html class</p>
+<p>This class is base html class</p>
 
 
   </div>
@@ -294,7 +294,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#attr-instance_method" title="#attr (instance method)">#<strong>attr</strong>(tag, *val)  &#x21d2; Object </a>
+      <a href="#attr-instance_method" title="#attr (instance method)">#<strong>attr</strong>(tag, *val)  &#x21d2; Void </a>
     
 
     
@@ -308,7 +308,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>make pair with tag and value   val is not enough, if tag is symbol combine
+with value used &#39;__&#39;.</p>
+</div></span>
   
 </li>
 
@@ -338,7 +341,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#attrWithSymbolsArray-instance_method" title="#attrWithSymbolsArray (instance method)">#<strong>attrWithSymbolsArray</strong>(tag)  &#x21d2; Object </a>
+      <a href="#attrWithSymbolsArray-instance_method" title="#attrWithSymbolsArray (instance method)">#<strong>attrWithSymbolsArray</strong>(tag)  &#x21d2; Array&lt;Symbol&gt; </a>
     
 
     
@@ -352,7 +355,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>add Array&lt;Symbol&gt; to @attrSymbol.</p>
+</div></span>
   
 </li>
 
@@ -956,17 +961,17 @@
       <pre class="lines">
 
 
-161
-162
-163
-164
-165
-166
-167
-168</pre>
+178
+179
+180
+181
+182
+183
+184
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 161</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assemble'>assemble</span>
   <span class='id identifier rubyid_tag'>tag</span>
@@ -984,42 +989,111 @@
       <div class="method_details ">
   <h3 class="signature " id="attr-instance_method">
   
-    #<strong>attr</strong>(tag, *val)  &#x21d2; <tt>Object</tt> 
+    #<strong>attr</strong>(tag, *val)  &#x21d2; <tt>Void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>make pair with tag and value</p>
+
+<p>val is not enough, if tag is symbol combine with value used &#39;__&#39;</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code>(:id , test) == (:id__test)</code></pre>
+    
+      
+      <pre class="example code"><code>JW.new.attr(:font_size, 10) =&gt; &quot;&lt;jw font-size=&quot;10&quot;&gt;\n&lt;/jw&gt;&quot;
+JW.new.attr(:font_size__10) =&gt; &quot;&lt;jw font-size=&quot;10&quot;&gt;\n&lt;/jw&gt;&quot;</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>tag</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>val is not enough</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Void</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
 54
 55
 56
 57
 58
-59</pre>
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attr'>attr</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
@@ -1062,17 +1136,17 @@
       <pre class="lines">
 
 
-61
-62
-63
-64
-65
-66
-67
-68</pre>
+78
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attrSymbol'>attrSymbol</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
@@ -1090,29 +1164,81 @@
       <div class="method_details ">
   <h3 class="signature " id="attrWithSymbolsArray-instance_method">
   
-    #<strong>attrWithSymbolsArray</strong>(tag)  &#x21d2; <tt>Object</tt> 
+    #<strong>attrWithSymbolsArray</strong>(tag)  &#x21d2; <tt>Array&lt;Symbol&gt;</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>add Array&lt;Symbol&gt; to @attrSymbol</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_attrWithSymbolsArray'>attrWithSymbolsArray</span> <span class='lbracket'>[</span><span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:cls</span><span class='rbracket'>]</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>tag</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>tag is should be symbol array</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-30
-31
-32
-33
-34
 35
 36
-37</pre>
+37
+38
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attrWithSymbolsArray'>attrWithSymbolsArray</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
@@ -1142,12 +1268,12 @@
       <pre class="lines">
 
 
-105
-106
-107</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isSingleTag'>isSingleTag</span><span class='lparen'>(</span><span class='id identifier rubyid_isSingle'>isSingle</span><span class='rparen'>)</span>
   <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_isSingleTag'>isSingleTag</span> <span class='op'>=</span> <span class='id identifier rubyid_isSingle'>isSingle</span>  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isBool'><span class='object_link'><a href="KSUtil.html#isBool-class_method" title="Jabverwock::KSUtil.isBool (method)">isBool</a></span></span> <span class='id identifier rubyid_isSingle'>isSingle</span>
@@ -1172,14 +1298,14 @@
       <pre class="lines">
 
 
-70
-71
-72
-73
-74</pre>
+87
+88
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jsAttrForSymboleStringData'>jsAttrForSymboleStringData</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='comment'>#override at jwCssJs class
@@ -1206,16 +1332,16 @@
       <pre class="lines">
 
 
-130
-131
-132
-133
-134
-135
-136</pre>
+147
+148
+149
+150
+151
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_makeResult'>makeResult</span>
   <span class='ivar'>@templeteString</span> <span class='op'>+=</span> <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_tempOpenString'>tempOpenString</span> <span class='op'>+</span> <span class='gvar'>$RET</span>
@@ -1244,14 +1370,14 @@
       <pre class="lines">
 
 
-148
-149
-150
-151
-152</pre>
+165
+166
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 165</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_makeTag'>makeTag</span>
   <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_withBreak'>withBreak</span> <span class='op'>=</span> <span class='ivar'>@isWithBreak</span>
@@ -1278,18 +1404,18 @@
       <pre class="lines">
 
 
-138
-139
-140
-141
-142
-143
-144
-145
-146</pre>
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_memberAssemble'>memberAssemble</span>
   <span class='kw'>if</span> <span class='ivar'>@memberStringArray</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -1320,13 +1446,13 @@
       <pre class="lines">
 
 
-177
-178
-179
-180</pre>
+194
+195
+196
+197</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 194</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_press'>press</span>
   <span class='id identifier rubyid_prepPress'>prepPress</span>
@@ -1363,13 +1489,13 @@
       <pre class="lines">
 
 
-172
-173
-174
-175</pre>
+189
+190
+191
+192</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 189</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pressConfig'>pressConfig</span><span class='lparen'>(</span><span class='label'>name:</span><span class='comma'>,</span> <span class='label'>dist:</span><span class='rparen'>)</span>
   <span class='ivar'>@pressVal</span><span class='period'>.</span><span class='id identifier rubyid_exportFile'>exportFile</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
@@ -1395,18 +1521,18 @@
       <pre class="lines">
 
 
-187
-188
-189
-190
-191
-192
-193
-194
-195</pre>
+204
+205
+206
+207
+208
+209
+210
+211
+212</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 204</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pressInsert'>pressInsert</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_insertData'>insertData</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@pressVal</span><span class='period'>.</span><span class='id identifier rubyid_isResultStringEmpty'>isResultStringEmpty</span>
@@ -1437,13 +1563,13 @@
       <pre class="lines">
 
 
-182
-183
-184
-185</pre>
+199
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pressTo'>pressTo</span><span class='lparen'>(</span><span class='label'>name:</span><span class='comma'>,</span><span class='label'>dist:</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pressConfig'>pressConfig</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>dist:</span> <span class='id identifier rubyid_dist'>dist</span><span class='rparen'>)</span>
@@ -1469,15 +1595,15 @@
       <pre class="lines">
 
 
-154
-155
-156
-157
-158
-159</pre>
+171
+172
+173
+174
+175
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tag'>tag</span>
   <span class='kw'>if</span> <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1505,13 +1631,13 @@
       <pre class="lines">
 
 
-100
-101
-102
-103</pre>
+117
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tgStr'>tgStr</span>
   <span class='id identifier rubyid_assemble'>assemble</span>
@@ -1537,13 +1663,13 @@
       <pre class="lines">
 
 
-76
-77
-78
-79</pre>
+93
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'jabverwock/lib/global/jw.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_withBreak'>withBreak</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@isWithBreak</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -1559,7 +1685,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan 12 19:30:53 2018 by
+  Generated on Sun Jan 14 14:08:32 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.4.0).
 </div>
