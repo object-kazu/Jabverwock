@@ -694,18 +694,26 @@ module Jabverwock
   module KString
     # 型チェック
     class << self
-
+      
+      
       def testPrint
         p "test done"
       end
       
+      # cls reName to class
+      # @example
+      #  renameCls "cls" => "class"
+      #  renameCls "name" => "name"
       def renameCls (str)
         if str == "cls"
           return "class"
         end
         str
       end
-
+      
+      # "_" convert to "-"
+      # @example
+      #   renameUnderBar "cls_height" => "cls-height"
       def renameUnderBar (str)
         if str.include?("_")
           return str.gsub(/_/, "-")
@@ -713,27 +721,46 @@ module Jabverwock
         str
       end
       
+      # text line to Array
+      # @param [String] str 
+      # @return [Array] 
       def reader(str) # sentence -> arr
         str.lines
       end
       
+      # insert string to array
+      # @param [Array] arr
+      # @param [String] txt
+      # @return [Array]
+      # @example
+      #    a = ["a", "b", "<\/body>"]
+      #    KString.insertText a, "!!"
+      #    => "a\nb\n!!\n<\/body>\n"
       def insertText(arr,txt)
-        index = insertIndex arr
+        index = insertBodyEndTag arr
         tArr = removeAllRET arr
         tArr.insert index, txt
-        insertTextLoop tArr
+        insertReturnEachLine tArr
       end
-
-      def insertTextLoop (arr)
+      
+      # @param [Array] arr String Array
+      # return [Array]
+      def insertReturnEachLine (arr)
         ans = arr.inject("")do |a,t|
           a << t << $RET
         end
       end
       
-      def insertIndex (arr)
+      
+      # @param [Array] arr String Array
+      # return [Array]
+      def insertBodyEndTag (arr)
         arr.index { |i| i =~ /<\/body>/ }
       end
       
+      # @param [Any] type type of instance
+      # @param [Any] instance
+      # return [Bool]
       def check_type(type, instance)
         # pass check -> true
         # fail check -> ArgumentError
@@ -743,30 +770,50 @@ module Jabverwock
         end
         true
       end
-
+      
+      # whether instance type is string
+      # @param [String] instance
+      # return [Bool]
       def isString? (instance)
         check_type(String, instance)
       end
 
+      # whether instance type is Int
+      # @param [Int] instance
+      # return [Bool]
       def isInt?(instance)
         check_type(Integer,instance)
       end
-
+      
+      # last Return remove from text line
+      # @param [String] text line of text
+      # return [String]
       def removeLastRET(text)
         isString? text
         text.chomp
       end
-
+      
+      # remove Return from all of text lines
+      # @param [Array<String>] arr String Array
+      # return [Array]
       def removeAllRET(arr)
         arr.map { |s| s.chomp }
       end
+
       
+      # remove ";$" characters from text
+      # @param [String] text
+      # return [String]
       def remove_Js_Cmd_End(text)
         isString? text
         text.gsub(/;$/, "")
       end
       
-
+      # add space to top of string
+      # @param [String] str
+      # return [String]
+      # @example
+      #   addSpace "test" => " test"
       def addSpace(str)
         isString? str
         unless str.empty?
@@ -774,13 +821,21 @@ module Jabverwock
         end
         str
       end
-
+      
+      
+      # whether Array include string
+      # @param [Array] arr
+      # return [Bool] 
       def isStringInArray(arr)
         arr.each do |a|
           isString? a
         end
       end
       
+      # @param [Array] arr
+      # return [String]
+      # @example
+      #   [a,b,c] => "a\nb\nc\n"
       def stringArrayConectRET (arr)
         return if arr.empty?
         return unless isStringInArray arr
@@ -789,7 +844,13 @@ module Jabverwock
           ans << d << $RET
         end          
       end
-
+      
+      
+      # replace word "of" to "with" in strings
+      # @param [String] str target string
+      # @param [String] of target word
+      # @param [String] with replace word
+      # return [String]
       def reprace(str:, of:, with:)
         isString? str
         isString? of
@@ -798,6 +859,9 @@ module Jabverwock
         str.gsub(of,with)
       end
       
+      # @param [element] element css element
+      # @param [Array] elementArray css array
+      # return [Array] css element array
       def makeElementArray (element, elementArray)
         tempArray = []
         
@@ -810,10 +874,11 @@ module Jabverwock
         end      
         return tempArray
       end
-
+      
+      # check including css string, such as {}
+      # @param [String] str
+      # return [Bool] true if css string include
       def isExistCssString(str)
-       
-        
         return false if str.empty?
 
         if !str.include?("{") || !str.include?("}")
@@ -825,20 +890,29 @@ module Jabverwock
         return false if removeFront == ""
         true
       end
-
+      
+      # add tab each line
+      # @param [Array] arr array<String>
+      # @param [Int] number express how many tab adding in front of line
+      # return [Array]
       def addTabEachArray(arr, number)
         return "" if arr.empty?    
         arr.map{ |a|
           "\t" * number << a
         }.join.sub!("\t" * number, "")
       end
-
+      
+      # whether range has Int
+      # @param [Int] range
+      # return [Bool] whether range is Int
       def isIntegerIndex(range)
         return false unless range.first.is_a? Integer
         return false unless range.last.is_a? Integer
         true
       end
-
+      
+      # @param [Array] range
+      # return [Range]
       def sliceRange(range)      
         (range.first + 1)..(range.last + 1)
       end

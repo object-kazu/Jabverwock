@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Jabverwock::Element
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Jabverwock::Element";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (E)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Jabverwock.html" title="Jabverwock (module)">Jabverwock</a></span></span>
+     &raquo; 
+    <span class="title">Element</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Jabverwock::Element
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="ElementBase.html" title="Jabverwock::ElementBase (class)">ElementBase</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="ElementBase.html" title="Jabverwock::ElementBase (class)">ElementBase</a></span></li>
+          
+            <li class="next">Jabverwock::Element</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/js/element/Element.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>This class express element</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  <dl class="constants">
+    
+      <dt id="USECAPTIN-constant" class="">USECAPTIN =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>arg ex) :click_ or :click_2 and so on == :click because addEventListener
+allow use same event(such as click), but ruby hash do not allow same key
+see jsDocumentTest.rb</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,true</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+    
+  </dl>
+
+
+
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="ElementBase.html" title="Jabverwock::ElementBase (class)">ElementBase</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ElementBase.html#content=-instance_method" title="Jabverwock::ElementBase#content= (method)">#content</a></span>, <span class='object_link'><a href="ElementBase.html#ec-instance_method" title="Jabverwock::ElementBase#ec (method)">#ec</a></span>, <span class='object_link'><a href="ElementBase.html#ecs-instance_method" title="Jabverwock::ElementBase#ecs (method)">#ecs</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addEventListener-instance_method" title="#addEventListener (instance method)">#<strong>addEventListener</strong>(**event_function_hash)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addEventListenerUseCapture-instance_method" title="#addEventListenerUseCapture (instance method)">#<strong>addEventListenerUseCapture</strong>(**event_function_hash)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#attribute-instance_method" title="#attribute (instance method)">#<strong>attribute</strong>(str)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>each element ###.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#childNodes-instance_method" title="#childNodes (instance method)">#<strong>childNodes</strong>(position, *type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#firstChild-instance_method" title="#firstChild (instance method)">#<strong>firstChild</strong>(*type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#innerHTML-instance_method" title="#innerHTML (instance method)">#<strong>innerHTML</strong>(str)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lastChild-instance_method" title="#lastChild (instance method)">#<strong>lastChild</strong>(*type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nextSibling-instance_method" title="#nextSibling (instance method)">#<strong>nextSibling</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#node-instance_method" title="#node (instance method)">#<strong>node</strong>(kind, *type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>node ###.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parentNode-instance_method" title="#parentNode (instance method)">#<strong>parentNode</strong>(*type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#previousSibling-instance_method" title="#previousSibling (instance method)">#<strong>previousSibling</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setAttribute-instance_method" title="#setAttribute (instance method)">#<strong>setAttribute</strong>(**attrStr)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#src-instance_method" title="#src (instance method)">#<strong>src</strong>(str)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#style-instance_method" title="#style (instance method)">#<strong>style</strong>(**property_val)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ElementBase.html" title="Jabverwock::ElementBase (class)">ElementBase</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ElementBase.html#countLastArgNumber-instance_method" title="Jabverwock::ElementBase#countLastArgNumber (method)">#countLastArgNumber</a></span>, <span class='object_link'><a href="ElementBase.html#cut-instance_method" title="Jabverwock::ElementBase#cut (method)">#cut</a></span>, <span class='object_link'><a href="ElementBase.html#cutDocHash-instance_method" title="Jabverwock::ElementBase#cutDocHash (method)">#cutDocHash</a></span>, <span class='object_link'><a href="ElementBase.html#cutUnitsHash-instance_method" title="Jabverwock::ElementBase#cutUnitsHash (method)">#cutUnitsHash</a></span>, <span class='object_link'><a href="ElementBase.html#cuts-instance_method" title="Jabverwock::ElementBase#cuts (method)">#cuts</a></span>, <span class='object_link'><a href="ElementBase.html#docHashLast-instance_method" title="Jabverwock::ElementBase#docHashLast (method)">#docHashLast</a></span>, <span class='object_link'><a href="ElementBase.html#elementChanging-instance_method" title="Jabverwock::ElementBase#elementChanging (method)">#elementChanging</a></span>, <span class='object_link'><a href="ElementBase.html#elementChanging_Equal-instance_method" title="Jabverwock::ElementBase#elementChanging_Equal (method)">#elementChanging_Equal</a></span>, <span class='object_link'><a href="ElementBase.html#equality-instance_method" title="Jabverwock::ElementBase#equality (method)">#equality</a></span>, <span class='object_link'><a href="ElementBase.html#index-instance_method" title="Jabverwock::ElementBase#index (method)">#index</a></span>, <span class='object_link'><a href="ElementBase.html#initialize-instance_method" title="Jabverwock::ElementBase#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="ElementBase.html#isExistDocHash-instance_method" title="Jabverwock::ElementBase#isExistDocHash (method)">#isExistDocHash</a></span>, <span class='object_link'><a href="ElementBase.html#isExistUnitsHash-instance_method" title="Jabverwock::ElementBase#isExistUnitsHash (method)">#isExistUnitsHash</a></span>, <span class='object_link'><a href="ElementBase.html#isVarMain-instance_method" title="Jabverwock::ElementBase#isVarMain (method)">#isVarMain</a></span>, <span class='object_link'><a href="ElementBase.html#is_var-instance_method" title="Jabverwock::ElementBase#is_var (method)">#is_var</a></span>, <span class='object_link'><a href="ElementBase.html#lastArgNumberInit-instance_method" title="Jabverwock::ElementBase#lastArgNumberInit (method)">#lastArgNumberInit</a></span>, <span class='object_link'><a href="ElementBase.html#rec-instance_method" title="Jabverwock::ElementBase#rec (method)">#rec</a></span>, <span class='object_link'><a href="ElementBase.html#recMain-instance_method" title="Jabverwock::ElementBase#recMain (method)">#recMain</a></span>, <span class='object_link'><a href="ElementBase.html#record-instance_method" title="Jabverwock::ElementBase#record (method)">#record</a></span>, <span class='object_link'><a href="ElementBase.html#records-instance_method" title="Jabverwock::ElementBase#records (method)">#records</a></span>, <span class='object_link'><a href="ElementBase.html#removeLastDocHash-instance_method" title="Jabverwock::ElementBase#removeLastDocHash (method)">#removeLastDocHash</a></span>, <span class='object_link'><a href="ElementBase.html#removeLastUnitsHash-instance_method" title="Jabverwock::ElementBase#removeLastUnitsHash (method)">#removeLastUnitsHash</a></span>, <span class='object_link'><a href="ElementBase.html#unitsHashLast-instance_method" title="Jabverwock::ElementBase#unitsHashLast (method)">#unitsHashLast</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="ElementBase.html#initialize-instance_method" title="Jabverwock::ElementBase#initialize (method)">Jabverwock::ElementBase</a></span></p>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="addEventListener-instance_method">
+  
+    #<strong>addEventListener</strong>(**event_function_hash)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addEventListener'>addEventListener</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_event_function_hash'>event_function_hash</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_addEventListenerBase'>addEventListenerBase</span> <span class='const'><span class='object_link'><a href="#USECAPTIN-constant" title="Jabverwock::Element::USECAPTIN (constant)">USECAPTIN</a></span></span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='comma'>,</span> <span class='id identifier rubyid_event_function_hash'>event_function_hash</span>
+  <span class='id identifier rubyid_rec'>rec</span>
+  <span class='id identifier rubyid_countLastArgNumber'>countLastArgNumber</span> <span class='id identifier rubyid_event_function_hash'>event_function_hash</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addEventListenerUseCapture-instance_method">
+  
+    #<strong>addEventListenerUseCapture</strong>(**event_function_hash)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addEventListenerUseCapture'>addEventListenerUseCapture</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_event_function_hash'>event_function_hash</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_addEventListenerBase'>addEventListenerBase</span> <span class='const'><span class='object_link'><a href="#USECAPTIN-constant" title="Jabverwock::Element::USECAPTIN (constant)">USECAPTIN</a></span></span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='comma'>,</span> <span class='id identifier rubyid_event_function_hash'>event_function_hash</span>
+  <span class='id identifier rubyid_rec'>rec</span>
+  <span class='id identifier rubyid_countLastArgNumber'>countLastArgNumber</span> <span class='id identifier rubyid_event_function_hash'>event_function_hash</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="attribute-instance_method">
+  
+    #<strong>attribute</strong>(str)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>each element ###</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_elementChanging_Equal'>elementChanging_Equal</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attribute</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rec'>rec</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="childNodes-instance_method">
+  
+    #<strong>childNodes</strong>(position, *type)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_childNodes'>childNodes</span><span class='lparen'>(</span><span class='id identifier rubyid_position'>position</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_node'>node</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>childNodes[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_position'>position</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='op'>*</span><span class='id identifier rubyid_type'>type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="firstChild-instance_method">
+  
+    #<strong>firstChild</strong>(*type)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_firstChild'>firstChild</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_node'>node</span> <span class='symbol'>:firstChild</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_type'>type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="innerHTML-instance_method">
+  
+    #<strong>innerHTML</strong>(str)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_innerHTML'>innerHTML</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_elementChanging_Equal'>elementChanging_Equal</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>innerHTML</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rec'>rec</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lastChild-instance_method">
+  
+    #<strong>lastChild</strong>(*type)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lastChild'>lastChild</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_node'>node</span> <span class='symbol'>:lastChild</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_type'>type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="nextSibling-instance_method">
+  
+    #<strong>nextSibling</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_nextSibling'>nextSibling</span>
+  <span class='id identifier rubyid_node'>node</span> <span class='symbol'>:nextSibling</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="node-instance_method">
+  
+    #<strong>node</strong>(kind, *type)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>node ###</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_node'>node</span><span class='lparen'>(</span><span class='id identifier rubyid_kind'>kind</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>      
+  <span class='id identifier rubyid_t'>t</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+       
+  <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='id identifier rubyid_contentRemoveJSEnd'>contentRemoveJSEnd</span><span class='period'>.</span><span class='id identifier rubyid_dot'>dot</span><span class='lparen'>(</span><span class='id identifier rubyid_kind'>kind</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ans'>ans</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_dot'>dot</span><span class='lparen'>(</span><span class='ivar'>@eUtil</span><span class='period'>.</span><span class='id identifier rubyid_typeName'>typeName</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='ivar'>@ecs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_ans'>ans</span> <span class='op'>+</span> <span class='gvar'>$JS_CMD_END</span>
+  <span class='id identifier rubyid_rec'>rec</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parentNode-instance_method">
+  
+    #<strong>parentNode</strong>(*type)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 99</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parentNode'>parentNode</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_node'>node</span> <span class='symbol'>:parentNode</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_type'>type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="previousSibling-instance_method">
+  
+    #<strong>previousSibling</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_previousSibling'>previousSibling</span>
+  <span class='id identifier rubyid_node'>node</span> <span class='symbol'>:previousSibling</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setAttribute-instance_method">
+  
+    #<strong>setAttribute</strong>(**attrStr)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setAttribute'>setAttribute</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_attrStr'>attrStr</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_attrStr'>attrStr</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_att'>att</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span><span class='op'>|</span>
+    <span class='id identifier rubyid_sKey'>sKey</span> <span class='op'>=</span> <span class='ivar'>@eUtil</span><span class='period'>.</span><span class='id identifier rubyid_spliteSympbolByUnderBar'>spliteSympbolByUnderBar</span> <span class='id identifier rubyid_att'>att</span> 
+    <span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_inDoubleQuot'>inDoubleQuot</span><span class='lparen'>(</span><span class='id identifier rubyid_sKey'>sKey</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='gvar'>$COMMA</span><span class='period'>.</span><span class='id identifier rubyid_inDoubleQuot'>inDoubleQuot</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+    <span class='ivar'>@ecs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_contentRemoveJSEnd'>contentRemoveJSEnd</span><span class='period'>.</span><span class='id identifier rubyid_dot'>dot</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>setAttribute</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>(</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>)</span><span class='tstring_end'>&#39;</span></span> <span class='op'>+</span> <span class='gvar'>$JS_CMD_END</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_rec'>rec</span>
+  <span class='id identifier rubyid_countLastArgNumber'>countLastArgNumber</span> <span class='id identifier rubyid_attrStr'>attrStr</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="src-instance_method">
+  
+    #<strong>src</strong>(str)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_src'>src</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_elementChanging_Equal'>elementChanging_Equal</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>src</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rec'>rec</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="style-instance_method">
+  
+    #<strong>style</strong>(**property_val)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75
+76
+77
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/js/element/Element.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_style'>style</span> <span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_property_val'>property_val</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_property_val'>property_val</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_property'>property</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='op'>|</span>
+    <span class='ivar'>@ecs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_contentRemoveJSEnd'>contentRemoveJSEnd</span><span class='period'>.</span><span class='id identifier rubyid_dot'>dot</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>style</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_dot'>dot</span><span class='lparen'>(</span><span class='id identifier rubyid_property'>property</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='op'>+</span>  <span class='gvar'>$EQUAL</span><span class='period'>.</span><span class='id identifier rubyid_inSingleQuo'>inSingleQuo</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='gvar'>$JS_CMD_END</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_rec'>rec</span>
+  <span class='id identifier rubyid_countLastArgNumber'>countLastArgNumber</span> <span class='id identifier rubyid_property_val'>property_val</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Jan 19 13:31:12 2018 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.12 (ruby-2.4.0).
+</div>
+
+    </div>
+  </body>
+</html>
