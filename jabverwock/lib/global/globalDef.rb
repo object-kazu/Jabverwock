@@ -753,14 +753,14 @@ module Jabverwock
       
       
       # @param [Array] arr String Array
-      # return [Array]
+      # @return [Array]
       def insertBodyEndTag (arr)
         arr.index { |i| i =~ /<\/body>/ }
       end
       
       # @param [Any] type type of instance
       # @param [Any] instance
-      # return [Bool]
+      # @return [Bool]
       def check_type(type, instance)
         # pass check -> true
         # fail check -> ArgumentError
@@ -773,21 +773,21 @@ module Jabverwock
       
       # whether instance type is string
       # @param [String] instance
-      # return [Bool]
+      # @return [Bool]
       def isString? (instance)
         check_type(String, instance)
       end
 
       # whether instance type is Int
       # @param [Int] instance
-      # return [Bool]
+      # @return [Bool]
       def isInt?(instance)
         check_type(Integer,instance)
       end
       
       # last Return remove from text line
       # @param [String] text line of text
-      # return [String]
+      # @return [String]
       def removeLastRET(text)
         isString? text
         text.chomp
@@ -795,7 +795,7 @@ module Jabverwock
       
       # remove Return from all of text lines
       # @param [Array<String>] arr String Array
-      # return [Array]
+      # @return [Array]
       def removeAllRET(arr)
         arr.map { |s| s.chomp }
       end
@@ -803,7 +803,7 @@ module Jabverwock
       
       # remove ";$" characters from text
       # @param [String] text
-      # return [String]
+      # @return [String]
       def remove_Js_Cmd_End(text)
         isString? text
         text.gsub(/;$/, "")
@@ -811,7 +811,7 @@ module Jabverwock
       
       # add space to top of string
       # @param [String] str
-      # return [String]
+      # @return [String]
       # @example
       #   addSpace "test" => " test"
       def addSpace(str)
@@ -825,7 +825,7 @@ module Jabverwock
       
       # whether Array include string
       # @param [Array] arr
-      # return [Bool] 
+      # @return [Bool] 
       def isStringInArray(arr)
         arr.each do |a|
           isString? a
@@ -833,7 +833,7 @@ module Jabverwock
       end
       
       # @param [Array] arr
-      # return [String]
+      # @return [String]
       # @example
       #   [a,b,c] => "a\nb\nc\n"
       def stringArrayConectRET (arr)
@@ -850,7 +850,7 @@ module Jabverwock
       # @param [String] str target string
       # @param [String] of target word
       # @param [String] with replace word
-      # return [String]
+      # @return [String]
       def reprace(str:, of:, with:)
         isString? str
         isString? of
@@ -861,7 +861,7 @@ module Jabverwock
       
       # @param [element] element css element
       # @param [Array] elementArray css array
-      # return [Array] css element array
+      # @return [Array] css element array
       def makeElementArray (element, elementArray)
         tempArray = []
         
@@ -877,7 +877,7 @@ module Jabverwock
       
       # check including css string, such as {}
       # @param [String] str
-      # return [Bool] true if css string include
+      # @return [Bool] true if css string include
       def isExistCssString(str)
         return false if str.empty?
 
@@ -894,7 +894,7 @@ module Jabverwock
       # add tab each line
       # @param [Array] arr array<String>
       # @param [Int] number express how many tab adding in front of line
-      # return [Array]
+      # @return [Array]
       def addTabEachArray(arr, number)
         return "" if arr.empty?    
         arr.map{ |a|
@@ -904,7 +904,7 @@ module Jabverwock
       
       # whether range has Int
       # @param [Int] range
-      # return [Bool] whether range is Int
+      # @return [Bool] whether range is Int
       def isIntegerIndex(range)
         return false unless range.first.is_a? Integer
         return false unless range.last.is_a? Integer
@@ -912,7 +912,7 @@ module Jabverwock
       end
       
       # @param [Array] range
-      # return [Range]
+      # @return [Range]
       def sliceRange(range)      
         (range.first + 1)..(range.last + 1)
       end

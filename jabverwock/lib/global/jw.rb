@@ -74,7 +74,12 @@ module Jabverwock
     end
 
     
-    
+    # set attribute sybmol
+    # @param [Symbol] tag
+    # @return [Void]
+    # @example
+    #  jw.attrSymbol :cls__sample
+    #   "<jw class=\"sample\">\n</test>"
     def attrSymbol(tag)
       unless tag.is_a? Symbol
         p "tag class is #{tag}"
@@ -83,67 +88,57 @@ module Jabverwock
       e = tag.divid
       @tagManager.tagAttr e[0], e[1]  
     end
-
-    def jsAttrForSymboleStringData(symbol, string)
-      #override at jwCssJs class
-      p symbol
-      p string
+    
+    # override at jwCssJs class
+    def jsAttrForSymboleStringData(symbol, string)    
+      # p symbol
+      # p string
     end
     
+    # whether <br> tag need
+    # # return [Bool] always return true
     def withBreak()
       @isWithBreak = true
       self
     end
     
-    # ex) @tagManager.Id = id
-    # mainAttr.each do |attr| 
-    #   define_method "#{attr}=" do |val|
-    #     val = KString.checkString val
-    #     eval "@tagManager.#{attr} = val"
-    #   end
-    # end    
+    # @example
+    #   @tagManager.Id = id
+    #   mainAttr.each do |attr| 
+    #    define_method "#{attr}=" do |val|
+    #      val = KString.checkString val
+    #      eval "@tagManager.#{attr} = val"
+    #    end
+    #   end    
     mainAttr =  [:id, :cls, :name]
-    # ex) return @tagManager.Id
+    
+    # @example
+    #     return @tagManager.Id
     mainAttr.each do |attr|      
       define_method "tag#{attr.capitalize}" do
         eval "@tagManager.#{attr}"
       end
     end
     
+    
     def name
       self.class.to_s.split("::").last.downcase
     end
-     
+    
+    # just return tag strings
+    # tag string is such as <p>hogehoge<p>
+    # @return [String] tag string
     def tgStr
       assemble
       @templeteString
     end
-
+    
     def isSingleTag(isSingle)
       @tagManager.isSingleTag = isSingle  if KSUtil.isBool isSingle
-    end
-
-     ################ ID ################
-    # def selectorID
-    #   "#" + @tagManager.tagAttribute.id
-    # end
-
-    # def isExistID
-    #   return false if @tagManager.tagAttribute.id.empty?
-    #   true
-    # end
+    end    
     
-    #  ################ cls  ################
-    # def selectorCls
-    #   "." + @tagManager.tagAttribute.cls
-    # end
-
-    # def isExistCls
-    #   return false if @tagManager.tagAttribute.cls.empty?
-    #   true
-    # end
-    
-    
+    # build tag string
+    # @return [String]
     def makeResult
       @templeteString += @tagManager.tempOpenString + $RET
       if !@tagManager.tempCloseString.empty?
@@ -152,6 +147,12 @@ module Jabverwock
       @templeteString = KString.removeLastRET(@templeteString)
     end
     
+    # build member tags
+    # @example
+    #   <head>
+    #   </head>
+    #   <body> // body tag is member of head tag
+    #   </body>
     def memberAssemble
       if @memberStringArray.count > 0
          @templeteString += $RET
@@ -162,12 +163,14 @@ module Jabverwock
       @memberStringArray = []
     end
     
+    
     def makeTag
       @tagManager.withBreak = @isWithBreak
       @tagManager.openString
       @tagManager.closeString
     end
-
+    
+    # @return [String] tag name
     def tag
       if @tagManager.name.empty?
         @tagManager.name = @name        
@@ -175,32 +178,45 @@ module Jabverwock
       @tagManager.name
     end
     
+    # collect informations of tag and build to make tag
     def assemble
       tag
       makeTag
       makeResult
       memberAssemble
       @pressVal.templeteString = @templeteString
-
     end
 
-    # ## press ##
+    ###### press ######
     
+    # configure of press
+    # @param [String] name file name
+    # @param [Path] dist export path
     def pressConfig(name:, dist:)
       @pressVal.exportFile = name
       @pressVal.exportPath = dist
     end
     
+    # generate file
+    # require pressConfig
     def press
       prepPress
       pressDefault
     end
-
+    
+    # generate file
+    # @param [String] name file name
+    # @param [Path] dist export path
     def pressTo(name:,dist:)
       pressConfig(name: name, dist: dist)
       press 
     end
     
+    # press with using variable
+    # insert data into each varable
+    # if not use pressInsert, variable just remove
+    # @param [Any] insertData variable data
+    # @return [String] pressed result
     def pressInsert(*insertData)
       if @pressVal.isResultStringEmpty
         prepPress
@@ -212,16 +228,20 @@ module Jabverwock
     end
     
     private
+    # main method of pressing
     def pressDefault
       @pressVal.core
       p "Press Done!"
       pressFingerPrint      
     end
     
+    # 確認用の戻り値
     def pressFingerPrint
-      @pressVal.resultString # 確認用の戻り値
+      @pressVal.resultString 
     end
     
+    # pretreat pressing
+    # remove labels
     def prepPress
       assemble      
       @pressVal.initResutString      
