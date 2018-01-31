@@ -1,4 +1,4 @@
-require "global/globalDef"
+xrequire "global/globalDef"
 require "global/jw_CSS_OPAL_JS"
 require "global/jw"
 require "css/css"
@@ -39,7 +39,9 @@ module Jabverwock
       addChildHTML child
             
     end
-
+    
+    # add child css
+    # @param [Object] child child css object
     def addChildCSS(child)
       if child.cssArray.count > 0
         @cssArray += child.cssArray
@@ -50,35 +52,51 @@ module Jabverwock
         @cssArray << child.css
       end
     end
-
+    
+    # add child html
+    # @param [Object] child child html object
     def addChildHTML(child)
       child.assembleHTML
       addChildString(child.templeteString)      
     end
     
-    
+    # add children = some child object
+    # @param [Objects] children some child object
+    # @example
+    #      b = BODY.new
+    #      c = HEAD.new
+    #      multi.addChildren b, c
     def addChildren(*children)
       children.flatten.each do |c| 
         addChild c
       end
     end
     
+    # add content of tag
+    # @param [String] str content
+    # @example
+    #     HEAD.new.contentIs "headless"
+    #    => <head>headless</head>
     def contentIs (str)
       addChildString str
       self
     end
     
+    # add string to child object
+    # @param [String] childString string
     def addChildString(childString)
       KString.isString? childString      
       @childStringArray << childString
     end
-      
+    # add strings to child object
+    # @param [Array<String>] children Array of String
     def addChildStrings(*children)
       children.each do |c|
         addChildString c
       end
     end
     
+    # make result => html, css, js
     def makeResult
       @templeteString += @tagManager.tempOpenString + $RET
       
@@ -90,7 +108,8 @@ module Jabverwock
       @templeteString = KString.removeLastRET(@templeteString)
 
     end
-
+    
+    # assemble strings from child object
     def childAssemble
       @childStringArray.each do |a|
         @templeteString << a << $RET       

@@ -206,7 +206,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>add child element.</p>
+</div></span>
   
 </li>
 
@@ -228,7 +230,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>add child css.</p>
+</div></span>
   
 </li>
 
@@ -250,7 +254,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>add child html.</p>
+</div></span>
   
 </li>
 
@@ -272,7 +278,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>add children = some child object.</p>
+</div></span>
   
 </li>
 
@@ -294,7 +302,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>add string to child object.</p>
+</div></span>
   
 </li>
 
@@ -316,7 +326,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>add strings to child object.</p>
+</div></span>
   
 </li>
 
@@ -338,7 +350,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>assemble strings from child object.</p>
+</div></span>
   
 </li>
 
@@ -360,7 +374,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>add content of tag    =&gt; &lt;head&gt;headless&lt;/head&gt;.</p>
+</div></span>
   
 </li>
 
@@ -408,7 +424,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>make result =&gt; html, css, js.</p>
+</div></span>
   
 </li>
 
@@ -572,17 +590,52 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>add child element</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_jw'>jw</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="JW.html" title="Jabverwock::JW (class)">JW</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="JW.html#initialize-instance_method" title="Jabverwock::JW#initialize (method)">new</a></span></span>
+<span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_addChild'>addChild</span> <span class='id identifier rubyid_jw'>jw</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>child</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>child is object based on JW class</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-21
-22
-23
-24
-25
 26
 27
 28
@@ -593,10 +646,15 @@
 33
 34
 35
-36</pre>
+36
+37
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChild'>addChild</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'><span class='object_link'><a href="JW.html" title="Jabverwock::JW (class)">JW</a></span></span>
@@ -628,25 +686,56 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>add child css</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>child</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>child css object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-38
-39
-40
-41
-42
-43
-44
 45
 46
-47</pre>
+47
+48
+49
+50
+51
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildCSS'>addChildCSS</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_cssArray'>cssArray</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -672,19 +761,50 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>add child html</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>child</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>child html object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-49
-50
-51
-52</pre>
+58
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildHTML'>addChildHTML</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_assembleHTML'>assembleHTML</span>
@@ -704,20 +824,61 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>add children = some child object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='const'>BODY</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_c'>c</span> <span class='op'>=</span> <span class='const'>HEAD</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_multi'>multi</span><span class='period'>.</span><span class='id identifier rubyid_addChildren'>addChildren</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='id identifier rubyid_c'>c</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>children</span>
+      
+      
+        <span class='type'>(<tt>Objects</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>some child object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-55
-56
-57
-58
-59</pre>
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildren'>addChildren</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_children'>children</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> 
@@ -738,19 +899,50 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>add string to child object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>childString</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>string</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-66
-67
-68
-69</pre>
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildString'>addChildString</span><span class='lparen'>(</span><span class='id identifier rubyid_childString'>childString</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="KString.html" title="Jabverwock::KString (module)">KString</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isString?'><span class='object_link'><a href="KString.html#isString%3F-class_method" title="Jabverwock::KString.isString? (method)">isString?</a></span></span> <span class='id identifier rubyid_childString'>childString</span>      
@@ -770,20 +962,51 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>add strings to child object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>children</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of String</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-71
-72
-73
-74
-75</pre>
+93
+94
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addChildStrings'>addChildStrings</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_children'>children</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span>
@@ -804,20 +1027,31 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>assemble strings from child object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-89
-90
-91
-92
-93</pre>
+113
+114
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_childAssemble'>childAssemble</span>
   <span class='ivar'>@childStringArray</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span>
@@ -838,19 +1072,61 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>add content of tag</p>
+
+<pre class="code ruby"><code class="ruby">=&gt; &lt;head&gt;headless&lt;/head&gt;
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='const'>HEAD</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_contentIs'>contentIs</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>headless</span><span class='tstring_end'>&quot;</span></span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>str</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>content</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-61
-62
-63
-64</pre>
+80
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_contentIs'>contentIs</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_addChildString'>addChildString</span> <span class='id identifier rubyid_str'>str</span>
@@ -870,26 +1146,37 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>make result =&gt; html, css, js</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87</pre>
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwMulti.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_makeResult'>makeResult</span>
   <span class='ivar'>@templeteString</span> <span class='op'>+=</span> <span class='ivar'>@tagManager</span><span class='period'>.</span><span class='id identifier rubyid_tempOpenString'>tempOpenString</span> <span class='op'>+</span> <span class='gvar'>$RET</span>
@@ -912,7 +1199,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Jan 28 12:44:30 2018 by
+  Generated on Wed Jan 31 14:59:28 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.4.0).
 </div>
