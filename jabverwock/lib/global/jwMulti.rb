@@ -18,6 +18,11 @@ module Jabverwock
       @css = CSS.new("#{@name}")
     end
 
+    # add child element
+    # @param [Object] child child is object based on JW class
+    # @example
+    #   jw = JW.new
+    #   parent.addChild jw
     def addChild(child)
       unless child.is_a? JW
         p "child is >> #{child.class} error: child should be JW, JW_CSS_JS or JW_CSS class "
