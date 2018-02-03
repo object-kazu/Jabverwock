@@ -410,16 +410,16 @@ content = “test”.colSpan(2) –&gt; &lt;td colspan=“2”&gt;test&lt;/td&gt
       <pre class="lines">
 
 
-177
-178
-179
-180
-181
-182
-183</pre>
+183
+184
+185
+186
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 183</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='kw'>super</span>
@@ -455,15 +455,15 @@ content = “test”.colSpan(2) –&gt; &lt;td colspan=“2”&gt;test&lt;/td&gt
       <pre class="lines">
 
 
-221
-222
-223
-224
-225
-226</pre>
+227
+228
+229
+230
+231
+232</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 227</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setColSpan'>setColSpan</span> <span class='lparen'>(</span><span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_number'>number</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Integer</span>
@@ -491,15 +491,15 @@ content = “test”.colSpan(2) –&gt; &lt;td colspan=“2”&gt;test&lt;/td&gt
       <pre class="lines">
 
 
-214
-215
-216
-217
-218
-219</pre>
+220
+221
+222
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 214</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 220</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setRowSpan'>setRowSpan</span> <span class='lparen'>(</span><span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_number'>number</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Integer</span>
@@ -538,14 +538,14 @@ content = “test”.colSpan(2) –&gt; &lt;td colspan=“2”&gt;test&lt;/td&gt
       <pre class="lines">
 
 
-186
-187
-188
-189
-190</pre>
+192
+193
+194
+195
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tgStr'>tgStr</span>
   <span class='id identifier rubyid_treatContentToTag'>treatContentToTag</span> <span class='ivar'>@content</span>
@@ -572,13 +572,13 @@ content = “test”.colSpan(2) –&gt; &lt;td colspan=“2”&gt;test&lt;/td&gt
       <pre class="lines">
 
 
-192
-193
-194
-195</pre>
+198
+199
+200
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tgStrWithContent'>tgStrWithContent</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='ivar'>@content</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span>
@@ -616,13 +616,13 @@ content = “test”.colSpan(2) –&gt; &lt;td colspan=“2”&gt;test&lt;/td&gt
       <pre class="lines">
 
 
-200
-201
-202
-203</pre>
+206
+207
+208
+209</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 200</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 206</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_treatContentToTag'>treatContentToTag</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_treatGeneral'>treatGeneral</span> <span class='id identifier rubyid_str'>str</span><span class='comma'>,</span> <span class='gvar'>$ROW_SPAN</span><span class='comma'>,</span> <span class='symbol'>:rowspan</span>
@@ -648,17 +648,17 @@ content = “test”.colSpan(2) –&gt; &lt;td colspan=“2”&gt;test&lt;/td&gt
       <pre class="lines">
 
 
-205
-206
-207
-208
-209
-210
 211
-212</pre>
+212
+213
+214
+215
+216
+217
+218</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 205</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jwTable.rb', line 211</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_treatGeneral'>treatGeneral</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='comma'>,</span> <span class='id identifier rubyid_targetSym'>targetSym</span><span class='rparen'>)</span>      
   <span class='kw'>if</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_target'>target</span>
@@ -678,7 +678,7 @@ content = “test”.colSpan(2) –&gt; &lt;td colspan=“2”&gt;test&lt;/td&gt
 </div>
 
       <div id="footer">
-  Generated on Wed Jan 31 14:59:29 2018 by
+  Generated on Sat Feb  3 15:55:31 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.4.0).
 </div>

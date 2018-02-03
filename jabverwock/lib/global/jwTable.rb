@@ -29,16 +29,21 @@ module Jabverwock
       @js.setTagName @name
 
     end
-
+    
+    # add caption to table
+    # @param [String] str caption
     def caption(str)
       @caption = str
       self
     end
-
+    
+    # set header list
+    # @param [String] str 
     def headerList(str)
       @headerList = str
     end
     
+    # set caption
     def addCaption
       unless @caption.empty?
         c = TableCaption.new
@@ -46,7 +51,6 @@ module Jabverwock
         @childStringArray << c.tgStr
       end 
     end
-
 
     def addTableHeader
       if @headerList.count > 0
@@ -64,6 +68,7 @@ module Jabverwock
         str << h.tgStr
       end      
     end
+    
     
     def dataTreatment
       if KSUtil.isDoubleArray @rows
@@ -114,7 +119,7 @@ module Jabverwock
       @rows << arr
     end
     
-    ### override ###
+    # override ###
     def assembleHTML
       nameCheck
       makeTag
@@ -131,7 +136,8 @@ module Jabverwock
         @tagManager.name = @name        
       end
     end
-
+    
+    
     def insertScript
       return unless isExistBodyTagAtTempleteString
       return if     isExistScriptTagAtTempleteString

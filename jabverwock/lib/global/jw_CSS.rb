@@ -41,15 +41,20 @@ module Jabverwock
     MEMO_css
       
     end
-        
+    
+    # default name is class name
+    # @param [String] name css name
     def cssWithName (name)
       @css.name = name.to_s
     end
     
+    # initialize css
     def cssStringInit
       @cssString = ""
     end
-
+    
+    # add css
+    # @param [Array<CSS>] css
     def addCss (*css)
       css.each do |c|
         if c.name == ""
@@ -59,6 +64,7 @@ module Jabverwock
       @cssArray += css      
     end
     
+    # css build = make strings
     def applyCss
       cssStringInit
       atcs = showCssString
@@ -70,43 +76,32 @@ module Jabverwock
       
     end
 
-        
+    # add css style
+    # @note head tagがないとなにもない仕様にしてある
+    # @note 外部ファイルに書き出す機能を追加するか？
+    # @param [String] str
     def addAssembleStyle(str)
-      # koko now
-      # head tagがないとなにもない仕様にしてある
-      # 外部ファイルに書き出す機能を追加するか？
       @pressVal.applyStyle str
-      
     end
-
+    
+    # combind css to cssArray
+    # @param [CSS] css
+    # @param [Array<CSS>] cssArray
     def cssAssembleInit(css, cssArray)      
-      # css.updateCssName activeID, activeCls
       KString.makeElementArray(css, cssArray)
     end
-
-    # def activeID
-    #   ids = ""      
-    #   if isExistID
-    #     ids = "#{selectorID}"        
-    #   end
-    #   ids
-    # end
     
-    # def activeCls
-    #   cls = ""
-    #   if isExistCls
-    #     cls = "#{selectorCls}"
-    #   end
-    #   cls
-    # end
-    
-    
+    # css assemble main func
+    # @param [CSS] css
+    # @return [String] cssString
     def cssAssembleCore(css)
       @nameList << css.name        
       @cssString << css.str << $RET
-      # css.useFlagsInit
     end
+
     
+    # call cssAssembleCore for cssArray
+    # @param [Array] arr css array
     def cssAssembleLoop(arr)      
       arr.each do |cs|
 
@@ -121,12 +116,13 @@ module Jabverwock
     end
     
     # change to function as cssAssemble need arguments
-    # ex) cssAssemble(@css, @cssArray)
-
+    # @param [CSS] css
+    # @param [Array] cssArray
+    # @example
+    #    cssAssemble(@css, @cssArray)
     #   - cssのみはid,clsの処理を追加
     #   - cssArrayの中身は処理しない
-    #   -＞ cssArrayに追加するときに処理するため
-    
+    #   -＞ cssArrayに追加するときに処理するため    
     def cssAssemble(css, cssArray)      
       @nameList = []      
       newArr = cssAssembleInit css, cssArray
@@ -134,29 +130,34 @@ module Jabverwock
       @cssString.removeLastRET
     end
 
-    
-
+    # wether css dupliucated?
+    # @param [String] name
+    # @return [Bool]
     def isSameCSSName(name)
       @nameList.include? name
      end
     
-    
+    # output of css string
     def showCssString
       cssStringInit
       cssAssemble @css, @cssArray
     end
 
-    # def updateCssName
-    #   @css.updateCssName activeID, activeCls
-    # end
-    
-    ####### add member ############
-    
+    # ###### add member ############
+    # @param [String] memberString
     def addMemberString (memberString)
       KString.isString? memberString
       @memberStringArray << memberString
     end
-
+    
+    # add css as member
+    # @note member shold be based on JW class
+    # @param [JW] member
+    # @example
+    #   <html>
+    #   <head>
+    #   </head>
+    #   </html>
     def addMember (member)
       if member.is_a? JW 
         addJS(member)
@@ -164,28 +165,30 @@ module Jabverwock
         addCSSmember(member)
       end
     end
-
-    def addCSSmember(member)
-   
+    
+    # add css as  member
+    # @param [CSS] member
+    def addCSSmember(member)   
       unless member.cssArray.empty?
         @cssArray.append member.cssArray
       end
-      
-      # member.updateCssName
       @cssArray.append member.css
     end
     
+    # override ###
     def addHTML(member)
       member.assembleHTML
       addMemberString member.templeteString
     end
     
+    # override ###
     def addJS( member )
       # implement at class JW_CSS_JS
       member # just write for reek warnig
     end
     
-    
+    # add css as members
+    # @param [Array<JW>] members 
     def addMembers (*members)
       members.each do |obj| 
         self.addMember obj
@@ -195,7 +198,7 @@ module Jabverwock
     
     
     #########  press ###########
-    ### override ###
+    # override ###
     def assembleHTML
       if @tagManager.name.empty?
         @tagManager.name = @name        
@@ -205,25 +208,17 @@ module Jabverwock
       memberAssemble
     end
     
+    # override ###
     def assembleCSS
       @pressVal.templeteString = @templeteString
       applyCss
     end
     
+    # override ###
     def assemble
       assembleHTML
       assembleCSS
    
     end
   end
-
-  
-   # a = JW_CSS.new
-   # p a
-  # # a.css.name = "pp"
-  # # a.css.color = "red"
-  # #a.name = "test"
-  # p a.pressDefault
-    
-  
 end

@@ -1,4 +1,3 @@
-# require "global/jw_CSS_JS"
 require "global/jwSingle"
 
 module Jabverwock
@@ -15,13 +14,13 @@ module Jabverwock
       @doctype = ""
     end
     
-    ## overide ##
+    # overide ##
     def makeTag
       @tagManager.setDocType @doctype
       @tagManager.openString
     end
     
-    ## overide ##
+    # overide ##
     def makeResult
       @templeteString = @tagManager.tempOpenString
 
@@ -42,15 +41,7 @@ module Jabverwock
   oneTagList = KSUtil.oneTags
   
   oneTagList.each do |list|
-    Object.const_set list, Class.new(JWOneTag){
-    
-      # attr_accessor :name
-      # def initialize
-      #   super
-      #   @name = self.class.name.downcase
-      #   @css = CSS.new("#{name}")
-      # end
-     }
+    Object.const_set list, Class.new(JWOneTag){}
   end
 
   

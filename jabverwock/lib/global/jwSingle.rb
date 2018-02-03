@@ -20,7 +20,7 @@ module Jabverwock
 
     end
 
-    ## override ##
+    # override ##
     def tgStr
       # treatContentToSpan @content
       assemble
@@ -32,7 +32,7 @@ module Jabverwock
       self
     end
     
-    ### override ###
+    # override ###
     def makeResult  
       @templeteString = @tagManager.tempOpenString + @content
       if !@tagManager.tempCloseString.empty?
@@ -53,7 +53,8 @@ module Jabverwock
       
       @css = CSS.new("#{@name}")
     end
-
+    
+    # set HEADING level
     def insertLevel
       @level = 1 if @level > 6
       @level = 1 if @level < 0
@@ -72,23 +73,5 @@ module Jabverwock
     Object.const_set list, Class.new(JWSingle){}
   end
 
-  
-  
-  # p a = A.new
-  # a.assemble
-  # p a.templeteString
-
-  
-  # p a = P.new 
-  # p b = B.new
-  # p b.name
-  # p b.css
-  # p b.cssArray
-  
-  # c = JW_CSS_JS.new
-  # p c.css
-  # p c.cssArray
-  # p c.pressDefault
-  
 end
 
