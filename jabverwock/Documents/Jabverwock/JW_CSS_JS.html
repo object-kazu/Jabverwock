@@ -220,7 +220,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>add child ############ override.</p>
+<p>add js statement, member should be based on JW_CSS_JS class.</p>
 </div></span>
   
 </li>
@@ -243,7 +243,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>js statement puts into script tags.</p>
+</div></span>
   
 </li>
 
@@ -265,7 +267,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>## override ###.</p>
+</div></span>
   
 </li>
 
@@ -288,7 +292,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>override ###.</p>
+<p>## override ###.</p>
 </div></span>
   
 </li>
@@ -311,7 +315,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>js collect from child and member.</p>
+</div></span>
   
 </li>
 
@@ -333,7 +339,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>override see jw class.</p>
+</div></span>
   
 </li>
 
@@ -381,7 +389,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>insert js script into body tag.</p>
+</div></span>
   
 </li>
 
@@ -403,7 +413,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>check &lt;body&gt; tag.</p>
+</div></span>
   
 </li>
 
@@ -425,7 +437,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>check js result exist.</p>
+</div></span>
   
 </li>
 
@@ -447,7 +461,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>check &lt;script&gt; tag.</p>
+</div></span>
   
 </li>
 
@@ -470,7 +486,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>alias ############.</p>
+<p>alias.</p>
 </div></span>
   
 </li>
@@ -539,7 +555,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>order is js statement orders is serial js statement.</p>
+</div></span>
   
 </li>
 
@@ -562,7 +580,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>js ###################.</p>
+<p>rec is recording.</p>
 </div></span>
   
 </li>
@@ -585,7 +603,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>self.js.order add to jsArray because jsArray just only evaluate, js order
+is not evaluate to make code.</p>
+</div></span>
   
 </li>
 
@@ -607,7 +628,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>just show js code mainly use for checking the code.</p>
+</div></span>
   
 </li>
 
@@ -629,7 +652,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>count tag number befor &lt;body&gt; tag just for alignment code.</p>
+</div></span>
   
 </li>
 
@@ -849,13 +874,28 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>add child ############ override</p>
+<p>add js statement, member should be based on JW_CSS_JS class</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>member</span>
+      
+      
+        <span class='type'>(<tt>JS</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -863,13 +903,6 @@
       <pre class="lines">
 
 
-63
-64
-65
-66
-67
-68
-69
 70
 71
 72
@@ -878,10 +911,15 @@
 75
 76
 77
-78</pre>
+78
+79
+80
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addJS'>addJS</span><span class='lparen'>(</span><span class='id identifier rubyid_member'>member</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Jabverwock::JW_CSS_JS (class)">JW_CSS_JS</a></span></span><span class='rparen'>)</span>
@@ -896,8 +934,6 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_jsArray'>jsArray</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
     <span class='ivar'>@jsArray</span><span class='period'>.</span><span class='id identifier rubyid_append'>append</span> <span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_jsArray'>jsArray</span>
   <span class='kw'>end</span>
-
-  
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -913,22 +949,33 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>js statement puts into script tags</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-80
-81
-82
-83
-84
-85
-86</pre>
+86
+87
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_applyJS'>applyJS</span>      
   <span class='id identifier rubyid_assembleJS'>assembleJS</span>
@@ -951,21 +998,32 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>## override ###</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-152
-153
-154
-155
-156
-157</pre>
+171
+172
+173
+174
+175
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assemble'>assemble</span>
   <span class='ivar'>@templeteString</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -990,7 +1048,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>override ###</p>
+<p>## override ###</p>
 
 
   </div>
@@ -1004,19 +1062,19 @@
       <pre class="lines">
 
 
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149</pre>
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assembleHTML'>assembleHTML</span>
   <span class='kw'>super</span>
@@ -1042,28 +1100,37 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>js collect from child and member</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-92
-93
-94
-95
-96
-97
-98
-99
-100</pre>
+101
+102
+103
+104
+105
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assembleJS'>assembleJS</span>
-  <span class='comment'># js collect from child and member
-</span>  <span class='ivar'>@jsResult</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@jsResult</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_self_JsOrders_add_to_self_jsArray'>self_JsOrders_add_to_self_jsArray</span>
   <span class='ivar'>@jsArray</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_j'>j</span><span class='op'>|</span>
     <span class='ivar'>@jsResult</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_j'>j</span> <span class='op'>+</span> <span class='gvar'>$RET</span>
@@ -1084,25 +1151,36 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>override see jw class</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-48
-49
-50
-51
-52
-53</pre>
+53
+54
+55
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attrSymbol'>attrSymbol</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span>
-  <span class='kw'>super</span> <span class='id identifier rubyid_tag'>tag</span> <span class='comment'># see jw class
-</span>
+  <span class='kw'>super</span> <span class='id identifier rubyid_tag'>tag</span> 
+
   <span class='comment'>#selectors(id, cls, name) -&gt; JsObject -&gt; JsDocumet, ect
 </span>  <span class='ivar'>@js</span><span class='period'>.</span><span class='id identifier rubyid_updateSelector'>updateSelector</span> <span class='id identifier rubyid_tag'>tag</span>
 <span class='kw'>end</span></pre>
@@ -1120,18 +1198,29 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>insert js script into body tag</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-135
-136
-137</pre>
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insertScriptToBody'>insertScriptToBody</span>     
   <span class='ivar'>@templeteString</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="KString.html" title="Jabverwock::KString (module)">KString</a></span></span><span class='period'>.</span><span class='id identifier rubyid_insertText'><span class='object_link'><a href="KString.html#insertText-class_method" title="Jabverwock::KString.insertText (method)">insertText</a></span></span> <span class='id identifier rubyid_templeteStringArray'>templeteStringArray</span><span class='comma'>,</span> <span class='ivar'>@scriptTag</span>
@@ -1150,18 +1239,29 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>check &lt;body&gt; tag</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-106
-107
-108</pre>
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isExistBodyTagAtTempleteString'>isExistBodyTagAtTempleteString</span>
   <span class='ivar'>@templeteString</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;body&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -1180,19 +1280,30 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>check js result exist</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-114
-115
-116
-117</pre>
+127
+128
+129
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 127</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isExistScriptContentAtTempleteString'>isExistScriptContentAtTempleteString</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='ivar'>@jsResult</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1212,18 +1323,29 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>check &lt;script&gt; tag</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-110
-111
-112</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isExistScriptTagAtTempleteString'>isExistScriptTagAtTempleteString</span>
   <span class='ivar'>@templeteString</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;script&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -1245,7 +1367,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>alias ############</p>
+<p>alias</p>
 
 
   </div>
@@ -1300,13 +1422,13 @@
       <pre class="lines">
 
 
-56
-57
-58
-59</pre>
+61
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jsAttrForSymboleStringData'>jsAttrForSymboleStringData</span><span class='lparen'>(</span><span class='id identifier rubyid_symbol'>symbol</span><span class='comma'>,</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="KSUtil.html" title="Jabverwock::KSUtil (module)">KSUtil</a></span></span><span class='period'>.</span><span class='id identifier rubyid_combineSym'><span class='object_link'><a href="KSUtil.html#combineSym-class_method" title="Jabverwock::KSUtil.combineSym (method)">combineSym</a></span></span> <span class='id identifier rubyid_symbol'>symbol</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span>
@@ -1356,18 +1478,29 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>order is js statement orders is serial js statement</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-44
-45
-46</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_orders'>orders</span>
   <span class='ivar'>@js</span><span class='period'>.</span><span class='id identifier rubyid_orders'>orders</span>
@@ -1389,7 +1522,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>js ###################</p>
+<p>rec is recording</p>
 
 
   </div>
@@ -1403,12 +1536,12 @@
       <pre class="lines">
 
 
-40
 41
-42</pre>
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rec'>rec</span>
   <span class='ivar'>@js</span><span class='period'>.</span><span class='id identifier rubyid_rec'>rec</span>
@@ -1427,18 +1560,30 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>self.js.order add to jsArray because jsArray just only evaluate, js order
+is not evaluate to make code.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-88
-89
-90</pre>
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_self_JsOrders_add_to_self_jsArray'>self_JsOrders_add_to_self_jsArray</span>
   <span class='ivar'>@jsArray</span><span class='period'>.</span><span class='id identifier rubyid_append'>append</span> <span class='ivar'>@js</span><span class='period'>.</span><span class='id identifier rubyid_orders'>orders</span>
@@ -1457,18 +1602,29 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>just show js code mainly use for checking the code.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-102
-103
-104</pre>
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_showJsResult'>showJsResult</span>
   <span class='ivar'>@jsResult</span>
@@ -1487,25 +1643,45 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>count tag number befor &lt;body&gt; tag just for alignment code</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code>\t&lt;body&gt; -&gt; return 1
+ \t\t&lt;body&gt; -&gt; return 2</code></pre>
+    
+  </div>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133</pre>
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tabNumberBodyTag'>tabNumberBodyTag</span>
   <span class='id identifier rubyid_arr'>arr</span> <span class='op'>=</span> <span class='id identifier rubyid_templeteStringArray'>templeteStringArray</span>
@@ -1537,12 +1713,12 @@
       <pre class="lines">
 
 
-119
-120
-121</pre>
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/global/jw_CSS_JS.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_templeteStringArray'>templeteStringArray</span>
   <span class='const'><span class='object_link'><a href="KString.html" title="Jabverwock::KString (module)">KString</a></span></span><span class='period'>.</span><span class='id identifier rubyid_reader'><span class='object_link'><a href="KString.html#reader-class_method" title="Jabverwock::KString.reader (method)">reader</a></span></span> <span class='ivar'>@templeteString</span>
@@ -1557,7 +1733,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Feb  3 15:55:31 2018 by
+  Generated on Sun Feb  4 12:10:48 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.4.0).
 </div>

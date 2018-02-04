@@ -25,7 +25,7 @@ module Jabverwock
 
     end
     
-    ### alias ############
+    # alias
     def jdoc
       @js.doc
     end
@@ -37,16 +37,21 @@ module Jabverwock
     
     ####### js ###################
     
+    # rec is recording
     def rec
       @js.rec
     end
-
+    
+    # order is js statement
+    # orders is serial js statement
     def orders
       @js.orders
     end
     
+    # override
+    # see jw class
     def attrSymbol(tag)
-      super tag # see jw class
+      super tag 
 
       #selectors(id, cls, name) -> JsObject -> JsDocumet, ect
       @js.updateSelector tag
@@ -59,7 +64,9 @@ module Jabverwock
     end
     
     ####### add child ############
-    ## override
+    
+    # add js statement, member should be based on JW_CSS_JS class
+    # @param [JS] member
     def addJS(member)
       unless member.is_a?(JW_CSS_JS)
         assert_raise{
@@ -73,10 +80,9 @@ module Jabverwock
       if member.jsArray.count > 0
         @jsArray.append member.jsArray
       end
-
-      
     end
-
+    
+    # js statement puts into script tags
     def applyJS      
       assembleJS
       startTag = "<script>"
@@ -84,13 +90,15 @@ module Jabverwock
       content = @jsResult
       @scriptTag << startTag << "\n" << content << endTag << $RET
     end
-        
+    
+    # self.js.order add to jsArray
+    # because jsArray just only evaluate, js order is not evaluate to make code.
     def self_JsOrders_add_to_self_jsArray
       @jsArray.append @js.orders
     end
     
+    # js collect from child and member
     def assembleJS
-      # js collect from child and member
       @jsResult = ""
       self_JsOrders_add_to_self_jsArray
       @jsArray.each do |j|
@@ -98,29 +106,39 @@ module Jabverwock
       end
       @jsResult.removeLastRET   
     end
-
+    
+    # just show js code
+    # mainly use for checking the code.
     def showJsResult
       @jsResult
     end
-
+    
+    # check <body> tag
     def isExistBodyTagAtTempleteString
       @templeteString.include? "<body>"
     end
     
+    # check <script> tag
     def isExistScriptTagAtTempleteString
       @templeteString.include? "<script>"
     end
     
+    # check js result exist 
     def isExistScriptContentAtTempleteString
       return false if @jsResult.empty?
       true
     end
     
+    
     def templeteStringArray
       KString.reader @templeteString
     end
     
-    
+    # count tag number befor <body> tag
+    # just for alignment code
+    # @example
+    #   \t<body> -> return 1
+    #    \t\t<body> -> return 2
     def tabNumberBodyTag
       arr = templeteStringArray
       num = 0
@@ -131,12 +149,13 @@ module Jabverwock
       end
       num
     end
-
+    
+    # insert js script into body tag
     def insertScriptToBody     
       @templeteString = KString.insertText templeteStringArray, @scriptTag
     end
     
-    ### override ###
+    # ## override ###
     def assembleHTML
       super
 
@@ -148,22 +167,14 @@ module Jabverwock
       
     end
 
-    
+    # ## override ###
     def assemble
       @templeteString = ""
       applyJS
       assembleHTML
       assembleCSS            
     end    
-  end
-  
-   # a = JW_CSS_JS.new
-   # p a
-  # # a.css.name = "pp"
-  # # a.css.color = "red"
-  # #a.name = "test"
-  # p a.pressDefault
-    
+  end  
   
 end
 
