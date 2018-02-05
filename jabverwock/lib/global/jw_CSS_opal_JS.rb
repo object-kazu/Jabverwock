@@ -24,6 +24,8 @@ module Jabverwock
     
     ####### opal ###################
     
+    # opal file open and read
+    # @param [String] path
     def readOpalFile(path)
       @opalPath = path
       op = OpalFileReader.new
@@ -32,22 +34,25 @@ module Jabverwock
       @opalFileName = op.opalFileName
     end
     
+    # whether opal path setting
+    # @return [Bool] whether opal path set
     def isExistOpalScript
       @opalPath == "" ? false : true
     end
     
+    # opal script add into script tag src
     def insertOpalScript
       return unless isExistOpalScript
       addOpalScriptTag
     end
     
+    # opal script as src add into script tags
+    # @example
+    #   <script src="hellow.js"></script>
     def addOpalScriptTag
-      # <script src="hellow.js"></script>
-      
       startTag = "<script src=#{@opalFileName}.js>"
       endTag = "</script>"
-      @scriptTag << startTag << endTag << $RET
-      
+      @scriptTag << startTag << endTag << $RET      
     end
         
   end  

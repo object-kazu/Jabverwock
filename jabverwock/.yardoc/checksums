@@ -8,7 +8,7 @@ lib/global/jwSingle.rb 45cc99c593b96820345cb86397a26a6613000e75
 lib/global/jwTable.rb 3db98bc436d814bf69705ce734e1fb231a08b7eb
 lib/global/jw_CSS.rb 093fcd18b5cc63ca3a927fe5170da0c69a487942
 lib/global/jw_CSS_JS.rb c3bec0f879d1b4fc5bb75f8085a4bc474c85586b
-lib/global/jw_CSS_OPAL_JS.rb 99888f3441f63136cf4b0ddea455cd073eb8ccad
+lib/global/jw_CSS_OPAL_JS.rb cc13e340586089e66c21c05f3a630f3ae8e48a8d
 lib/global/press.rb 561f071ea269509e69c7f27c033efefac7401522
 lib/global/structDescript.rb 34b3bb552594946cc1657319110f9461b420261b
 lib/global/tagAttribute.rb c245a143f15878c3db578c1f335189e2c1d8da9e
