@@ -5,9 +5,6 @@ module Jabverwock
   using ArrayExtension
   using SymbolExtension
   
-  # $EXPORT_TEST_Dir = "/Users/shimizukazuyuki/Desktop/index/"
-  # $EXPORT_TEST_File = "resultRuby.txt"
-  
   # This class is making HTML, CSS, JS code
   class Press
     
@@ -22,25 +19,35 @@ module Jabverwock
       @templeteString = "" #// Labelによる書き換え前のStringを保持
       @resultString = "" # // Labelによる書き換え後の最終String
 
-      @exportPath = "" #$EXPORT_TEST_Dir
-      @exportFile = "" #$EXPORT_TEST_File
+      @exportPath = ""
+      @exportFile = "" 
       
     end
 
-    # for confirmation and test method
+    # for confirmation and test
     def showTempleteString
       @templeteString
     end
-
+    
+    # whether exsit of result string
+    # @return [Bool] empty is true
     def isResultStringEmpty
       @resultString == "" ? true : false 
     end
     
+    # initialize resutltStrig
     def initResutString
       @resultString = ""
       @resultString = @templeteString.dup
     end
-
+    
+    # insert label and data
+    # @param [String] label data label
+    # @param [String] data 
+    # @example
+    #  i = "a".varIs ",again"
+    #  insertDataList(i)
+    #  => $LABEL_INSERT_START + "a" + $LABEL_INSERT_END + ",again"
     def insertLabelData(label:, data:)
       KString.isString?(label)
       KString.isString?(data)
@@ -50,29 +57,40 @@ module Jabverwock
       @resultString.gsub!(targetString, dataPlusTargetString)
     end
     
+    # pair should be hash
+    # @param [Hash] p
+    # @example
+    #   {label:, data:}
     def labelDataPair?(p)
       if !p.is_a?(Hash)
-        p "pair is hash, like {label:, data:}"
+        p "pair should be hash, like {label:, data:}"
         raise RuntimeError
-      end        
+      end
+      true
     end
 
-    
+    # insert data to labeling strings
+    # @param [Hash] insertData insertData is hash, {label:, data:}
     def insertData(insertData)
       labelDataPair?(insertData)
       insertLabelData(label: insertData[:label], data: insertData[:data])
     end
-
+    
+    # insert data
+    # @param [Array<Hash>] insertData
     def insertDataList(*insertData)
       insertData.each do |i| 
         insertData(i)
       end
     end
-
+    
+    # arrange resultString
     def removeAllLabel
       @resultString = @resultString.gsub(/##LABELSTART##.*?##LABELEND##/,"")
     end
     
+    # main function to insert data to label
+    # @param [Hash] insertData 
     def withInsert(insertData)
       labelDataPair?(insertData)
       initResutString
@@ -80,7 +98,9 @@ module Jabverwock
       removeAllLabel
       core
     end
-
+    
+    # main function to insert data to label
+    # @param [Array<Hash>] insertData call function withInsert
     def withInsertEach(insertData)
       initResutString
       
@@ -92,7 +112,7 @@ module Jabverwock
       core
     end
     
-    #  // templeteString -> resultString -> export
+    #  templeteString -> resultString -> export
     def core
       pathName = @exportPath + @exportFile
       
@@ -112,11 +132,14 @@ module Jabverwock
       end
     end
 
-    #### css ####
+    # whether head tag exist
+    # @return [Bool] if head tag exist return true
     def isExistHeadTag
       @templeteString.include?("<head") && @templeteString.include?("</head>")
     end
-
+    
+    # css insert to head tag
+    # @param [CSS] style
     def applyStyle(style)
       if isExistHeadTag
         @templeteString.gsub!(/<\/head>/, "#{style}</head>")
