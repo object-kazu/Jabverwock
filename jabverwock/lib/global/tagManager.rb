@@ -15,7 +15,7 @@ module Jabverwock
       resetTags
     end
 
-    ### reset tags #######
+    #  initialize tags
     def resetTags
       @tempOpenString, @tempCloseString, @name, @attributeString = "","", "", ""
       @doctype = "" #DOCTYPE only use
@@ -24,19 +24,24 @@ module Jabverwock
       
     end
     
-    ####### add attribute #############################
+    # add attribute
+    # @param [String] tag tag name
+    # @param [String] val value
     def tagAttr (tag, val)
       eval"@tagAttribute.add_#{tag}(val)"
       self
     end
-
+    
+    # add attribute string
     def addAttribute
       if !@tagAttribute.aString.empty?
         KString.isString?(@attributeString)
         @attributeString = KString.addSpace(@tagAttribute.aString)        
       end
     end
-
+    
+    # set doc type
+    # @param [String] str doc type
     def setDocType(str)
       @doctype = str
     end

@@ -76,18 +76,7 @@ module Jabverwock
 
     end
 
-      
-
-  end
-
-  # class Test < TagAttributeTemplete
-  #   self.define_attributes [:tt,:id, :cls]
-  # end
-  
-  # p a = Test.new
-  # a.add_id("fs").add_cls("ww")
-  # p a.cls
-  
+  end  
   
 end
 

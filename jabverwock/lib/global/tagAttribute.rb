@@ -44,14 +44,8 @@ module Jabverwock
     def initialize
       super
     end
-
    
   end
-
-  # p a = TagAttribute.new
-  # a.id = "test"
-  # a.src = "/usr/local/"
-  # p a
   
 end
 
