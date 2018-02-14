@@ -46,33 +46,54 @@ module Jabverwock
       @doctype = str
     end
     
-    #####  tag judgemnet ###########################
+    # whether @name is Hr tag
+    # @return [Bool]
     def isHrTag
       @name == "hr" ? true : false
     end
-
+    
+    # whether @name is Br tag
+    # @return [Bool]
     def isBrTag
       @name == "br" ? true : false
     end
     
+    # whether @name is doctype tag
+    # @return [Bool]
     def isDocType
       @name == "doctype"? true: false
     end
     
+    # whether @name is script tag
+    # @return [Bool]  
     def isScriptTag
       @name == "script" ? true : false
     end
-
-    ##### open and close string ###################
-   
+    
+    
+    # #### open and close string ###################
+    # TODO refactoring with openStringReplace and closeStringReplace
+    #
+    # @example
+    #  tm = TagManager.new
+    #  tm.tempOpenString = "aaa"
+    #  tm.openStringReplace("a","b")
+    #  expect(tm.tempOpenString).to eq "bbb"
     def openStringReplace(of,with)
       @tempOpenString = KString.reprace(str: @tempOpenString, of: of, with: with)
     end
     
+    # @example
+    # tm = TagManager.new
+    # tm.tempCloseString = "aaa"
+    # tm.closeStringReplace("a","b")
+    # expect(tm.tempCloseString).to eq "bbb"
     def closeStringReplace(of, with)
       @tempCloseString = KString.reprace(str: @tempCloseString, of: of, with: with)
     end
-
+    
+    # make doctype tag
+    # default value is "html", if you want to change , set @doctype 
     def openStringDocType
         if @doctype.empty?
           @doctype = "html" #default html5 
@@ -81,6 +102,7 @@ module Jabverwock
         @tempOpenString = "<" + "!DOCTYPE" + $SPC + @doctype + @attributeString + ">"
     end
     
+    # make open string, open string is like <p> and <html>
     def openString
       nameCheck
       
@@ -93,7 +115,8 @@ module Jabverwock
       addAttribute
       @tempOpenString = "<" + @name + @attributeString + ">"
     end
-
+    
+    # whether name is empty?
     def nameCheck
       if @name.empty?
         assert_raise{
@@ -102,14 +125,17 @@ module Jabverwock
       end
     end
     
+    # TODO add test and refactoring closeStringHrTag and breakTreat
     def closeStringHrTag
-        @tempCloseString = "<#{@name}>"
-        if @withBreak
-          @tempCloseString << $BR
-        end
-        @tempCloseString
+      @tempCloseString = "<#{@name}>"
+      breakTreat
+        # if @withBreak
+        #   @tempCloseString << $BR
+        # end
+        # @tempCloseString
     end
-
+    
+    # insert br tag if you want, set by @withBreak
     def breakTreat
       if @withBreak
         @tempCloseString << $BR
@@ -118,6 +144,7 @@ module Jabverwock
       @tempCloseString      
     end
     
+    # make close string like, </p> and </html>
     def closeString
       # closeStringNotRequire => bool値に変更する      
       # // not require
