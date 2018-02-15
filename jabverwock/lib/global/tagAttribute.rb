@@ -9,7 +9,7 @@ module Jabverwock
   class TagAttribute < TagAttributeTemplete
     
     # caution! do not use "__", because JW class may split symbole like ":id_test"  as "id" and "test"
-    list  = [:accesskey,:autofoucus, :alt,:autocomplete,:action]
+    list  = [:accept,:accept_charset, :accesskey,:action, :align, :alt, :async, :autocomplete,:autofoucus,:autoplay]
     list += [:border,]
     list += [:contenteditable,:cls,:content,:charset,:cellpadding,:checked, :cellspacing,:colspan,]
     list += [:dir,:disable,:dirname,]
