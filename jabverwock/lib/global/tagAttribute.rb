@@ -10,8 +10,9 @@ module Jabverwock
     
     # caution! do not use "__", because JW class may split symbole like ":id_test"  as "id" and "test"
     list  = [:accept,:accept_charset, :accesskey,:action, :align, :alt, :async, :autocomplete,:autofoucus,:autoplay]
-    list += [:border,]
-    list += [:contenteditable,:cls,:content,:charset,:cellpadding,:checked, :cellspacing,:colspan,]
+    list += [:border,:buffered]
+    list += [:challenge,:charset,:checked,:cite,:cls,:code,:codebase,:color,]
+    list += [:cols,:colspan,:content,:contenteditable,:contextmenu,:controls,:coords,:crossorigin,:cellpadding,  :cellspacing,]
     list += [:dir,:disable,:dirname,]
     list += []
     list += [:font_family, :font_size, :form,]
