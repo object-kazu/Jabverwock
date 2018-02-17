@@ -34,6 +34,13 @@ module Jabverwock
       
     end  
 
+    it "TagAttribute, enctype " do
+      tm = TagAttribute.new 
+      tm.add_enctype("test" )
+
+      expect(tm.aString).to eq "enctype=\"test\""
+      
+    end  
    
     
   end  
