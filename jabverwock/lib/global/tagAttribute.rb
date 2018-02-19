@@ -26,23 +26,23 @@ module Jabverwock
     list += [:lang, :line_height,:list]
     list += %i(manifest maxlength minlength media muted)
     list += [:margin, :maxlength, :minlength,:max, :min, :multiple, :method]
-    list += %i()
+    list += %i(novalidate)
     list += [:name,] 
     list += [:onclick, :onchange]
+    list += %i(open optimum)
     list += [:position,:pattern,:placeholder,]
-    list += %i()
-    list += %i()
+    list += %i(ping poster preload)
+    list += %i(radiogroup reversed rows )
     list += [:required, :readonly, :rel,:rowspan,]
+    list += %i(sandbox scope scoped seamless selected shape sizes slot span srcdoc srclang srcset start summary)
     list += [:spellcheck,:scheme, :style, :size,:src, :step,]
     list += [:target, :type,:tabindex,:title,:translate,]
-    list += %i()
-    list += %i()
-    list += %i()
+    list += %i(usemap )
     list += %i()
     list += %i()
     list += %i()
     list += %i(value)
-    list += %i(width)
+    list += %i(width wrap)
 
     self.define_attributes list
        
