@@ -619,7 +619,11 @@ module Jabverwock
       # @example
       #   <HTML> \n </HTML>
       def multiTags
-          %w(BLOCKQUOTE BODY DIV DL FOOTER FORM HTML HEAD PRE SCRIPT STYLE SELECT OL UL LI_multi)
+        m = %w(BLOCKQUOTE DIV DL FOOTER FORM HEAD PRE SCRIPT SELECT OL UL LI_multi)
+        m += %w(ADDRESS )
+        m += %w(BODY )
+        m += %w(HTML )
+        m += %w(STYLE )
       end
       
       # define table tag
@@ -635,7 +639,8 @@ module Jabverwock
       # @example
       #   <P> </P>      
       def singleTags
-        %w(P A B HR BR BUTTON I EM STRONG DT DD LIST_ITEM TITLE OPTION LI TD)
+        s = %w(P A B HR BR BUTTON I EM STRONG DT DD LIST_ITEM OPTION LI TD)
+        s += %w(TITLE )
       end
       
       # define one tag
@@ -643,7 +648,8 @@ module Jabverwock
       # @example
       #   <DOCTYPE>
       def oneTags
-        %w(DOCTYPE IMG INPUT META LINK)
+        o = %w(DOCTYPE IMG INPUT )
+        o = %w(LINK META )
       end
       
       # string insert to style tags

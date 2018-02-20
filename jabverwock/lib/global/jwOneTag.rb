@@ -42,16 +42,6 @@ module Jabverwock
   
   oneTagList.each do |list|
     Object.const_set list, Class.new(JWOneTag){}
-  end
-
-  
-  # p a = DOCTYPE.new 
-  # p a.pressDefault
-  
-  # c = JW_CSS_JS.new
-  # p c.css
-  # p c.cssArray
-  # p c.pressDefault
-  
+  end  
 end
 
