@@ -619,10 +619,12 @@ module Jabverwock
       # @example
       #   <HTML> \n </HTML>
       def multiTags
-        m = %w(BLOCKQUOTE DIV DL FOOTER FORM HEAD PRE SCRIPT SELECT OL UL LI_multi)
-        m += %w(ADDRESS )
+        m = %w(BLOCKQUOTE DIV DL FORM HEAD PRE SCRIPT SELECT OL UL LI_multi)
+        m += %w(ADDRESS ARTICLE ASIDE)
         m += %w(BODY )
-        m += %w(HTML )
+        m += %w(FOOTER )
+        m += %w(HTML HEADER HGGROUP)
+        m += %w(NAV)
         m += %w(STYLE )
       end
       
