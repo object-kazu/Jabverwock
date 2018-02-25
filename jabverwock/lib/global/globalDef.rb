@@ -626,7 +626,7 @@ module Jabverwock
         m += %w(FOOTER FIGURE)
         m += %w(HTML HEADER HGGROUP)
         m += %w(MAIN NAV OL PRE )
-        m += %w(STYLE SECTION)
+        m += %w(STYLE SECTION SMALL SPAN)
         m += %w(UL )
         m += %w(LI_multi )
         m += %w( )
@@ -646,14 +646,20 @@ module Jabverwock
       # @example
       #   <P> </P>      
       def singleTags
-        s = %w(A B BR BUTTON I EM STRONG LIST_ITEM OPTION TD)
-        s += %w(DT DD )
+        s = %w( LIST_ITEM OPTION TD)
+        s += %w(A ABBR)
+        s += %w(B BDI BDO BR BUTTON )
+        s += %w(CITE CODE )
+        s += %w(DT DD DATA DFN)
+        s += %w(EM )
         s += %w(FIGCAPTION HR )
-        s += %w(LI )
-        s += %w()
-        s += %w(P)
-        s += %w(TITLE )
-        s += %w()
+        s += %w(I KBD )
+        s += %w(LI MARK)
+        s += %w(P Q)
+        s += %w(RP RT RTC RUBY)
+        s += %w(S SAMP STRONG SUB SUP)
+        s += %w(TITLE TIME TT U)
+        s += %w(VAR WBR)
       end
       
       # define one tag
