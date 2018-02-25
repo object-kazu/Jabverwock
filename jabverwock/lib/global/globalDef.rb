@@ -619,13 +619,18 @@ module Jabverwock
       # @example
       #   <HTML> \n </HTML>
       def multiTags
-        m = %w(BLOCKQUOTE DIV DL FORM HEAD PRE SCRIPT SELECT OL UL LI_multi)
+        m = %w(FORM HEAD SCRIPT SELECT )
         m += %w(ADDRESS ARTICLE ASIDE)
-        m += %w(BODY )
-        m += %w(FOOTER )
+        m += %w(BODY BLOCKQUOTE )
+        m += %w(DIV DL )
+        m += %w(FOOTER FIGURE)
         m += %w(HTML HEADER HGGROUP)
-        m += %w(NAV)
-        m += %w(STYLE )
+        m += %w(MAIN NAV OL PRE )
+        m += %w(STYLE SECTION)
+        m += %w(UL )
+        m += %w(LI_multi )
+        m += %w( )
+        m += %w( )
       end
       
       # define table tag
@@ -641,8 +646,14 @@ module Jabverwock
       # @example
       #   <P> </P>      
       def singleTags
-        s = %w(P A B HR BR BUTTON I EM STRONG DT DD LIST_ITEM OPTION LI TD)
+        s = %w(A B BR BUTTON I EM STRONG LIST_ITEM OPTION TD)
+        s += %w(DT DD )
+        s += %w(FIGCAPTION HR )
+        s += %w(LI )
+        s += %w()
+        s += %w(P)
         s += %w(TITLE )
+        s += %w()
       end
       
       # define one tag
