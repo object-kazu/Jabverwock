@@ -1,5 +1,5 @@
 # Jabverwock
-Experimental; Integrate HTML, CSS, Javascript.
+Programmable HTML, CSS and Javascript.
 
 ## What is the Jabverwock?
 Jabverwock is open source project to make web page using Ruby.
