@@ -620,16 +620,16 @@ module Jabverwock
       #   <HTML> \n </HTML>
       def multiTags
         m = %w(FORM HEAD SCRIPT SELECT )
-        m += %w(ADDRESS ARTICLE ASIDE)
+        m += %w(ADDRESS ARTICLE ASIDE AREA AUDIO)
         m += %w(BODY BLOCKQUOTE )
         m += %w(DIV DL )
         m += %w(FOOTER FIGURE)
         m += %w(HTML HEADER HGGROUP)
-        m += %w(MAIN NAV OL PRE )
+        m += %w(MAIN MAP NAV OL PRE )
         m += %w(STYLE SECTION SMALL SPAN)
         m += %w(UL )
         m += %w(LI_multi )
-        m += %w( )
+        m += %w(VIDEO )
         m += %w( )
       end
       
@@ -668,7 +668,7 @@ module Jabverwock
       #   <DOCTYPE>
       def oneTags
         o = %w(DOCTYPE IMG INPUT )
-        o = %w(LINK META )
+        o = %w(LINK META TRACK)
       end
       
       # string insert to style tags
