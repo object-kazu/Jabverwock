@@ -667,7 +667,7 @@ module Jabverwock
       # @example
       #   <DOCTYPE>
       def oneTags
-        o = %w(DOCTYPE IMG INPUT )
+        o = %w(DOCTYPE IMG INPUT EMBED PARAM SOURCE)
         o = %w(LINK META TRACK)
       end
       
