@@ -619,15 +619,15 @@ module Jabverwock
       # @example
       #   <HTML> \n </HTML>
       def multiTags
-        m = %w(FORM HEAD SCRIPT SELECT )
+        m = %w(HEAD )
         m += %w(ADDRESS ARTICLE ASIDE AREA AUDIO)
-        m += %w(BODY BLOCKQUOTE )
-        m += %w(DIV DL )
-        m += %w(FOOTER FIGURE)
-        m += %w(HTML HEADER HGGROUP)
-        m += %w(MAIN MAP NAV OL PRE )
-        m += %w(STYLE SECTION SMALL SPAN)
-        m += %w(UL )
+        m += %w(BODY BLOCKQUOTE CANVAS)
+        m += %w(DATALIST DETAILS DIALOG DIV DL DEL)
+        m += %w(FORM FOOTER FIGURE FIELDSET)
+        m += %w(HTML HEADER HGGROUP INS)
+        m += %w(MAIN MAP NAV NOSCRIPT OL OPTGROUP PRE )
+        m += %w(SCRIPT STYLE SECTION SELECT SMALL SPAN)
+        m += %w(TEXTAREA TEMPLATE UL )
         m += %w(LI_multi )
         m += %w(VIDEO )
         m += %w( )
@@ -646,7 +646,7 @@ module Jabverwock
       # @example
       #   <P> </P>      
       def singleTags
-        s = %w( LIST_ITEM OPTION TD)
+        s = %w( LIST_ITEM TD)
         s += %w(A ABBR)
         s += %w(B BDI BDO BR BUTTON )
         s += %w(CITE CODE )
@@ -654,10 +654,10 @@ module Jabverwock
         s += %w(EM )
         s += %w(FIGCAPTION HR )
         s += %w(I KBD )
-        s += %w(LI MARK)
-        s += %w(P Q)
+        s += %w(LI LABEL LEGEND MARK METER)
+        s += %w(OPTION OUTPUT P PROGRESS Q)
         s += %w(RP RT RTC RUBY)
-        s += %w(S SAMP STRONG SUB SUP)
+        s += %w(S SAMP STRONG SUB SUP SUMMARY)
         s += %w(TITLE TIME TT U)
         s += %w(VAR WBR)
       end
