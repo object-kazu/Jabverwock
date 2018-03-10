@@ -1,10 +1,13 @@
+# TODO: single, multi -> 引数で切り替え　、default value
+# TODO: jws!
+# TODO: sample web app making
+
 
 # String extensions
 module StringExtension
   
   
   refine String do
-    
     
     # Combine strings by dot(.).
     #
