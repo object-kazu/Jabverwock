@@ -86,9 +86,10 @@ module Jabverwock
         ans = ""
         target.each{ |ind, val|
           t = extractTabNumber ind
-           ans = addTab(val, t)
+          ans += addTab(val, t)
+          ans += "\n"
         }
-        ans
+        ans.chomp
       end
       
       def transrate(jwKls)

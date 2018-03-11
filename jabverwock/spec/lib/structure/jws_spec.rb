@@ -108,11 +108,22 @@ module Jabverwock
       num = JWS.extractTabNumber :index1
       expect(num).to eq 1
     end
+    
+    it 'extractTabNumber' do
+      num = JWS.extractTabNumber :index0
+      expect(num).to eq 0
+    end
 
     it 'tabbing' do
       tes = {:index1 => "body"}
       ans = JWS.tabbing tes
       expect(ans).to eq "\tbody"
+    end
+    
+    it 'tabbing case 2' do
+      tes = {:index1 => "body",:index0 => "footer"}
+      ans = JWS.tabbing tes
+      expect(ans).to eq "\tbody\nfooter"
     end
     
     # it 'JW, isSingle method'do
