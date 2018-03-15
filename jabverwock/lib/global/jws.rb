@@ -47,7 +47,6 @@ module Jabverwock
     def initialize
       super
     end
-
     
     # class method
     PREFIX_INDEX = "index"
@@ -74,42 +73,31 @@ module Jabverwock
         k.split(PREFIX_INDEX).pop.to_i
       end
 
-      def addTab(str, numOfTab)
-        ans = ""
-        numOfTab.times{
-          ans << "\t"
-        }
-        ans << str
-      end
-
-      def tabbing(target)
-        ans = ""
-        target.each{ |ind, val|
-          t = extractTabNumber ind
-          ans += addTab(val, t)
-          ans += "\n"
-        }
-        ans.chomp
-      end
       
       def transrate(jwKls)
+        ans = ""
         if jwKls.is_a? JW
-          jwKls.tgStr
+          ans = jwKls.tgStr
+        else
+          ans = jwKls
         end
+        ans
       end
-
       
       # @param [arg] hash like {:index0 => "body", :index1 => "head"}
       def build(arg)
-        ans = arg.inject(""){ |res,s|
-          res << transrate(s) + "\n"
-        }
-        ans.chomp
+        # arr -> hash  {:index0 => body, :index1 => footer}
+        # translate -> tabbing -> output
+
+        ans_hash = self.countArrayDepth arg
+        
+        ans = tabbing ans_hash
+        
       end
       
     end
 
   end
+
+
 end
-
-

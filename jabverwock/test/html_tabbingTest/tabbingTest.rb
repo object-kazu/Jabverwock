@@ -1,5 +1,5 @@
 require 'test/unit' 
-require '../..//lib/tabbing/tabbing'
+require '../../lib/tabbing/tabbing'
 
 module Jabverwock
 

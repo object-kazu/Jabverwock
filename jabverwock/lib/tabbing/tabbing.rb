@@ -3,21 +3,6 @@ require 'tabbing/tabbingBase'
 require 'tabbing/tabbingCSS'
 require 'tabbing/tabbingJS'
   
-#   if $FOR_GEM
-#   require "global/globalDef"
-#   require 'tabbing/tabbingBase'
-#   require 'tabbing/tabbingCSS'
-#   require 'tabbing/tabbingJS'
-
-# else
-
-#   #test
-#   require_relative "../global/globalDef" 
-#   require_relative "tabbingJS" 
-#   require_relative "tabbingCSS" 
-#   require_relative "tabbingBase" 
-
-# end
 
 module Jabverwock
   using StringExtension
@@ -38,6 +23,11 @@ module Jabverwock
     end
 
     ######## mainLoop ######
+
+    def footPrint
+      "tabbing read"
+    end
+    
     def mainLoop     
       #css -> extract -> cssTabbing
       #js -> extract -> jsTabbing

@@ -159,6 +159,5 @@ module Jabverwock
       ans
     end
   end
-
 end
 
