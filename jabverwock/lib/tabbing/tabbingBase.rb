@@ -1,20 +1,5 @@
 require "global/globalDef"
 
-
-# if $FOR_GEM
-#   require "global/globalDef"
-  
-  
-# else
-
-#   #test
-#   require_relative "../global/globalDef" 
-
-# end
-
-
-# add tab arrange to html, css, js file.
-
 module Jabverwock
   using StringExtension
   using ArrayExtension
@@ -62,22 +47,7 @@ module Jabverwock
     def fileReading(txt)
       KSUtil.fileReadingToArr txt, @elmArray
     end
-    
-    # def fileReadingToArr (txt, arr)
-    #   begin
-    #     File.open(txt) do |file|
-    #       file.each_line do |labmen|
-    #         arr << labmen
-    #       end
-    #     end
-    #   # 例外は小さい単位で捕捉する
-    #   rescue SystemCallError => e
-    #     puts %Q(class=[#{e.class}] message=[#{e.message}])
-    #   rescue IOError => e
-    #     puts %Q(class=[#{e.class}] message=[#{e.message}])
-    #   end      
-    # end
-    
+        
     def readLine(str)
       str.each_line do |l|
         @elmArray << l      
@@ -156,10 +126,5 @@ module Jabverwock
       shiftMain
     end
   end
-
-    # p t = TabbingBase.new
-
-# t.fileReading 'sample.txt'
-# p t.elmArray
 
 end

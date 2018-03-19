@@ -14,27 +14,11 @@ module Jabverwock
       expect(inp.name).to eq "input"
     end
 
-    # test "JWOneTag first test" do
-    #   ans = @t.pressDefault
-    #   assert_equal(ans, "<jwonetag>")
-
-    # end
-        
-    # test "content add" do
-    #   @t.name="j"
-    #   @t.content = "test"
-    #   ans = @t.pressDefault
-    #   ans2 = @t.pressVal.showTempleteString
-      
-    #   assert_equal(ans, "<j>test")
-    #   assert_equal(ans, ans2)
-    # end
-
-    # test "add contentIs" do
-    #   a = INPUT.new.contentIs "this is test"
-    #   assert_equal(a.pressDefault, "<input>this is test")
-    # end
-
+    it "doctype" do
+      doc = DOCTYPE.new
+      expect(doc.name).to eq "doctype"
+    end
+    
    
     
   end  

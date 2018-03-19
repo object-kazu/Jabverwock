@@ -42,6 +42,6 @@ module Jabverwock
   
   oneTagList.each do |list|
     Object.const_set list, Class.new(JWOneTag){}
-  end  
+  end
 end
 

@@ -633,7 +633,6 @@ module Jabverwock
         m += %w(TEXTAREA TEMPLATE UL )
         m += %w(LI_multi )
         m += %w(VIDEO )
-        m += %w( )
       end
       
       # define table tag
@@ -671,7 +670,7 @@ module Jabverwock
       #   <DOCTYPE>
       def oneTags
         o = %w(DOCTYPE IMG INPUT EMBED PARAM SOURCE)
-        o = %w(LINK META TRACK)
+        o += %w(LINK META TRACK)
       end
       
       # string insert to style tags

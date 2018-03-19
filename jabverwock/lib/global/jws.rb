@@ -12,15 +12,17 @@ require "css/css"
 
 
 # structDescript.rbを改良する
-# Tab とRTで構造化する -> python like
+# Arrayで構造化する
 # class method  とする
 # jws{
-# html
-# \t header
-# \t \t title
-# \t body
-# \t footer
-#}
+# [html,
+#  [header,
+#   [title],
+#   body,
+#   footer
+#  ]  
+# ]
+# }
 
 # ->
 # <html>
@@ -53,27 +55,6 @@ module Jabverwock
     
     class << self
 
-      
-      # @return [Hash] {:index0 => "body", :index1 => "head"}
-      def countArrayDepth(arr, depthIndex = 0, result=[])
-        arr.each{ |s|
-          if s.is_a?(Array)
-            countArrayDepth s, depthIndex+1,  result
-          else
-            result << {"index#{depthIndex}": s}
-          end
-        }
-        result
-      end
-      
-      # @param [Symbol] key like :index0
-      # @return [Int] tab number
-      def extractTabNumber(key)
-        k = key.to_s
-        k.split(PREFIX_INDEX).pop.to_i
-      end
-
-      
       def transrate(jwKls)
         ans = ""
         if jwKls.is_a? JW
@@ -83,15 +64,21 @@ module Jabverwock
         end
         ans
       end
-      
-      # @param [arg] hash like {:index0 => "body", :index1 => "head"}
-      def build(arg)
-        # arr -> hash  {:index0 => body, :index1 => footer}
-        # translate -> tabbing -> output
 
-        ans_hash = self.countArrayDepth arg
-        
-        ans = tabbing ans_hash
+
+      # @param [Array] arg  like [a,b,[c,d],e]
+      # <a>
+      # </a>
+      # <b>
+      # <c>
+      # </c>
+      # <d>
+      # </d>
+      # </b>
+      # <e>
+      # </e>
+      # []: express child
+      def build(arg)
         
       end
       
