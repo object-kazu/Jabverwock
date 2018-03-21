@@ -65,7 +65,18 @@ module Jabverwock
         ans
       end
 
-
+      def addChild(p,c)
+        parentString = transrate p
+        childString = ""
+        if c.is_a? Array
+          c.each{ |child|
+            childString << transrate(child)+"\n"
+          }
+        end
+        #parentStringの中にchildStringを入れる
+        parentString.gsub(/>\n.*<\//, ">\n#{childString}<\/")
+      end
+      
       # @param [Array] arg  like [a,b,[c,d],e]
       # <a>
       # </a>
@@ -79,7 +90,18 @@ module Jabverwock
       # </e>
       # []: express child
       def build(arg)
-        
+        res = ""
+        arg.each{ |a|
+          # if a.is_a? Array
+          #   p "arraying"
+          #   addChild parent, a
+          # else
+          #   parent = a
+          # end
+          # コレじゃ a が２回翻訳される！
+          res << transrate(a)+"\n"
+        }
+        res.chomp
       end
       
     end

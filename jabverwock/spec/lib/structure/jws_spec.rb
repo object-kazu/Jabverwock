@@ -17,9 +17,8 @@ module Jabverwock
   RSpec.describe 'insert variable' do
     subject(:doc){DOCTYPE.new}
     subject(:head){HEAD.new}
-    subject(:titile){TITLE.new}
+    subject(:title){TITLE.new}
     
-
     
     it 'is a JW class' do
       p1 = P.new.contentIs "this is test1"
@@ -46,20 +45,27 @@ module Jabverwock
       
     end
 
+    it 'addChild case1' do
+      body = BODY.new
+      p1 = P.new.contentIs "test"
+      ans = JWS.addChild body,[p1]
+      res = "<body>\n<p>test</p>\n</body>"
+      expect(ans).to eq res
+    end
+    
     it 'build simple' do
-      doctype = DOCTYPE.new
-      # arr = [doc,head,title]
+      arr = [doc,head,title]
       ans = JWS.build arr
-      res = "<DOCTYPE>\n<head>\n</head>\n<title></title>"
+      res = "<!DOCTYPE html>\n<head>\n</head>\n<title></title>"
       expect(ans).to eq res
       
     end
     
-    # it 'tabbing case 4' do
-    #   body = BODY.new.contentIs "test"
-    #   tes = {:index1 => body}
-    #   ans = JWS.tabbing tes
-    #   expect(ans).to eq "\t<body>\n\t\ttest\t</body>"
+    # it 'build case child' do
+    #   arr = [doc,head,[title]]
+    #   ans = JWS.build arr
+    #   res = "<!DOCTYPE html>\n<head>\n<title></title></head>"
+    #   expect(ans).to eq res
     # end
 
     
