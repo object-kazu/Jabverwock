@@ -45,21 +45,50 @@ module Jabverwock
       
     end
 
-    it 'addChild case1' do
-      body = BODY.new
-      p1 = P.new.contentIs "test"
-      ans = JWS.addChild body,[p1]
-      res = "<body>\n<p>test</p>\n</body>"
-      expect(ans).to eq res
-    end
-    
-    it 'build simple' do
-      arr = [doc,head,title]
-      ans = JWS.build arr
-      res = "<!DOCTYPE html>\n<head>\n</head>\n<title></title>"
-      expect(ans).to eq res
+
+    it 'makeStringFrom array' do
+      arr = %w(this is test)
+      ans = JWS.makeStringFrom arr
+      expect(ans).to eq "this\nis\ntest\n"
       
     end
+
+    it 'addMember' do
+      arr = ["a","b"]
+      ans = JWS.addMember arr
+      expect(ans).to eq ["a","b"]
+    end
+
+    it 'addMember case 2' do
+      p1 = P.new.contentIs "test"
+      body = BODY.new
+      ans = JWS.addMember [body, p1]
+      expect(ans).to eq ["<body>\n</body>","<p>test</p>"]
+    end
+
+    it 'addMember case 3' do
+      p1 = P.new.contentIs "test"
+      body = BODY.new
+      ans = JWS.addMember [body, [p1]]
+      expect(ans).to eq ["<body>\n<p>test</p>\n</body>"]
+    end
+    
+    
+    # it 'addChild case1' do
+    #   body = BODY.new
+    #   p1 = P.new.contentIs "test"
+    #   ans = JWS.addChild body,[p1]
+    #   res = "<body>\n<p>test</p>\n</body>"
+    #   expect(ans).to eq res
+    # end
+    
+    # it 'build simple' do
+    #   arr = [doc,head,title]
+    #   ans = JWS.build arr
+    #   res = "<!DOCTYPE html>\n<head>\n</head>\n<title></title>"
+    #   expect(ans).to eq res
+      
+    # end
     
     # it 'build case child' do
     #   arr = [doc,head,[title]]

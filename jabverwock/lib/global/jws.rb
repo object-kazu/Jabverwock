@@ -48,10 +48,12 @@ module Jabverwock
     
     def initialize
       super
+      @parent = []
     end
     
     # class method
     PREFIX_INDEX = "index"
+
     
     class << self
 
@@ -65,14 +67,26 @@ module Jabverwock
         ans
       end
 
-      def addChild(p,c)
-        parentString = transrate p
-        childString = ""
-        if c.is_a? Array
-          c.each{ |child|
-            childString << transrate(child)+"\n"
-          }
-        end
+      def makeStringFrom(arr)
+        arr.inject(""){ |res,a| res << a + "\n" }
+      end
+      
+      def addMember(arr)
+        members = []
+        arr.each{ |a|
+          if a.is_a? Array
+            arr = addMember a
+            child = makeStringFrom arr
+            membersLast = addChild members.pop, child
+            members << membersLast
+          else
+            members << transrate(a)
+          end
+        }
+        members
+      end
+      
+      def addChild(parentString,childString)
         #parentStringの中にchildStringを入れる
         parentString.gsub(/>\n.*<\//, ">\n#{childString}<\/")
       end
