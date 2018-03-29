@@ -18,8 +18,7 @@ module Jabverwock
     subject(:doc){DOCTYPE.new}
     subject(:head){HEAD.new}
     subject(:title){TITLE.new}
-    
-    
+   
     it 'is a JW class' do
       p1 = P.new.contentIs "this is test1"
       ans = JWS.transrate p1
@@ -56,22 +55,78 @@ module Jabverwock
     it 'addMember' do
       arr = ["a","b"]
       ans = JWS.addMember arr
-      expect(ans).to eq ["a","b"]
+      expect(ans).to eq "a\nb\n"
     end
 
     it 'addMember case 2' do
       p1 = P.new.contentIs "test"
       body = BODY.new
       ans = JWS.addMember [body, p1]
-      expect(ans).to eq ["<body>\n</body>","<p>test</p>"]
+      expect(ans).to eq "<body>\n</body>\n<p>test</p>\n"
     end
 
     it 'addMember case 3' do
       p1 = P.new.contentIs "test"
       body = BODY.new
       ans = JWS.addMember [body, [p1]]
-      expect(ans).to eq ["<body>\n<p>test</p>\n</body>"]
+      expect(ans).to eq "<body>\n<p>test</p>\n</body>\n"
     end
+    
+    it 'addMember case 4' do
+      div = DIV.new
+      p1 = P.new.contentIs "test"
+      body = BODY.new
+      ans = JWS.addMember [div,[body, [p1]]]
+      expect(ans).to eq "<div>\n<body>\n<p>test</p>\n</body>\n</div>\n"
+    end
+
+    it "addMember combine to addMember" do
+      div = DIV.new
+      p1 = P.new.contentIs "test"
+      ans = JWS.addMember [div, [p1]]
+
+      div2 = DIV.new
+      body = BODY.new
+      ans2 = JWS.addMember [div2,[body]]
+
+      ans3 = JWS.addMember [ans,ans2]
+      expect(ans3).to eq "<div>\n<p>test</p>\n</div>\n<div>\n<body>\n</body>\n</div>\n"
+    end
+    
+    # it 'addMember case 4' do
+    #   p1 = P.new.contentIs "test"
+    #   body = BODY.new
+    #   ans = JWS.addMember [body, [p1]]
+
+    #   # p ans
+      
+    #   div1 = DIV.new
+    #   ans_div = JWS.addMember [div1]
+
+    #   # p ans_div
+      
+    #   ans_combine = JWS.addMember [ans, ans_div]
+
+    #   expect(ans_div).to eq ["<body>\n<p>test</p>\n</body>","<div>\n</div>"]
+    # end
+   
+    
+    # 合成可能
+    # jws_header = jws{...}
+    # jws_body = jws{...}
+    # jws{
+    #   jws_header
+    # jws_body
+    # }
+    # it 'addMember combine' do
+    #   p1 = P.new.contentIs "test"
+    #   body = BODY.new
+      
+    #   ans = JWS.addMember [body, [p1]]
+
+      
+    #   expect(ans).to eq ["<body>\n<p>test</p>\n</body>"]
+    # end
     
     
     # it 'addChild case1' do

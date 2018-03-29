@@ -53,16 +53,16 @@ module Jabverwock
     
     # class method
     PREFIX_INDEX = "index"
-
     
     class << self
-
+      
+      
       def transrate(jwKls)
         ans = ""
         if jwKls.is_a? JW
           ans = jwKls.tgStr
         else
-          ans = jwKls
+          ans = jwKls.chomp
         end
         ans
       end
@@ -73,17 +73,17 @@ module Jabverwock
       
       def addMember(arr)
         members = []
+        
         arr.each{ |a|
           if a.is_a? Array
-            arr = addMember a
-            child = makeStringFrom arr
+            child = addMember a
             membersLast = addChild members.pop, child
             members << membersLast
           else
             members << transrate(a)
           end
         }
-        members
+        makeStringFrom members
       end
       
       def addChild(parentString,childString)
