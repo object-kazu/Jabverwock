@@ -92,16 +92,6 @@ module Jabverwock
       end
       
       # @param [Array] arg  like [a,b,[c,d],e]
-      # <a>
-      # </a>
-      # <b>
-      # <c>
-      # </c>
-      # <d>
-      # </d>
-      # </b>
-      # <e>
-      # </e>
       # []: express child
       def build(arg)
         res = ""

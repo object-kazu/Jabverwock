@@ -93,78 +93,8 @@ module Jabverwock
       expect(ans3).to eq "<div>\n<p>test</p>\n</div>\n<div>\n<body>\n</body>\n</div>\n"
     end
     
-    # it 'addMember case 4' do
-    #   p1 = P.new.contentIs "test"
-    #   body = BODY.new
-    #   ans = JWS.addMember [body, [p1]]
-
-    #   # p ans
-      
-    #   div1 = DIV.new
-    #   ans_div = JWS.addMember [div1]
-
-    #   # p ans_div
-      
-    #   ans_combine = JWS.addMember [ans, ans_div]
-
-    #   expect(ans_div).to eq ["<body>\n<p>test</p>\n</body>","<div>\n</div>"]
-    # end
-   
-    
-    # 合成可能
-    # jws_header = jws{...}
-    # jws_body = jws{...}
-    # jws{
-    #   jws_header
-    # jws_body
-    # }
-    # it 'addMember combine' do
-    #   p1 = P.new.contentIs "test"
-    #   body = BODY.new
-      
-    #   ans = JWS.addMember [body, [p1]]
-
-      
-    #   expect(ans).to eq ["<body>\n<p>test</p>\n</body>"]
-    # end
     
     
-    # it 'addChild case1' do
-    #   body = BODY.new
-    #   p1 = P.new.contentIs "test"
-    #   ans = JWS.addChild body,[p1]
-    #   res = "<body>\n<p>test</p>\n</body>"
-    #   expect(ans).to eq res
-    # end
-    
-    # it 'build simple' do
-    #   arr = [doc,head,title]
-    #   ans = JWS.build arr
-    #   res = "<!DOCTYPE html>\n<head>\n</head>\n<title></title>"
-    #   expect(ans).to eq res
-      
-    # end
-    
-    # it 'build case child' do
-    #   arr = [doc,head,[title]]
-    #   ans = JWS.build arr
-    #   res = "<!DOCTYPE html>\n<head>\n<title></title></head>"
-    #   expect(ans).to eq res
-    # end
-
-    
-    # it 'build' do
-    #   header = HEADER.new
-    #   title = TITLE.new.contentIs "this is test1"
-    #   arr =
-    #     [
-    #       header,
-    #       [title],
-    #     ]
-    #   ans = JWS.build arr
-    #   expect(ans).to eq "<header>\t<title>\t\tthis is test1\t</title></header>"
-    # end
-
         
   end
   
