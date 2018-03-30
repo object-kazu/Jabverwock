@@ -52,44 +52,44 @@ module Jabverwock
       
     end
 
-    it 'addMember' do
+    it 'build' do
       arr = ["a","b"]
-      ans = JWS.addMember arr
+      ans = JWS.build arr
       expect(ans).to eq "a\nb\n"
     end
 
-    it 'addMember case 2' do
+    it 'build case 2' do
       p1 = P.new.contentIs "test"
       body = BODY.new
-      ans = JWS.addMember [body, p1]
+      ans = JWS.build [body, p1]
       expect(ans).to eq "<body>\n</body>\n<p>test</p>\n"
     end
 
-    it 'addMember case 3' do
+    it 'build case 3' do
       p1 = P.new.contentIs "test"
       body = BODY.new
-      ans = JWS.addMember [body, [p1]]
+      ans = JWS.build [body, [p1]]
       expect(ans).to eq "<body>\n<p>test</p>\n</body>\n"
     end
     
-    it 'addMember case 4' do
+    it 'build case 4' do
       div = DIV.new
       p1 = P.new.contentIs "test"
       body = BODY.new
-      ans = JWS.addMember [div,[body, [p1]]]
+      ans = JWS.build [div,[body, [p1]]]
       expect(ans).to eq "<div>\n<body>\n<p>test</p>\n</body>\n</div>\n"
     end
 
-    it "addMember combine to addMember" do
+    it "build combine to build" do
       div = DIV.new
       p1 = P.new.contentIs "test"
-      ans = JWS.addMember [div, [p1]]
+      ans = JWS.build [div, [p1]]
 
       div2 = DIV.new
       body = BODY.new
-      ans2 = JWS.addMember [div2,[body]]
+      ans2 = JWS.build [div2,[body]]
 
-      ans3 = JWS.addMember [ans,ans2]
+      ans3 = JWS.build [ans,ans2]
       expect(ans3).to eq "<div>\n<p>test</p>\n</div>\n<div>\n<body>\n</body>\n</div>\n"
     end
     

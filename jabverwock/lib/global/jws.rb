@@ -71,12 +71,14 @@ module Jabverwock
         arr.inject(""){ |res,a| res << a + "\n" }
       end
       
-      def addMember(arr)
+      # @param [Array] arg  like [a,b,[c,d],e]
+      # []: express child
+      def build(arr)
         members = []
         
         arr.each{ |a|
           if a.is_a? Array
-            child = addMember a
+            child = build a
             membersLast = addChild members.pop, child
             members << membersLast
           else
@@ -91,22 +93,6 @@ module Jabverwock
         parentString.gsub(/>\n.*<\//, ">\n#{childString}<\/")
       end
       
-      # @param [Array] arg  like [a,b,[c,d],e]
-      # []: express child
-      def build(arg)
-        res = ""
-        arg.each{ |a|
-          # if a.is_a? Array
-          #   p "arraying"
-          #   addChild parent, a
-          # else
-          #   parent = a
-          # end
-          # コレじゃ a が２回翻訳される！
-          res << transrate(a)+"\n"
-        }
-        res.chomp
-      end
       
     end
 
