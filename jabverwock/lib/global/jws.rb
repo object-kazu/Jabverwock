@@ -43,7 +43,8 @@ require "css/css"
 # jws_body
 # }
 
-module Jabverwock  
+module Jabverwock
+  
   class JWS < JW
     
     def initialize
