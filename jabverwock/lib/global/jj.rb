@@ -13,23 +13,23 @@ module Jabverwock
 
   
   class JJ < JW_CSS_OPAL_JS    
-    class << self
-      def initialize
-        super
-      end
-      
-      def p(content)
-        P.new.contentIs content
-        
-      end
+    # class << self
+    #   def initialize
+    #     super
+    #   end
 
-    end
+    # end
+
+
+    # all tags
+    allTags = []
+    allTags += KSUtil.oneTags
+    allTags += KSUtil.singleTags
     
-    klsList = %w(P DIV)
-    klsList.each do |kls|
+    allTags.map!(&:downcase)
+    allTags.each do |kls|
       define_singleton_method(kls) do
-        eval"#{kls}.new"
-      
+        eval"#{kls.upcase}.new"      
       end
     end
 
