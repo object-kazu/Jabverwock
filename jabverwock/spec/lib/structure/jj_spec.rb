@@ -7,25 +7,25 @@ module Jabverwock
 
   using StringExtension
 
-  RSpec.describe 'jj class initial test' do
+  RSpec.describe 'jk class initial test' do
     
-    # it 'JJ class define method' do
-    #   div1 = JJ.DIV
-    #   expect(div1.tgStr).to eq "<div>\n</div>"
-    # end
+    it 'JK class define method' do
+      div1 = JK.div
+      expect(div1.tgStr).to eq "<div>\n</div>"
+    end
 
-    # it 'JJ class define method 2' do
-    #   div1 = JJ.p.contentIs "test"
-    #   expect(div1.tgStr).to eq "<p>test</p>"
-    # end
+    it 'JK class define method 2' do
+      div1 = JK.p.contentIs "test"
+      expect(div1.tgStr).to eq "<p>test</p>"
+    end
 
-    # it 'check allTags' do
-    #   div1 = JJ.p.contentIs "test"
-    #   expect(div1.tgStr).to eq "<p>test</p>"
-    # end
+    it 'check allTags' do
+      div1 = JK.p.contentIs "test"
+      expect(div1.tgStr).to eq "<p>test</p>"
+    end
     
     it 'check allTags, oneTags' do
-      doc = JJ.doctype
+      doc = JK.doctype
       expect(doc.tgStr).to eq "<!DOCTYPE html>"
     end
 
