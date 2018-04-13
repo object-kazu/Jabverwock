@@ -54,42 +54,42 @@ module Jabverwock
 
     it 'build' do
       arr = ["a","b"]
-      ans = JWS.build arr
+      ans = JWS.buildToString arr
       expect(ans).to eq "a\nb\n"
     end
 
-    it 'build case 2' do
+    it 'buildToString case 2' do
       p1 = P.new.contentIs "test"
       body = BODY.new
-      ans = JWS.build [body, p1]
+      ans = JWS.buildToString [body, p1]
       expect(ans).to eq "<body>\n</body>\n<p>test</p>\n"
     end
 
-    it 'build case 3' do
+    it 'buildToString case 3' do
       p1 = P.new.contentIs "test"
       body = BODY.new
-      ans = JWS.build [body, [p1]]
+      ans = JWS.buildToString [body, [p1]]
       expect(ans).to eq "<body>\n<p>test</p>\n</body>\n"
     end
     
-    it 'build case 4' do
+    it 'buildToString case 4' do
       div = DIV.new
       p1 = P.new.contentIs "test"
       body = BODY.new
-      ans = JWS.build [div,[body, [p1]]]
+      ans = JWS.buildToString [div,[body, [p1]]]
       expect(ans).to eq "<div>\n<body>\n<p>test</p>\n</body>\n</div>\n"
     end
 
-    it "build combine to build" do
+    it "buildToString combine to buildToString" do
       div = DIV.new
       p1 = P.new.contentIs "test"
-      ans = JWS.build [div, [p1]]
+      ans = JWS.buildToString [div, [p1]]
 
       div2 = DIV.new
       body = BODY.new
-      ans2 = JWS.build [div2,[body]]
+      ans2 = JWS.buildToString [div2,[body]]
 
-      ans3 = JWS.build [ans,ans2]
+      ans3 = JWS.buildToString [ans,ans2]
       expect(ans3).to eq "<div>\n<p>test</p>\n</div>\n<div>\n<body>\n</body>\n</div>\n"
     end
         

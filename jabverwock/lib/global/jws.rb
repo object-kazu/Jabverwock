@@ -74,12 +74,13 @@ module Jabverwock
       
       # @param [Array] arg  like [a,b,[c,d],e]
       # []: express child
-      def build(arr)
+      # @return [String] tgStr
+      def buildToString(arr)
         members = []
         
         arr.each{ |a|
           if a.is_a? Array
-            child = build a
+            child = buildToString a
             membersLast = addChild members.pop, child
             members << membersLast
           else
