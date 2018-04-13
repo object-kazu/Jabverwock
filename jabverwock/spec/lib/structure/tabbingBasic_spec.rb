@@ -14,10 +14,24 @@ module Jabverwock
       
     end
              
-  end
+   end
 
-  RSpec.describe '' do
+  RSpec.describe 'tabbing' do
+    subject(:tb) { Tabbing.new }    
+    it 'read file' do
+      t = Tabbing.new
+      t.fileReading './spec/lib/structure/test_1.html'
+      a=  t.elmArray
+      t.fileReading './spec/lib/structure/test_1_tab.html'
+      b = t.elmArray
+      expect(a).to eq b
+      
+    end
 
+    it 'main test' do
+      tb.fileReading './spec/lib/structure/test_1.html'
+      expect(tb.tabbedTxt).to eq "<html>\n\t<p>this is test</p>\n</html>"
+    end
         
   end
   
@@ -25,24 +39,12 @@ end
 
 
 
-
-    # # test "read txt" do
-    # #   t = Tabbing.new
-
-    # #   t.fileReading 'sample.txt'
-    # #   p t.elmArray
-    # # end
     
     # # test "STYLE_TAG_EXTRACTED" do
     # #   p Tabbing::STYLE_TAG_EXTRACTED
     # # end
 
 
-    # # test "main test" do
-    # #   t = Tabbing.new
-    # #   t.fileReading 'sample.txt'
-    # #   # p t.tabbedTxt
-      
     # #   assert_equal t.tabbedTxt,"<html>\n\t<head>\n\t\t<title>This is my first page</title>\n\t</head>\n\t<body>\n\t\t<h1 id=\"example1\">this text is red</h1>\n\t\t<p >Hello world! sample</p>\n\t\t<input type=checkbox name=\"shumi\" value=\"PC\">パソコン\n\t</body>\n</html>\n"      
     # # end
     

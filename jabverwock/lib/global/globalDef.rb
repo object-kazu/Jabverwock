@@ -515,9 +515,9 @@ module Jabverwock
       end
       
       # For debugging, can remove?
-      def myPATH
-        pathForTest "test"
-      end
+      # def myPATH
+      #   pathForTest "test"
+      # end
       
       # For Test
       # diff form index.html and indexPressed.html
@@ -525,7 +525,7 @@ module Jabverwock
       # @param [String] currentFilePath path of files
       # @return diff result
       def myDiff(currentFilePath)
-        path = pathForTest currentFilePath      
+        path = currentFilePath
         dif = `diff -b "#{path}index.html" "#{path}indexPressed.html"`
         if dif != ""
           p dif

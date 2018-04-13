@@ -152,11 +152,4 @@ module Jabverwock
     end
     
   end
-
-#  p t = Tabbing.new
-# p t.methods
-# p t.startIndex
-# t.fileReading 'sample.txt'
-# p t.elmArray
-
 end
