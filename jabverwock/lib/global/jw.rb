@@ -220,8 +220,7 @@ module Jabverwock
     def pressInsert(*insertData)
       if @pressVal.isResultStringEmpty
         prepPress
-      end
-      
+      end      
       @pressVal.withInsertEach(insertData)
       pressDefault
       pressFingerPrint      

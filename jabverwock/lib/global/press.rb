@@ -122,6 +122,9 @@ module Jabverwock
         p 'path is incorrect, pressed txt is saved at following directory,'
         p pathName
       end
+
+      #builder tag remove
+      @resultString.gsub!(/<builder>\n<\/builder>/, "")
       
       #tabbing
       tabbing = Tabbing.new

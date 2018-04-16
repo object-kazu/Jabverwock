@@ -92,7 +92,9 @@ module Jabverwock
       ans3 = JWS.buildToString [ans,ans2]
       expect(ans3).to eq "<div>\n<p>test</p>\n</div>\n<div>\n<body>\n</body>\n</div>\n"
     end
-        
+
+
+
         
   end
   

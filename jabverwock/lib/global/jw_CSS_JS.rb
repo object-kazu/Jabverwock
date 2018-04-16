@@ -169,7 +169,6 @@ module Jabverwock
 
     # ## override ###
     def assemble
-      @templeteString = ""
       applyJS
       assembleHTML
       assembleCSS            

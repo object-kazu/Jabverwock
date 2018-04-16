@@ -45,7 +45,7 @@ require "css/css"
 
 module Jabverwock
   
-  class JWS < JW
+  class JWS < JW_CSS_OPAL_JS
     
     def initialize
       super
@@ -56,8 +56,7 @@ module Jabverwock
     PREFIX_INDEX = "index"
     
     class << self
-      
-      
+            
       def transrate(jwKls)
         ans = ""
         if jwKls.is_a? JW
@@ -88,6 +87,14 @@ module Jabverwock
           end
         }
         makeStringFrom members
+      end
+
+      def build(arr)
+        ans = buildToString arr        
+        v = JW_CSS_OPAL_JS.new
+        v.name = "builder" # make builder tag, this tag is remove at press class, function core.
+        v.templeteString = ans
+        v
       end
       
       def addChild(parentString,childString)
