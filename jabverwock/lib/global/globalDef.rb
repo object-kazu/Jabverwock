@@ -654,7 +654,7 @@ module Jabverwock
         s += %w(CITE CODE )
         s += %w(DT DD DATA DFN)
         s += %w(EM )
-        s += %w(FIGCAPTION HR )
+        s += %w(FIGCAPTION HR)
         s += %w(I KBD )
         s += %w(LI LABEL LEGEND MARK METER)
         s += %w(OPTION OUTPUT P PROGRESS Q)
@@ -662,6 +662,10 @@ module Jabverwock
         s += %w(S SAMP STRONG SUB SUP SUMMARY)
         s += %w(TITLE TIME TT U)
         s += %w(VAR WBR)
+      end
+
+      def headingList
+        %w(HEADING)
       end
       
       # define one tag

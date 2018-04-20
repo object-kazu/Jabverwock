@@ -22,5 +22,14 @@ module Jabverwock
       end
     end
 
+    # Heading tag only, beacase heading need arg
+    hing = KSUtil.headingList
+    hing.map!(&:downcase)
+    hing.each do |kls|
+      define_singleton_method(kls) do |arg| 
+        eval"#{kls.upcase}.new(arg)"      
+      end
+    end
+    
   end
 end
