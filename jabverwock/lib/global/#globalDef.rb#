@@ -669,7 +669,7 @@ module Jabverwock
       end
 
       def commentTag
-        %w(COMMENT)
+        %w()
       end
 
       

@@ -118,19 +118,12 @@ module Jabverwock
     
   end
 
+  
   multiList = KSUtil.multiTags
   
   multiList.each do |list|
     Object.const_set list, Class.new(JWMulti){    
     }
   end
-
-
-  #  a = JWMulti.new
-  # p a
-  # # a.css.name = "pp"
-  # # a.css.color = "red"
-  # #a.name = "test"
-  # p a.pressDefault
   
 end

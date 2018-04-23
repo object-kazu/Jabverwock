@@ -18,7 +18,6 @@ module Jabverwock
       doc = DOCTYPE.new
       expect(doc.name).to eq "doctype"
     end
-    
    
     
   end  

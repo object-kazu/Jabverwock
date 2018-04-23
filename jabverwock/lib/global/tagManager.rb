@@ -10,6 +10,7 @@ module Jabverwock
   class TagManager
     attr_accessor :name, :tagAttribute, :isSingleTag, :closeStringNotRequire, :tempOpenString, :tempCloseString
     attr_accessor :withBreak
+    attr_accessor :comment
     
     def initialize
       resetTags
@@ -21,7 +22,7 @@ module Jabverwock
       @doctype = "" #DOCTYPE only use
       @tagAttribute = TagAttribute.new
       @isSingleTag, @closeStringNotRequire, @withBreak = false, false, false
-      
+      @comment = ""
     end
     
     # add attribute
@@ -69,7 +70,10 @@ module Jabverwock
     def isScriptTag
       @name == "script" ? true : false
     end
-    
+
+    def isComment
+      @name == "comment"? true: false
+    end
     
     # #### open and close string ###################
     # TODO refactoring with openStringReplace and closeStringReplace
@@ -101,13 +105,16 @@ module Jabverwock
         addAttribute
         @tempOpenString = "<" + "!DOCTYPE" + $SPC + @doctype + @attributeString + ">"
     end
+
+    def commentTag
+      @tempOpenString = "<!-- #{@comment} -->"
+    end
     
     # make open string, open string is like <p> and <html>
     def openString
       nameCheck
-      
       return openStringDocType if isDocType
-            
+      return commentTag if isComment
       if isHrTag || isBrTag
         return ""
       end
@@ -150,7 +157,7 @@ module Jabverwock
       # // not require
       # /// meta, img
       
-      if @name.empty? || isDocType || isSingleTag || closeStringNotRequire
+      if @name.empty? || isDocType || isSingleTag || closeStringNotRequire || isComment
         return @tempCloseString = ""
       end
       

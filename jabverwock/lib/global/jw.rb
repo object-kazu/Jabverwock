@@ -12,8 +12,7 @@ module Jabverwock
   class JW
 
     attr_accessor :name, :aData, :templeteString, :pressVal, :tagManager
-    
-    
+        
     def initialize
       @name           = self.name
       @aData          = "".varIs("")
@@ -26,6 +25,7 @@ module Jabverwock
       @tagManager     = TagManager.new
       @isWithBreak    = false
     end
+
     
     # add Array<Symbol> to @attrSymbol
     # @param [Array<Symbol>] tag tag is should be symbol array

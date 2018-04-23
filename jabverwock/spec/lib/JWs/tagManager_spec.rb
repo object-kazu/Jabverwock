@@ -18,7 +18,8 @@ module Jabverwock
       expect(tm.closeString).to eq "</first>"
       
     end
-    
+
+       
     it "TagManager, name is void " do
       tm =  TagManager.new
       tm.name = ""
@@ -124,7 +125,20 @@ module Jabverwock
 
    
     
-  end  
+  end
+
+  RSpec.describe 'comment' do
+    subject(:tm) { TagManager.new }
+    it 'COMMENT class, tag' do
+      tm.name = 'comment'
+      expect(tm.isComment).to be true
+    end
+
+    it 'JWComment class' do
+      jwc = COMMENT.new
+      expect(jwc.tagManager.isComment).to be true
+    end
+  end
     
 
 end
