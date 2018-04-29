@@ -54,7 +54,8 @@ module Jabverwock
       endTag = "</script>"
       @scriptTag << startTag << endTag << $RET      
     end
-        
+
+    
   end  
 end
 

@@ -640,9 +640,9 @@ module Jabverwock
       # @example
       #   <Table> \n </Table>
       def tableTags
-        %w(TR TABLE)
+        %w(TABLE TROW THEAD TDATA)
       end
-      
+            
       # define single tag
       # @return [Array] array of single tags
       # @example
@@ -681,6 +681,20 @@ module Jabverwock
         o = %w(DOCTYPE IMG INPUT EMBED PARAM SOURCE)
         o += %w(LINK META TRACK)
       end
+      
+      def allTags
+        puts "call all tags, you should add headingList to alltags !"
+        puts "you should improve JK class, concern with headingList !"
+        
+        a = []
+        a += singleTags
+        a += multiTags
+        a += tableTags
+        #a += headingList
+        a += commentTag
+        a += oneTags
+      end
+
       
       # string insert to style tags
       # @param [String] str

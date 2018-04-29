@@ -67,11 +67,11 @@ module Jabverwock
     
   end
   
-  singleList = KSUtil.singleTags
+  # singleList = KSUtil.singleTags
 
-  singleList.each do |list|
-    Object.const_set list, Class.new(JWSingle){}
-  end
+  # singleList.each do |list|
+  #   Object.const_set list, Class.new(JWSingle){}
+  # end
 
 end
 

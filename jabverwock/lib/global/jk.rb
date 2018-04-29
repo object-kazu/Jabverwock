@@ -6,12 +6,12 @@ module Jabverwock
   class JK
 
     # all tags
-    allTags = []
-    allTags += KSUtil.oneTags
-    allTags += KSUtil.singleTags
-    allTags += KSUtil.multiTags
-    allTags += KSUtil.tableTags
-    allTags += KSUtil.commentTag
+    allTags = KSUtil.allTags
+    # allTags += KSUtil.oneTags
+    # allTags += KSUtil.singleTags
+    # allTags += KSUtil.multiTags
+    # allTags += KSUtil.tableTags
+    # allTags += KSUtil.commentTag
     
     # JK.DIV convert to JK.div
     allTags.map!(&:downcase)

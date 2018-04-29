@@ -38,10 +38,10 @@ module Jabverwock
 
   end
 
-  oneTagList = KSUtil.oneTags
+  # oneTagList = KSUtil.oneTags
   
-  oneTagList.each do |list|
-    Object.const_set list, Class.new(JWOneTag){}
-  end
+  # oneTagList.each do |list|
+  #   Object.const_set list, Class.new(JWOneTag){}
+  # end
 end
 

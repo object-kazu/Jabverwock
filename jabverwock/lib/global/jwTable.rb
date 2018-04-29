@@ -232,41 +232,5 @@ module Jabverwock
     end
         
   end
-
-  tableTagList = ["TABLE","TROW","THEAD","TDATA"]  
-  tableTagList.each do |list|    
-    obj = ""
-    case list
-    when "TABLE"
-      obj = JWTable
-    when "TROW"
-      obj = TableRow
-    when "THEAD"
-      obj = TableHeader
-    when "TDATA"
-      obj = TableData
-    end
-        
-    Object.const_set list, Class.new(obj){
-    
-    #   attr_accessor :name
-    #   def initialize
-    #     super
-    #     @name = self.class.name.downcase
-    #     @css = CSS.new("#{name}")
-    #   end
-     }
-  end
-
-  
-  # a = TableData.new
-  # a.content ="test"
-  # p a.tgStr
-     
-  
- # p a = TABLE.new
- # p b = JWTable.new
- # b.rows = ["a","b"]
- # p b.pressDefault
  
 end

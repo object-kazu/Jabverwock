@@ -80,17 +80,6 @@ module Jabverwock
       expect(multi.tgStr).to eq "<jwmulti>\n<body>\n</body>\n<head>\n</head>\n</jwmulti>"
     end
     
-   
-    
-  end  
-    
-
+  end      
 end
 
-
-    
-
-        
-    
-#   end
-# end

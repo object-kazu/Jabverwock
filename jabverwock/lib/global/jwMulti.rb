@@ -119,11 +119,11 @@ module Jabverwock
   end
 
   
-  multiList = KSUtil.multiTags
+  # multiList = KSUtil.multiTags
   
-  multiList.each do |list|
-    Object.const_set list, Class.new(JWMulti){    
-    }
-  end
+  # multiList.each do |list|
+  #   Object.const_set list, Class.new(JWMulti){    
+  #   }
+  # end
   
 end

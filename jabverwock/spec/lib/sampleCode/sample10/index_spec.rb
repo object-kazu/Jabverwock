@@ -19,9 +19,9 @@ module Jabverwock
     ii = JK.i.contentIs "このテキストは斜体です。"
     sm = JK.small.contentIs "このテキストは一回り小さく表示されます。"
     sub = JK.sub.contentIs "下付き文字"
-    pSub = JK.p.contentIs "このテキストは" + sub.tgStr + "を含んでいます"
+    pSub = JK.p.contentIs "このテキストは" + sub.tgStr + "を含んでいます。"
     sup = JK.sup.contentIs "上付き文字"
-    pSup = JK.p.contentIs "このテキストは" + sup.tgStr + "を含んでいます"
+    pSup = JK.p.contentIs "このテキストは" + sup.tgStr + "を含んでいます。"
 
     ans = JWS.build [h,
                      [b,
