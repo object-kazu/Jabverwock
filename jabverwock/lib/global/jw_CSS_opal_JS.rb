@@ -16,7 +16,7 @@ module Jabverwock
     attr_accessor :jsArray, :opalPath
     attr_reader :opalFileName
     
-    def initialize
+    def initialize(style="")
       super
       @opalPath = ""
       @opalFileName = ""

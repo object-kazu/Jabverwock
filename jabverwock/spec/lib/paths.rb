@@ -9,6 +9,7 @@ require_relative "../../lib/global/jwMulti"
 require_relative "../../lib/global/jwOneTag"
 require_relative "../../lib/global/jwTable"
 require_relative "../../lib/global/jw_CSS_OPAL_JS"
+require_relative "../../lib/global/jwOrigin"
 
 require_relative "../../lib/global/jwComment"
 require_relative "../../lib/global/jws"

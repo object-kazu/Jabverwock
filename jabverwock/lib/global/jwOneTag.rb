@@ -9,9 +9,10 @@ module Jabverwock
   class JWOneTag < JWSingle
     attr_accessor :doctype
     
-    def initialize
+    def initialize(style=$SINGLE)
       super
       @doctype = ""
+      @isMulti = $SINGLE # oneTag class do not permit multi style
     end
     
     # overide ##
@@ -38,10 +39,5 @@ module Jabverwock
 
   end
 
-  # oneTagList = KSUtil.oneTags
-  
-  # oneTagList.each do |list|
-  #   Object.const_set list, Class.new(JWOneTag){}
-  # end
 end
 

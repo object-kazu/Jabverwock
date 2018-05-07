@@ -7,16 +7,11 @@ module Jabverwock
 
     # all tags
     allTags = KSUtil.allTags
-    # allTags += KSUtil.oneTags
-    # allTags += KSUtil.singleTags
-    # allTags += KSUtil.multiTags
-    # allTags += KSUtil.tableTags
-    # allTags += KSUtil.commentTag
     
     # JK.DIV convert to JK.div
     allTags.map!(&:downcase)
     
-    # JK.div equal to DIV.new
+    #example: JK.div equal to DIV.new
     allTags.each do |kls|
       define_singleton_method(kls) do
         eval"#{kls.upcase}.new"      

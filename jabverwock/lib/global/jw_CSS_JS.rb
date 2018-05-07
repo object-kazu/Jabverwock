@@ -14,7 +14,7 @@ module Jabverwock
   class JW_CSS_JS < JW_CSS # add css functions
     attr_accessor :js, :jsArray
     
-    def initialize
+    def initialize(style="")
       super
       @js = JsObject.new
       @jsResult = ""

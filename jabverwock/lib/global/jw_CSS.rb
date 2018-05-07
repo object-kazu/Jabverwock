@@ -12,7 +12,7 @@ module Jabverwock
 
     attr_accessor :css, :cssArray, :cssString
         
-    def initialize
+    def initialize(style="")
       super      
       @css = CSS.new("#{name}")
       @cssArray = []

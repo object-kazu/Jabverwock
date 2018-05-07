@@ -10,6 +10,11 @@ module Jabverwock
   RSpec.describe 'jw basic it' do
     subject(:multi) { JWMulti.new }
 
+    it 'add content' do
+      multi.contentIs "this is test"
+      expect(multi.tgStr).to eq "<jwmulti>\nthis is test\n</jwmulti>"
+    end
+    
     it "addChildString, without RET" do
       multi.childStringArray = ["a","b"]
       multi.addChildString "c"

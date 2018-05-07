@@ -4,6 +4,7 @@ require "global/jw"
 require "global/jw_CSS"
 require "global/jw_CSS_JS"
 require "global/jw_CSS_OPAL_JS"
+require "global/jwOrigin"
 
 require "js/jsObject"
 require "opal/opalFileReader"
@@ -106,36 +107,58 @@ module Jabverwock
     end
 
   end
-
   
   all = KSUtil.allTags
   all.each do |tag|
     if KSUtil.singleTags.include? tag
-      Object.const_set tag, Class.new(JWSingle){}
+      Object.const_set tag, Class.new(JWSingle){
+      }
     end
     
     if KSUtil.multiTags.include? tag
-      Object.const_set tag, Class.new(JWMulti){}
+      Object.const_set tag, Class.new(JWMulti){
+      }
     end
 
     if KSUtil.oneTags.include? tag
-      Object.const_set tag, Class.new(JWOneTag){}
-    end
-
-    if KSUtil.tableTags.include? tag
-      obj = ""
-      case tag
-      when "TABLE"
-        obj = JWTable
-      when "TROW"
-        obj = TableRow
-      when "THEAD"
-        obj = TableHeader
-      when "TDATA"
-        obj = TableData
-      end
-      Object.const_set tag, Class.new(obj){}
+      Object.const_set tag, Class.new(JWOneTag){
+      }
     end
     
+    
   end
+  
+  # all.each do |tag|
+  #   if KSUtil.singleTags.include? tag
+  #     Object.const_set tag, Class.new(JWSingle){
+  #     }
+  #   end
+    
+  #   if KSUtil.multiTags.include? tag
+  #     Object.const_set tag, Class.new(JWMulti){
+  #     }
+  #   end
+
+  #   if KSUtil.oneTags.include? tag
+  #     Object.const_set tag, Class.new(JWOneTag){
+  #     }
+  #   end
+
+  #   if KSUtil.tableTags.include? tag
+  #     obj = ""
+  #     case tag
+  #     when "TABLE"
+  #       obj = JWTable
+  #     when "TROW"
+  #       obj = TableRow
+  #     when "THEAD"
+  #       obj = TableHeader
+  #     when "TDATA"
+  #       obj = TableData
+  #     end
+  #     Object.const_set tag, Class.new(obj){
+  #     }
+  #   end
+    
+  #end
 end

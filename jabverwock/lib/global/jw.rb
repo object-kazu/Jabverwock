@@ -12,8 +12,9 @@ module Jabverwock
   class JW
 
     attr_accessor :name, :aData, :templeteString, :pressVal, :tagManager
-        
-    def initialize
+    
+    # @param [Any] arg is number for headingList, str is toggle for single and multi
+    def initialize(style="")
       @name           = self.name
       @aData          = "".varIs("")
       @Data           = [] # insertData array

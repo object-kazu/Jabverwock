@@ -1,6 +1,8 @@
 require "global/globalDef"
-require "global/jw_CSS_OPAL_JS"
+#require "global/jw_CSS_OPAL_JS"
+#require "global/jwMulti"
 require "css/css"
+require "global/jwOrigin"
 
 module Jabverwock
   using StringExtension
@@ -8,39 +10,56 @@ module Jabverwock
   using SymbolExtension
   
   # this class is single line html, like HEADING tag
-  class JWSingle < JW_CSS_OPAL_JS
+    class JWSingle < JWOrigin
     attr_accessor :content
     
-    def initialize
+    def initialize(style=$SINGLE)
       super
-      @content = ""
+      # setTagStyle(style)
       
-      @name = self.class.name.downcase
-      @css = CSS.new("#{@name}")
+      # @content = ""
+      
+      # @name = self.class.name.downcase
+      # @css = CSS.new("#{@name}")
 
     end
 
-    # override ##
-    def tgStr
-      # treatContentToSpan @content
-      assemble
-      @templeteString
-    end
-
-    def contentIs (str)
-      @content = str
-      self
-    end
-    
-    # override ###
-    def makeResult  
-      @templeteString = @tagManager.tempOpenString + @content
-      if !@tagManager.tempCloseString.empty?
-        @templeteString += @tagManager.tempCloseString
-      end
-    end
     
   end
+
+  # class JWSingle < JW_CSS_OPAL_JS
+  #   attr_accessor :content
+    
+  #   def initialize
+  #     super
+  #     @content = ""
+      
+  #     @name = self.class.name.downcase
+  #     @css = CSS.new("#{@name}")
+
+  #   end
+
+  #   # override ##
+  #   def tgStr
+  #     # treatContentToSpan @content
+  #     assemble
+  #     @templeteString
+  #   end
+
+  #   def contentIs (str)
+  #     @content = str
+  #     self
+  #   end
+    
+  #   # override ###
+  #   def makeResult  
+  #     @templeteString = @tagManager.tempOpenString + @content
+  #     if !@tagManager.tempCloseString.empty?
+  #       @templeteString += @tagManager.tempCloseString
+  #     end
+  #   end
+    
+  # end
 
   #This class express <h1>, <h2>, <h3>, <h4>, <h5>, <h6>
   class HEADING < JWSingle
