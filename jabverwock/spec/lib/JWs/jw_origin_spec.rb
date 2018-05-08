@@ -85,11 +85,24 @@ module Jabverwock
       expect(one.tgStr).not_to eq "<!DOCTYPE html>this is single"
       expect(one.tgStr).to eq "<!DOCTYPE html>"
     end
+    
     it 'case one tag, multi, do not permit multi style' do
       one = DOCTYPE.new($MULTI).contentIs "this is single"
       expect(one.tgStr).not_to eq "<!DOCTYPE html>this is single"
       expect(one.tgStr).to eq "<!DOCTYPE html>"
     end
+    
+    # Table
+    it 'table tag, multi' do
+      t = TABLE.new()
+      expect(t.tgStr).to eq "<table>\n</table>"
+    end
+    
+    it 'table tag, single' do
+      t = TABLE.new($SINGLE)
+      expect(t.tgStr).to eq "<table></table>"
+    end
+
     
     
     

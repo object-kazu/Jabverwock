@@ -18,7 +18,7 @@ module Jabverwock
     # attr_accessor  :headerList
     attr_reader :rows, :headerList
     
-    def initialize
+    def initialize(style=$MULTI)
       super
       @caption    = ""
       @headerList = []
@@ -150,7 +150,7 @@ module Jabverwock
     
   # table caption express
   class TableCaption < JWSingle
-    def initialize
+    def initialize(style=$SINGLE)
       super
       @name = "caption"
       @js.setTagName @name
@@ -159,7 +159,7 @@ module Jabverwock
   
   # TR tag express
   class TableRow < JWMulti
-    def initialize
+    def initialize(style=$MULTI)
       super
       @name = "tr"
       @js.setTagName @name
@@ -169,7 +169,7 @@ module Jabverwock
   
   # TH tag express
   class TableHeader < JWSingle
-    def initialize
+    def initialize(style=$SINGLE)
       super
       @name = "th"
       @js.setTagName @name
@@ -180,7 +180,7 @@ module Jabverwock
   # TD tag express
   class TableData < JWSingle
 
-    def initialize
+    def initialize(style=$SINGLE)
       super
       @name = "td"
       @tagManager.name = @name
