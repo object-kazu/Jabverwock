@@ -10,40 +10,6 @@ require "js/jsObject"
 require "opal/opalFileReader"
 require "css/css"
 
-
-
-# structDescript.rbを改良する
-# Arrayで構造化する
-# class method  とする
-# jws{
-# [html,
-#  [header,
-#   [title],
-#   body,
-#   footer
-#  ]  
-# ]
-# }
-
-# ->
-# <html>
-#    <header>
-#      <title></title>
-#    </header>
-#    <body>
-#    </body>
-#    <footer>
-#    </footer>
-# </html>
-
-# 合成可能
-# jws_header = jws{...}
-# jws_body = jws{...}
-# jws{
-#   jws_header
-# jws_body
-# }
-
 module Jabverwock
   
   class JWS < JW_CSS_OPAL_JS
