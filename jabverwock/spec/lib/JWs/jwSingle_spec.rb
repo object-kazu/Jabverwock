@@ -32,7 +32,15 @@ module Jabverwock
       a = P.new.contentIs "this is test"
       expect(a.tgStr).to eq "<p>this is test</p>"
     end
-    
+
+    it "heading class level 1" do
+      a = HEADING.new(1).contentIs"this is test"
+      expect(a.tgStr).to eq "<h1>this is test</h1>"
+    end
+    it "heading class level 2" do
+      a = HEADING.new(2).contentIs"this is test"
+      expect(a.tgStr).to eq "<h2>this is test</h2>"
+    end
     
     
   end

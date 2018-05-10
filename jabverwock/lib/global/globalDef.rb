@@ -690,7 +690,7 @@ module Jabverwock
         a += singleTags
         a += multiTags
         a += tableTags
-        #a += headingList
+        a += headingList
         a += commentTag
         a += oneTags
       end

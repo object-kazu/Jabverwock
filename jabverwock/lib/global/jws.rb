@@ -90,6 +90,11 @@ module Jabverwock
       Object.const_set tag, Class.new(JWOneTag){
       }
     end
+
+    if KSUtil.headingList.include? tag
+      Object.const_set tag, Class.new(HEADING){
+      }      
+    end
     
     if KSUtil.tableTags.include? tag
       obj = ""
@@ -105,9 +110,6 @@ module Jabverwock
       end
       Object.const_set tag, Class.new(obj){
       }
-    end
-    
+    end    
   end
-  
-
 end
