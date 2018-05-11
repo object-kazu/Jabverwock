@@ -10,10 +10,6 @@ module Jabverwock
   
   #This class express multi line html tag, like head, body etc.
   class JWOrigin < JW_CSS_OPAL_JS
-
-    $SINGLE = "need single mode"
-    $MULTI = "need multi mode"
-
     
     attr_accessor :childStringArray
     attr_reader :isMulti

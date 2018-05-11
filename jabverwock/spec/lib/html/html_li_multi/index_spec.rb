@@ -6,8 +6,6 @@ using ArrayExtension
 
 module Jabverwock
 
-
-
   RSpec.describe 'css test' do
 
     html= HTML.new
@@ -31,7 +29,7 @@ module Jabverwock
     end
     
     def self.mList(title, *items)
-      lm = LI_multi.new.contentIs title
+      lm = LI.new($MT).contentIs title
       ul = UL.new
       l1 = itemList items
       ul.addChildren l1
@@ -54,8 +52,6 @@ module Jabverwock
     end
     
     html.addChild bodier
-    
-    
     html.pressTo(name: 'indexPressed.html', dist: KSUtil.pathForTest(__FILE__))
     
     # show diff    

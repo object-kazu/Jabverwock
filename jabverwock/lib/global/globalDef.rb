@@ -168,6 +168,10 @@ module Jabverwock
   using SymbolExtension
   
   # global constant ############
+  $SINGLE = "need single mode"
+  $MULTI  = "need multi mode"
+  $MT = $MULTI
+  $SL = $SINGLE
 
   $RET             = "\n"
   $TAB             = "\t"
@@ -631,7 +635,7 @@ module Jabverwock
         m += %w(MAIN MAP NAV NOSCRIPT OL OPTGROUP PRE )
         m += %w(SCRIPT STYLE SECTION SELECT SMALL SPAN)
         m += %w(TEXTAREA TEMPLATE UL )
-        m += %w(LI_multi )
+#        m += %w(LI_multi )
         m += %w(VIDEO )
       end
       
