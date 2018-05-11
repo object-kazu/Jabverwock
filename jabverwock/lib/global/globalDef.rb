@@ -683,9 +683,6 @@ module Jabverwock
       end
       
       def allTags
-        puts "call all tags, you should add headingList to alltags !"
-        puts "you should improve JK class, concern with headingList !"
-        
         a = []
         a += singleTags
         a += multiTags
