@@ -7,17 +7,17 @@ module Jabverwock
   
   #this class express ["DOCTYPE","META", "IMG", "LINK", "INPUT"]
   class JWOneTag < JWSingle
-    attr_accessor :doctype
+    attr_accessor :type
     
     def initialize(style=$SINGLE)
       super
-      @doctype = ""
+      @type = ""
       @isMulti = $SINGLE # oneTag class do not permit multi style
     end
     
     # overide ##
     def makeTag
-      @tagManager.setDocType @doctype
+      @tagManager.setDocType @type
       @tagManager.openString
     end
     
