@@ -9,6 +9,7 @@ module Jabverwock
   
   RSpec.describe 'sample1, another method, use structure' do
 
+    
     b = JK.body.contentIs "body要素の内容は、ブラウザに表示されます。"
     h = JK.html
     ans = JWS.build [h, [b]]
