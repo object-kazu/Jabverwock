@@ -93,9 +93,55 @@ module Jabverwock
       expect(ans3).to eq "<div>\n<p>test</p>\n</div>\n<div>\n<body>\n</body>\n</div>\n"
     end
 
+    # css
+    # it "add css " do
+    #   head = HEAD.new
+    #   p1 = P.new.contentIs "test"
+    #   p1.css.background_color("cccccc")
+    #   ans = JWS.buildToString [head, [p1]]
+    #   p p1.cssString
+      
+    # end
 
 
-        
+    # it"improve build" do
+    #   head = HEAD.new
+    #   p1 = P.new.contentIs "test"
+    #   p1.css.background_color("good")
+    #   JWS.temp [head,p1]
+    # end
+
+
+    it "test temp code" do
+      
+      head = HEAD.new
+      p1 = P.new.contentIs "test"
+      p1.css.background_color("good")
+      p JWS.temp [head,[p1]]
+      
+    end
+
+    it "test temp code 2" do
+      
+      head = HEAD.new
+      p1 = P.new.contentIs "test"
+      p1.css.background_color("good")
+      p JWS.temp [head,p1]
+      
+    end
+
+    it "test temp code " do
+      
+      head = HEAD.new
+      p1 = P.new.contentIs "test"
+      p1.css.background_color("good")
+      div = DIV.new
+      
+      p JWS.temp [head,div,[p1]]
+      
+    end
+
+    
   end
   
 end   

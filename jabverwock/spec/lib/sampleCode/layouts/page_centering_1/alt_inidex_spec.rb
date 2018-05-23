@@ -60,10 +60,26 @@ module Jabverwock
       b.addChildren [c,divContainer,e]
       b
     end
+
+    def divFooter
+      
+      fs = JK.comment.contentIs "フッタ開始"
+      
+      f = JK.div.attr(:id__footer)
+      f.addChildString "[フッタ]"
+      c = CSS.new("#example1").color "blue"
+      f.addCss c 
+#      f.css.background_color("cccccc")
+      
+      fe = JK.comment.contentIs "フッタ終了"
+
+      fs.addMembers(f,fe)
+      fs
+    end
     
     def divContainer
       c = JK.div.attr(:id__container)
-      c.css.background_color("cccccc")
+      
       hs = JK.comment.contentIs "ヘッダ開始"
       he = JK.comment.contentIs "ヘッダ終了"
       cs = JK.comment.contentIs "コンテンツ開始"
@@ -81,22 +97,6 @@ module Jabverwock
                        cs,content,ce,
                        divFooter
                      ]]
-    end
-    
-    def divFooter
-      
-      fs = JK.comment.contentIs "フッタ開始"
-      
-      f = JK.div.attr(:id__footer)
-      f.addChildString "[フッタ]"
-      c = CSS.new("#example1").color "blue"
-      f.addCss c 
-#      f.css.background_color("cccccc")
-      
-      fe = JK.comment.contentIs "フッタ終了"
-
-      fs.addMembers(f,fe)
-      fs
     end
     
     it "main description" do

@@ -33,6 +33,15 @@ module Jabverwock
         end
         ans
       end
+      def transrate_css(jwKls)
+        ans = ""
+        if jwKls.is_a? JW
+          ans = jwKls.cssString
+        else
+          ans = jwKls.chomp
+        end
+        ans
+      end
 
       def makeStringFrom(arr)
         arr.inject(""){ |res,a| res << a + "\n" }
@@ -68,6 +77,47 @@ module Jabverwock
         #parentStringの中にchildStringを入れる
         parentString.gsub(/>\n.*<\//, ">\n#{childString}<\/")
       end
+
+      # [a,[b]] => a.addChild b
+      # [a,b] => a.addMember b
+      ################ test code ###########
+      def temp(arr)
+        f = arr.first
+        members = []
+        arr.each{ |s|
+          if s.is_a? Array # child
+            makeChild members.last, s
+          else # member
+            members << s      
+          end
+        }
+        makeMember members
+      end
+
+
+      def makeChild(parent, arr)
+        #arr[0].addChild arr[1]...
+        last = parent #inital parent
+        
+        arr.each{ |s|
+          if s.is_a? Array
+            makeChild parent, s
+          else
+            last.addChild s
+            last = s
+          end
+        }
+      end
+      def makeMember(arr)
+        #arr[0].addMemver arr[1]...
+        f = arr.shift
+        arr.each{ |s|
+          f.addMember s
+        }
+        f.tgStr
+      end
+
+      ################ ###################
       
       
     end
