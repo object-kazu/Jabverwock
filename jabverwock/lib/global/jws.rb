@@ -16,72 +16,72 @@ module Jabverwock
     
     def initialize
       super
-      @parent = []
+      # @parent = []
     end
     
     # class method
-    PREFIX_INDEX = "index"
+    # PREFIX_INDEX = "index"
     
     class << self
             
-      def transrate(jwKls)
-        ans = ""
-        if jwKls.is_a? JW
-          ans = jwKls.tgStr
-        else
-          ans = jwKls.chomp
-        end
-        ans
-      end
-      def transrate_css(jwKls)
-        ans = ""
-        if jwKls.is_a? JW
-          ans = jwKls.cssString
-        else
-          ans = jwKls.chomp
-        end
-        ans
-      end
+      # def transrate(jwKls)
+      #   ans = ""
+      #   if jwKls.is_a? JW
+      #     ans = jwKls.tgStr
+      #   else
+      #     ans = jwKls.chomp
+      #   end
+      #   ans
+      # end
+      # def transrate_css(jwKls)
+      #   ans = ""
+      #   if jwKls.is_a? JW
+      #     ans = jwKls.cssString
+      #   else
+      #     ans = jwKls.chomp
+      #   end
+      #   ans
+      # end
 
-      def makeStringFrom(arr)
-        arr.inject(""){ |res,a| res << a + "\n" }
-      end
+      # def makeStringFrom(arr)
+      #   arr.inject(""){ |res,a| res << a + "\n" }
+      # end
       
-      # @param [Array] arg  like [a,b,[c,d],e]
-      # []: express child
-      # @return [String] tgStr
-      def buildToString(arr)
-        members = []
+      # # @param [Array] arg  like [a,b,[c,d],e]
+      # # []: express child
+      # # @return [String] tgStr
+      # def buildToString(arr)
+      #   members = []
         
-        arr.each{ |a|
-          if a.is_a? Array
-            child = buildToString a
-            membersLast = addChild members.pop, child
-            members << membersLast
-          else
-            members << transrate(a)
-          end
-        }
-        makeStringFrom members
-      end
+      #   arr.each{ |a|
+      #     if a.is_a? Array
+      #       child = buildToString a
+      #       membersLast = addChild members.pop, child
+      #       members << membersLast
+      #     else
+      #       members << transrate(a)
+      #     end
+      #   }
+      #   makeStringFrom members
+      # end
 
-      def build(arr)
-        ans = buildToString arr        
-        v = JW_CSS_OPAL_JS.new
-        v.name = "builder" # make builder tag, this tag is remove at press class, function core.
-        v.templeteString = ans
-        v
-      end
+      # def build(arr)
+      #   ans = buildToString arr        
+      #   v = JW_CSS_OPAL_JS.new
+      #   v.name = "builder" # make builder tag, this tag is remove at press class, function core.
+      #   v.templeteString = ans
+      #   v
+      # end
       
-      def addChild(parentString,childString)
-        #parentStringの中にchildStringを入れる
-        parentString.gsub(/>\n.*<\//, ">\n#{childString}<\/")
-      end
+      # def addChild(parentString,childString)
+      #   #parentStringの中にchildStringを入れる
+      #   parentString.gsub(/>\n.*<\//, ">\n#{childString}<\/")
+      # end
 
       # [a,[b]] => a.addChild b
       # [a,b] => a.addMember b
       ################ test code ###########
-      def temp(arr)
+      def build(arr)
         f = arr.first
         members = []
         arr.each{ |s|
@@ -91,7 +91,13 @@ module Jabverwock
             members << s      
           end
         }
-        makeMember members
+        ans = makeMember(members)
+
+        
+        v = JW_CSS_OPAL_JS.new
+        v.name = "builder" # make builder tag, this tag is remove at press class, function core.
+        v.templeteString = ans
+        v
       end
 
 
