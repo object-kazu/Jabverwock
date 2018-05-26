@@ -127,11 +127,13 @@ module Jabverwock
     end
     
     # just return tag strings
+    # tgStr dose not display builder tag, but do not remove.
+    # builder tag remove at press method.
     # tag string is such as <p>hogehoge<p>
     # @return [String] tag string
     def tgStr
       assemble
-      @templeteString
+      @templeteString.gsub(/<builder>\n<\/builder>/, "")
     end
     
     def isSingleTag(isSingle)
