@@ -50,7 +50,7 @@ module Jabverwock
       replaceStyleTagConstantTo cssStatement
       replaceScriptConstantTo jsStatement
 
-      replace_li_multi
+      # replace_li_multi
     end
 
     def htmlLoop
@@ -68,9 +68,10 @@ module Jabverwock
         end
       end    
     end
-    def replace_li_multi
-      @result.gsub!(/li_multi/, "li")
-    end
+    
+    # def replace_li_multi
+    #   @result.gsub!(/li_multi/, "li")
+    # end
     
     ######## css treatment  ######
     #<style>~</style>を抽出して、STYLE_TAG_EXTRACTEDに置き換えるー＞整形したテキストをあとでreplace

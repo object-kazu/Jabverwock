@@ -25,7 +25,7 @@ module Jabverwock
     
     def tabbedTxt
       mainLoop
-      @result
+      @result.chomp # remove last return
     end
 
     def tabbedArr
