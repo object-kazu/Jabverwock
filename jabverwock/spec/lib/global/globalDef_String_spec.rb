@@ -177,29 +177,6 @@ module Jabverwock
       expect(ans).to eq ["a\n","b"]
        
     end
-
-
-    it "insertIndex" do
-      a = ["a", "b", "<\/body>"]
-      ans = KString.insertIndex a
-      expect(ans).to eq 2
-      
-    end
-
-    it "insert Target befor </body>" do
-      a = ["a", "b", "<\/body>"]
-      index = KString.insertIndex a
-      a.insert index,"!!"
-      expect(a).to eq  ["a", "b","!!", "<\/body>"]
-      
-    end
-
-    it "insertTextLoop" do
-      a = %w(a b </body>)
-      ans = KString.insertTextLoop a
-      expect(ans).to eq "a\nb\n</body>\n"
-      
-    end
     
     it "insertText befor </body>" do
       a = ["a", "b", "<\/body>"]

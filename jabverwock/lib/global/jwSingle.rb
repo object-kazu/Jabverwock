@@ -23,6 +23,7 @@ module Jabverwock
     
     def initialize (level = 1)
       super()
+      setTagStyle($SINGLE)
       @content = ""
       @level = level
       insertLevel

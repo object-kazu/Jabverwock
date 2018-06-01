@@ -12,58 +12,65 @@ require "css/css"
 
 module Jabverwock
   
-  class JWS < JW_CSS_OPAL_JS
+  # class JWS < JW_CSS_OPAL_JS
     
-    def initialize
-      super
-    end
+  #   def initialize
+  #     super
+  #     @result = ""
+
+  #   end
     
-    class << self
+  #   class << self
 
-      # [a,[b]] => a.addChild b
-      # [a,b] => a.addMember b
-      def build(arr)
-        f = arr.first
-        members = []
-        arr.each{ |s|
-          if s.is_a? Array # child
-            makeChild members.last, s
-          else # member
-            members << s      
-          end
-        }
-        ans = makeMember(members)        
-        v = JW_CSS_OPAL_JS.new
-        v.name = "builder" # make builder tag, this tag is remove at press class, function core.
-        v.templeteString = ans
-        v
-      end
-
-
-      def makeChild(parent, arr)
-        #arr[0].addChild arr[1]...
-        last = parent #inital parent
+  #     # [a,[b]] => a.addChild b
+  #     # [a,b] => a.addMember b
+  #     def build(arr)
+  #       v = JW_CSS_OPAL_JS.new
+  #       v.name = "builder" # make builder tag, this tag is remove at press class, function core.
+  #       v.templeteString = buildCore(arr)
+  #       v
         
-        arr.each{ |s|
-          if s.is_a? Array
-            makeChild parent, s
-          else
-            last.addChild s
-            last = s
-          end
-        }
-      end
-      def makeMember(arr)
-        #arr[0].addMemver arr[1]...
-        f = arr.shift
-        arr.each{ |s|
-          f.addMember s
-        }
-        f.tgStr
-      end
-    end
+  #     end
 
-  end
+  #     def buildCore(arr)
+  #       f = arr.shift
+  #       members = [f]
+  #       arr.each{ |s|
+  #         if s.is_a? Array # child
+  #           makeChild members.last, s
+  #         else # member
+  #           members << s      
+  #         end
+  #       }
+  #       ans = makeMember(members)
+  #     end
+
+  #     def makeChild(parent, children)
+  #       #arr[0].addChild arr[1]...
+  #       member = []
+  #       member << parent
+  #       children.each{ |s|
+  #         if s.is_a? Array
+  #           makeChild member.last, s
+  #         else
+  #           parent.addChild s
+  #           member << s
+  #         end
+  #       }
+        
+  #     end
+      
+  #     def makeMember(arr)
+  #       #arr[0].addMemver arr[1]...
+  #       f = arr.shift
+  #       arr.each{ |s|
+  #         f.addMember s
+  #       }
+  #       f.tgStr.chomp
+  #     end
+  #   end
+
+  # end
   
   all = KSUtil.allTags
   all.each do |tag|

@@ -12,8 +12,8 @@ module Jabverwock
     
     b = JK.body.contentIs "body要素の内容は、ブラウザに表示されます。"
     h = JK.html
-    ans = JWS.build [h, [b]]
-    ans.pressTo(name: 'indexPressed.html', dist: testFolderPath + "sample1/")
+    h.addChild h
+    h.pressTo(name: 'indexPressed.html', dist: testFolderPath + "sample01/")
 
     # show diff
     KSUtil.myDiff (testFolderPath + "sample1/")

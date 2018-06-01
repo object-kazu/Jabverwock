@@ -5,7 +5,7 @@ module Jabverwock
 
   currnt = Dir.pwd
   testFolderPath = currnt + "/spec/lib/sampleCode/" 
-  sampleName = "sample4/"
+  sampleName = "sample04/"
   
   RSpec.describe sampleName do
 
