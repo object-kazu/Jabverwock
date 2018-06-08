@@ -14,13 +14,9 @@ module Jabverwock
 
     pp = JK.p.contentIs "段落の中で<br>改行をするときは<br>&lt;br&gt;タグを<br>使用します。"
     
-    
-    ans = JWS.build [h,
-                     [b,
-                      [pp]
-                     ]
-                    ]
-    ans.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
+    b.addChild pp
+    h.addChild b
+    h.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
 
     # show diff
     KSUtil.myDiff (testFolderPath + sampleName)

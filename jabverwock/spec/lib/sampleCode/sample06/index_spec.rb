@@ -5,7 +5,7 @@ module Jabverwock
 
   currnt = Dir.pwd
   testFolderPath = currnt + "/spec/lib/sampleCode/" 
-  sampleName = "sample6/"
+  sampleName = "sample06/"
   
   RSpec.describe sampleName do
 
@@ -24,13 +24,9 @@ module Jabverwock
     }
 
     arr.unshift pm
-    
-    ans = JWS.build [h,
-                    [b,
-                     arr
-                    ]
-                   ]
-    ans.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
+    b.addChildren arr
+    h.addChild b
+    h.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
 
     # show diff
     KSUtil.myDiff (testFolderPath + sampleName)

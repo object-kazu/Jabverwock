@@ -5,7 +5,7 @@ module Jabverwock
 
   currnt = Dir.pwd
   testFolderPath = currnt + "/spec/lib/sampleCode/" 
-  sampleName = "sample8/"
+  sampleName = "sample08/"
   
   RSpec.describe sampleName do
     
@@ -14,13 +14,10 @@ module Jabverwock
     b.attr(:bgcolor, "yellow")
 
     h2 = JK.heading(2).contentIs "黄色の背景色"
-
-    ans = JWS.build [h,
-                     [b,
-                      [h2]
-                     ]
-                    ]
-    ans.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
+    
+    b.addChild h2
+    h.addChild b
+    h.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
 
     # show diff
     KSUtil.myDiff (testFolderPath + sampleName)

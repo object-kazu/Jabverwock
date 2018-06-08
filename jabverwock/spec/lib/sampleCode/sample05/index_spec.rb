@@ -22,13 +22,8 @@ module Jabverwock
     end
     hs << JK.p.contentIs( "単に太字にするために使用せず、見出しのためだけに&lt;h1&gt;～&lt;h6&gt;タグを使ってくだい。太字にするためには他のタグを使用します。")
 
-    
-    ans = JWS.build [h,
-                     [b,
-                      hs #=> [h1, h2, ...] this is body child
-                     ]
-                    ]
-    ans.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
+    h.addChildren b,hs
+    h.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
 
     # show diff
     KSUtil.myDiff (testFolderPath + sampleName)

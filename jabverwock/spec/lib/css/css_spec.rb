@@ -127,9 +127,14 @@ module Jabverwock
       c = CSS.new("").color "red"
       c.name = :id__test
       expect(c.str).to eq "#test {\ncolor: red;\n}"
-    end
+    end    
+  end
 
-   
-    
-  end  
+  RSpec.describe 'css no name' do
+    it 'css no name pattern'do
+      c = CSS.new
+      expect(c.name).to eq ""
+    end
+  end
+
 end

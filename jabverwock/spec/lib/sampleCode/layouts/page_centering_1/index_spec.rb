@@ -7,14 +7,6 @@ module Jabverwock
   testFolderPath = currnt + "/spec/lib/sampleCode/layouts/" 
   sampleName = "page_centering_1/"
 
-# /* --- 全体の背景・テキスト --- */
-# body {
-# margin: 0;
-# padding: 0;
-# background-color: #f0f0f0; /* ページの背景色 */
-# color: #000000; /* 全体の文字色 */
-# font-size: 100%; /* 全体の文字サイズ */
-# }
 
 # /* --- 全体のリンクテキスト --- */
 # a:link { color: #0000ff; }
@@ -53,8 +45,22 @@ module Jabverwock
       h
     end
     
+# /* --- 全体の背景・テキスト --- */
+# body {
+# margin: 0;
+# padding: 0;
+# background-color: #f0f0f0; /* ページの背景色 */
+# color: #000000; /* 全体の文字色 */
+# font-size: 100%; /* 全体の文字サイズ */
+# }
     def makeBody
       b = JK.body
+
+      css = CSS.new
+      css.margin = 0
+      css.padding = 0
+      b.addCss css
+      
       c = JK.comment.contentIs "コンテナ開始"
       e = JK.comment.contentIs "コンテナ終了"
       b.addChildren [c,divContainer,e]
@@ -75,12 +81,10 @@ module Jabverwock
       content = JK.div.attr(:id__contant)
       content.addChildString "[コンテンツ]"
       
-      
-      a = JWS.build [c,[
-                       hs,h,he,
-                       cs,content,ce,
-                       divFooter
-                     ]]
+      c.addChildren hs,h,he
+      c.addChildren cs,content,ce
+      c.addChildren divFooter
+      c
     end
     
     def divFooter

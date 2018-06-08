@@ -56,7 +56,7 @@ module Jabverwock
     self.define_attributes [:width, :height, :position]
     
     
-    def initialize(name)
+    def initialize(name="")
       super
       nameTreatment name
     end
@@ -77,7 +77,7 @@ module Jabverwock
         symbolName name        
         return
       end
-
+      
       @name = name.to_s
       
     end
@@ -145,14 +145,16 @@ module Jabverwock
     def str      
       nameErrorCheck
       nameTreatment @name
-      @cssResultString = ""
-      # 接頭句
-      @cssResultString += @name + $SPC + "{" + $RET + removeNameFlags
-      # 接尾句
-      @cssResultString += $RET + "}"
-      
+      strCore removeNameFlags     
     end
 
+    def strCore(str)
+      @cssResultString = ""
+      # 接頭句
+      @cssResultString += @name + $SPC + "{" + $RET + str
+      # 接尾句
+      @cssResultString += $RET + "}"
+    end
     
     def nameErrorCheck
       if @name.empty?
@@ -166,16 +168,14 @@ module Jabverwock
 
       ans.gsub!(/\nuse-(id|cls|namae).*;/, "") || ""      
       ans.gsub!(/name:.*;\n/, "") || ""
-    end    
-  end
+    end
 
-    
-    
-  # a = CSS.new("s")
-  # p a.font_size(10)
-  # # p a.name
-  # p a.str
-  # p a.pStr
+    def properties(hash)
+      result = ""
+      hash.each{ |key, v|
+        eval "@#{key} = v"
+      }
+    end
 
-  
+  end  
 end

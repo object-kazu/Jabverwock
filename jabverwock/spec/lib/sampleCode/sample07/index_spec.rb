@@ -5,7 +5,7 @@ module Jabverwock
 
   currnt = Dir.pwd
   testFolderPath = currnt + "/spec/lib/sampleCode/" 
-  sampleName = "sample7/"
+  sampleName = "sample07/"
   
   RSpec.describe sampleName do
 
@@ -16,12 +16,9 @@ module Jabverwock
     co = JK.comment.contentIs "このコメントは表示されません"
     pp = JK.p.contentIs "これは通常の段落です。"
     
-    ans = JWS.build [h,
-                     [b,
-                      [co,pp]
-                     ]
-                    ]
-    ans.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
+    b.addChildren co,pp
+    h.addChild b
+    h.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
 
     # show diff
     KSUtil.myDiff (testFolderPath + sampleName)

@@ -23,19 +23,28 @@ module Jabverwock
     sup = JK.sup.contentIs "上付き文字"
     pSup = JK.p.contentIs "このテキストは" + sup.tgStr + "を含んでいます。"
 
-    ans = JWS.build [h,
-                     [b,
-                      [bold,brTag,
-                       strong,brTag,
-                       em,brTag,
-                       ii,brTag,
-                       sm,brTag,
-                       pSub,brTag,
-                       pSup,brTag
-                      ]
-                     ]
-                    ]
-    ans.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
+    # ans = JWS.build [h,
+    #                  [b,
+    #                   [bold,brTag,
+    #                    strong,brTag,
+    #                    em,brTag,
+    #                    ii,brTag,
+    #                    sm,brTag,
+    #                    pSub,brTag,
+    #                    pSup,brTag
+    #                   ]
+    #                  ]
+    #                 ]
+    b.addChildren bold,brTag
+    b.addChildren strong,brTag
+    b.addChildren em,brTag
+    b.addChildren ii,brTag
+    b.addChildren sm,brTag
+    b.addChildren pSub,brTag
+    b.addChildren pSup,brTag
+    h.addChild b
+    
+    h.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
 
     # show diff
     KSUtil.myDiff (testFolderPath + sampleName)

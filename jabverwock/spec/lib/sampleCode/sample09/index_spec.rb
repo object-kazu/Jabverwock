@@ -5,7 +5,7 @@ module Jabverwock
 
   currnt = Dir.pwd
   testFolderPath = currnt + "/spec/lib/sampleCode/" 
-  sampleName = "sample9/"
+  sampleName = "sample09/"
   
   RSpec.describe sampleName do
     
@@ -16,12 +16,15 @@ module Jabverwock
     h3 = JK.heading(3).contentIs "背景画像"
     pp1 = JK.p.contentIs "GIFやJPEG形式の画像ファイルがHTMLの背景画像として利用できます。"
     pp2 = JK.p.contentIs "画像の大きさがページの大きさよりも小さいときには、画像自体が繰り返されて表示されます。"
-    ans = JWS.build [h,
-                     [b,
-                      [h3,pp1,pp2]
-                     ]
-                    ]
-    ans.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
+    b.addChildren h3,pp1,pp2
+    h.addChild b
+    
+    # ans = JWS.build [h,
+    #                  [b,
+    #                   [h3,pp1,pp2]
+    #                  ]
+    #                 ]
+    h.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
 
     # show diff
     KSUtil.myDiff (testFolderPath + sampleName)
