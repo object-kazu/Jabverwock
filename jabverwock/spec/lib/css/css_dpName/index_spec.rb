@@ -36,8 +36,12 @@ module Jabverwock
 
   html.pressTo(name: 'indexPressed.html', dist: KSUtil.pathForTest(__FILE__))
     
-  # show diff    
-  KSUtil.myDiff(__FILE__)
+  # show diff
+  currnt = Dir.pwd
+  now = "css_dpName"
+  testFolderPath = currnt + "/spec/lib/css/#{now}/"
+  KSUtil.myDiff (testFolderPath)
+
   
   end
 end

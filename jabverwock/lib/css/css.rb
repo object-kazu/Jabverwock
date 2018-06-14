@@ -145,17 +145,21 @@ module Jabverwock
     def str      
       nameErrorCheck
       nameTreatment @name
-      strCore removeNameFlags     
-    end
-
-    def strCore(str)
       @cssResultString = ""
       # 接頭句
-      @cssResultString += @name + $SPC + "{" + $RET + str
+      @cssResultString += @name + $SPC + "{" + $RET + removeNameFlags
       # 接尾句
       @cssResultString += $RET + "}"
     end
-    
+
+    # def strCore(str)
+    #   @cssResultString = ""
+    #   # 接頭句
+    #   @cssResultString += @name + $SPC + "{" + $RET + str
+    #   # 接尾句
+    #   @cssResultString += $RET + "}"
+    # end
+        
     def nameErrorCheck
       if @name.empty?
         p "css name is empry. set cssName"
@@ -165,7 +169,6 @@ module Jabverwock
 
     def removeNameFlags  # rename noNameStr
       ans = pStr
-
       ans.gsub!(/\nuse-(id|cls|namae).*;/, "") || ""      
       ans.gsub!(/name:.*;\n/, "") || ""
     end

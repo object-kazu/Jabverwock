@@ -36,11 +36,10 @@ module Jabverwock
     html.addChildren header, bodier
     html.pressTo(name: 'indexPressed.html', dist: KSUtil.pathForTest(__FILE__))
     
-    # show diff    
-    KSUtil.myDiff(__FILE__)
-  
-   
-   
+    # show diff
+    currnt = Dir.pwd
+    testFolderPath = currnt + "/spec/lib/css/css_addMembers/" 
+    KSUtil.myDiff (testFolderPath)
     
   end
 end
