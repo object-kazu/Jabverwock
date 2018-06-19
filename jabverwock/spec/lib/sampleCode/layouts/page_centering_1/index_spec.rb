@@ -115,8 +115,9 @@ module Jabverwock
 
       
       # #print result
-      doc.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
-                   
+      # doc.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
+      doc.pressExportCssTo(name: 'indexPressed.html', dist: testFolderPath + sampleName, exportTo: "body.css")
+                            
       # show diff
       KSUtil.myDiff (testFolderPath + sampleName)
     end

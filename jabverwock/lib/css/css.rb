@@ -151,15 +151,7 @@ module Jabverwock
       # 接尾句
       @cssResultString += $RET + "}"
     end
-
-    # def strCore(str)
-    #   @cssResultString = ""
-    #   # 接頭句
-    #   @cssResultString += @name + $SPC + "{" + $RET + str
-    #   # 接尾句
-    #   @cssResultString += $RET + "}"
-    # end
-        
+    
     def nameErrorCheck
       if @name.empty?
         p "css name is empry. set cssName"
@@ -173,6 +165,12 @@ module Jabverwock
       ans.gsub!(/name:.*;\n/, "") || ""
     end
 
+    
+    # @param [hash] hash propery and value
+    # @example
+    #       ha = { name: "head", font_size: 10, color: "red" }
+    #       properties  ha
+    #       => {\nfont-size: 10;\ncolor: red;\n}"
     def properties(hash)
       result = ""
       hash.each{ |key, v|

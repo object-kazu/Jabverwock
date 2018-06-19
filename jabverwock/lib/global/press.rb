@@ -135,6 +135,24 @@ module Jabverwock
       end
     end
 
+    def coreExportCss(cssPath)
+      
+      pathName = @exportPath + "by.css"
+
+      #@resultString から<style> ~~ </style>を抜き出す
+      cssContent = @resultString[/<style>.*<\/style>/m]
+      @resultString.gsub!(/<style>.*<\/style>/m, "") #resultStringから消去
+      
+      cssContent.gsub!(/<style>/,"")
+      cssContent.gsub!(/<\/style>/,"")
+      File.open(pathName, "w") do |f| 
+        f.puts cssContent
+      end
+
+      core
+      
+    end
+    
     # whether head tag exist
     # @return [Bool] if head tag exist return true
     def isExistHeadTag
