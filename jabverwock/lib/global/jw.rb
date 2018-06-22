@@ -216,16 +216,16 @@ module Jabverwock
     end
     
     # koko now
-    def pressExportCssTo(name:,dist:,exportTo:)
+    def pressWithExport(name:,dist:,cssTo:)
       pressConfig(name: name, dist: dist)      
       prepPress
 
       # call pressTo method
-      # style tag export to exportTo file
-      @pressVal.coreExportCss exportTo
+      # style tag export to cssTo file
+      @pressVal.coreExportCss cssTo
       p "Press Done!"
       pressFingerPrint      
-      
+             
     end
     
     # press with using variable

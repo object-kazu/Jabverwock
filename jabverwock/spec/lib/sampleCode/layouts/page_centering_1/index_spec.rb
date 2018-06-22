@@ -7,32 +7,48 @@ module Jabverwock
   testFolderPath = currnt + "/spec/lib/sampleCode/layouts/" 
   sampleName = "page_centering_1/"
 
-
-# /* --- 全体のリンクテキスト --- */
-# a:link { color: #0000ff; }
-# a:visited { color: #800080; }
-# a:hover { color: #ff0000; }
-# a:active { color: #ff0000; }
-
-# /* --- コンテナ --- */
-# #container {
-# width: 780px; /* ページの幅 */
-# margin: 0 auto; /* センタリング */
-# }
-
-# /* --- ヘッダ --- */
-# #header {
-# background-color: #ffe080; /* ヘッダの背景色 */
-# }
-
-# /* --- コンテンツ --- */
-# #content {
-# background-color: #ffffff; /* コンテンツの背景色 */
-# }
-
   
   RSpec.describe sampleName do
+
+    def cHeader
+      CSS.new("header").background_color("#ffe080")
+    end
+    def cContent
+      CSS.new("content").background_color("#ffffff")
+    end
     
+    def cContainer
+      c = CSS.new("container")
+      c.width = "780px"
+      c.margin = "0 auto"
+      c
+    end
+    
+    def cBody
+      c = CSS.new
+      ha = { name: "body",
+             margin: 0,
+             background_color: "#f0f0f0",
+             color: "#000000",
+             font_size: "100%", #/* 全体の文字サイズ */
+           }
+      c.properties ha
+      c
+    end
+
+    def cAarray
+      nameList = ["a:link", "a:visited","a:hover", "a:active" ]
+      colorList = ["#0000ff", "#800080","#ff0000","#ff0000"]
+      list = []
+      
+      nameList.each_with_index{ |s,i|
+        c = CSS.new(s)
+        c.color = colorList[i]
+        list << c
+      }
+
+      list
+    end
     
     def makeHEAD
       h = JK.head
@@ -42,24 +58,13 @@ module Jabverwock
       h.addChild m
       h.addChild l
       h.addChild t
+      h.addCss cHeader
       h
     end
     
-# /* --- 全体の背景・テキスト --- */
-# body {
-# margin: 0;
-# padding: 0;
-# background-color: #f0f0f0; /* ページの背景色 */
-# color: #000000; /* 全体の文字色 */
-# font-size: 100%; /* 全体の文字サイズ */
-# }
     def makeBody
       b = JK.body
-
-      css = CSS.new
-      css.margin = 0
-      css.padding = 0
-      b.addCss css
+      b.addCss cBody
       
       c = JK.comment.contentIs "コンテナ開始"
       e = JK.comment.contentIs "コンテナ終了"
@@ -69,7 +74,6 @@ module Jabverwock
     
     def divContainer
       c = JK.div.attr(:id__container)
-      c.css.background_color("cccccc")
       hs = JK.comment.contentIs "ヘッダ開始"
       he = JK.comment.contentIs "ヘッダ終了"
       cs = JK.comment.contentIs "コンテンツ開始"
@@ -80,10 +84,12 @@ module Jabverwock
       
       content = JK.div.attr(:id__contant)
       content.addChildString "[コンテンツ]"
+      content.addCss cContent
       
       c.addChildren hs,h,he
       c.addChildren cs,content,ce
       c.addChildren divFooter
+      c.addCss cContainer
       c
     end
     
@@ -95,7 +101,6 @@ module Jabverwock
       f.addChildString "[フッタ]"
       c = CSS.new("#example1").color "blue"
       f.addCss c 
-#      f.css.background_color("cccccc")
       
       fe = JK.comment.contentIs "フッタ終了"
 
@@ -112,11 +117,15 @@ module Jabverwock
       doc = JK.doctype
       doc.type = "HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\""
       doc.addMember html
+      cAarray.each{ |s|
+        doc.addCss s
+      }
+
 
       
       # #print result
       # doc.pressTo(name: 'indexPressed.html', dist: testFolderPath + sampleName)
-      doc.pressExportCssTo(name: 'indexPressed.html', dist: testFolderPath + sampleName, exportTo: "body.css")
+      doc.pressWithExport(name: 'indexPressed.html', dist: testFolderPath + sampleName, cssTo: "body_ref.css")
                             
       # show diff
       KSUtil.myDiff (testFolderPath + sampleName)
@@ -126,4 +135,3 @@ module Jabverwock
   end
   
 end
-  

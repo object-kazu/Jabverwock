@@ -137,7 +137,7 @@ module Jabverwock
 
     def coreExportCss(cssPath)
       
-      pathName = @exportPath + "by.css"
+      pathName = @exportPath + cssPath
 
       #@resultString から<style> ~~ </style>を抜き出す
       cssContent = @resultString[/<style>.*<\/style>/m]
